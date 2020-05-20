@@ -11,8 +11,7 @@
     "lint": "eslint . --ext .tsx --ext .ts",
     "start:dev": "react-scripts start",
     "start": "serve -s build",
-    "test": "react-scripts test",
-    "update": "npm-check -u"
+    "test": "react-scripts test"
   },
   "dependencies": {
     "serve": "^11.3.0"
@@ -27,11 +26,10 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
     "husky": "^4.2.5",
-    "npm-check": "^5.9.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.1",
     "rimraf": "^3.0.2",
     "typescript": "^3.9.3"
   },
