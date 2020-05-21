@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import {
-  ComponentsAdminPage,
   DashboardAdminPage,
   LoginAdminPage
 } from '../pages/admin';
@@ -43,10 +42,6 @@ export const Routes: React.FC<{}> = () => {
 
       <PrivateRoute exact path="/admin/dashboard">
         <DashboardAdminPage />
-      </PrivateRoute>
-
-      <PrivateRoute exact path="/admin/components">
-        <ComponentsAdminPage />
       </PrivateRoute>
 
       {/* BLOG ROUTES */}
