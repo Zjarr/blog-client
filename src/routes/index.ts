@@ -1,2 +1,1 @@
-export * from './admin.routes';
-export * from './blog.routes';
+export * from './config.route';

@@ -5,8 +5,7 @@ export const PrivateRoute: React.FC<RouteProps> = ({ children, ...rest }) => {
   return (
     <Route
       render={(): React.ReactNode =>
-        false ? children :
-        <Redirect to={'/admin'}/>
+        false ? children : <Redirect to={'/admin'}/>
       }
       {...rest}
     />
