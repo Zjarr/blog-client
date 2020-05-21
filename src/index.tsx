@@ -2,13 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import { AdminRoutes, BlogRoutes } from './routes';
+import { Routes } from './routes';
 import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AdminRoutes />
-      <BlogRoutes />
+      <Routes />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
