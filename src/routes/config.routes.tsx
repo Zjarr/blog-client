@@ -20,7 +20,7 @@ import {
 
 import {
   PrivateRoute
-} from './private.route';
+} from './private.routes';
 
 export const Routes: React.FC<{}> = () => {
   return (
