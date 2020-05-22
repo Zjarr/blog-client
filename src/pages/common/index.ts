@@ -1,1 +1,1 @@
-export * from './not-found.common.page';
+export * from './not-found.common.pages';
