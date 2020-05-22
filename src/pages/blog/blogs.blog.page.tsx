@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   useQuery
-} from '../../lib/functions';
+} from '../../lib/hooks';
 
 export const BlogsBlogPage: React.FC<{}> = () => {
   const query = useQuery();
