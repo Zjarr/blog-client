@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { Gray0, Gray1, White1 } from '../../lib/values';
 
-export const InputBox = styled.input<{ width?: string, disabled: boolean }>`
+export const InputContainer = styled.input<{ width?: string, disabled: boolean }>`
   border: 4px solid ${({ disabled }): string => disabled ? 'transparent' : White1};
   border-radius: 10px;
   cursor: ${({ disabled }): string => disabled ? 'default' : 'text'};

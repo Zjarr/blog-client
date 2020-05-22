@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { InputBox, Label } from './style.input.components';
+import { InputContainer, Label } from './style.input.components';
 
 export const Input: React.FC<IProps> = ({ disabled = false, label, ...rest }) => {
   return (
@@ -8,7 +8,7 @@ export const Input: React.FC<IProps> = ({ disabled = false, label, ...rest }) =>
       {
         label && <Label>{label}</Label>
       }
-      <InputBox disabled={disabled} {...rest} />
+      <InputContainer disabled={disabled} {...rest} />
     </>
   );
 };
