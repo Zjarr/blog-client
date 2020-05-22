@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { InputBox, Label } from './style.input.component';
+import { InputBox, Label } from './style.input.components';
 
 export const Input: React.FC<IProps> = ({ disabled = false, label, ...rest }) => {
   return (
