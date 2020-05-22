@@ -14,7 +14,7 @@
     "test": "react-scripts test"
   },
   "dependencies": {
-    "serve": "^11.3.0"
+    "serve": "^11.3.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.8.0",
