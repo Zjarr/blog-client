@@ -2,12 +2,11 @@ import { rgba } from '../regexs';
 
 export const lighten = (color: string, lightness: number): string => {
   const values = color.match(rgba)!;
-  const numbers = values.map((value: string): string => {
-    const number = parseFloat(value);
+  const colors = values.slice(0, 3);
+  const alpha = values[3];
 
-    if (number % 1 !== 0) {
-      return value;
-    }
+  const numbers = colors.map((value: string): string => {
+    const number = parseFloat(value);
 
     if (number + lightness >= 255) {
       return '255';
@@ -15,6 +14,8 @@ export const lighten = (color: string, lightness: number): string => {
 
     return (number + lightness).toString();
   });
+
+  numbers.push(alpha);
 
   return `rgba(${[...numbers]})`;
 };
