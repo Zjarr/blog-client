@@ -2,10 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import './assets/fonts/index.css';
-
 import { Routes } from './routes';
 import * as serviceWorker from './serviceWorker';
+
+import './assets/fonts/material-icons/index.css';
+import './assets/fonts/proxima-nova/index.css';
+import './styles/index.css';
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
