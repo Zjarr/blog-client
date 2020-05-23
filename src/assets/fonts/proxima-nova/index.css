@@ -1,9 +1,3 @@
-/* 
-  Fonts used on the project.
-  The body style attribute is used as fallback for the components.
-  If not font is declared it will use Proxima Nova Regular
-*/
-
 @font-face {
   font-family: 'Proxima Nova Black';
   src: url(./proxima-nova-black.otf) format('opentype');
@@ -27,8 +21,4 @@
 @font-face {
   font-family: 'Proxima Nova Thin';
   src: url(./proxima-nova-thin.otf) format('opentype');
-}
-
-body {
-  font-family: 'Proxima Nova Regular';
 }
