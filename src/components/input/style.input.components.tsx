@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 import { alpha } from '../../lib/functions';
-import { COLOR_BLACK_0, COLOR_BLACK_1, COLOR_GRAY_0, COLOR_GRAY_1, COLOR_WHITE_1, TEXT_NORMAL } from '../../lib/values';
+import { COLOR_BLACK_0, COLOR_BLACK_1, COLOR_GRAY_0, COLOR_GRAY_1, COLOR_WHITE_2, TEXT_NORMAL } from '../../lib/values';
 
 export const InputContainer = styled.input<{ width?: string, disabled: boolean }>`
   background-color: ${alpha(COLOR_BLACK_0, 0)};
-  border: 4px solid ${({ disabled }): string => disabled ? alpha(COLOR_BLACK_1, 0) : COLOR_WHITE_1};
+  border: 2px solid ${({ disabled }): string => disabled ? alpha(COLOR_BLACK_1, 0) : COLOR_WHITE_2};
   border-radius: 10px;
   cursor: ${({ disabled }): string => disabled ? 'default' : 'text'};
   font-family: Proxima Nova Regular;
