@@ -34,10 +34,12 @@ export interface IProps {
   background?: string;
   color?: string;
   disabled?: boolean;
+  fontSize?: string;
+  height?: string;
   icon?: string;
+  iconSize?: string;
   onClick?: () => void;
   paddingLeft?: string;
-  size?: string;
   text?: string;
   type?: string;
   width?: string;
