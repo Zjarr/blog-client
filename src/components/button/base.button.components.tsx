@@ -2,27 +2,39 @@ import React from 'react';
 
 import { Icon } from '../icon';
 
-import { CircleButton } from './circle.button.components';
-import { SquareButton } from './square.button.components';
+import { CircleButtonContainer } from './style.circle.button.components';
+import { SquareButtonContainer } from './style.square.button.components';
+import { TextButtonContainer } from './style.text.button.components';
 
-export const Button: React.FC<IProps> = ({ disabled = false, icon, text, type = 'square', ...rest }) => {
+export const Button: React.FC<IProps> = ({ disabled = false, icon, onClick = null, text, type = 'text', ...rest }) => {
   const iconOnly = !(icon && text);
+
+  const handleOnClick = (): void | null => {
+    return onClick && onClick();
+  };
 
   return (
     <>
       {
         type === 'circle' &&
-        <CircleButton disabled={disabled} iconOnly={iconOnly} {...rest}>
-          {icon && <Icon name={icon} size={'24px'} />}
+        <CircleButtonContainer disabled={disabled} iconOnly={iconOnly} onClick={handleOnClick} {...rest} >
+          {icon && <Icon name={icon} />}
           {text && text}
-        </CircleButton>
+        </CircleButtonContainer>
       }
       {
         type === 'square' &&
-        <SquareButton disabled={disabled} iconOnly={iconOnly} {...rest}>
-          {icon && <Icon name={icon} size={'24px'} />}
+        <SquareButtonContainer disabled={disabled} iconOnly={iconOnly} onClick={handleOnClick} {...rest}>
+          {icon && <Icon name={icon} />}
           {text && text}
-        </SquareButton>
+        </SquareButtonContainer>
+      }
+      {
+        type === 'text' &&
+        <TextButtonContainer disabled={disabled} iconOnly={iconOnly} onClick={handleOnClick} {...rest}>
+          {icon && <Icon name={icon} />}
+          {text && text}
+        </TextButtonContainer>
       }
     </>
   );
@@ -31,16 +43,15 @@ export const Button: React.FC<IProps> = ({ disabled = false, icon, text, type = 
 export interface IProps {
   active?: boolean;
   align?: string;
-  background?: string;
   color?: string;
   disabled?: boolean;
-  fontSize?: string;
   height?: string;
   icon?: string;
   iconSize?: string;
+  menu?: boolean;
   onClick?: () => void;
-  paddingLeft?: string;
   text?: string;
-  type?: string;
+  textSize?: string;
+  type: string;
   width?: string;
 }
