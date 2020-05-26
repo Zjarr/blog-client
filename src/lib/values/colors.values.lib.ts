@@ -11,8 +11,6 @@ export const COLOR_LIGHTBLUE_0 = 'rgba(103, 190, 243, 1)';
 export const COLOR_MAGENTA_0 = 'rgba(180, 135, 241, 1)';
 
 export const COLOR_PURPLE_0 = 'rgba(99, 119, 240, 1)';
-export const COLOR_PURPLE_1 = 'rgba(94, 114, 235, 1)';
-export const COLOR_PURPLE_2 = 'rgba(89, 109, 230, 1)';
 
 export const COLOR_RED_0 = 'rgba(40, 188, 91, 1)';
 
