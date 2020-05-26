@@ -14,8 +14,8 @@ export const BlogsBlogPage: React.FC<{}> = () => {
     <>
       <h1>Blog: Blogs</h1>
 
-      { categories && <p>{categories}</p>}
-      { keywords && <p>{keywords}</p>}
+      {categories && <p>{categories}</p>}
+      {keywords && <p>{keywords}</p>}
     </>
   );
 };
