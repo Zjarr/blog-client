@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { alpha } from '../../lib/functions';
-import { COLOR_BLACK_0, COLOR_BLACK_1, COLOR_PURPLE_0, COLOR_WHITE_0, COLOR_WHITE_2, TEXT_NORMAL } from '../../lib/values';
+import { COLOR_BLACK_0, COLOR_BLACK_1, COLOR_PURPLE_0, COLOR_WHITE_0, COLOR_WHITE_1, TEXT_NORMAL } from '../../lib/values';
 
 const COLOR_INHERIT = 'inherit';
 const COLOR_TRANSPARENT = alpha(COLOR_BLACK_1, 0);
@@ -25,7 +25,7 @@ const getTextColor = (color?: string, disabled?: boolean): string => {
 };
 
 const getAlign = (align?: string): string => align ? align : DEFAULT_ALIGN;
-const getBackgroundColor = (color?: string): string => color ? color : COLOR_WHITE_2;
+const getBackgroundColor = (color?: string): string => color ? color : COLOR_WHITE_1;
 const getHoverBorderColor = (color?: string): string => color ? color : COLOR_BLACK_0;
 const getHoverTextColor = (color?: string): string => color ? color : COLOR_BLACK_0;
 const getIconColor = (active?: boolean): string => active ? COLOR_PURPLE_0 : COLOR_INHERIT;
@@ -55,6 +55,7 @@ export const SquareButtonContainer = styled.button<{
   overflow: hidden;
   padding: 8px;
   position: relative;
+  transition: .125s;
 
   border: 2px solid ${COLOR_TRANSPARENT};
 
@@ -76,6 +77,8 @@ export const SquareButtonContainer = styled.button<{
   }
 
   :hover {
+    transition: .125s;
+    
     background-color: ${COLOR_WHITE_0};
 
     border-color: ${({ color }): string => getHoverBorderColor(color)};

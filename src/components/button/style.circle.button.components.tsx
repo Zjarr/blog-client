@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { alpha } from '../../lib/functions';
-import { COLOR_BLACK_0, COLOR_BLACK_1, COLOR_PURPLE_0, COLOR_WHITE_0, COLOR_WHITE_2, TEXT_SMALL } from '../../lib/values';
+import { COLOR_BLACK_0, COLOR_BLACK_1, COLOR_PURPLE_0, COLOR_WHITE_0, COLOR_WHITE_1, TEXT_SMALL } from '../../lib/values';
 
 const COLOR_INHERIT = 'inherit';
 const COLOR_TRANSPARENT = alpha(COLOR_BLACK_1, 0);
@@ -20,7 +20,7 @@ const getTextColor = (color?: string, disabled?: boolean): string => {
   return color ? COLOR_WHITE_0 : COLOR_BLACK_0;
 };
 
-const getBackgroundColor = (color?: string): string => color ? color : COLOR_WHITE_2;
+const getBackgroundColor = (color?: string): string => color ? color : COLOR_WHITE_1;
 const getHoverBorderColor = (color?: string): string => color ? color : COLOR_BLACK_0;
 const getHoverTextColor = (color?: string): string => color ? color : COLOR_BLACK_0;
 const getIconColor = (active?: boolean): string => active ? COLOR_PURPLE_0 : COLOR_INHERIT;
@@ -47,6 +47,7 @@ export const CircleButtonContainer = styled.button<{
   justify-content: center;
   overflow: hidden;
   position: relative;
+  transition: .125s;
 
   border: 2px solid ${COLOR_TRANSPARENT};
 
@@ -57,6 +58,8 @@ export const CircleButtonContainer = styled.button<{
   width: ${({ width }): string => getSize(width)};
 
   :hover {
+    transition: .125s;
+
     background-color: ${COLOR_WHITE_0};
 
     border-color: ${({ color }): string => getHoverBorderColor(color)};

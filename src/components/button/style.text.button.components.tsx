@@ -44,6 +44,7 @@ export const TextButtonContainer = styled.button<{
   overflow: hidden;
   padding: 8px;
   position: relative;
+  transition: .125s;
 
   background-color: ${COLOR_TRANSPARENT};
   border: 2px solid ${COLOR_TRANSPARENT};
@@ -55,6 +56,8 @@ export const TextButtonContainer = styled.button<{
   width: ${({ width }): string => getSize(width)};
 
   :hover {
+    transition: .125s;
+    
     color: ${({ color }): string => getHoverTextColor(color)};
   }
 
