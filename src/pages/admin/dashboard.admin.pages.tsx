@@ -8,13 +8,13 @@ export const DashboardAdminPage: React.FC<{}> = () => {
     <>
       <h1>Admin: Dashboard</h1>
       {
-        section && <p>{ section }</p>
+        section && <p>{section}</p>
       }
       {
-        action && <p>{ action }</p>
+        action && <p>{action}</p>
       }
       {
-        param && <p>{ param }</p>
+        param && <p>{param}</p>
       }
     </>
   );
