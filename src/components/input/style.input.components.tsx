@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { alpha } from '../../lib/functions';
-import { COLOR_BLACK_0, COLOR_BLACK_1, COLOR_GRAY_0, COLOR_GRAY_1, COLOR_WHITE_2, TEXT_NORMAL } from '../../lib/values';
+import { COLOR_BLACK_0, COLOR_BLACK_1, COLOR_GRAY_0, COLOR_GRAY_1, COLOR_PURPLE_0, COLOR_WHITE_2, TEXT_NORMAL } from '../../lib/values';
 
 export const InputContainer = styled.input<{ width?: string, disabled: boolean }>`
   background-color: ${alpha(COLOR_BLACK_0, 0)};
@@ -15,6 +15,10 @@ export const InputContainer = styled.input<{ width?: string, disabled: boolean }
   outline: none;
   padding: 0 8px;
   width: ${({ width }): string => width ? width : 'auto'};
+
+  :focus {
+    border-color: ${COLOR_PURPLE_0};
+  }
 
   ::placeholder {
     color: ${COLOR_GRAY_1}
