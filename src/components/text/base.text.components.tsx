@@ -1,28 +1,28 @@
 import React from 'react';
 
-import { Label } from './style.label.text.components';
-import { Paragraph } from './style.paragraph.text.components';
-import { SubTitle } from './style.subtitle.text.components';
-import { Title } from './style.title.text.components';
+import { LabelContainer } from './style.label.text.components';
+import { ParagraphContainer } from './style.paragraph.text.components';
+import { SubTitleContainer } from './style.subtitle.text.components';
+import { TitleContainer } from './style.title.text.components';
 
 export const Text: React.FC<IProps> = ({ type, children, ...rest }) => {
   return (
     <>
       {
         type === 'title' &&
-        <Title {...rest}>{children}</Title>
+        <TitleContainer {...rest}>{children}</TitleContainer>
       }
       {
         type === 'subtitle' &&
-        <SubTitle {...rest}>{children}</SubTitle>
+        <SubTitleContainer {...rest}>{children}</SubTitleContainer>
       }
       {
         type === 'paragraph' &&
-        <Paragraph {...rest}>{children}</Paragraph>
+        <ParagraphContainer {...rest}>{children}</ParagraphContainer>
       }
       {
         type === 'label' &&
-        <Label {...rest}>{children}</Label>
+        <LabelContainer {...rest}>{children}</LabelContainer>
       }
     </>
   );
