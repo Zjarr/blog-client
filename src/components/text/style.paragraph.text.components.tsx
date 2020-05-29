@@ -7,7 +7,7 @@ const DEFAULT_MARGIN = '0px';
 const getTextColor = (color?: string): string => color ? color : COLOR_BLACK_0;
 const getTextMargin = (margin?: string): string => margin ? margin : DEFAULT_MARGIN;
 
-export const ParagraphContainer = styled.label<{ color?: string, margin?: string }>`
+export const ParagraphContainer = styled.p<{ color?: string, margin?: string }>`
   font-family: Proxima Nova Regular;
   font-size: 16px;
 
