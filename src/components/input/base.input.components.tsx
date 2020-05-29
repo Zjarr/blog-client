@@ -1,20 +1,27 @@
 import React from 'react';
 
-import { InputContainer, Label } from './style.input.components';
+import { Icon } from '../icon';
+import { Text } from '../text';
 
-export const Input: React.FC<IProps> = ({ disabled = false, label, ...rest }) => {
+import { InputContainer, InputField } from './style.input.components';
+
+export const Input: React.FC<IProps> = ({ disabled = false, label, icon, ...rest }) => {
   return (
-    <>
+    <InputContainer>
       {
-        label && <Label>{label}</Label>
+        label && <Text type={'label'}>{label}</Text>
       }
-      <InputContainer disabled={disabled} {...rest} />
-    </>
+      {
+        icon && <Icon name={icon} />
+      }
+      <InputField autoComplete={'off'} disabled={disabled} icon={icon} {...rest} />
+    </InputContainer>
   );
 };
 
 interface IProps {
   disabled?: boolean;
+  icon?: string;
   label?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
