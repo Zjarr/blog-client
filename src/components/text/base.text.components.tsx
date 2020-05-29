@@ -1,28 +1,50 @@
 import React from 'react';
 
-import { LabelContainer } from './style.label.text.components';
-import { ParagraphContainer } from './style.paragraph.text.components';
-import { SubTitleContainer } from './style.subtitle.text.components';
-import { TitleContainer } from './style.title.text.components';
+import { Icon } from '../icon';
 
-export const Text: React.FC<IProps> = ({ type, children, ...rest }) => {
+import { Label, LabelContainer } from './style.label.text.components';
+import { Paragraph, ParagraphContainer } from './style.paragraph.text.components';
+import { SubTitle, SubTitleContainer } from './style.subtitle.text.components';
+import { Title, TitleContainer } from './style.title.text.components';
+
+export const Text: React.FC<IProps> = ({ icon, type, children, ...rest }) => {
   return (
     <>
       {
         type === 'title' &&
-        <TitleContainer {...rest}>{children}</TitleContainer>
+        <TitleContainer {...rest}>
+          {
+            icon && <Icon name={icon} />
+          }
+          <Title>{children}</Title>
+        </TitleContainer>
       }
       {
         type === 'subtitle' &&
-        <SubTitleContainer {...rest}>{children}</SubTitleContainer>
+        <SubTitleContainer {...rest}>
+          {
+            icon && <Icon name={icon} />
+          }
+          <SubTitle>{children}</SubTitle>
+        </SubTitleContainer>
       }
       {
         type === 'paragraph' &&
-        <ParagraphContainer {...rest}>{children}</ParagraphContainer>
+        <ParagraphContainer {...rest}>
+          {
+            icon && <Icon name={icon} />
+          }
+          <Paragraph>{children}</Paragraph>
+        </ParagraphContainer>
       }
       {
         type === 'label' &&
-        <LabelContainer {...rest}>{children}</LabelContainer>
+        <LabelContainer {...rest}>
+          {
+            icon && <Icon name={icon} />
+          }
+          <Label>{children}</Label>
+        </LabelContainer>
       }
     </>
   );
@@ -30,6 +52,7 @@ export const Text: React.FC<IProps> = ({ type, children, ...rest }) => {
 
 interface IProps {
   color?: string;
+  icon?: string;
   margin?: string;
   type: string;
 };
