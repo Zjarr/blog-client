@@ -19,10 +19,13 @@ export const BannerContainer = styled.div<{ isVisible: boolean }>`
   border-radius: 10px;
   display: flex;
   height: 32px;
+  overflow: hidden;
   padding: 8px 16px;
   position: absolute;
   right: -332px;
+  text-overflow: ellipsis;
   top: 48px;
+  white-space: nowrap;
   transition: .5s ease;
   width: 300px;
 
