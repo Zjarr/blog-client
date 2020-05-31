@@ -15,7 +15,7 @@ import {
 } from './style.dropdown.components';
 
 
-export const Dropdown: React.FC<IProps> = ({ name, icon, items, label, onChange, width }) => {
+export const Dropdown: React.FC<IProps> = ({ disabled = false, icon, items, label, name, onChange, width }) => {
   const [triggerName, setTriggerName] = React.useState<string>(name);
   const [open, setOpen] = React.useState<boolean>(false);
 
@@ -45,11 +45,13 @@ export const Dropdown: React.FC<IProps> = ({ name, icon, items, label, onChange,
           label && <Text type={'label'}>{label}</Text>
         }
         <DropdownTriggerContainer>
-          <DropdownTrigger icon={icon} open={open} onClick={(): void => toggleDropdownItemContainer()}>{triggerName}</DropdownTrigger>
+          <DropdownTrigger disabled={disabled} icon={icon} open={open} onClick={(): void => toggleDropdownItemContainer()} >
+            {triggerName}
+          </DropdownTrigger>
           {
             icon && <Icon name={icon} />
           }
-          <DropdownTriggerCaret open={open}>
+          <DropdownTriggerCaret disabled={disabled} open={open}>
             <Icon name={'keyboard_arrow_down'} size={'24px'} />
           </DropdownTriggerCaret>
         </DropdownTriggerContainer>
@@ -73,10 +75,11 @@ export interface IDropdownItem {
 }
 
 interface IProps {
-  name: string;
+  disabled?: boolean;
   icon?: string;
   items: IDropdownItem[];
   label?: string;
+  name: string;
   onChange: (item: IDropdownItem) => void;
   width?: string;
 };
