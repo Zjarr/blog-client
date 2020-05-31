@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { alpha } from '../../lib/functions';
 import { COLOR_BLACK_0, COLOR_BLACK_1, COLOR_GRAY_1, COLOR_PURPLE_0, COLOR_WHITE_1, TEXT_NORMAL } from '../../lib/values';
 
-const DEFAULT_FIELD_PADDING = '0px 8px';
+const DEFAULT_FIELD_PADDING = '0px 16px';
 const DEFAULT_FIELD_WIDTH = 'auto';
 
-const FIELD_WITH_ICON_PADDING = '0px 8px 0px 40px';
+const FIELD_WITH_ICON_PADDING = '0px 16px 0px 40px';
 
 const getFieldPadding = (icon?: string): string => icon ? FIELD_WITH_ICON_PADDING : DEFAULT_FIELD_PADDING;
 const getFieldWidth = (width?: string): string => width ? width : DEFAULT_FIELD_WIDTH;
