@@ -10,7 +10,7 @@ const DEFAULT_SIZE = '48px';
 
 const ICON_MARGIN_BOTTOM = '2px';
 const ICON_NO_MARGIN_BOTTOM = '0px';
-const ICON_SIZE = '24px';
+const ICON_SIZE = '16px';
 
 const getTextColor = (color?: string, disabled?: boolean): string => {
   if (disabled) {
@@ -45,6 +45,7 @@ export const CircleButtonContainer = styled.button<{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0;
   overflow: hidden;
   position: relative;
   transition: .125s;

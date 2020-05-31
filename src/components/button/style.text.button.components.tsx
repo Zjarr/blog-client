@@ -8,9 +8,9 @@ const COLOR_TRANSPARENT = alpha(COLOR_BLACK_1, 0);
 const DEFAULT_ALIGN = 'center';
 const DEFAULT_SIZE = '48px';
 
-const ICON_MARGIN_RIGHT = '8px';
+const ICON_MARGIN_RIGHT = '10px';
 const ICON_NO_MARGIN_RIGHT = '0px';
-const ICON_SIZE = '24px';
+const ICON_SIZE = '16px';
 
 const getTextColor = (color?: string, disabled?: boolean): string => {
   if (disabled) {
@@ -42,7 +42,8 @@ export const TextButtonContainer = styled.button<{
   cursor: pointer;
   display: flex;
   overflow: hidden;
-  padding: 8px;
+  margin: 0;
+  padding: 8px 16px 8px 14px;
   position: relative;
   transition: .125s;
 
