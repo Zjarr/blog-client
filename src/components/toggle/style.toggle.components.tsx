@@ -16,10 +16,12 @@ export const CheckboxContainer = styled.input`
 
   + span {
     background-color: ${COLOR_RED_0};
+    transition: .25s ease;
   }
 
   :checked + span {
     background-color: ${COLOR_GREEN_0};
+    transition: .25s ease;
 
     :before {
       transform: translateX(44px);
