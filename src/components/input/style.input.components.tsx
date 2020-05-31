@@ -30,7 +30,10 @@ export const InputField = styled.input<{ disabled: boolean, icon?: string, width
   height: 48px;
   margin: 0;
   outline: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: .125s;
+  white-space: nowrap; 
 
   background-color: ${alpha(COLOR_BLACK_0, 0)};
   border: 2px solid ${COLOR_WHITE_1};
