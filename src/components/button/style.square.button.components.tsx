@@ -7,12 +7,12 @@ const COLOR_INHERIT = 'inherit';
 const COLOR_TRANSPARENT = alpha(COLOR_BLACK_1, 0);
 
 const DEFAULT_ALIGN = 'center';
-const DEFAULT_PADDING = '8px';
+const DEFAULT_PADDING = '14px';
 const DEFAULT_SIZE = '48px';
 
-const ICON_MARGIN_RIGHT = '8px';
+const ICON_MARGIN_RIGHT = '10px';
 const ICON_NO_MARGIN_RIGHT = '0px';
-const ICON_SIZE = '24px';
+const ICON_SIZE = '16px';
 
 const MENU_PADDING = '48px';
 
@@ -53,7 +53,8 @@ export const SquareButtonContainer = styled.button<{
   cursor: pointer;
   display: flex;
   overflow: hidden;
-  padding: 8px;
+  margin: 0;
+  padding: 8px 16px;
   position: relative;
   transition: .125s;
 
