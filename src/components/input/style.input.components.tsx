@@ -17,6 +17,7 @@ export const InputContainer = styled.div`
   i {
     bottom: 18px;
     left: 16px;
+    pointer-events: none;
     position: absolute;
 
     color: ${COLOR_GRAY_1};
