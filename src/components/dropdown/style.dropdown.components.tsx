@@ -18,7 +18,7 @@ const DEFAULT_ITEM_CONTAINER_PADDING = '0px 8px';
 const DEFAULT_ITEM_CONTAINER_TOP = '60px';
 const DEFAULT_ITEM_CONTAINER_VISIBILITY = 'hidden';
 const DEFAULT_CONTAINER_WIDTH = 'auto';
-const DEFAULT_TRIGGER_PADDING = '8px 40px 8px 8px';
+const DEFAULT_TRIGGER_PADDING = '8px 40px 8px 16px';
 const DEFAULT_TRIGGER_ICON_ROTATE = 'rotate(0deg)';
 
 const ITEM_CONTAINER_OPEN_OPACITY = '1';
@@ -69,7 +69,19 @@ export const DropdownTrigger = styled.button<{ icon?: string, open: boolean }>`
   padding: ${({ icon }): string => getTriggerPadding(icon)};
 `;
 
-export const DropdownTriggerContainer = styled.div<{ open: boolean }>`
+export const DropdownTriggerCaret = styled.div<{ open: boolean }>`
+  i {
+    right: 8px;
+    top: 12px;
+
+    color: ${COLOR_BLACK_0};
+
+    transform: ${({ open }): string => getTriggerRotate(open)};
+    transition: .125s ease;
+  }
+`;
+
+export const DropdownTriggerContainer = styled.div`
   height: 48px;
   position: relative;
   width: 100%;
@@ -84,16 +96,6 @@ export const DropdownTriggerContainer = styled.div<{ open: boolean }>`
       left: 16px;
 
       color: ${COLOR_GRAY_1};
-    }
-  
-    :nth-child(3) {
-      right: 8px;
-      top: 12px;
-
-      color: ${COLOR_BLACK_0};
-
-      transform: ${({ open }): string => getTriggerRotate(open)};
-      transition: .125s ease;
     }
   }
 `;
