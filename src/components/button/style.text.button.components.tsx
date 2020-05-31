@@ -41,11 +41,13 @@ export const TextButtonContainer = styled.button<{
   border-radius: 10px;
   cursor: pointer;
   display: flex;
-  overflow: hidden;
   margin: 0;
+  overflow: hidden;
   padding: 8px 16px 8px 14px;
   position: relative;
+  text-overflow: ellipsis;
   transition: .125s;
+  white-space: nowrap; 
 
   background-color: ${COLOR_TRANSPARENT};
   border: 2px solid ${COLOR_TRANSPARENT};

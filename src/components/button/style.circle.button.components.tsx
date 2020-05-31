@@ -48,7 +48,9 @@ export const CircleButtonContainer = styled.button<{
   margin: 0;
   overflow: hidden;
   position: relative;
+  text-overflow: ellipsis;
   transition: .125s;
+  white-space: nowrap;
 
   border: 2px solid ${COLOR_TRANSPARENT};
 

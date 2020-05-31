@@ -42,6 +42,7 @@ export const Button: React.FC<IProps> = ({ children, disabled = false, icon, onC
 
 export interface IProps {
   active?: boolean;
+  align?: string;
   color?: string;
   disabled?: boolean;
   height?: string;
