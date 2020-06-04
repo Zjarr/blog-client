@@ -13,31 +13,34 @@ export const Button: React.FC<IProps> = ({ children, disabled = false, icon, onC
     return onClick && onClick();
   };
 
-  return (
-    <>
-      {
-        type === 'circle' &&
-        <CircleButtonContainer disabled={disabled} iconOnly={iconOnly} onClick={handleOnClick} {...rest} >
-          {icon && <Icon name={icon} />}
-          {children}
-        </CircleButtonContainer>
-      }
-      {
-        type === 'square' &&
-        <SquareButtonContainer disabled={disabled} iconOnly={iconOnly} onClick={handleOnClick} {...rest}>
-          {icon && <Icon name={icon} />}
-          {children}
-        </SquareButtonContainer>
-      }
-      {
-        type === 'text' &&
-        <TextButtonContainer disabled={disabled} iconOnly={iconOnly} onClick={handleOnClick} {...rest}>
-          {icon && <Icon name={icon} />}
-          {children}
-        </TextButtonContainer>
-      }
-    </>
-  );
+  if (type === 'circle') {
+    return (
+      <CircleButtonContainer disabled={disabled} iconOnly={iconOnly} onClick={handleOnClick} {...rest} >
+        {icon && <Icon name={icon} />}
+        {children}
+      </CircleButtonContainer>
+    );
+  }
+
+  if (type === 'square') {
+    return (
+      <SquareButtonContainer disabled={disabled} iconOnly={iconOnly} onClick={handleOnClick} {...rest}>
+        {icon && <Icon name={icon} />}
+        {children}
+      </SquareButtonContainer>
+    );
+  }
+
+  if (type === 'text') {
+    return (
+      <TextButtonContainer disabled={disabled} iconOnly={iconOnly} onClick={handleOnClick} {...rest}>
+        {icon && <Icon name={icon} />}
+        {children}
+      </TextButtonContainer>
+    );
+  }
+
+  return null;
 };
 
 export interface IProps {
