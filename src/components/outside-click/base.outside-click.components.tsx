@@ -12,11 +12,7 @@ export const OutsideClick: React.FC<IProps> = ({ children, onPlaceChange }) => {
   }, [clickedOutside, onPlaceChange]);
 
   return (
-    <>
-      <div ref={wrapperRef}>
-        {children}
-      </div>
-    </>
+    <div ref={wrapperRef}>{children}</div>
   );
 };
 
