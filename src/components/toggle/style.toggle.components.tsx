@@ -56,7 +56,7 @@ export const SliderContainer = styled.span`
     margin: auto;
     position: absolute;
     top: 0;
-    transition: .125s ease;
+    transition: .25s ease;
     width: 40px;
   }
 `;
