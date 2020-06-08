@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { COLOR_BLACK_0, COLOR_WHITE_0 } from '../../lib/values';
+import { COLOR_BLACK, COLOR_WHITE } from '../../lib/values';
 
 export const ImageUpdateButton = styled.button`
   align-items: center;
@@ -14,6 +14,6 @@ export const ImageUpdateButton = styled.button`
   position: absolute;
   width: 100%;
 
-  background-color: ${COLOR_BLACK_0};
-  color: ${COLOR_WHITE_0};
+  background-color: ${COLOR_BLACK};
+  color: ${COLOR_WHITE};
 `;

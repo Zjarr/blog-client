@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { COLOR_WHITE_1 } from '../../lib/values';
+import { COLOR_GRAY_LIGHT } from '../../lib/values';
 
-const DEFAULT_IMAGE_CONTAINER_SIZE = '10em';
+const DEFAULT_IMAGE_CONTAINER_SIZE = '96px';
 
 const DEFAULT_IMAGE_HEIGHT = '100%';
 const DEFAULT_UPDATE_BUTTON_OPACITY = '1';
@@ -31,7 +31,7 @@ export const CircleImageContainer = styled.div<{
   overflow: hidden;
   position: relative;
 
-  background-color: ${COLOR_WHITE_1};
+  background-color: ${COLOR_GRAY_LIGHT};
 
   height: ${({ height }): string => getContainerSize(height)};
   width: ${({ width }): string => getContainerSize(width)};
