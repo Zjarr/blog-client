@@ -1,23 +1,15 @@
 import styled from 'styled-components';
 
-import {
-  COLOR_BLACK_0,
-  COLOR_BLACK_0_0,
-  COLOR_GRAY_1,
-  COLOR_PURPLE_0,
-  COLOR_WHITE_0,
-  COLOR_WHITE_1,
-  TEXT_NORMAL
-} from '../../lib/values';
+import { COLOR_BLACK, COLOR_BLACK_0, COLOR_GRAY_LIGHT, COLOR_GRAY_MEDIUM, COLOR_PURPLE, COLOR_WHITE, TEXT_NORMAL } from '../../lib/values';
+
+const DEFAULT_CONTAINER_WIDTH = 'auto';
 
 const DEFAULT_ITEM_CONTAINER_OPACITY = '0';
 const DEFAULT_ITEM_CONTAINER_PADDING = '0px 8px';
 const DEFAULT_ITEM_CONTAINER_TOP = '60px';
 const DEFAULT_ITEM_CONTAINER_VISIBILITY = 'hidden';
-const DEFAULT_CONTAINER_WIDTH = 'auto';
-const DEFAULT_TRIGGER_TEXT_COLOR = COLOR_BLACK_0;
-const DEFAULT_TRIGGER_CURSOR = 'pointer';
-const DEFAULT_TRIGGER_PADDING = '8px 40px 8px 16px';
+
+const DEFAULT_TRIGGER_PADDING = '8px 48px 8px 16px';
 const DEFAULT_TRIGGER_ICON_ROTATE = 'rotate(0deg)';
 
 const ITEM_CONTAINER_OPEN_OPACITY = '1';
@@ -25,16 +17,20 @@ const ITEM_CONTAINER_OPEN_PADDING = '8px';
 const ITEM_CONTAINER_OPEN_VISIBILITY = 'visible';
 const ITEM_CONTAINER_WITH_LABEL_TOP = '80px';
 
-const TRIGGER_TEXT_COLOR_DISABLED = COLOR_GRAY_1;
-const TRIGGER_CURSOR_DISABLED = 'not-allowed';
-const TRIGGER_WITH_ICON_PADDING = '8px 40px';
+const TRIGGER_WITH_ICON_PADDING = '8px 48px';
 const TRIGGER_ICON_ROTATE = 'rotate(180deg)';
+
+const getTriggerBorderColor = (active?: boolean, disabled?: boolean): string => {
+  if (disabled) {
+    return COLOR_BLACK_0;
+  }
+
+  return active ? COLOR_PURPLE : COLOR_GRAY_LIGHT;
+};
 
 const getContainerWidth = (width?: string): string => width ? width : DEFAULT_CONTAINER_WIDTH;
 
-const getTriggerBorderColor = (active?: boolean): string => active ? COLOR_PURPLE_0 : COLOR_WHITE_1;
-const getTriggerTextColor = (disabled?: boolean): string => disabled ? TRIGGER_TEXT_COLOR_DISABLED : DEFAULT_TRIGGER_TEXT_COLOR;
-const getTriggerCursor = (disabled?: boolean): string => disabled ? TRIGGER_CURSOR_DISABLED : DEFAULT_TRIGGER_CURSOR;
+const getTriggerIconColor = (disabled?: boolean): string => disabled ? COLOR_BLACK_0 : COLOR_BLACK;
 const getTriggerPadding = (icon?: string): string => icon ? TRIGGER_WITH_ICON_PADDING : DEFAULT_TRIGGER_PADDING;
 const getTriggerRotate = (open?: boolean): string => open ? TRIGGER_ICON_ROTATE : DEFAULT_TRIGGER_ICON_ROTATE;
 
@@ -54,32 +50,36 @@ export const DropdownContainer = styled.div<{ width?: string }>`
 export const DropdownTrigger = styled.button<{ disabled: boolean, icon?: string, open: boolean }>`
   align-items: center;
   border-radius: 10px;
+  cursor: pointer;
   display: inline-block;
   height: 48px;
   margin: 0;
   overflow: hidden;
   position: relative;
   text-align: left;
-  transition: .25s ease;
+  transition: .125s ease;
   width: 100%;
 
-  background-color: ${COLOR_WHITE_0};
+  background-color: ${COLOR_WHITE};
+  color:${COLOR_BLACK};
   font-size: ${TEXT_NORMAL};
 
-  border: 2px solid ${({ open }): string => getTriggerBorderColor(open)};
-  color:${({ disabled }): string => getTriggerTextColor(disabled)};
-  cursor: ${({ disabled }): string => getTriggerCursor(disabled)};
+  border: 2px solid ${({ disabled, open }): string => getTriggerBorderColor(open, disabled)};
   padding: ${({ icon }): string => getTriggerPadding(icon)};
+
+  :disabled {
+    cursor: default;
+  }
 `;
 
 export const DropdownTriggerCaret = styled.div<{ disabled: boolean, open: boolean }>`
   i {
-    right: 8px;
+    right: 16px;
     top: 12px;
+    transition: .125s ease;
 
-    color:${({ disabled }): string => getTriggerTextColor(disabled)};
+    color:${({ disabled }): string => getTriggerIconColor(disabled)};
     transform: ${({ open }): string => getTriggerRotate(open)};
-    transition: .25s ease;
   }
 `;
 
@@ -95,9 +95,9 @@ export const DropdownTriggerContainer = styled.div`
     position: absolute;
 
     :nth-child(2) {
-      left: 16px;
+      left: 18px;
 
-      color: ${COLOR_GRAY_1};
+      color: ${COLOR_GRAY_MEDIUM};
     }
   }
 `;
@@ -112,10 +112,10 @@ export const DropdownItemContainer = styled.div<{ open: boolean, label?: string 
   right: 0;
   z-index: 1;
   visibility: hidden;
-  transition: .25s ease;
+  transition: .125s ease;
 
-  background-color: ${COLOR_WHITE_0};
-  border: 2px solid ${COLOR_PURPLE_0};
+  background-color: ${COLOR_WHITE};
+  border: 2px solid ${COLOR_PURPLE};
 
   top: ${({ label }): string => getItemContainerTop(label)};
   opacity: ${({ open }): string => getItemContainerOpacity(open)};
@@ -127,7 +127,7 @@ export const DropdownItemContainer = styled.div<{ open: boolean, label?: string 
     text-align: center;
     width: 100%;
 
-    color: ${COLOR_GRAY_1};
+    color: ${COLOR_GRAY_LIGHT};
   }
 `;
 
@@ -137,12 +137,6 @@ export const DropdownItem = styled.div`
   margin-bottom: 8px;
   text-align: right;
   width: 100%;
-
-  background-color: ${COLOR_BLACK_0_0};
-
-  :hover {
-    background-color: ${COLOR_WHITE_1};
-  }
 
   :last-child {
     margin-bottom: 0;

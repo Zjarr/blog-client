@@ -6,14 +6,13 @@ import { OutsideClick } from '../outside-click';
 import { Text } from '../text';
 
 import {
-  DropdownItemContainer,
   DropdownContainer,
   DropdownItem,
+  DropdownItemContainer,
   DropdownTrigger,
   DropdownTriggerCaret,
   DropdownTriggerContainer
 } from './style.dropdown.components';
-
 
 export const Dropdown: React.FC<IProps> = ({ disabled = false, icon, items, label, name, onChange, width }) => {
   const [triggerName, setTriggerName] = React.useState<string>(name);
@@ -59,7 +58,13 @@ export const Dropdown: React.FC<IProps> = ({ disabled = false, icon, items, labe
           {
             items.length > 0 ? items.map((item: IDropdownItem, index: number) =>
               <DropdownItem key={`${item.name + item.value + index}`}>
-                <Button type={'text'} width={'100%'} align={'flex-end'} onClick={(): void => handleItemClick(item)}>{item.name}</Button>
+                <Button
+                  type={'text'}
+                  text={item.name}
+                  width={'100%'}
+                  align={'flex-end'}
+                  onClick={(): void => handleItemClick(item)}
+                />
               </DropdownItem>
             ) : <Text type={'paragraph'}>There are no items</Text>
           }
