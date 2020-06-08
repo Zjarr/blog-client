@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-import { alpha } from '../../lib/functions';
-import { COLOR_BLACK_0, COLOR_BLACK_1, COLOR_GRAY_1, COLOR_PURPLE_0, COLOR_WHITE_1, TEXT_NORMAL } from '../../lib/values';
+import { COLOR_BLACK_0, COLOR_BLACK_0_0, COLOR_GRAY_1, COLOR_PURPLE_0, COLOR_WHITE_1, TEXT_NORMAL } from '../../lib/values';
 
 const DEFAULT_FIELD_PADDING = '0px 16px';
 const DEFAULT_FIELD_WIDTH = 'auto';
@@ -33,10 +32,10 @@ export const InputField = styled.input<{ disabled: boolean, icon?: string, width
   outline: none;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: .125s;
+  transition: .25s ease;
   white-space: nowrap; 
 
-  background-color: ${alpha(COLOR_BLACK_0, 0)};
+  background-color: ${COLOR_BLACK_0_0};
   border: 2px solid ${COLOR_WHITE_1};
   font-size: ${TEXT_NORMAL};
 
@@ -44,7 +43,7 @@ export const InputField = styled.input<{ disabled: boolean, icon?: string, width
   width: ${({ width }): string => getFieldWidth(width)};
 
   :focus {
-    transition: .125s;
+    transition: .25s ease;
     
     border-color: ${COLOR_PURPLE_0};
   }
@@ -56,7 +55,7 @@ export const InputField = styled.input<{ disabled: boolean, icon?: string, width
   :disabled {
     cursor: default;
 
-    border-color: ${alpha(COLOR_BLACK_1, 0)};
+    border-color: ${COLOR_BLACK_0_0};
     color: ${COLOR_BLACK_0};
   }
 `;
