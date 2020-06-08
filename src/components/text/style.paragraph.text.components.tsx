@@ -20,7 +20,7 @@ export const ParagraphContainer = styled.div<{ color?: string, margin?: string }
   }
 `;
 
-export const Paragraph = styled.p<{}>`
+export const Paragraph = styled.p`
   font-family: Proxima Nova Regular;
   font-size: 16px;
   margin: 0;
