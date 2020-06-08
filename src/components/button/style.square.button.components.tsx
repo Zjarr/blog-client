@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 
-import { alpha } from '../../lib/functions';
-import { COLOR_BLACK_0, COLOR_BLACK_1, COLOR_PURPLE_0, COLOR_WHITE_0, COLOR_WHITE_1, TEXT_NORMAL } from '../../lib/values';
+import {
+  COLOR_BLACK_0,
+  COLOR_BLACK_0_0,
+  COLOR_BLACK_0_50,
+  COLOR_PURPLE_0,
+  COLOR_WHITE_0,
+  COLOR_WHITE_0_50,
+  COLOR_WHITE_1,
+  TEXT_NORMAL
+} from '../../lib/values';
 
 const COLOR_INHERIT = 'inherit';
-const COLOR_TRANSPARENT = alpha(COLOR_BLACK_1, 0);
 
 const DEFAULT_ALIGN = 'center';
 const DEFAULT_PADDING = '14px';
@@ -18,7 +25,7 @@ const MENU_PADDING = '48px';
 
 const getTextColor = (color?: string, disabled?: boolean): string => {
   if (disabled) {
-    return color ? alpha(COLOR_WHITE_0, 0.5) : alpha(COLOR_BLACK_0, 0.5);
+    return color ? COLOR_WHITE_0_50 : COLOR_BLACK_0_50;
   };
 
   return color ? COLOR_WHITE_0 : COLOR_BLACK_0;
@@ -27,11 +34,10 @@ const getTextColor = (color?: string, disabled?: boolean): string => {
 const getAlign = (align?: string): string => align ? align : DEFAULT_ALIGN;
 const getBackgroundColor = (color?: string): string => color ? color : COLOR_WHITE_1;
 const getHoverBorderColor = (color?: string): string => color ? color : COLOR_BLACK_0;
-const getHoverTextColor = (color?: string): string => color ? color : COLOR_BLACK_0;
 const getIconColor = (active?: boolean): string => active ? COLOR_PURPLE_0 : COLOR_INHERIT;
 const getIconMarginRight = (iconOnly?: boolean): string => iconOnly ? ICON_NO_MARGIN_RIGHT : ICON_MARGIN_RIGHT;
 const getIconSize = (iconSize?: string): string => iconSize ? iconSize : ICON_SIZE;
-const getIndicatorColor = (active?: boolean): string => active ? COLOR_PURPLE_0 : COLOR_TRANSPARENT;
+const getIndicatorColor = (active?: boolean): string => active ? COLOR_PURPLE_0 : COLOR_BLACK_0_0;
 const getPadding = (menu?: boolean): string => menu ? MENU_PADDING : DEFAULT_PADDING;
 const getSize = (size?: string): string => size ? size : DEFAULT_SIZE;
 const getTextSize = (textSize?: string): string => textSize ? textSize : TEXT_NORMAL;
@@ -57,10 +63,10 @@ export const SquareButtonContainer = styled.button<{
   padding: 8px 16px;
   position: relative;
   text-overflow: ellipsis;
-  transition: .125s;
+  transition: .25s ease;
   white-space: nowrap; 
 
-  border: 2px solid ${COLOR_TRANSPARENT};
+  border: 2px solid ${COLOR_BLACK_0_0};
 
   background-color: ${({ color }): string => getBackgroundColor(color)};
   color: ${({ color }): string => getTextColor(color)};
@@ -80,18 +86,18 @@ export const SquareButtonContainer = styled.button<{
   }
 
   :hover {
-    transition: .125s;
+    transition: .25s ease;
     
     background-color: ${COLOR_WHITE_0};
+    color: ${COLOR_BLACK_0};
 
     border-color: ${({ color }): string => getHoverBorderColor(color)};
-    color: ${({ color }): string => getHoverTextColor(color)};
   }
 
   :disabled {
     cursor: not-allowed;
 
-    border-color: ${COLOR_TRANSPARENT};
+    border-color: ${COLOR_BLACK_0_0};
 
     background-color: ${({ color }): string => getBackgroundColor(color)};
     color: ${({ color, disabled }): string => getTextColor(color, disabled)};

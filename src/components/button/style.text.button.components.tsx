@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-import { alpha, darken } from '../../lib/functions';
-import { COLOR_BLACK_0, COLOR_BLACK_1, TEXT_NORMAL } from '../../lib/values';
+import { alpha } from '../../lib/functions';
 
-const COLOR_TRANSPARENT = alpha(COLOR_BLACK_1, 0);
+import { COLOR_BLACK_0, COLOR_BLACK_0_0, COLOR_BLACK_0_50, TEXT_NORMAL } from '../../lib/values';
 
 const DEFAULT_ALIGN = 'center';
 const DEFAULT_SIZE = '48px';
@@ -14,14 +13,13 @@ const ICON_SIZE = '16px';
 
 const getTextColor = (color?: string, disabled?: boolean): string => {
   if (disabled) {
-    return color ? alpha(color, 0.5) : alpha(COLOR_BLACK_0, 0.5);
+    return color ? alpha(color, 0.5) : COLOR_BLACK_0_50;
   };
 
   return color ? color : COLOR_BLACK_0;
 };
 
 const getAlign = (align?: string): string => align ? align : DEFAULT_ALIGN;
-const getHoverTextColor = (color?: string): string => color ? darken(color, 25) : COLOR_BLACK_0;
 const getIconMarginRight = (iconOnly?: boolean): string => iconOnly ? ICON_NO_MARGIN_RIGHT : ICON_MARGIN_RIGHT;
 const getIconSize = (iconSize?: string): string => iconSize ? iconSize : ICON_SIZE;
 const getSize = (size?: string): string => size ? size : DEFAULT_SIZE;
@@ -46,11 +44,11 @@ export const TextButtonContainer = styled.button<{
   padding: 8px 16px 8px 14px;
   position: relative;
   text-overflow: ellipsis;
-  transition: .125s;
+  transition: .25s ease;
   white-space: nowrap; 
 
-  background-color: ${COLOR_TRANSPARENT};
-  border: 2px solid ${COLOR_TRANSPARENT};
+  background-color: ${COLOR_BLACK_0_0};
+  border: 2px solid ${COLOR_BLACK_0_0};
 
   color: ${({ color }): string => getTextColor(color)};
   font-size: ${({ textSize }): string => getTextSize(textSize)};
@@ -59,15 +57,15 @@ export const TextButtonContainer = styled.button<{
   width: ${({ width }): string => getSize(width)};
 
   :hover {
-    transition: .125s;
+    transition: .25s ease;
     
-    color: ${({ color }): string => getHoverTextColor(color)};
+    color: ${COLOR_BLACK_0};
   }
 
   :disabled {
     cursor: not-allowed;
 
-    border-color: ${COLOR_TRANSPARENT};
+    border-color: ${COLOR_BLACK_0_0};
     color: ${({ color, disabled }): string => getTextColor(color, disabled)};
   }
 
