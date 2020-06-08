@@ -1,17 +1,14 @@
 import styled from 'styled-components';
 
-import { alpha } from '../../lib/functions';
 import {
   COLOR_BLACK_0,
-  COLOR_BLACK_1,
+  COLOR_BLACK_0_0,
   COLOR_GRAY_1,
   COLOR_PURPLE_0,
   COLOR_WHITE_0,
   COLOR_WHITE_1,
   TEXT_NORMAL
 } from '../../lib/values';
-
-const COLOR_TRANSPARENT = alpha(COLOR_BLACK_1, 0);
 
 const DEFAULT_ITEM_CONTAINER_OPACITY = '0';
 const DEFAULT_ITEM_CONTAINER_PADDING = '0px 8px';
@@ -63,7 +60,7 @@ export const DropdownTrigger = styled.button<{ disabled: boolean, icon?: string,
   overflow: hidden;
   position: relative;
   text-align: left;
-  transition: .125s;
+  transition: .25s ease;
   width: 100%;
 
   background-color: ${COLOR_WHITE_0};
@@ -82,7 +79,7 @@ export const DropdownTriggerCaret = styled.div<{ disabled: boolean, open: boolea
 
     color:${({ disabled }): string => getTriggerTextColor(disabled)};
     transform: ${({ open }): string => getTriggerRotate(open)};
-    transition: .125s ease;
+    transition: .25s ease;
   }
 `;
 
@@ -115,7 +112,7 @@ export const DropdownItemContainer = styled.div<{ open: boolean, label?: string 
   right: 0;
   z-index: 1;
   visibility: hidden;
-  transition: .125s ease;
+  transition: .25s ease;
 
   background-color: ${COLOR_WHITE_0};
   border: 2px solid ${COLOR_PURPLE_0};
@@ -141,7 +138,7 @@ export const DropdownItem = styled.div`
   text-align: right;
   width: 100%;
 
-  background-color: ${COLOR_TRANSPARENT};
+  background-color: ${COLOR_BLACK_0_0};
 
   :hover {
     background-color: ${COLOR_WHITE_1};
