@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-import { alpha } from '../../lib/functions';
-import { COLOR_BLACK_0, COLOR_BLACK_1, COLOR_GRAY_0, COLOR_WHITE_0 } from '../../lib/values';
+import { COLOR_BLACK_0, COLOR_BLACK_0_50, COLOR_GRAY_0, COLOR_WHITE_0 } from '../../lib/values';
 
 const BANNER_VISIBLE_OPACITY = '1';
 const BANNER_INVISIBLE_OPACITY = '0';
@@ -30,7 +29,7 @@ export const BannerContainer = styled.div<{ isVisible: boolean }>`
   width: 300px;
 
   background-color: ${COLOR_BLACK_0};
-  box-shadow: 0 0 8px 0px ${alpha(COLOR_BLACK_1, 0.5)};
+  box-shadow: 0 0 8px 0px ${COLOR_BLACK_0_50};
   color: ${COLOR_WHITE_0};
 
   opacity:  ${({ isVisible }): string => getBannerOpacity(isVisible)};
