@@ -1,3 +1,5 @@
+import { alpha } from '../functions';
+
 export const COLOR_BLACK_0 = 'rgba(15, 15, 15, 1)';
 export const COLOR_BLACK_1 = 'rgba(0, 0, 0, 1)';
 
@@ -16,3 +18,9 @@ export const COLOR_RED_0 = 'rgba(188, 40, 68, 1)';
 
 export const COLOR_WHITE_0 = 'rgba(255, 255, 255, 1)';
 export const COLOR_WHITE_1 = 'rgba(230, 230, 230, 1)';
+
+export const COLOR_BLACK_0_0 = alpha(COLOR_BLACK_0, 0);
+export const COLOR_BLACK_0_50 = alpha(COLOR_BLACK_0, 0.5);
+export const COLOR_BLACK_0_80 = alpha(COLOR_BLACK_0, 0.8);
+
+export const COLOR_WHITE_0_50 = alpha(COLOR_WHITE_0, 0.5);
