@@ -1,26 +1,20 @@
 import { alpha } from '../functions';
 
-export const COLOR_BLACK_0 = 'rgba(15, 15, 15, 1)';
-export const COLOR_BLACK_1 = 'rgba(0, 0, 0, 1)';
+export const COLOR_LIGHTBLUE = 'rgba(103, 190, 243, 1)';
+export const COLOR_MAGENTA = 'rgba(180, 135, 241, 1)';
+export const COLOR_PURPLE = 'rgba(99, 119, 240, 1)';
 
-export const COLOR_GRAY_0 = 'rgba(119, 119, 119, 1)';
-export const COLOR_GRAY_1 = 'rgba(170, 170, 170, 1)';
+export const COLOR_GREEN = 'rgba(40, 188, 91, 1)';
+export const COLOR_RED = 'rgba(188, 40, 68, 1)';
 
-export const COLOR_GREEN_0 = 'rgba(40, 188, 91, 1)';
+export const COLOR_BLACK = 'rgba(0, 0, 0, 1)';
+export const COLOR_WHITE = 'rgba(255, 255, 255, 1)';
 
-export const COLOR_LIGHTBLUE_0 = 'rgba(103, 190, 243, 1)';
+export const COLOR_GRAY_DARK = 'rgba(120, 120, 120, 1)';
+export const COLOR_GRAY_LIGHT = 'rgba(230, 230, 230, 1)';
+export const COLOR_GRAY_MEDIUM = 'rgba(170, 170, 170, 1)';
 
-export const COLOR_MAGENTA_0 = 'rgba(180, 135, 241, 1)';
+export const COLOR_BLACK_0 = alpha(COLOR_BLACK, 0);
+export const COLOR_BLACK_5 = alpha(COLOR_BLACK, 0.5);
 
-export const COLOR_PURPLE_0 = 'rgba(99, 119, 240, 1)';
-
-export const COLOR_RED_0 = 'rgba(188, 40, 68, 1)';
-
-export const COLOR_WHITE_0 = 'rgba(255, 255, 255, 1)';
-export const COLOR_WHITE_1 = 'rgba(230, 230, 230, 1)';
-
-export const COLOR_BLACK_0_0 = alpha(COLOR_BLACK_0, 0);
-export const COLOR_BLACK_0_50 = alpha(COLOR_BLACK_0, 0.5);
-export const COLOR_BLACK_0_80 = alpha(COLOR_BLACK_0, 0.8);
-
-export const COLOR_WHITE_0_50 = alpha(COLOR_WHITE_0, 0.5);
+export const COLOR_WHITE_5 = alpha(COLOR_WHITE, 0.5);
