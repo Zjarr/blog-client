@@ -1,12 +1,14 @@
 import React from 'react';
 
-import { CheckboxContainer, SliderContainer, ToggleContainer, Label } from './style.toggle.components';
+import { Text } from '../text';
+
+import { CheckboxContainer, SliderContainer, ToggleContainer } from './style.toggle.components';
 
 export const Toggle: React.FC<IProps> = ({ disabled = false, label, ...rest }) => {
   return (
     <>
       {
-        label && <Label>{label}</Label>
+        label && <Text type={'label'}>{label}</Text>
       }
       <ToggleContainer>
         <CheckboxContainer type={'checkbox'} disabled={disabled} {...rest} />
