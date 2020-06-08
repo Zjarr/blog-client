@@ -2,40 +2,40 @@ import React from 'react';
 
 import { Icon } from '../icon';
 
-import { CircleButtonContainer } from './style.circle.button.components';
-import { SquareButtonContainer } from './style.square.button.components';
+import { ColorButtonContainer } from './style.color.button.components';
+import { MenuButtonContainer } from './style.menu.button.components';
 import { TextButtonContainer } from './style.text.button.components';
 
-export const Button: React.FC<IProps> = ({ children, disabled = false, icon, onClick = null, type = 'text', ...rest }) => {
-  const iconOnly = !(icon && children);
+export const Button: React.FC<IProps> = ({ disabled, icon, onClick, text, type, ...rest }) => {
+  const iconOnly = !!(icon && !text);
 
   const handleOnClick = (): void | null => {
     return onClick && onClick();
   };
 
-  if (type === 'circle') {
+  if (type === 'color') {
     return (
-      <CircleButtonContainer disabled={disabled} iconOnly={iconOnly} onClick={handleOnClick} {...rest} >
+      <ColorButtonContainer disabled={disabled} iconOnly={iconOnly} onClick={handleOnClick} {...rest}>
         {icon && <Icon name={icon} />}
-        {children}
-      </CircleButtonContainer>
+        {text && text}
+      </ColorButtonContainer>
     );
   }
 
-  if (type === 'square') {
+  if (type === 'menu') {
     return (
-      <SquareButtonContainer disabled={disabled} iconOnly={iconOnly} onClick={handleOnClick} {...rest}>
+      <MenuButtonContainer disabled={disabled} onClick={handleOnClick} {...rest} >
         {icon && <Icon name={icon} />}
-        {children}
-      </SquareButtonContainer>
+        {text && text}
+      </MenuButtonContainer>
     );
   }
 
   if (type === 'text') {
     return (
-      <TextButtonContainer disabled={disabled} iconOnly={iconOnly} onClick={handleOnClick} {...rest}>
+      <TextButtonContainer disabled={disabled} onClick={handleOnClick} {...rest}>
         {icon && <Icon name={icon} />}
-        {children}
+        {text && text}
       </TextButtonContainer>
     );
   }
@@ -48,12 +48,10 @@ export interface IProps {
   align?: string;
   color?: string;
   disabled?: boolean;
-  height?: string;
   icon?: string;
-  iconSize?: string;
-  menu?: boolean;
   onClick?: () => void;
-  textSize?: string;
+  shape?: string;
+  text?: string;
   type: string;
   width?: string;
 }
