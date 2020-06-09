@@ -82,6 +82,14 @@ export const LandingBlogPage: React.FC<{}> = () => {
       <Button type={'menu'} shape={'circle'} text={'Hello'} icon={'group'} />
       <p></p>
       <Button type={'menu'} shape={'circle'} text={'Hello'} icon={'group'} active />
+      <p></p>
+      <Button type={'text'} text={'Hello'} icon={'group'} />
+      <p></p>
+      <Button type={'text'} text={'Hello'} icon={'group'} disabled />
+      <p></p>
+      <Button type={'text'} text={'Hello'} />
+      <p></p>
+      <Button type={'text'} text={'Hello'} disabled />
       <br />
       <br />
       <br />
