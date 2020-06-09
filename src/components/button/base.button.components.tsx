@@ -6,8 +6,9 @@ import { ColorButtonContainer } from './style.color.button.components';
 import { MenuButtonContainer } from './style.menu.button.components';
 import { TextButtonContainer } from './style.text.button.components';
 
-export const Button: React.FC<IProps> = ({ disabled, icon, onClick, text, type, ...rest }) => {
+export const Button: React.FC<IProps> = ({ active, disabled, icon, onClick, text, type, ...rest }) => {
   const iconOnly = !!(icon && !text);
+  const iconSize = rest.shape === 'circle' ? '24px' : '16px';
 
   const handleOnClick = (): void | null => {
     return onClick && onClick();
@@ -24,8 +25,8 @@ export const Button: React.FC<IProps> = ({ disabled, icon, onClick, text, type, 
 
   if (type === 'menu') {
     return (
-      <MenuButtonContainer disabled={disabled} onClick={handleOnClick} {...rest} >
-        {icon && <Icon name={icon} />}
+      <MenuButtonContainer disabled={disabled} onClick={handleOnClick} {...rest} active={active} >
+        {icon && <Icon name={icon} size={iconSize} />}
         {text && text}
       </MenuButtonContainer>
     );
