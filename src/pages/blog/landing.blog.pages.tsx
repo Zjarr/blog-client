@@ -25,9 +25,44 @@ export const LandingBlogPage: React.FC<{}> = () => {
 
       <Text type={'title'}>Dropdown</Text>
       <p></p>
-      <Dropdown name={'Dropdown'} label={'Year:'} items={[{ name: 'value', value: 'name' }]} icon={'group'} onChange={(): void => { }} />
+      <Dropdown
+        name={'Dropdown'}
+        label={'Year:'}
+        items={[]}
+        icon={'group'}
+        onChange={(): void => { }}
+      />
       <p></p>
-      <Dropdown name={'Dropdown'} label={'Year:'} items={[{ name: 'value', value: 'name' }]} icon={'group'} onChange={(): void => { }} disabled />
+      <Dropdown
+        name={'Dropdown'}
+        label={'Year:'}
+        items={[
+          { name: 'value', value: 'name' }
+        ]}
+        icon={'group'}
+        onChange={(): void => { }}
+      />
+      <p></p>
+      <Dropdown
+        name={'Dropdown'}
+        label={'Year:'}
+        items={[
+          { name: 'value', value: 'name' },
+          { name: 'value', value: 'name' },
+          { name: 'value', value: 'name' }
+        ]}
+        icon={'group'}
+        onChange={(): void => { }}
+      />
+      <p></p>
+      <Dropdown
+        name={'Dropdown'}
+        label={'Year:'}
+        items={[]}
+        icon={'group'}
+        onChange={(): void => { }}
+        disabled
+      />
       <br />
       <br />
       <br />
