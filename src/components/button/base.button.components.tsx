@@ -49,6 +49,7 @@ export interface IProps {
   align?: string;
   color?: string;
   disabled?: boolean;
+  height?:  string;
   icon?: string;
   onClick?: () => void;
   shape?: string;
