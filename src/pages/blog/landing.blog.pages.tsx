@@ -46,6 +46,8 @@ export const LandingBlogPage: React.FC<{}> = () => {
       <Text type={'title'}>Toggle</Text>
       <p></p>
       <Toggle label={'Active:'} disabled />
+      <p></p>
+      <Toggle label={'Active:'} />
       <br />
       <br />
       <br />
@@ -72,6 +74,14 @@ export const LandingBlogPage: React.FC<{}> = () => {
       <Button type={'color'} shape={'circle'} text={'Hello'} icon={'group'} disabled />
       <p></p>
       <Button type={'color'} shape={'circle'} icon={'group'} disabled />
+      <p></p>
+      <Button type={'menu'} text={'Hello'} icon={'group'} />
+      <p></p>
+      <Button type={'menu'} text={'Hello'} icon={'group'} active />
+      <p></p>
+      <Button type={'menu'} shape={'circle'} text={'Hello'} icon={'group'} />
+      <p></p>
+      <Button type={'menu'} shape={'circle'} text={'Hello'} icon={'group'} active />
       <br />
       <br />
       <br />
