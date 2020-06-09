@@ -59,10 +59,11 @@ export const Dropdown: React.FC<IProps> = ({ disabled = false, icon, items, labe
             items.length > 0 ? items.map((item: IDropdownItem, index: number) =>
               <DropdownItem key={`${item.name + item.value + index}`}>
                 <Button
-                  type={'text'}
-                  text={item.name}
-                  width={'100%'}
                   align={'flex-end'}
+                  height={'48px'}
+                  text={item.name}
+                  type={'text'}
+                  width={'100%'}
                   onClick={(): void => handleItemClick(item)}
                 />
               </DropdownItem>
