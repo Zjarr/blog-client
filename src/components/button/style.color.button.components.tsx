@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { COLOR_BLACK, COLOR_BLACK_0, COLOR_GRAY_LIGHT, COLOR_WHITE, TEXT_NORMAL, TEXT_SMALL } from '../../lib/values';
+import { COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_WHITE, TEXT_NORMAL, TEXT_SMALL } from '../../lib/values';
 
 const CIRCLE_CONTAINER_BORDER_RADIUS = '100%';
 const CIRCLE_CONTAINER_FLEX_DIRECTION = 'column';
@@ -22,7 +22,7 @@ const NO_MARGIN = '0px';
 
 const getContainerBackgroundColor = (color?: string, disabled?: boolean, hover?: boolean): string => {
   if (disabled || hover) {
-    return COLOR_BLACK_0;
+    return COLOR_WHITE;
   }
 
   return color ? color : COLOR_GRAY_LIGHT;
