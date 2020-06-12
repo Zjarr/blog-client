@@ -1,15 +1,15 @@
-import styled from 'styled-components';
+import Styled from 'styled-components';
 
 import { COLOR_GRAY_LIGHT, COLOR_GREEN, COLOR_RED, COLOR_WHITE } from '../../lib/values';
 
-export const ToggleContainer = styled.label`
+export const ToggleContainer = Styled.label`
   display: block;
   height: 48px;
   position: relative;
   width: 96px;
 `;
 
-export const CheckboxContainer = styled.input`
+export const CheckboxContainer = Styled.input`
   height: 0;
   opacity: 0;
   width: 0;
@@ -35,7 +35,7 @@ export const CheckboxContainer = styled.input`
   }
 `;
 
-export const SliderContainer = styled.span`
+export const SliderContainer = Styled.span`
   background-color: ${COLOR_WHITE};
   border: 2px solid ${COLOR_GRAY_LIGHT};
   border-radius: 10px;

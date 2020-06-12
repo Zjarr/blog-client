@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import Styled from 'styled-components';
 
 import { COLOR_BLACK, COLOR_BLACK_0, COLOR_GRAY_LIGHT, COLOR_GRAY_MEDIUM, COLOR_PURPLE, COLOR_WHITE, TEXT_NORMAL } from '../../lib/values';
 
@@ -39,7 +39,7 @@ const getItemContainerPadding = (open?: boolean): string => open ? ITEM_CONTAINE
 const getItemContainerTop = (label?: string): string => label ? ITEM_CONTAINER_WITH_LABEL_TOP : DEFAULT_ITEM_CONTAINER_TOP;
 const getItemContainerVisibility = (open?: boolean): string => open ? ITEM_CONTAINER_OPEN_VISIBILITY : DEFAULT_ITEM_CONTAINER_VISIBILITY;
 
-export const DropdownContainer = styled.div<{ width?: string }>`
+export const DropdownContainer = Styled.div<{ width?: string }>`
   display: inline-block;
   min-width: 260px;
   position: relative;
@@ -47,7 +47,7 @@ export const DropdownContainer = styled.div<{ width?: string }>`
   width: ${({ width }): string => getContainerWidth(width)};
 `;
 
-export const DropdownTrigger = styled.button<{ disabled: boolean, icon?: string, open: boolean }>`
+export const DropdownTrigger = Styled.button<{ disabled: boolean, icon?: string, open: boolean }>`
   align-items: center;
   border-radius: 10px;
   cursor: pointer;
@@ -72,7 +72,7 @@ export const DropdownTrigger = styled.button<{ disabled: boolean, icon?: string,
   }
 `;
 
-export const DropdownTriggerCaret = styled.div<{ disabled: boolean, open: boolean }>`
+export const DropdownTriggerCaret = Styled.div<{ disabled: boolean, open: boolean }>`
   i {
     right: 16px;
     top: 12px;
@@ -83,7 +83,7 @@ export const DropdownTriggerCaret = styled.div<{ disabled: boolean, open: boolea
   }
 `;
 
-export const DropdownTriggerContainer = styled.div`
+export const DropdownTriggerContainer = Styled.div`
   height: 48px;
   position: relative;
   width: 100%;
@@ -102,7 +102,7 @@ export const DropdownTriggerContainer = styled.div`
   }
 `;
 
-export const DropdownItemContainer = styled.div<{ open: boolean, label?: string }>`
+export const DropdownItemContainer = Styled.div<{ open: boolean, label?: string }>`
   border-radius: 10px;
   left: 0;
   max-height: 296px;
@@ -131,7 +131,7 @@ export const DropdownItemContainer = styled.div<{ open: boolean, label?: string 
   }
 `;
 
-export const DropdownItem = styled.div`
+export const DropdownItem = Styled.div`
   border-radius: 10px;
   height: 48px;
   margin-bottom: 8px;

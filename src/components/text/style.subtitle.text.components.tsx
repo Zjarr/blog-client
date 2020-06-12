@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import Styled from 'styled-components';
 
 import { COLOR_BLACK, TEXT_BIG } from '../../lib/values';
 
@@ -7,7 +7,7 @@ const DEFAULT_MARGIN = '0px';
 const getTextColor = (color?: string): string => color ? color : COLOR_BLACK;
 const getTextMargin = (margin?: string): string => margin ? margin : DEFAULT_MARGIN;
 
-export const SubTitleContainer = styled.div<{ color?: string, margin?: string }>`
+export const SubTitleContainer = Styled.div<{ color?: string, margin?: string }>`
   align-items: center;
   display: flex;
 
@@ -20,7 +20,7 @@ export const SubTitleContainer = styled.div<{ color?: string, margin?: string }>
   }
 `;
 
-export const SubTitle = styled.h2`
+export const SubTitle = Styled.h2`
   font-family: Proxima Nova Bold;
   margin: 0;
 

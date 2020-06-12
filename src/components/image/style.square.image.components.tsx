@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import Styled from 'styled-components';
 
 import { COLOR_GRAY_LIGHT } from '../../lib/values';
 
@@ -19,7 +19,7 @@ const getImageSize = (noImg?: boolean): string => noImg ? NO_IMAGE_HEIGHT : DEFA
 const getUpdateButtonOpacity = (updatable?: boolean): string => updatable ? DEFAULT_UPDATE_BUTTON_OPACITY : NO_UPDATE_BUTTON_OPACITY;
 const getUpdateButtonVisibility = (updatable?: boolean): string => updatable ? DEFAULT_UPDATE_BUTTON_VISIBILITY : NO_UPDATE_BUTTON_VISIBILITY;
 
-export const SquareImageContainer = styled.div<{
+export const SquareImageContainer = Styled.div<{
   height?: string,
   updatable: boolean,
   width?: string
@@ -51,7 +51,7 @@ export const SquareImageContainer = styled.div<{
   }
 `;
 
-export const SquareImage = styled.img<{ noImg?: boolean }>`
+export const SquareImage = Styled.img<{ noImg?: boolean }>`
   object-fit: cover;
 
   height: ${({ noImg }): string => getImageSize(noImg)};

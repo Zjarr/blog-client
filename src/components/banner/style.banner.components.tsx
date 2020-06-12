@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import Styled from 'styled-components';
 
 import { COLOR_BLACK, COLOR_BLACK_5, COLOR_GRAY_MEDIUM, COLOR_WHITE } from '../../lib/values';
 
@@ -13,7 +13,7 @@ const getBannerTransform = (isVisible?: boolean): string => isVisible ? VISIBLE_
 
 const getIconColor = (color?: string): string => color || COLOR_GRAY_MEDIUM;
 
-export const BannerContainer = styled.div<{ isVisible: boolean }>`
+export const BannerContainer = Styled.div<{ isVisible: boolean }>`
   align-items: center;
   border-radius: 10px;
   display: flex;
@@ -38,7 +38,7 @@ export const BannerContainer = styled.div<{ isVisible: boolean }>`
   }
 `;
 
-export const IconContainer = styled.div<{ color?: string }>`
+export const IconContainer = Styled.div<{ color?: string }>`
   align-items: center;
   border-radius: 100%;
   display: flex;
