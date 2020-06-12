@@ -16,5 +16,6 @@ export const COLOR_GRAY_MEDIUM = 'rgba(170, 170, 170, 1)';
 
 export const COLOR_BLACK_0 = alpha(COLOR_BLACK, 0);
 export const COLOR_BLACK_5 = alpha(COLOR_BLACK, 0.5);
+export const COLOR_BLACK_8 = alpha(COLOR_BLACK, 0.8);
 
 export const COLOR_WHITE_5 = alpha(COLOR_WHITE, 0.5);
