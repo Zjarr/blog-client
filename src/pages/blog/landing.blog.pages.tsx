@@ -7,10 +7,14 @@ import { Image } from '../../components/image';
 import { Toggle } from '../../components/toggle';
 import { Text } from '../../components/text';
 import { Button } from '../../components/button';
+import { Modal } from '../../components/modal';
 
 import { COLOR_GREEN, COLOR_PURPLE } from '../../lib/values';
 
+
 export const LandingBlogPage: React.FC<{}> = () => {
+  const [modalVisible, setModalVisible] = React.useState<boolean>(false);
+
   return (
     <>
       <Text type={'title'}>Input</Text>
@@ -129,6 +133,24 @@ export const LandingBlogPage: React.FC<{}> = () => {
       <br />
       <br />
 
+      <Text type={'title'}>Modal</Text>
+      <p></p>
+      <Button
+        icon={'visibility'}
+        text={'Show Modal'}
+        type={'color'}
+        width={'auto'}
+
+        onClick={(): void => setModalVisible(true)}
+      />
+      <Modal
+        body={<Image type={'circle'} />}
+        onClose={(): void => setModalVisible(false)}
+        visible={modalVisible}
+      />
+      <br />
+      <br />
+      <br />
 
       <Banner text={'Already exists an user with the provided email'} icon={'check'} color={COLOR_GREEN} visible />
     </>
