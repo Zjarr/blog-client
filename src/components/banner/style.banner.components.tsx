@@ -25,6 +25,7 @@ export const BannerContainer = Styled.div<{ isVisible: boolean }>`
   top: 48px;
   transition: .5s ease;
   width: 300px;
+  z-index: 2;
 
   background-color: ${COLOR_BLACK};
   box-shadow: 0 0 8px 0px ${COLOR_BLACK_5};
