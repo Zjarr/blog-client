@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import Styled from 'styled-components';
 
 import { COLOR_BLACK, COLOR_BLACK_0, COLOR_GRAY_LIGHT, TEXT_NORMAL } from '../../lib/values';
 
@@ -10,7 +10,7 @@ const getContainerHeight = (height?: string): string => height ? height : DEFAUL
 const getContainerTextAlign = (align?: string): string => align ? align : DEFAULT_CONTAINER_TEXT_ALIGN;
 const getContainerWidth = (width?: string): string => width ? width : DEFAULT_CONTAINER_WIDTH;
 
-export const TextButtonContainer = styled.button<{
+export const TextButtonContainer = Styled.button<{
   align?: string,
   disabled?: boolean,
   height?: string,

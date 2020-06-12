@@ -1,3 +1,3 @@
-import styled from 'styled-components';
+import Styled from 'styled-components';
 
-export const ModalContainer = styled.div``;
+export const ModalContainer = Styled.div``;

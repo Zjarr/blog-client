@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import Styled from 'styled-components';
 
 import { COLOR_BLACK, COLOR_BLACK_0, COLOR_GRAY_LIGHT, COLOR_GRAY_MEDIUM, COLOR_PURPLE, TEXT_NORMAL } from '../../lib/values';
 
@@ -10,7 +10,7 @@ const FIELD_WITH_ICON_PADDING = '0px 16px 0px 48px';
 const getFieldPadding = (icon?: string): string => icon ? FIELD_WITH_ICON_PADDING : DEFAULT_FIELD_PADDING;
 const getFieldWidth = (width?: string): string => width ? width : DEFAULT_FIELD_WIDTH;
 
-export const InputContainer = styled.div`
+export const InputContainer = Styled.div`
   position: relative;
 
   i {
@@ -23,7 +23,7 @@ export const InputContainer = styled.div`
   }
 `;
 
-export const InputField = styled.input<{ disabled: boolean, icon?: string, width?: string }>`
+export const InputField = Styled.input<{ disabled: boolean, icon?: string, width?: string }>`
   border-radius: 10px;
   cursor: text;
   font-family: Proxima Nova Regular;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import Styled from 'styled-components';
 
 import { COLOR_BLACK, COLOR_BLACK_0, COLOR_PURPLE, COLOR_WHITE, TEXT_NORMAL, TEXT_SMALL } from '../../lib/values';
 
@@ -43,7 +43,7 @@ const getContainerWidth = (shape?: string): string => shape === 'circle' ? CIRCL
 const getIconColor = (active?: boolean): string => active ? CIRCLE_ICON_COLOR : DEFAULT_ICON_COLOR;
 const getIconMargin = (shape?: string): string => shape === 'circle' ? CIRCLE_ICON_MARGIN : DEFAULT_ICON_MARGIN;
 
-export const MenuButtonContainer = styled.button<{
+export const MenuButtonContainer = Styled.button<{
   active?: boolean,
   shape?: string
 }>`

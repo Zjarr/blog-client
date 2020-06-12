@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import Styled from 'styled-components';
 
 import { COLOR_BLACK, COLOR_WHITE } from '../../lib/values';
 
-export const ImageUpdateButton = styled.button`
+export const ImageUpdateButton = Styled.button`
   align-items: center;
   border: none;
   cursor: pointer;

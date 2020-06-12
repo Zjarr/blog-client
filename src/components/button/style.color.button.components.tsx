@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import Styled from 'styled-components';
 
 import { COLOR_BLACK, COLOR_BLACK_0, COLOR_GRAY_LIGHT, COLOR_WHITE, TEXT_NORMAL, TEXT_SMALL } from '../../lib/values';
 
@@ -67,7 +67,7 @@ const getIconMargin = (iconOnly?: boolean, shape?: string): string => {
   return shape === 'circle' ? CIRCLE_ICON_MARGIN : DEFAULT_ICON_MARGIN;
 };
 
-export const ColorButtonContainer = styled.button<{
+export const ColorButtonContainer = Styled.button<{
   align?: string,
   color?: string,
   disabled?: boolean,
