@@ -2,27 +2,41 @@ import React, { ReactElement } from 'react';
 
 import { COLOR_BLACK_0 } from '../../lib/values';
 
-import { CloseButton, BodyContainer, ModalContainer } from './style.modal.components';
+import { BodyContainer, CloseButton, ModalContainer } from './style.modal.components';
 
 export const Modal: React.FC<IProps> = ({ body, onClose, visible }) => {
+  const [showModal, setShowModal] = React.useState<boolean>(false);
+
   const handleCloseRequest = (): void => {
-    return onClose && onClose();
+    setShowModal(false);
+
+    setTimeout(() => {
+      return onClose && onClose();
+    }, 250);
   };
 
-  return (
-    <ModalContainer visible={visible}>
-      <CloseButton
-        color={COLOR_BLACK_0}
-        icon={'close'}
-        type={'color'}
+  React.useEffect(() => {
+    setShowModal(visible);
+  }, [visible]);
 
-        onClick={handleCloseRequest}
-      />
-      <BodyContainer>
-        {body}
-      </BodyContainer>
-    </ModalContainer>
-  );
+  if (visible) {
+    return (
+      <ModalContainer visible={showModal}>
+        <CloseButton
+          color={COLOR_BLACK_0}
+          icon={'close'}
+          type={'color'}
+
+          onClick={handleCloseRequest}
+        />
+        <BodyContainer visible={showModal}>
+          {body}
+        </BodyContainer>
+      </ModalContainer>
+    );
+  }
+
+  return null;
 };
 
 interface IProps {
