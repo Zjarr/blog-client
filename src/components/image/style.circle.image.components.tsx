@@ -39,12 +39,12 @@ export const CircleImageContainer = Styled.div<{
   button {
     border-radius: 100%;
     opacity: 0;
-    transition: .25s ease;
+    transition: 0.25s ease;
     visibility: hidden;
   }
 
   :hover button {
-    transition: .25s ease;
+    transition: 0.25s ease;
 
     opacity: ${({ updatable }): string => getUpdateButtonOpacity(updatable)};
     visibility: ${({ updatable }): string => getUpdateButtonVisibility(updatable)};
