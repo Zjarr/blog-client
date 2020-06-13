@@ -57,7 +57,7 @@ export const DropdownTrigger = Styled.button<{ disabled: boolean, icon?: string,
   overflow: hidden;
   position: relative;
   text-align: left;
-  transition: .125s ease;
+  transition: 0.25s ease;
   width: 100%;
 
   background-color: ${COLOR_WHITE};
@@ -76,7 +76,7 @@ export const DropdownTriggerCaret = Styled.div<{ disabled: boolean, open: boolea
   i {
     right: 16px;
     top: 12px;
-    transition: .125s ease;
+    transition: 0.25s ease;
 
     color:${({ disabled }): string => getTriggerIconColor(disabled)};
     transform: ${({ open }): string => getTriggerRotate(open)};
@@ -112,7 +112,7 @@ export const DropdownItemContainer = Styled.div<{ open: boolean, label?: string 
   right: 0;
   z-index: 1;
   visibility: hidden;
-  transition: .125s ease;
+  transition: 0.25s ease;
 
   background-color: ${COLOR_WHITE};
   border: 2px solid ${COLOR_PURPLE};
