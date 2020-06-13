@@ -23,7 +23,7 @@ export const BannerContainer = Styled.div<{ isVisible: boolean }>`
   right: -332px;
   text-align: justify;
   top: 48px;
-  transition: .5s ease;
+  transition: 0.5s ease;
   width: 300px;
   z-index: 2;
 
