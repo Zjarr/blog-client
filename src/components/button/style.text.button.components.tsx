@@ -23,7 +23,7 @@ export const TextButtonContainer = Styled.button<{
   display: flex;
   margin: 0;
   padding: 0 16px;
-  transition: .25s ease;
+  transition: 0.25s ease;
 
   background-color: ${COLOR_BLACK_0};
   border: 2px solid ${COLOR_BLACK_0};

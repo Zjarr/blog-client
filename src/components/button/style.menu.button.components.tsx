@@ -53,7 +53,7 @@ export const MenuButtonContainer = Styled.button<{
   margin: 0;
   overflow: hidden;
   position: relative;
-  transition: .25s ease;
+  transition: 0.25s ease;
 
   background-color: ${COLOR_BLACK};
   border: 2px solid ${COLOR_BLACK};
@@ -83,7 +83,7 @@ export const MenuButtonContainer = Styled.button<{
   }
 
   :hover {
-    transition: .25s ease;
+    transition: 0.25s ease;
   }
 
   :disabled {
