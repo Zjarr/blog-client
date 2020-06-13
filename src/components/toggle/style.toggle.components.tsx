@@ -16,12 +16,12 @@ export const CheckboxContainer = Styled.input`
 
   + span {
     background-color: ${COLOR_RED};
-    transition: .25s ease;
+    transition: 0.25s ease;
   }
 
   :checked + span {
     background-color: ${COLOR_GREEN};
-    transition: .25s ease;
+    transition: 0.25s ease;
 
     :before {
       transform: translateX(44px);
@@ -56,7 +56,7 @@ export const SliderContainer = Styled.span`
     margin: auto;
     position: absolute;
     top: 0;
-    transition: .25s ease;
+    transition: 0.25s ease;
     width: 40px;
   }
 `;
