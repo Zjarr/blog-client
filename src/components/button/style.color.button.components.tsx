@@ -80,7 +80,7 @@ export const ColorButtonContainer = Styled.button<{
   cursor: pointer;
   display: flex;
   margin: 0;
-  transition: .25s ease;
+  transition: 0.25s ease;
 
   background-color: ${({ color, disabled }): string => getContainerBackgroundColor(color, disabled)};
   border: 2px solid ${({ color, disabled }): string => getContainerBorderColor(color, disabled)};
@@ -98,7 +98,7 @@ export const ColorButtonContainer = Styled.button<{
   }
 
   :hover {
-    transition: .25s ease;
+    transition: 0.25s ease;
 
     background-color: ${({ color, disabled }): string => getContainerBackgroundColor(color, disabled, true)};
     border-color: ${({ color, disabled }): string => getContainerBorderColor(color, disabled, true)};
