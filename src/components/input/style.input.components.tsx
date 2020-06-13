@@ -33,7 +33,7 @@ export const InputField = Styled.input<{ disabled: boolean, icon?: string, width
   outline: none;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: .125s;
+  transition: 0.25s ease;
   white-space: nowrap; 
 
   background-color: ${COLOR_BLACK_0};
@@ -44,7 +44,7 @@ export const InputField = Styled.input<{ disabled: boolean, icon?: string, width
   width: ${({ width }): string => getFieldWidth(width)};
 
   :focus {
-    transition: .125s;
+    transition: 0.25s ease;
     
     border-color: ${COLOR_PURPLE};
   }
