@@ -1,14 +1,14 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 import { COLOR_BLACK_0 } from '../../lib/values';
 
-import { BodyContainer, CloseButton, ModalContainer } from './style.modal.components';
+import { BodyContainer, CloseButton, BackgroundContainer, ModalContainer } from './style.modal.components';
 
-export const Modal: React.FC<IProps> = ({ body, onClose, visible }) => {
-  const [showModal, setShowModal] = React.useState<boolean>(false);
+export const Modal: React.FC<IProps> = ({ children, onClose, visible }) => {
+  const [showContent, setShowContent] = React.useState<boolean>(false);
 
   const handleCloseRequest = (): void => {
-    setShowModal(false);
+    setShowContent(false);
 
     setTimeout(() => {
       return onClose && onClose();
@@ -16,12 +16,12 @@ export const Modal: React.FC<IProps> = ({ body, onClose, visible }) => {
   };
 
   React.useEffect(() => {
-    setShowModal(visible);
+    setShowContent(visible);
   }, [visible]);
 
-  if (visible) {
-    return (
-      <ModalContainer visible={showModal}>
+  return (
+    <ModalContainer visible={visible}>
+      <BackgroundContainer visible={showContent}>
         <CloseButton
           color={COLOR_BLACK_0}
           icon={'close'}
@@ -29,18 +29,15 @@ export const Modal: React.FC<IProps> = ({ body, onClose, visible }) => {
 
           onClick={handleCloseRequest}
         />
-        <BodyContainer visible={showModal}>
-          {body}
+        <BodyContainer visible={showContent}>
+          {children}
         </BodyContainer>
-      </ModalContainer>
-    );
-  }
-
-  return null;
+      </BackgroundContainer>
+    </ModalContainer>
+  );
 };
 
 interface IProps {
-  body: ReactElement;
-  onClose?: () => void;
+  onClose: () => void;
   visible: boolean;
 }
