@@ -17,7 +17,7 @@
     "serve": "^11.3.2"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.10.0",
+    "@testing-library/jest-dom": "^5.10.1",
     "@testing-library/react": "^10.2.1",
     "@testing-library/user-event": "^11.4.2",
     "@types/jest": "^26.0.0",
@@ -32,6 +32,7 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",
+    "react-spinners": "^0.8.3",
     "rimraf": "^3.0.2",
     "styled-components": "^5.1.1",
     "typescript": "^3.9.5"
