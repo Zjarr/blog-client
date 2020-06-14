@@ -6,23 +6,32 @@ import { Button } from '../button';
 
 const getBodyContainerTransform = (visible?: boolean): string => visible ? 'scale(1)' : 'scale(2)';
 
-const getModalContainerOpacity = (visible?: boolean): string => visible ? '1' : '0';
+const getBackgroundContainerOpacity = (visible?: boolean): string => visible ? '1' : '0';
+
+const getModalContainerDisplay = (visible?: boolean): string => visible ? 'block' : 'none';
 
 export const ModalContainer = Styled.div<{ visible: boolean }>`
-  align-items: center;
   bottom: 0;
-  display: flex;
-  justify-content: center;
   left: 0;
   position: fixed;
   right: 0;
   top: 0;
-  transition: 0.25s ease;
   z-index: 1;
+
+  display: ${({ visible }): string => getModalContainerDisplay(visible)};
+`;
+
+export const BackgroundContainer = Styled.div<{ visible: boolean }>`
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  transition: 0.25s ease;
+  width: 100%;
 
   background-color: ${COLOR_BLACK_8};
 
-  opacity: ${({ visible }): string => getModalContainerOpacity(visible)};
+  opacity: ${({ visible }): string => getBackgroundContainerOpacity(visible)};
 `;
 
 export const BodyContainer = Styled.div<{ visible: boolean }>`
