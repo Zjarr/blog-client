@@ -10,7 +10,7 @@ import { SpinnerContainer } from './style.loading.components';
 
 export const Loading: React.FC<IProps> = ({ text, visible }) => {
   return (
-    <Modal onClose={(): void => { }} visible={visible}>
+    <Modal visible={visible}>
       <SpinnerContainer>
         <BarLoader color={'white'} width={288} height={6} />
       </SpinnerContainer>

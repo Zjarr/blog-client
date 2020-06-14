@@ -4,34 +4,35 @@ import { COLOR_BLACK_8 } from '../../lib/values';
 
 import { Button } from '../button';
 
-const getBodyContainerTransform = (visible?: boolean): string => visible ? 'scale(1)' : 'scale(2)';
+const DEFAULT_BODY_TRANSFORM = 'scale(2)';
+const DEFAULT_CONTAINER_OPACITY = '0';
+const DEFAULT_CONTAINER_VISIBILITY = 'hidden';
 
-const getBackgroundContainerOpacity = (visible?: boolean): string => visible ? '1' : '0';
+const VISIBLE_BODY_TRANSFORM = 'scale(1)';
+const VISIBLE_CONTAINER_OPACITY = '1';
+const VISIBLE_CONTAINER_VISIBILITY = 'visible';
 
-const getModalContainerDisplay = (visible?: boolean): string => visible ? 'block' : 'none';
+const getBodyContainerTransform = (visible?: boolean): string => visible ? VISIBLE_BODY_TRANSFORM : DEFAULT_BODY_TRANSFORM;
+
+const getModalContainerOpacity = (visible?: boolean): string => visible ? VISIBLE_CONTAINER_OPACITY : DEFAULT_CONTAINER_OPACITY;
+const getModalContainerVisibility = (visible?: boolean): string => visible ? VISIBLE_CONTAINER_VISIBILITY : DEFAULT_CONTAINER_VISIBILITY;
 
 export const ModalContainer = Styled.div<{ visible: boolean }>`
+  align-items: center;
   bottom: 0;
+  display: flex;
+  justify-content: center;
   left: 0;
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 1;
-
-  display: ${({ visible }): string => getModalContainerDisplay(visible)};
-`;
-
-export const BackgroundContainer = Styled.div<{ visible: boolean }>`
-  align-items: center;
-  display: flex;
-  height: 100%;
-  justify-content: center;
   transition: 0.25s ease;
-  width: 100%;
+  z-index: 1;
 
   background-color: ${COLOR_BLACK_8};
 
-  opacity: ${({ visible }): string => getBackgroundContainerOpacity(visible)};
+  opacity: ${({ visible }): string => getModalContainerOpacity(visible)};
+  visibility: ${({ visible }): string => getModalContainerVisibility(visible)};
 `;
 
 export const BodyContainer = Styled.div<{ visible: boolean }>`

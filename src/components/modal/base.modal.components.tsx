@@ -2,26 +2,36 @@ import React from 'react';
 
 import { COLOR_BLACK_0 } from '../../lib/values';
 
-import { BodyContainer, CloseButton, BackgroundContainer, ModalContainer } from './style.modal.components';
+import { BodyContainer, CloseButton, ModalContainer } from './style.modal.components';
 
-export const Modal: React.FC<IProps> = ({ children, onClose, visible }) => {
-  const [showContent, setShowContent] = React.useState<boolean>(false);
+export const Modal: React.FC<IProps> = ({ children, closeButton, onClose, visible }) => {
+  const [showBody, setShowBody] = React.useState<boolean>(false);
+  const [showModal, setShowModal] = React.useState<boolean>(false);
 
-  const handleCloseRequest = (): void => {
-    setShowContent(false);
+  const handleCloseRequest = React.useCallback((): void => {
+    setShowBody(false);
+    setShowModal(false);
 
-    setTimeout(() => {
-      return onClose && onClose();
-    }, 250);
-  };
+    return onClose && onClose();
+  }, [onClose]);
+
+  const handleOpenRequest = React.useCallback((): void => {
+    setShowModal(true);
+    setShowBody(true);
+  }, []);
 
   React.useEffect(() => {
-    setShowContent(visible);
-  }, [visible]);
+    if (visible) {
+      return handleOpenRequest();
+    }
+
+    return handleCloseRequest();
+  }, [visible, handleCloseRequest, handleOpenRequest]);
 
   return (
-    <ModalContainer visible={visible}>
-      <BackgroundContainer visible={showContent}>
+    <ModalContainer visible={showModal}>
+      {
+        closeButton &&
         <CloseButton
           color={COLOR_BLACK_0}
           icon={'close'}
@@ -29,15 +39,16 @@ export const Modal: React.FC<IProps> = ({ children, onClose, visible }) => {
 
           onClick={handleCloseRequest}
         />
-        <BodyContainer visible={showContent}>
-          {children}
-        </BodyContainer>
-      </BackgroundContainer>
+      }
+      <BodyContainer visible={showBody}>
+        {children}
+      </BodyContainer>
     </ModalContainer>
   );
 };
 
 interface IProps {
-  onClose: () => void;
+  closeButton?: boolean;
+  onClose?: () => void;
   visible: boolean;
 }
