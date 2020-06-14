@@ -7,7 +7,7 @@ import { Image } from '../../components/image';
 import { Toggle } from '../../components/toggle';
 import { Text } from '../../components/text';
 import { Button } from '../../components/button';
-import { Modal } from '../../components/modal';
+import { Loading } from '../../components/loading';
 
 import { COLOR_GREEN, COLOR_PURPLE } from '../../lib/values';
 
@@ -143,9 +143,8 @@ export const LandingBlogPage: React.FC<{}> = () => {
 
         onClick={(): void => setModalVisible(true)}
       />
-      <Modal
-        body={<Image type={'circle'} />}
-        onClose={(): void => setModalVisible(false)}
+      <Loading
+        text={'Adding new user...'}
         visible={modalVisible}
       />
       <br />
