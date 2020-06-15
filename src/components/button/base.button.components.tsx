@@ -49,11 +49,11 @@ export interface IProps {
   align?: string;
   color?: string;
   disabled?: boolean;
-  height?:  string;
+  height?: string;
   icon?: string;
   onClick?: () => void;
-  shape?: string;
+  shape?: 'circle' | 'square';
   text?: string;
-  type: string;
+  type: 'color' | 'menu' | 'text';
   width?: string;
 }
