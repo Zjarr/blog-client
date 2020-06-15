@@ -59,5 +59,5 @@ interface IProps {
   color?: string;
   icon?: string;
   margin?: string;
-  type: string;
+  type: 'label' | 'paragraph' | 'subtitle' | 'title';
 };
