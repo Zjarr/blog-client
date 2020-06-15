@@ -39,7 +39,7 @@ interface IProps {
   height?: string;
   onUpdate?: () => void,
   src?: string;
-  type: string;
+  type: 'circle' | 'square';
   updatable?: boolean;
   width?: string;
 };
