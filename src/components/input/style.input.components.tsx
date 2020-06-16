@@ -34,7 +34,7 @@ export const InputField = Styled.input<{ disabled: boolean, icon?: string, width
   overflow: hidden;
   text-overflow: ellipsis;
   transition: 0.25s ease;
-  white-space: nowrap; 
+  white-space: nowrap;
 
   background-color: ${COLOR_BLACK_0};
   border: 2px solid ${COLOR_GRAY_LIGHT};
