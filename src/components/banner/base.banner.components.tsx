@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { COLOR_WHITE } from '../../lib/values';
+import { COLOR_GRAY_MEDIUM, COLOR_WHITE } from '../../lib/values';
 
 import { Icon } from '../icon';
 import { Text } from '../text';
@@ -30,8 +30,8 @@ export const Banner: React.FC<IProps> = ({ icon, text, visible, color, onHide, t
 
   return (
     <BannerContainer isVisible={isVisible}>
-      <IconContainer color={color}>
-        <Icon name={icon} size={'24px'} />
+      <IconContainer>
+        <Icon name={icon} size={'24px'} color={color || COLOR_GRAY_MEDIUM} />
       </IconContainer>
       <Text type={'paragraph'} color={COLOR_WHITE}>{text}</Text>
     </BannerContainer>
