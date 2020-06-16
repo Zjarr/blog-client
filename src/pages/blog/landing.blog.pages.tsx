@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Input } from '../../components/input';
 import { Banner } from '../../components/banner';
+import { Card } from '../../components/card';
 import { Dropdown } from '../../components/dropdown';
 import { Image } from '../../components/image';
 import { Toggle } from '../../components/toggle';
@@ -10,7 +11,6 @@ import { Button } from '../../components/button';
 import { Loading } from '../../components/loading';
 
 import { COLOR_GREEN, COLOR_PURPLE } from '../../lib/values';
-
 
 export const LandingBlogPage: React.FC<{}> = () => {
   const [modalVisible, setModalVisible] = React.useState<boolean>(false);
@@ -133,6 +133,7 @@ export const LandingBlogPage: React.FC<{}> = () => {
       <br />
       <br />
 
+
       <Text type={'title'}>Modal</Text>
       <p></p>
       <Button
@@ -146,6 +147,51 @@ export const LandingBlogPage: React.FC<{}> = () => {
       <Loading
         text={'Adding new user...'}
         visible={modalVisible}
+      />
+      <br />
+      <br />
+      <br />
+
+
+      <Text type={'title'}>Card</Text>
+      <p></p>
+      <Card
+        text={'Card title with long text for testing purposes'}
+        type={'icon'}
+      />
+      <p></p>
+      <Card
+        text={'Card title with long text for testing purposes'}
+        type={'icon'}
+        disabled
+      />
+      <p></p>
+      <Card
+        title={'Card title with long text for testing purposes'}
+        text={'Card title with long text for testing purposes'}
+        type={'icon'}
+      />
+      <p></p>
+      <Card
+        title={'Card title with long text for testing purposes'}
+        text={'Card title with long text for testing purposes'}
+        type={'icon'}
+        disabled
+      />
+      <p></p>
+      <Card
+        title={'Card title with long text for testing purposes'}
+        text={'Card title with long text for testing purposes'}
+        type={'icon'}
+        icon={'group'}
+      />
+      <p></p>
+      <Card
+        title={'Card title with long text for testing purposes'}
+        text={'Card title with long text for testing purposes'}
+        type={'icon'}
+        icon={'group'}
+        disabled
       />
       <br />
       <br />
