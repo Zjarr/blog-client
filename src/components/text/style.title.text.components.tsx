@@ -20,7 +20,7 @@ export const TitleContainer = Styled.div<{ color?: string, margin?: string }>`
   }
 `;
 
-export const Title = Styled.h1`
+export const Title = Styled.p`
   font-family: Proxima Nova Bold;
   margin: 0;
 

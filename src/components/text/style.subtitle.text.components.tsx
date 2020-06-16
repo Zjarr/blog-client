@@ -20,7 +20,7 @@ export const SubTitleContainer = Styled.div<{ color?: string, margin?: string }>
   }
 `;
 
-export const SubTitle = Styled.h2`
+export const SubTitle = Styled.p`
   font-family: Proxima Nova Bold;
   margin: 0;
 
