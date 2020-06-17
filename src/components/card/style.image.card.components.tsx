@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { COLOR_RED, COLOR_GREEN, COLOR_BLACK, COLOR_GRAY_MEDIUM, COLOR_GRAY_LIGHT } from '../../lib/values';
+import { COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_GRAY_MEDIUM, COLOR_GREEN, COLOR_RED } from '../../lib/values';
 
 const DEFAULT_CONTAINER_WIDTH = '100%';
 const DEFAULT_STATE_INDICATOR_COLOR = COLOR_RED;
