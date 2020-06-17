@@ -193,6 +193,29 @@ export const LandingBlogPage: React.FC<{}> = () => {
         icon={'group'}
         disabled
       />
+      <p></p>
+      <Card
+        title={'Card title with long text for testing purposes'}
+        text={'Card title with long text for testing purposes'}
+        secondaryText={'Card title with long text for testing purposes'}
+        type={'image'}
+        image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'}
+        active
+      />
+      <p></p>
+      <Card
+        title={'Card title with long text for testing purposes'}
+        text={'Card title with long text for testing purposes'}
+        secondaryText={'Card title with long text for testing purposes'}
+        icon={'group'}
+        type={'image'}
+      />
+      <p></p>
+      <Card
+        title={'Card title with long text for testing purposes'}
+        text={'Card title with long text for testing purposes'}
+        type={'image'}
+      />
       <br />
       <br />
       <br />
