@@ -6,7 +6,7 @@ import { ColorButtonContainer } from './style.color.button.components';
 import { MenuButtonContainer } from './style.menu.button.components';
 import { TextButtonContainer } from './style.text.button.components';
 
-export const Button: React.FC<IProps> = ({ active, disabled, icon, onClick, text, type, ...rest }) => {
+export const Button: React.FC<IProps> = ({ active, as, disabled, icon, onClick, text, type, ...rest }) => {
   const iconOnly = !!(icon && !text);
   const iconSize = rest.shape === 'circle' ? '24px' : '16px';
 
@@ -16,7 +16,7 @@ export const Button: React.FC<IProps> = ({ active, disabled, icon, onClick, text
 
   if (type === 'color') {
     return (
-      <ColorButtonContainer disabled={disabled} iconOnly={iconOnly} onClick={handleOnClick} {...rest}>
+      <ColorButtonContainer as={as || 'button'} disabled={disabled} iconOnly={iconOnly} onClick={handleOnClick} {...rest}>
         {icon && <Icon name={icon} />}
         {text && text}
       </ColorButtonContainer>
@@ -25,7 +25,7 @@ export const Button: React.FC<IProps> = ({ active, disabled, icon, onClick, text
 
   if (type === 'menu') {
     return (
-      <MenuButtonContainer disabled={disabled} onClick={handleOnClick} {...rest} active={active} >
+      <MenuButtonContainer as={as || 'button'} active={active} onClick={handleOnClick} {...rest}>
         {icon && <Icon name={icon} size={iconSize} />}
         {text && text}
       </MenuButtonContainer>
@@ -34,7 +34,7 @@ export const Button: React.FC<IProps> = ({ active, disabled, icon, onClick, text
 
   if (type === 'text') {
     return (
-      <TextButtonContainer disabled={disabled} onClick={handleOnClick} {...rest}>
+      <TextButtonContainer as={as || 'button'} disabled={disabled} onClick={handleOnClick} {...rest}>
         {icon && <Icon name={icon} />}
         {text && text}
       </TextButtonContainer>
@@ -46,6 +46,7 @@ export const Button: React.FC<IProps> = ({ active, disabled, icon, onClick, text
 
 export interface IProps {
   active?: boolean;
+  as?: 'a' | 'button';
   align?: string;
   color?: string;
   disabled?: boolean;
