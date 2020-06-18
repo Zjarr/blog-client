@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 
 import './assets/fonts/material-icons/index.css';
 import './assets/fonts/proxima-nova/index.css';
-import './index.css';
+import './styles/body.css';
 
 ReactDOM.render(
   <React.StrictMode>
