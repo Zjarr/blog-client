@@ -5,9 +5,9 @@ import { Text } from '../text';
 
 import { InputContainer, InputField } from './style.input.components';
 
-export const Input: React.FC<IInput> = ({ disabled = false, label, icon, ...rest }) => {
+export const Input: React.FC<IInput> = ({ disabled = false, label, icon, width, ...rest }) => {
   return (
-    <InputContainer>
+    <InputContainer width={width}>
       {
         label && <Text type={'label'}>{label}</Text>
       }

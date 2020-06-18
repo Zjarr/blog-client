@@ -3,15 +3,17 @@ import Styled from 'styled-components';
 import { COLOR_BLACK, COLOR_BLACK_0, COLOR_GRAY_LIGHT, COLOR_GRAY_MEDIUM, COLOR_PURPLE, TEXT_NORMAL } from '../../lib/values';
 
 const DEFAULT_FIELD_PADDING = '0px 16px';
-const DEFAULT_FIELD_WIDTH = 'auto';
+const DEFAULT_FIELD_WIDTH = '260px;';
 
 const FIELD_WITH_ICON_PADDING = '0px 16px 0px 48px';
 
 const getFieldPadding = (icon?: string): string => icon ? FIELD_WITH_ICON_PADDING : DEFAULT_FIELD_PADDING;
 const getFieldWidth = (width?: string): string => width ? width : DEFAULT_FIELD_WIDTH;
 
-export const InputContainer = Styled.div`
+export const InputContainer = Styled.div<{ width?: string }>`
   position: relative;
+
+  width: ${({ width }): string => getFieldWidth(width)};
 
   i {
     bottom: 16px;
@@ -23,25 +25,25 @@ export const InputContainer = Styled.div`
   }
 `;
 
-export const InputField = Styled.input<{ disabled: boolean, icon?: string, width?: string }>`
+export const InputField = Styled.input<{ disabled: boolean, icon?: string }>`
   border-radius: 10px;
   cursor: text;
   font-family: Proxima Nova Regular;
   height: 48px;
   margin: 0;
-  min-width: 260px;
   outline: none;
   overflow: hidden;
   text-overflow: ellipsis;
   transition: 0.25s ease;
   white-space: nowrap;
+  width: 100%;
 
   background-color: ${COLOR_BLACK_0};
   border: 2px solid ${COLOR_GRAY_LIGHT};
   font-size: ${TEXT_NORMAL};
 
   padding: ${({ icon }): string => getFieldPadding(icon)};
-  width: ${({ width }): string => getFieldWidth(width)};
+  
 
   :focus {
     transition: 0.25s ease;
