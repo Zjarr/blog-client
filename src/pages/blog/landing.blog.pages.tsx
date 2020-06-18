@@ -231,7 +231,8 @@ export const LandingBlogPage: React.FC<{}> = () => {
           secondaryText: 'Card title with long text for testing purposes',
           type: 'image',
           image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-          active: true
+          link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+          active: false
         },
         {
           title: 'Card title with long text for testing purposes',

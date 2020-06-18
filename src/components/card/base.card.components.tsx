@@ -23,7 +23,7 @@ import {
   ImageStateIndicator
 } from './style.image.card.components';
 
-export const Card: React.FC<ICard> = ({ active, disabled, icon, image, onClick, secondaryText, text, title, type, ...rest }) => {
+export const Card: React.FC<ICard> = ({ active, disabled, icon, image, link, onClick, secondaryText, text, title, type, ...rest }) => {
   const handleButtonClick = (): void => {
     return onClick && onClick();
   };
@@ -55,7 +55,7 @@ export const Card: React.FC<ICard> = ({ active, disabled, icon, image, onClick, 
 
         <ImageFinalContainer>
           <ImageStateIndicator active={active} />
-          <Button as={'a'} type={'text'} text={'View'} color={COLOR_GRAY_DARK} />
+          <Button as={'a'} href={link} type={'text'} text={'View'} color={COLOR_GRAY_DARK} />
         </ImageFinalContainer>
       </ImageCardContainer>
     );
@@ -105,6 +105,7 @@ export interface ICard {
   disabled?: boolean;
   icon?: string;
   image?: string;
+  link?: string;
   onClick?: () => void;
   text?: string;
   secondaryText?: string;
