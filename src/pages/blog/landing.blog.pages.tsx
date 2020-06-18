@@ -9,6 +9,7 @@ import { Toggle } from '../../components/toggle';
 import { Text } from '../../components/text';
 import { Button } from '../../components/button';
 import { Loading } from '../../components/loading';
+import { List } from '../../components/list';
 
 import { COLOR_GREEN, COLOR_PURPLE } from '../../lib/values';
 
@@ -219,6 +220,60 @@ export const LandingBlogPage: React.FC<{}> = () => {
       <br />
       <br />
       <br />
+
+
+      <Text type={'title'}>List</Text>
+      <p></p>
+      <List cards={[
+        {
+          title: 'Card title with long text for testing purposes',
+          text: 'Card title with long text for testing purposes',
+          secondaryText: 'Card title with long text for testing purposes',
+          type: 'image',
+          image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+          active: true
+        },
+        {
+          title: 'Card title with long text for testing purposes',
+          text: 'Card title with long text for testing purposes',
+          secondaryText: 'Card title with long text for testing purposes',
+          type: 'image',
+          image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+          active: true
+        },
+        {
+          title: 'Card title with long text for testing purposes',
+          text: 'Card title with long text for testing purposes',
+          secondaryText: 'Card title with long text for testing purposes',
+          type: 'image',
+          image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+          active: true
+        },
+        {
+          title: 'Card title with long text for testing purposes',
+          text: 'Card title with long text for testing purposes',
+          secondaryText: 'Card title with long text for testing purposes',
+          type: 'image',
+          image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+          active: true
+        },
+        {
+          title: 'Card title with long text for testing purposes',
+          text: 'Card title with long text for testing purposes',
+          secondaryText: 'Card title with long text for testing purposes',
+          type: 'image',
+          image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+          active: true
+        },
+        {
+          title: 'Card title with long text for testing purposes',
+          text: 'Card title with long text for testing purposes',
+          secondaryText: 'Card title with long text for testing purposes',
+          type: 'image',
+          image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+          active: true
+        }
+      ]} />
 
       <Banner text={'Already exists an user with the provided email'} icon={'check'} color={COLOR_GREEN} visible />
     </>
