@@ -6,7 +6,7 @@ const DEFAULT_BANNER_OPACITY = '0';
 const DEFAULT_BANNER_TRANSFORM = 'translateX(0)';
 
 const VISIBLE_BANNER_OPACITY = '1';
-const VISIBLE_BANNER_TRANSFORM = 'translateX(-380px)';
+const VISIBLE_BANNER_TRANSFORM = 'translateX(-430px)';
 
 const getBannerOpacity = (isVisible?: boolean): string => isVisible ? VISIBLE_BANNER_OPACITY : DEFAULT_BANNER_OPACITY;
 const getBannerTransform = (isVisible?: boolean): string => isVisible ? VISIBLE_BANNER_TRANSFORM : DEFAULT_BANNER_TRANSFORM;
@@ -18,11 +18,11 @@ export const BannerContainer = Styled.div<{ isVisible: boolean }>`
   min-height: 48px;
   padding: 8px 16px;
   position: fixed;
-  right: -332px;
-  text-align: justify;
+  right: -382px;
+  text-align: center;
   top: 48px;
   transition: 0.5s ease;
-  width: 300px;
+  width: 350px;
   z-index: 2;
 
   background-color: ${COLOR_BLACK};
