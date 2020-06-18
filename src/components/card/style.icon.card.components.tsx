@@ -4,10 +4,19 @@ import { COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_GRAY_MEDIUM } from '../../lib/valu
 
 const DEFAULT_CONTAINER_WIDTH = '100%';
 
+const DEFAULT_TEXT_CONTAINER_HEIGHT = '32px';
+const DEFAULT_TEXT_CONTAINER_MARGIN_RIGHT = '64px';
+
+const ICON_TITLE_TEXT_CONTAINER_HEIGHT = '56px';
+const DISABLED_TEXT_CONTAINER_MARGIN_RIGHT = '0px';
+
 const getContainerWidth = (width?: string): string => width ? width : DEFAULT_CONTAINER_WIDTH;
 
-const getTextContainerHeight = (icon?: string, title?: string): string => icon || title ? '56px' : '32px';
-const getTextContainerMarginRight = (disabled?: boolean): string => disabled ? '0' : '64px';
+const getTextContainerHeight = (icon?: string, title?: string): string =>
+  icon || title ? ICON_TITLE_TEXT_CONTAINER_HEIGHT : DEFAULT_TEXT_CONTAINER_HEIGHT;
+
+const getTextContainerMarginRight = (disabled?: boolean): string =>
+  disabled ? DISABLED_TEXT_CONTAINER_MARGIN_RIGHT : DEFAULT_TEXT_CONTAINER_MARGIN_RIGHT;
 
 export const IconCardContainer = Styled.div<{ width?: string }>`
   align-items: center;
