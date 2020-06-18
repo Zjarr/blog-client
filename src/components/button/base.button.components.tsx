@@ -6,7 +6,7 @@ import { ColorButtonContainer } from './style.color.button.components';
 import { MenuButtonContainer } from './style.menu.button.components';
 import { TextButtonContainer } from './style.text.button.components';
 
-export const Button: React.FC<IProps> = ({ active, as, disabled, icon, onClick, text, type, ...rest }) => {
+export const Button: React.FC<IButton> = ({ active, as, disabled, icon, onClick, text, type, ...rest }) => {
   const iconOnly = !!(icon && !text);
   const iconSize = rest.shape === 'circle' ? '24px' : '16px';
 
@@ -44,7 +44,7 @@ export const Button: React.FC<IProps> = ({ active, as, disabled, icon, onClick, 
   return null;
 };
 
-export interface IProps {
+interface IButton {
   active?: boolean;
   as?: 'a' | 'button';
   align?: string;
