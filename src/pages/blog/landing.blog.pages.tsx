@@ -10,6 +10,7 @@ import { Text } from '../../components/text';
 import { Button } from '../../components/button';
 import { Loading } from '../../components/loading';
 import { List } from '../../components/list';
+import { FormField } from '../../components/form-field';
 
 import { COLOR_GREEN, COLOR_PURPLE } from '../../lib/values';
 
@@ -291,6 +292,32 @@ export const LandingBlogPage: React.FC<{}> = () => {
           active: true
         }
       ]} />
+      <br />
+      <br />
+      <br />
+
+
+      <Text type={'title'}>Form Fields</Text>
+      <p></p>
+      <FormField label={'Hello Label:'} marginBottom>
+        <Input icon={'group'} width={'33%'}/>
+        <Input icon={'group'} width={'33%'}/>
+        <Input icon={'group'} width={'33%'}/>
+        <Button type={'color'} icon={'group'} />
+      </FormField>
+
+      <FormField label={'Hello Label:'} marginBottom>
+        <Input icon={'group'}/>
+        <Input icon={'group'}/>
+        <Dropdown
+          name={'Dropdown'}
+          items={[
+            { name: 'value', value: 'name' }
+          ]}
+          icon={'group'}
+          onChange={(): void => { }}
+        />
+      </FormField>
 
       <Banner text={'Already exists an user with the provided email'} icon={'check'} color={COLOR_GREEN} visible />
     </>
