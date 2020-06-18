@@ -14,7 +14,7 @@ import {
   DropdownTriggerContainer
 } from './style.dropdown.components';
 
-export const Dropdown: React.FC<IProps> = ({ disabled = false, icon, items, label, name, onChange, width }) => {
+export const Dropdown: React.FC<IDropdown> = ({ disabled = false, icon, items, label, name, onChange, width }) => {
   const [triggerName, setTriggerName] = React.useState<string>(name);
   const [open, setOpen] = React.useState<boolean>(false);
 
@@ -80,7 +80,7 @@ export interface IDropdownItem {
   value: string | number;
 }
 
-interface IProps {
+interface IDropdown {
   disabled?: boolean;
   icon?: string;
   items: IDropdownItem[];
