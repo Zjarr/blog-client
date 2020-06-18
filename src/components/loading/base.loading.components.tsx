@@ -8,7 +8,7 @@ import { Text } from '../text';
 
 import { SpinnerContainer } from './style.loading.components';
 
-export const Loading: React.FC<IProps> = ({ text, visible }) => {
+export const Loading: React.FC<ILoading> = ({ text, visible }) => {
   return (
     <Modal visible={visible}>
       <SpinnerContainer>
@@ -22,7 +22,7 @@ export const Loading: React.FC<IProps> = ({ text, visible }) => {
   );
 };
 
-interface IProps {
+interface ILoading {
   text?: string;
   visible: boolean;
 }
