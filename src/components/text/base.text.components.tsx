@@ -7,7 +7,7 @@ import { Paragraph, ParagraphContainer } from './style.paragraph.text.components
 import { SubTitle, SubTitleContainer } from './style.subtitle.text.components';
 import { Title, TitleContainer } from './style.title.text.components';
 
-export const Text: React.FC<IProps> = ({ bold, children, icon, type, ...rest }) => {
+export const Text: React.FC<IText> = ({ bold, children, icon, type, ...rest }) => {
   if (type === 'title') {
     return (
       <TitleContainer {...rest}>
@@ -55,7 +55,7 @@ export const Text: React.FC<IProps> = ({ bold, children, icon, type, ...rest }) 
   return null;
 };
 
-interface IProps {
+interface IText {
   bold?: boolean;
   color?: string;
   icon?: string;
