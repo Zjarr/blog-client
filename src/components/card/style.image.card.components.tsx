@@ -15,7 +15,7 @@ export const ImageCardContainer = Styled.div<{ width?: string }>`
   align-items: center;
   border-radius: 10px;
   display: flex;
-  height: 96px;
+  height: 112px;
   padding: 8px 16px;
   position: relative;
 
@@ -27,16 +27,16 @@ export const ImageContainer = Styled.div`
   border-radius: 100%;
   display: flex;
   flex-shrink: 0;
-  height: 80px;
+  height: 96px;
   justify-content: center;
   margin-right: 16px;
-  width: 80px;
+  width: 96px;
 
   background-color: ${COLOR_GRAY_LIGHT};
 `;
 
 export const ImageMiddleContainer = Styled.div`
-  justify-content: center;
+  justify-content: space-around;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -46,7 +46,7 @@ export const ImageMiddleContainer = Styled.div`
 
   p {
     overflow: hidden;
-    margin-bottom: 12px;
+    margin-bottom: 0;
     text-overflow: ellipsis;
     white-space: nowrap;
 
@@ -69,7 +69,7 @@ export const ImageFinalContainer = Styled.div`
 
   a,
   button {
-    bottom: 0px;
+    bottom: 4px;
     right: -16px;
     position: absolute;
   }
@@ -80,7 +80,7 @@ export const ImageStateIndicator = Styled.div<{ active?: boolean }>`
   height: 8px;
   position: absolute;
   right: 0px;
-  top: 16px;
+  top: 22px;
   width: 8px;
 
   background-color: ${({ active }): string => getActiveIndicatorBGColor(active)};

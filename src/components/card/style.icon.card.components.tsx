@@ -6,13 +6,13 @@ const DEFAULT_CONTAINER_WIDTH = '100%';
 
 const getContainerWidth = (width?: string): string => width ? width : DEFAULT_CONTAINER_WIDTH;
 
-const getTextContainerHeight = (icon?: string, title?: string): string => icon || title ? '48px' : '32px';
+const getTextContainerHeight = (icon?: string, title?: string): string => icon || title ? '56px' : '32px';
 const getTextContainerMarginRight = (disabled?: boolean): string => disabled ? '0' : '64px';
 
 export const IconCardContainer = Styled.div<{ width?: string }>`
   align-items: center;
   display: flex;
-  min-height: 48px;
+  min-height: 64px;
   overflow: hidden;
   padding: 8px 16px;
   position: relative;
@@ -25,18 +25,19 @@ export const IconContainer = Styled.div`
   border-radius: 48px;
   flex-shrink: 0;
   display: flex;
-  height: 48px;
+  height: 56px;
   justify-content: center;
   margin-right: 16px;
-  width: 48px;
+  width: 56px;
 
   background-color: ${COLOR_GRAY_LIGHT};
 `;
 
 export const IconTextContainer = Styled.div<{ disabled?: boolean, icon?: string }>`
-  justify-content: center;
+  justify-content: space-around;
   display: flex;
   flex-direction: column;
+  height: 100%;
   min-width: 0;
 
   height: ${({ icon, title }): string => getTextContainerHeight(icon, title)};
@@ -44,14 +45,12 @@ export const IconTextContainer = Styled.div<{ disabled?: boolean, icon?: string 
 
   div:first-child {
     p {
-      margin-top: 0px;
-
       color: ${COLOR_BLACK};
     }
   }
 
   p {
-    margin-top: 4px;
+    margin-top: 0px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
