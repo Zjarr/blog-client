@@ -4,7 +4,7 @@ import { COLOR_BLACK_0 } from '../../lib/values';
 
 import { BodyContainer, CloseButton, ModalContainer } from './style.modal.components';
 
-export const Modal: React.FC<IProps> = ({ children, closeButton, onClose, visible }) => {
+export const Modal: React.FC<IModal> = ({ children, closeButton, onClose, visible }) => {
   const [showBody, setShowBody] = React.useState<boolean>(false);
   const [showModal, setShowModal] = React.useState<boolean>(false);
 
@@ -47,7 +47,7 @@ export const Modal: React.FC<IProps> = ({ children, closeButton, onClose, visibl
   );
 };
 
-interface IProps {
+interface IModal {
   closeButton?: boolean;
   onClose?: () => void;
   visible: boolean;
