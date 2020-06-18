@@ -4,7 +4,7 @@ import { Text } from '../text';
 
 import { CheckboxContainer, SliderContainer, ToggleContainer } from './style.toggle.components';
 
-export const Toggle: React.FC<IProps> = ({ disabled = false, label, ...rest }) => {
+export const Toggle: React.FC<IToggle> = ({ disabled = false, label, ...rest }) => {
   return (
     <>
       {
@@ -18,7 +18,7 @@ export const Toggle: React.FC<IProps> = ({ disabled = false, label, ...rest }) =
   );
 };
 
-interface IProps {
+interface IToggle {
   disabled?: boolean;
   label?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
