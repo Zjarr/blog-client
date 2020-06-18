@@ -55,7 +55,9 @@ export const Card: React.FC<ICard> = ({ active, disabled, icon, image, link, onC
 
         <ImageFinalContainer>
           <ImageStateIndicator active={active} />
-          <Button as={'a'} href={link} type={'text'} text={'View'} color={COLOR_GRAY_DARK} />
+          {
+            link && <Button as={'a'} href={link} type={'text'} text={'View'} color={COLOR_GRAY_DARK} />
+          }
         </ImageFinalContainer>
       </ImageCardContainer>
     );
