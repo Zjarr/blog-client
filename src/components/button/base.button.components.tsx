@@ -34,7 +34,7 @@ export const Button: React.FC<IButton> = ({ active, as, disabled, icon, onClick,
 
   if (type === 'text') {
     return (
-      <TextButtonContainer as={as || 'button'} disabled={disabled} onClick={handleOnClick} {...rest}>
+      <TextButtonContainer as={as || 'button'} disabled={disabled} onClick={handleOnClick} iconOnly={iconOnly} {...rest}>
         {icon && <Icon name={icon} />}
         {text && text}
       </TextButtonContainer>

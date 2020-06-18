@@ -7,10 +7,16 @@ const DEFAULT_CONTAINER_HEIGHT = '32px';
 const DEFAULT_CONTAINER_TEXT_ALIGN = 'center';
 const DEFAULT_CONTAINER_WIDTH = 'auto';
 
+const DEFAULT_ICON_MARGIN_RIGHT = '0 16px 0 0';
+
+const ICON_ONLY_ICON_MARGIN_RIGHT = '0px';
+
 const getContainerColor = (color?: string): string => color ? color : DEFAULT_CONTAINER_COLOR;
 const getContainerHeight = (height?: string): string => height ? height : DEFAULT_CONTAINER_HEIGHT;
 const getContainerTextAlign = (align?: string): string => align ? align : DEFAULT_CONTAINER_TEXT_ALIGN;
 const getContainerWidth = (width?: string): string => width ? width : DEFAULT_CONTAINER_WIDTH;
+
+const getIconMarginRight = (iconOnly?: boolean): string => iconOnly ? ICON_ONLY_ICON_MARGIN_RIGHT : DEFAULT_ICON_MARGIN_RIGHT;
 
 export const TextButtonContainer = Styled.button<{
   align?: string,
@@ -38,7 +44,7 @@ export const TextButtonContainer = Styled.button<{
   width: ${({ width }): string => getContainerWidth(width)};
 
   i {
-    margin: 0 16px 0 0;
+    margin: ${({ iconOnly }): string => getIconMarginRight(iconOnly)};
   }
 
   :disabled {
