@@ -9,7 +9,7 @@ import { BannerContainer, IconContainer } from './style.banner.components';
 
 const DEFAULT_TIME = 5000;
 
-export const Banner: React.FC<IProps> = ({ icon, text, visible, color, onHide, time = DEFAULT_TIME }) => {
+export const Banner: React.FC<IBanner> = ({ icon, text, visible, color, onHide, time = DEFAULT_TIME }) => {
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
 
   const initVisibilityTimeout = React.useCallback((): void => {
@@ -38,7 +38,7 @@ export const Banner: React.FC<IProps> = ({ icon, text, visible, color, onHide, t
   );
 };
 
-interface IProps {
+interface IBanner {
   color?: string;
   icon: string;
   onHide?: () => void;
