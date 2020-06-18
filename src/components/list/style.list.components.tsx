@@ -7,6 +7,8 @@ export const CardContainer = Styled(Col)`
 `;
 
 export const ListContainer = Styled.div`
+  position: relative;
+  margin-bottom: 64px;
 `;
 
 export const SearchContainer = Styled.div`
@@ -19,4 +21,14 @@ export const SearchContainer = Styled.div`
     margin-right: 32px;
     width: 400px;
   }
+`;
+
+export const PaginatorContainer = Styled.div`
+  bottom: -64px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 32px;
+  padding-right: 16px;
+  position: absolute;
+  width: 100%;
 `;

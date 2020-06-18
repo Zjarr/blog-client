@@ -5,10 +5,11 @@ import { useInput } from '../../lib/hooks';
 
 import { Card, ICard } from '../card';
 import { Input } from '../input';
+import { Paginator } from '../paginator';
 
-import { CardContainer, ListContainer, SearchContainer } from './style.list.components';
+import { CardContainer, ListContainer, PaginatorContainer, SearchContainer } from './style.list.components';
 
-export const List: React.FC<IList> = ({ cards, onSearch }) => {
+export const List: React.FC<IList> = ({ cards, onPrevClick, onSearch, onNextClick }) => {
   const searchInput = useInput('');
 
   const handleSearchOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -17,6 +18,14 @@ export const List: React.FC<IList> = ({ cards, onSearch }) => {
     }
 
     return searchInput.onChange(e);
+  };
+
+  const handlePrevClick = (): void => {
+    return onPrevClick && onPrevClick();
+  };
+
+  const handleNextClick = (): void => {
+    return onNextClick && onNextClick();
   };
 
   const getCardItems = (cards: ICard[]): JSX.Element[] => {
@@ -38,11 +47,17 @@ export const List: React.FC<IList> = ({ cards, onSearch }) => {
           cards && getCardItems(cards)
         }
       </Row>
+
+      <PaginatorContainer>
+        <Paginator current={1} total={1} onPrevClick={handlePrevClick} onNextClick={handleNextClick} />
+      </PaginatorContainer>
     </ListContainer>
   );
 };
 
 interface IList {
   cards: ICard[];
-  onSearch?: (searchString: string) => void
+  onPrevClick?: () => void;
+  onSearch?: (searchString: string) => void;
+  onNextClick?: () => void;
 };
