@@ -23,7 +23,7 @@ import {
   ImageStateIndicator
 } from './style.image.card.components';
 
-export const Card: React.FC<IProps> = ({ active, disabled, icon, image, onClick, secondaryText, text, title, type, ...rest }) => {
+export const Card: React.FC<ICard> = ({ active, disabled, icon, image, onClick, secondaryText, text, title, type, ...rest }) => {
   const handleButtonClick = (): void => {
     return onClick && onClick();
   };
@@ -100,7 +100,7 @@ export const Card: React.FC<IProps> = ({ active, disabled, icon, image, onClick,
   return null;
 };
 
-interface IProps {
+export interface ICard {
   active?: boolean;
   disabled?: boolean;
   icon?: string;
