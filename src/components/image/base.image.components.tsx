@@ -8,7 +8,7 @@ import { ImageUpdateButton } from './style.base.image.components';
 import { CircleImage, CircleImageContainer } from './style.circle.image.components';
 import { SquareImage, SquareImageContainer } from './style.square.image.components';
 
-export const Image: React.FC<IProps> = ({ alt, updatable = false, src, type, ...rest }) => {
+export const Image: React.FC<IImage> = ({ alt, updatable = false, src, type, ...rest }) => {
   if (type === 'circle') {
     return (
       <CircleImageContainer updatable={updatable} {...rest}>
@@ -34,7 +34,7 @@ export const Image: React.FC<IProps> = ({ alt, updatable = false, src, type, ...
   return null;
 };
 
-interface IProps {
+interface IImage {
   alt?: string;
   height?: string;
   onUpdate?: () => void,
