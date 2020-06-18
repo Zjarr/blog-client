@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useOutsideClick } from '../../lib/hooks';
 
-export const OutsideClick: React.FC<IProps> = ({ children, onPlaceChange }) => {
+export const OutsideClick: React.FC<IOutsideClick> = ({ children, onPlaceChange }) => {
   const wrapperRef = React.useRef<HTMLDivElement>(null);
 
   const clickedOutside = useOutsideClick(wrapperRef);
@@ -16,6 +16,6 @@ export const OutsideClick: React.FC<IProps> = ({ children, onPlaceChange }) => {
   );
 };
 
-interface IProps {
+interface IOutsideClick {
   onPlaceChange: (outside: boolean) => void;
 }
