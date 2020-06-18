@@ -34,8 +34,8 @@ export const Card: React.FC<ICard> = ({ active, disabled, icon, image, onClick, 
         <ImageContainer>
           {
             icon ?
-              <Icon name={icon} size={'40px'} /> :
-              <Image type={'circle'} height={'80px'} width={'80px'} src={image} />
+              <Icon name={icon} size={'48px'} /> :
+              <Image type={'circle'} height={'96px'} width={'96px'} src={image} />
           }
         </ImageContainer>
 
@@ -84,10 +84,10 @@ export const Card: React.FC<ICard> = ({ active, disabled, icon, image, onClick, 
           !disabled &&
           <IconButtonContainer>
             <Button
-              height={'40px'}
+              height={'48px'}
               icon={'close'}
               type={'color'}
-              width={'40px'}
+              width={'48px'}
 
               onClick={handleButtonClick}
             />
