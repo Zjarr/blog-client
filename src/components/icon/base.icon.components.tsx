@@ -2,7 +2,7 @@ import React from 'react';
 
 import { IconContainer } from './style.icon.components';
 
-export const Icon: React.FC<IProps> = ({ name, ...rest }) => {
+export const Icon: React.FC<IIcon> = ({ name, ...rest }) => {
   return (
     <IconContainer {...rest}>
       {name}
@@ -10,7 +10,7 @@ export const Icon: React.FC<IProps> = ({ name, ...rest }) => {
   );
 };
 
-interface IProps {
+interface IIcon {
   color?: string;
   name: string;
   size?: string;
