@@ -83,6 +83,7 @@ export const MenuButtonContainer = Styled.button<{
   }
 
   :hover {
+    text-decoration: none;
     transition: 0.25s ease;
   }
 

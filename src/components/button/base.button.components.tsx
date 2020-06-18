@@ -51,6 +51,7 @@ interface IButton {
   color?: string;
   disabled?: boolean;
   height?: string;
+  href?: string;
   icon?: string;
   onClick?: () => void;
   shape?: 'circle' | 'square';

@@ -98,6 +98,7 @@ export const ColorButtonContainer = Styled.button<{
   }
 
   :hover {
+    text-decoration: none;
     transition: 0.25s ease;
 
     background-color: ${({ color, disabled }): string => getContainerBackgroundColor(color, disabled, true)};
