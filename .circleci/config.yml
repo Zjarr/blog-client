@@ -4,7 +4,7 @@ jobs:
   Build:
     working_directory: ~/blog-client
     docker:
-      - image: circleci/node:lts
+      - image: circleci/node:12.18.1
     steps:
       - checkout
       - run:
