@@ -11,8 +11,10 @@ import { Button } from '../../components/button';
 import { Loading } from '../../components/loading';
 import { List } from '../../components/list';
 import { FormField } from '../../components/form-field';
+import { Editor } from '../../components/editor';
 
 import { COLOR_GREEN, COLOR_PURPLE } from '../../lib/values';
+
 
 export const LandingBlogPage: React.FC<{}> = () => {
   const [modalVisible, setModalVisible] = React.useState<boolean>(false);
@@ -300,15 +302,15 @@ export const LandingBlogPage: React.FC<{}> = () => {
       <Text type={'title'}>Form Fields</Text>
       <p></p>
       <FormField label={'Hello Label:'} marginBottom>
-        <Input icon={'group'} width={'33%'}/>
-        <Input icon={'group'} width={'33%'}/>
-        <Input icon={'group'} width={'33%'}/>
+        <Input icon={'group'} width={'33%'} />
+        <Input icon={'group'} width={'33%'} />
+        <Input icon={'group'} width={'33%'} />
         <Button type={'color'} icon={'group'} />
       </FormField>
 
       <FormField label={'Hello Label:'} marginBottom>
-        <Input icon={'group'}/>
-        <Input icon={'group'}/>
+        <Input icon={'group'} />
+        <Input icon={'group'} />
         <Dropdown
           name={'Dropdown'}
           items={[
@@ -318,6 +320,14 @@ export const LandingBlogPage: React.FC<{}> = () => {
           onChange={(): void => { }}
         />
       </FormField>
+      <br />
+      <br />
+      <br />
+
+
+      <Text type={'title'}>Text Editor</Text>
+      <p></p>
+      <Editor label={'Blog body:'} text={''} onTextChange={(): void => { }} />
 
       <Banner text={'Already exists an user with the provided email'} icon={'check'} color={COLOR_GREEN} visible />
     </>
