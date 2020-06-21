@@ -11,9 +11,7 @@ export const Modal: React.FC<IModal> = ({ children, closeButton, onClose, visibl
   const handleCloseRequest = React.useCallback((): void => {
     setShowBody(false);
     setShowModal(false);
-
-    return onClose && onClose();
-  }, [onClose]);
+  }, []);
 
   const handleOpenRequest = React.useCallback((): void => {
     setShowModal(true);
@@ -37,7 +35,7 @@ export const Modal: React.FC<IModal> = ({ children, closeButton, onClose, visibl
           icon={'close'}
           type={'color'}
 
-          onClick={handleCloseRequest}
+          onClick={(): void => onClose && onClose()}
         />
       }
       <BodyContainer visible={showBody}>
