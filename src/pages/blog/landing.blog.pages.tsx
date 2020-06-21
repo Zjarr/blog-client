@@ -14,6 +14,7 @@ import { FormField } from '../../components/form-field';
 import { Editor } from '../../components/editor';
 import { Renderer } from '../../components/renderer';
 import { UpdateImage, IUpdateImageResult } from '../../components/update-image';
+import { ImageList } from '../../components/image-list';
 
 import { COLOR_GREEN, COLOR_PURPLE } from '../../lib/values';
 
@@ -62,6 +63,7 @@ Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
 
 export const LandingBlogPage: React.FC<{}> = () => {
   const [image, setImage] = React.useState<string>('https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg');
+  const [imageListModalVisible, setImageListModalVisible] = React.useState<boolean>(false);
   const [loadingModalVisible, setLoadingModalVisible] = React.useState<boolean>(false);
   const [md, setMD] = React.useState<string>(string);
   const [updateImageModalVisible, setUpdateImageModalVisible] = React.useState<boolean>(false);
@@ -205,6 +207,19 @@ export const LandingBlogPage: React.FC<{}> = () => {
       <Loading
         text={'Adding new user...'}
         visible={loadingModalVisible}
+      />
+      <p></p>
+      <Button
+        icon={'visibility'}
+        text={'Show Image List Modal'}
+        type={'color'}
+        width={'auto'}
+
+        onClick={(): void => setImageListModalVisible(true)}
+      />
+      <ImageList
+        onClose={(): void => setImageListModalVisible(false)}
+        visible={imageListModalVisible}
       />
       <br />
       <br />
