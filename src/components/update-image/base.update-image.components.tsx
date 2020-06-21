@@ -21,20 +21,25 @@ import {
 export const UpdateImage: React.FC<IUpdateImage> = ({ src, onClose, visible }) => {
   const [imageSrc, setImageSrc] = React.useState<string>(src);
   const [uploadedImageResult, setUploadedImageResult] = React.useState<IUpdateImageResult | null>(null);
+  const imageRef = React.useRef<HTMLInputElement>(null);
 
-  const handleOnCloseRequest = (): void => {
+  const handleOnCloseRequest = (update: boolean): void => {
+    if (!update) {
+      return onClose && onClose(null);
+    }
+
     return onClose && onClose(uploadedImageResult);
   };
 
   const handleImageUpdate = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
-    const image = e.target.files![0];
+    const image: File | null = e.target.files![0];
 
     if (!image) {
       return;
     }
 
     try {
-      const imageResult: string = await toBase64(e.target.files![0]) as string;
+      const imageResult: string = await toBase64(image) as string;
 
       setUploadedImageResult({
         base64: imageResult,
@@ -44,6 +49,8 @@ export const UpdateImage: React.FC<IUpdateImage> = ({ src, onClose, visible }) =
       return setImageSrc(imageResult);
     } catch (error) {
       throw error;
+    } finally {
+      if (imageRef.current) imageRef.current.value = '';
     }
   };
 
@@ -65,7 +72,7 @@ export const UpdateImage: React.FC<IUpdateImage> = ({ src, onClose, visible }) =
   }, [src, visible]);
 
   return (
-    <Modal visible={visible} closeButton onClose={handleOnCloseRequest}>
+    <Modal visible={visible} closeButton onClose={(): void => handleOnCloseRequest(false)}>
       <UpdateImageContainer>
         <TitleContainer>
           <Text type={'title'}>Update image</Text>
@@ -74,7 +81,7 @@ export const UpdateImage: React.FC<IUpdateImage> = ({ src, onClose, visible }) =
         <ImageContainer>
           <ImageLabel htmlFor={'image-input'} />
           <ImageText type={'subtitle'}>Choose image</ImageText>
-          <ImageInput id={'image-input'} type={'file'} accept={'image/*'} onChange={handleImageUpdate} />
+          <ImageInput id={'image-input'} ref={imageRef} type={'file'} accept={'image/*'} onChange={handleImageUpdate} />
 
           {
             imageSrc && <ImageResult type={'circle'} src={imageSrc} />
@@ -83,7 +90,7 @@ export const UpdateImage: React.FC<IUpdateImage> = ({ src, onClose, visible }) =
 
         <ButtonContainer>
           <Button type={'color'} icon={'delete'} onClick={handleImageDelete} />
-          <Button type={'color'} color={COLOR_PURPLE} icon={'check'} onClick={handleOnCloseRequest} />
+          <Button type={'color'} color={COLOR_PURPLE} icon={'check'} onClick={(): void => handleOnCloseRequest(true)} />
         </ButtonContainer>
       </UpdateImageContainer>
     </Modal>
