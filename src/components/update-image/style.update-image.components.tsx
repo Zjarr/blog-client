@@ -3,7 +3,13 @@ import Styled from 'styled-components';
 import { Image } from '../image';
 import { Text } from '../text';
 
-import { COLOR_GRAY_LIGHT, COLOR_WHITE } from '../../lib/values';
+import { COLOR_GRAY_LIGHT, COLOR_PURPLE, COLOR_WHITE } from '../../lib/values';
+
+const DEFAULT_IMAGE_CONTAINER_BORDER_COLOR = COLOR_GRAY_LIGHT;
+
+const ACTIVE_IMAGE_CONTAINER_BORDER_COLOR = COLOR_PURPLE;
+
+const getImageContainerBorderColor = (active: boolean): string => active ? ACTIVE_IMAGE_CONTAINER_BORDER_COLOR : DEFAULT_IMAGE_CONTAINER_BORDER_COLOR;
 
 export const ButtonContainer = Styled.div`
   bottom: 0;
@@ -15,16 +21,23 @@ export const ButtonContainer = Styled.div`
   right: 0;
 `;
 
-export const ImageContainer = Styled.div`
+export const ImageContainer = Styled.div<{ active: boolean }>`
   align-items: center;
   border-radius: 100%;
   display: flex;
   height: 240px;
   justify-content: center;
   margin: auto;
+  transition: 0.25s ease;
   width: 240px;
 
-  border: 4px solid ${COLOR_GRAY_LIGHT};
+  border: 4px solid ${({ active }): string => getImageContainerBorderColor(active)};
+
+  :hover {
+    transition: 0.25s ease;
+
+    border-color: ${COLOR_PURPLE}; 
+  }
 `;
 
 export const ImageInput = Styled.input`
