@@ -12,12 +12,56 @@ import { Loading } from '../../components/loading';
 import { List } from '../../components/list';
 import { FormField } from '../../components/form-field';
 import { Editor } from '../../components/editor';
+import { Renderer } from '../../components/renderer';
 
 import { COLOR_GREEN, COLOR_PURPLE } from '../../lib/values';
+
+const string = `
+
+
+# Lorem ipsum
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus a dui accumsan, tempor turpis quis, efficitur diam.
+Vestibulum dignissim ex at suscipit sodales. In non consequat quam, vitae aliquam nibh. Morbi pharetra egestas pellentesque.
+Donec sit amet erat sem. Suspendisse at aliquet neque, at rutrum turpis.
+
+Quisque erat tortor, eleifend ut interdum et, varius nec est. Praesent porta rutrum enim, ut consequat lectus feugiat ac.
+Maecenas interdum tincidunt quam, venenatis rhoncus ligula rutrum eget. Ut consequat eleifend urna et euismod.
+Sed sollicitudin posuere ante. In hac habitasse platea dictumst.
+
+
+## Lists
+
+Unordered
+
++ Create a list by starting a line with \`+\`, \`-\`, or \`*\`
++ Sub-lists are made by indenting 2 spaces:
+  - Marker character change forces new list start:
+    * Ac tristique libero volutpat at
+    + Facilisis in pretium nisl aliquet
+    - Nulla volutpat aliquam velit
++ Very easy!
+
+
+## Links
+
+[link text](http://dev.nodeca.com)
+
+[link with title](http://nodeca.github.io/pica/demo/ "title text!")
+
+Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
+
+
+## Images
+
+![Minion](https://octodex.github.com/images/minion.png)
+![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg)
+`;
 
 
 export const LandingBlogPage: React.FC<{}> = () => {
   const [modalVisible, setModalVisible] = React.useState<boolean>(false);
+  const [md, setMD] = React.useState<string>(string);
 
   return (
     <>
@@ -327,7 +371,18 @@ export const LandingBlogPage: React.FC<{}> = () => {
 
       <Text type={'title'}>Text Editor</Text>
       <p></p>
-      <Editor label={'Blog body:'} text={''} onTextChange={(): void => { }} />
+      <Editor label={'Blog body:'} text={''} onTextChange={(text: string): void => setMD(text)} />
+      <br />
+      <br />
+      <br />
+
+
+      <Text type={'title'}>Text Editor</Text>
+      <p></p>
+      <Renderer source={md} />
+      <br />
+      <br />
+      <br />
 
       <Banner text={'Already exists an user with the provided email'} icon={'check'} color={COLOR_GREEN} visible />
     </>
