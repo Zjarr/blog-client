@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { COLOR_GRAY_LIGHT } from '../../lib/values';
+import { COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_WHITE } from '../../lib/values';
 
 const DEFAULT_IMAGE_CONTAINER_SIZE = '96px';
 
@@ -49,6 +49,22 @@ export const CircleImageContainer = Styled.div<{
     opacity: ${({ updatable }): string => getUpdateButtonOpacity(updatable)};
     visibility: ${({ updatable }): string => getUpdateButtonVisibility(updatable)};
   }
+`;
+
+export const CircleImageUpdateButton = Styled.button`
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  font-size: 16px;
+  height: 100%;
+  justify-content: center;
+  padding: 16px;
+  position: absolute;
+  width: 100%;
+
+  background-color: ${COLOR_BLACK};
+  color: ${COLOR_WHITE};
 `;
 
 export const CircleImage = Styled.img<{ noImg?: boolean }>`
