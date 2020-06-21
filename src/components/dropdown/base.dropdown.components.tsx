@@ -61,11 +61,10 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, icon, items, l
                 <Button
                   align={'flex-end'}
                   height={'48px'}
-                  text={item.name}
                   type={'text'}
                   width={'100%'}
                   onClick={(): void => handleItemClick(item)}
-                />
+                >{item.name}</Button>
               </DropdownItem>
             ) : <Text type={'paragraph'}>There are no items</Text>
           }

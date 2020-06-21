@@ -6,8 +6,8 @@ import { ColorButtonContainer } from './style.color.button.components';
 import { MenuButtonContainer } from './style.menu.button.components';
 import { TextButtonContainer } from './style.text.button.components';
 
-export const Button: React.FC<IButton> = ({ active, as, disabled, icon, onClick, text, type, ...rest }) => {
-  const iconOnly = !!(icon && !text);
+export const Button: React.FC<IButton> = ({ active, as, children, disabled, icon, onClick, type, ...rest }) => {
+  const iconOnly = !!(icon && !children);
   const iconSize = rest.shape === 'circle' ? '24px' : '16px';
 
   const handleOnClick = (): void | null => {
@@ -18,7 +18,7 @@ export const Button: React.FC<IButton> = ({ active, as, disabled, icon, onClick,
     return (
       <ColorButtonContainer as={as || 'button'} disabled={disabled} iconOnly={iconOnly} onClick={handleOnClick} {...rest}>
         {icon && <Icon name={icon} />}
-        {text && text}
+        { children }
       </ColorButtonContainer>
     );
   }
@@ -27,7 +27,7 @@ export const Button: React.FC<IButton> = ({ active, as, disabled, icon, onClick,
     return (
       <MenuButtonContainer as={as || 'button'} active={active} onClick={handleOnClick} {...rest}>
         {icon && <Icon name={icon} size={iconSize} />}
-        {text && text}
+        { children }
       </MenuButtonContainer>
     );
   }
@@ -36,7 +36,7 @@ export const Button: React.FC<IButton> = ({ active, as, disabled, icon, onClick,
     return (
       <TextButtonContainer as={as || 'button'} disabled={disabled} onClick={handleOnClick} iconOnly={iconOnly} {...rest}>
         {icon && <Icon name={icon} />}
-        {text && text}
+        { children }
       </TextButtonContainer>
     );
   }
@@ -55,7 +55,6 @@ interface IButton {
   icon?: string;
   onClick?: () => void;
   shape?: 'circle' | 'square';
-  text?: string;
   type: 'color' | 'menu' | 'text';
   width?: string;
 }
