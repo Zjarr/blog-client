@@ -67,7 +67,7 @@ export const ImageText = Styled(Text)`
 `;
 
 export const TitleContainer = Styled.div`
-  padding: 16px 16px 48px;
+  padding: 24px 24px 48px;
 `;
 
 export const UpdateImageContainer = Styled.div`
