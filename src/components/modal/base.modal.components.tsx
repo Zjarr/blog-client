@@ -28,6 +28,10 @@ export const Modal: React.FC<IModal> = ({ children, closeButton, onClose, visibl
 
   return (
     <ModalContainer visible={showModal}>
+      <BodyContainer visible={showBody}>
+        {children}
+      </BodyContainer>
+
       {
         closeButton &&
         <CloseButton
@@ -38,9 +42,6 @@ export const Modal: React.FC<IModal> = ({ children, closeButton, onClose, visibl
           onClick={(): void => onClose && onClose()}
         />
       }
-      <BodyContainer visible={showBody}>
-        {children}
-      </BodyContainer>
     </ModalContainer>
   );
 };
