@@ -15,10 +15,10 @@ export const SearchContainer = Styled.div`
   display: flex;
   justify-content: flex-end;
   margin-bottom: 32px;
+  padding-right: 32px;
   width: 100%;
 
-  input {
-    margin-right: 32px;
+  div {
     width: 400px;
   }
 `;
