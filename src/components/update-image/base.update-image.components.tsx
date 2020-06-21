@@ -78,7 +78,7 @@ export const UpdateImage: React.FC<IUpdateImage> = ({ src, onClose, visible }) =
           <Text type={'title'}>Update image</Text>
         </TitleContainer>
 
-        <ImageContainer>
+        <ImageContainer active={!!imageSrc}>
           <ImageLabel htmlFor={'image-input'} />
           <ImageText type={'subtitle'}>Choose image</ImageText>
           <ImageInput id={'image-input'} ref={imageRef} type={'file'} accept={'image/*'} onChange={handleImageUpdate} />
