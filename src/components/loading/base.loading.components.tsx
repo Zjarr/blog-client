@@ -6,7 +6,7 @@ import { Modal } from '../modal';
 import { Spinner } from '../spinner';
 import { Text } from '../text';
 
-import { SpinnerContainer } from './style.loading.components';
+import { SpinnerContainer, TextContainer } from './style.loading.components';
 
 export const Loading: React.FC<ILoading> = ({ text, visible }) => {
   return (
@@ -15,9 +15,11 @@ export const Loading: React.FC<ILoading> = ({ text, visible }) => {
         <Spinner />
       </SpinnerContainer>
 
-      <Text type={'paragraph'} color={COLOR_WHITE}>
-        {text}
-      </Text>
+      <TextContainer>
+        <Text type={'paragraph'} color={COLOR_WHITE}>
+          {text}
+        </Text>
+      </TextContainer>
     </Modal>
   );
 };
