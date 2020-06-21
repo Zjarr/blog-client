@@ -154,41 +154,41 @@ export const LandingBlogPage: React.FC<{}> = () => {
 
       <Text type={'title'}>Button</Text>
       <p></p>
-      <Button type={'color'} text={'Hello'} width={'auto'} color={COLOR_PURPLE} icon={'group'} />
+      <Button type={'color'} width={'auto'} color={COLOR_PURPLE} icon={'group'}>Hello</Button>
       <p></p>
-      <Button type={'color'} text={'Hello'} width={'auto'} icon={'group'} />
+      <Button type={'color'} width={'auto'} icon={'group'}>Hello</Button>
       <p></p>
-      <Button type={'color'} icon={'group'} />
+      <Button type={'color'} icon={'group'}></Button>
       <p></p>
-      <Button type={'color'} text={'Hello'} width={'auto'} icon={'group'} disabled />
+      <Button type={'color'} width={'auto'} icon={'group'} disabled>Hello</Button>
       <p></p>
-      <Button type={'color'} icon={'group'} disabled />
+      <Button type={'color'} icon={'group'} disabled></Button>
       <p></p>
-      <Button type={'color'} shape={'circle'} text={'Hello'} color={COLOR_PURPLE} icon={'group'} />
+      <Button type={'color'} shape={'circle'} color={COLOR_PURPLE} icon={'group'}>Hello</Button>
       <p></p>
-      <Button type={'color'} shape={'circle'} text={'Hello'} icon={'group'} />
+      <Button type={'color'} shape={'circle'} icon={'group'}>Hello</Button>
       <p></p>
-      <Button type={'color'} shape={'circle'} color={COLOR_PURPLE} icon={'group'} />
+      <Button type={'color'} shape={'circle'} color={COLOR_PURPLE} icon={'group'}></Button>
       <p></p>
-      <Button type={'color'} shape={'circle'} text={'Hello'} icon={'group'} disabled />
+      <Button type={'color'} shape={'circle'} icon={'group'} disabled>Hello</Button>
       <p></p>
-      <Button type={'color'} shape={'circle'} icon={'group'} disabled />
+      <Button type={'color'} shape={'circle'} icon={'group'} disabled></Button>
       <p></p>
-      <Button type={'menu'} text={'Hello'} icon={'group'} />
+      <Button type={'menu'} icon={'group'}>Hello</Button>
       <p></p>
-      <Button type={'menu'} text={'Hello'} icon={'group'} active />
+      <Button type={'menu'} icon={'group'} active>Hello</Button>
       <p></p>
-      <Button type={'menu'} shape={'circle'} text={'Hello'} icon={'group'} />
+      <Button type={'menu'} shape={'circle'} icon={'group'}>Hello</Button>
       <p></p>
-      <Button type={'menu'} shape={'circle'} text={'Hello'} icon={'group'} active />
+      <Button type={'menu'} shape={'circle'} icon={'group'} active>Hello</Button>
       <p></p>
-      <Button type={'text'} text={'Hello'} icon={'group'} />
+      <Button type={'text'} icon={'group'}>Hello</Button>
       <p></p>
-      <Button type={'text'} text={'Hello'} icon={'group'} disabled />
+      <Button type={'text'} icon={'group'} disabled>Hello</Button>
       <p></p>
-      <Button type={'text'} text={'Hello'} />
+      <Button type={'text'}>Hello</Button>
       <p></p>
-      <Button type={'text'} text={'Hello'} disabled />
+      <Button type={'text'} disabled>Hello</Button>
       <br />
       <br />
       <br />
@@ -198,12 +198,11 @@ export const LandingBlogPage: React.FC<{}> = () => {
       <p></p>
       <Button
         icon={'visibility'}
-        text={'Show Loading Modal'}
         type={'color'}
         width={'auto'}
 
         onClick={(): void => setLoadingModalVisible(true)}
-      />
+      >Show Loading Modal</Button>
       <Loading
         text={'Adding new user...'}
         visible={loadingModalVisible}
@@ -211,12 +210,11 @@ export const LandingBlogPage: React.FC<{}> = () => {
       <p></p>
       <Button
         icon={'visibility'}
-        text={'Show Image List Modal'}
         type={'color'}
         width={'auto'}
 
         onClick={(): void => setImageListModalVisible(true)}
-      />
+      >Show Image List Modal</Button>
       <ImageList
         onClose={(): void => setImageListModalVisible(false)}
         visible={imageListModalVisible}
