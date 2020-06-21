@@ -4,18 +4,21 @@ import ImagePlaceholder from '../../assets/images/img-placeholder.png';
 
 import { Icon } from '../icon';
 
-import { ImageUpdateButton } from './style.base.image.components';
-import { CircleImage, CircleImageContainer } from './style.circle.image.components';
-import { SquareImage, SquareImageContainer } from './style.square.image.components';
+import { CircleImage, CircleImageUpdateButton, CircleImageContainer } from './style.circle.image.components';
+import { SquareImage, SquareImageUpdateButton, SquareImageContainer } from './style.square.image.components';
 
-export const Image: React.FC<IImage> = ({ alt, updatable = false, src, type, ...rest }) => {
+export const Image: React.FC<IImage> = ({ alt, onUpdateClick, src, type, updatable = false, ...rest }) => {
+  const handleUpdateImageClick = (): void => {
+    return onUpdateClick && onUpdateClick();
+  };
+
   if (type === 'circle') {
     return (
       <CircleImageContainer updatable={updatable} {...rest}>
         <CircleImage alt={alt} noImg={!src} src={src || ImagePlaceholder} {...rest} />
-        <ImageUpdateButton>
+        <CircleImageUpdateButton onClick={handleUpdateImageClick}>
           <Icon name={'edit'} size={'32px'} />
-        </ImageUpdateButton>
+        </CircleImageUpdateButton>
       </CircleImageContainer>
     );
   }
@@ -24,9 +27,9 @@ export const Image: React.FC<IImage> = ({ alt, updatable = false, src, type, ...
     return (
       <SquareImageContainer updatable={updatable} {...rest}>
         <SquareImage alt={alt} noImg={!src} src={src || ImagePlaceholder} {...rest} />
-        <ImageUpdateButton>
+        <SquareImageUpdateButton onClick={handleUpdateImageClick}>
           <Icon name={'edit'} size={'32px'} />
-        </ImageUpdateButton>
+        </SquareImageUpdateButton>
       </SquareImageContainer>
     );
   }
@@ -37,7 +40,7 @@ export const Image: React.FC<IImage> = ({ alt, updatable = false, src, type, ...
 interface IImage {
   alt?: string;
   height?: string;
-  onUpdate?: () => void,
+  onUpdateClick?: () => void,
   src?: string;
   type: 'circle' | 'square';
   updatable?: boolean;
