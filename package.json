@@ -28,7 +28,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.0",
     "bootstrap": "^4.5.0",
-    "eslint-plugin-jsx-a11y": "^6.3.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
     "husky": "^4.2.5",
     "markdown-it": "^11.0.0",
     "react": "^16.13.1",
