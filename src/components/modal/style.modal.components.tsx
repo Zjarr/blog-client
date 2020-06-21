@@ -4,7 +4,7 @@ import { COLOR_BLACK_8 } from '../../lib/values';
 
 import { Button } from '../button';
 
-const DEFAULT_BODY_TRANSFORM = 'scale(2)';
+const DEFAULT_BODY_TRANSFORM = 'scale(1.2)';
 const DEFAULT_CONTAINER_OPACITY = '0';
 const DEFAULT_CONTAINER_VISIBILITY = 'hidden';
 
@@ -18,10 +18,7 @@ const getModalContainerOpacity = (visible?: boolean): string => visible ? VISIBL
 const getModalContainerVisibility = (visible?: boolean): string => visible ? VISIBLE_CONTAINER_VISIBILITY : DEFAULT_CONTAINER_VISIBILITY;
 
 export const ModalContainer = Styled.div<{ visible: boolean }>`
-  align-items: center;
   bottom: 0;
-  display: flex;
-  justify-content: center;
   left: 0;
   position: fixed;
   right: 0;
@@ -36,7 +33,13 @@ export const ModalContainer = Styled.div<{ visible: boolean }>`
 `;
 
 export const BodyContainer = Styled.div<{ visible: boolean }>`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
   transition: 0.25s ease;
+  width: center;
 
   transform: ${({ visible }): string => getBodyContainerTransform(visible)};
 `;
