@@ -13,6 +13,7 @@ import { List } from '../../components/list';
 import { FormField } from '../../components/form-field';
 import { Editor } from '../../components/editor';
 import { Renderer } from '../../components/renderer';
+import { UpdateImage, IUpdateImageResult } from '../../components/update-image';
 
 import { COLOR_GREEN, COLOR_PURPLE } from '../../lib/values';
 
@@ -60,8 +61,10 @@ Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
 
 
 export const LandingBlogPage: React.FC<{}> = () => {
-  const [modalVisible, setModalVisible] = React.useState<boolean>(false);
+  const [image, setImage] = React.useState<string>('https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg');
+  const [loadingModalVisible, setLoadingModalVisible] = React.useState<boolean>(false);
   const [md, setMD] = React.useState<string>(string);
+  const [updateImageModalVisible, setUpdateImageModalVisible] = React.useState<boolean>(false);
 
   return (
     <>
@@ -122,9 +125,16 @@ export const LandingBlogPage: React.FC<{}> = () => {
 
       <Text type={'title'}>Image</Text>
       <p></p>
-      <Image type={'circle'} updatable />
+      <Image type={'circle'} onUpdateClick={(): void => setUpdateImageModalVisible(true)} src={image} updatable />
       <p></p>
-      <Image type={'square'} updatable />
+      <Image type={'square'} onUpdateClick={(): void => setUpdateImageModalVisible(true)} src={image} updatable />
+      <UpdateImage
+        visible={updateImageModalVisible}
+        onClose={(result: IUpdateImageResult | null): void => {
+          setImage(result ? result.base64 : image);
+          setUpdateImageModalVisible(false);
+        }}
+        src={image} />
       <br />
       <br />
       <br />
@@ -186,15 +196,15 @@ export const LandingBlogPage: React.FC<{}> = () => {
       <p></p>
       <Button
         icon={'visibility'}
-        text={'Show Modal'}
+        text={'Show Loading Modal'}
         type={'color'}
         width={'auto'}
 
-        onClick={(): void => setModalVisible(true)}
+        onClick={(): void => setLoadingModalVisible(true)}
       />
       <Loading
         text={'Adding new user...'}
-        visible={modalVisible}
+        visible={loadingModalVisible}
       />
       <br />
       <br />
