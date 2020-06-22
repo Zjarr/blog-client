@@ -6,7 +6,7 @@ const DEFAULT_BANNER_OPACITY = '0';
 const DEFAULT_BANNER_TRANSFORM = 'translateX(0)';
 
 const VISIBLE_BANNER_OPACITY = '1';
-const VISIBLE_BANNER_TRANSFORM = 'translateX(-430px)';
+const VISIBLE_BANNER_TRANSFORM = 'translateX(-448px)';
 
 const getBannerOpacity = (isVisible?: boolean): string => isVisible ? VISIBLE_BANNER_OPACITY : DEFAULT_BANNER_OPACITY;
 const getBannerTransform = (isVisible?: boolean): string => isVisible ? VISIBLE_BANNER_TRANSFORM : DEFAULT_BANNER_TRANSFORM;
@@ -14,15 +14,15 @@ const getBannerTransform = (isVisible?: boolean): string => isVisible ? VISIBLE_
 export const BannerContainer = Styled.div<{ isVisible: boolean }>`
   align-items: center;
   border-radius: 10px;
+  bottom: 48px;
   display: flex;
-  min-height: 48px;
+  justify-content: center;
+  min-height: 64px;
   padding: 8px 16px;
   position: fixed;
-  right: -382px;
-  text-align: center;
-  top: 48px;
+  right: -400px;
   transition: 0.5s ease;
-  width: 350px;
+  width: 400px;
   z-index: 2;
 
   background-color: ${COLOR_BLACK};
@@ -44,4 +44,11 @@ export const IconContainer = Styled.div<{ color?: string }>`
   width: 32px;
 
   background-color: ${COLOR_WHITE};
+`;
+
+export const TextContainer = Styled.div`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
 `;

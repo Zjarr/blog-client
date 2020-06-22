@@ -5,7 +5,7 @@ import { COLOR_GRAY_MEDIUM, COLOR_WHITE } from '../../lib/values';
 import { Icon } from '../icon';
 import { Text } from '../text';
 
-import { BannerContainer, IconContainer } from './style.banner.components';
+import { BannerContainer, IconContainer, TextContainer } from './style.banner.components';
 
 const DEFAULT_TIME = 5000;
 
@@ -33,7 +33,10 @@ export const Banner: React.FC<IBanner> = ({ icon, text, visible, color, onHide, 
       <IconContainer>
         <Icon name={icon} size={'24px'} color={color || COLOR_GRAY_MEDIUM} />
       </IconContainer>
-      <Text type={'paragraph'} color={COLOR_WHITE}>{text}</Text>
+
+      <TextContainer>
+        <Text type={'paragraph'} color={COLOR_WHITE}>{text}</Text>
+      </TextContainer>
     </BannerContainer>
   );
 };
