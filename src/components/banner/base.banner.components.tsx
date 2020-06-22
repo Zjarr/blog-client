@@ -21,12 +21,12 @@ export const Banner: React.FC<IBanner> = ({ icon, text, visible, color, onHide, 
   }, [onHide, time]);
 
   React.useEffect(() => {
-    setIsVisible(visible);
-  }, [visible]);
+    if (visible) {
+      setIsVisible(visible);
 
-  React.useEffect(() => {
-    initVisibilityTimeout();
-  }, [initVisibilityTimeout]);
+      return initVisibilityTimeout();
+    }
+  }, [visible, initVisibilityTimeout]);
 
   return (
     <BannerContainer isVisible={isVisible}>
