@@ -1,6 +1,14 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_NORMAL, COLOR_BLACK, COLOR_BLACK_0, COLOR_GRAY_LIGHT, COLOR_GRAY_MEDIUM, COLOR_PURPLE, TEXT_NORMAL } from '../../lib/values';
+import {
+  BORDER_RADIUS_SMALL,
+  COLOR_BLACK,
+  COLOR_BLACK_0,
+  COLOR_GRAY_LIGHT,
+  COLOR_GRAY_MEDIUM,
+  COLOR_PURPLE,
+  TEXT_NORMAL
+} from '../../lib/values';
 
 const DEFAULT_FIELD_PADDING = '0px 16px';
 const DEFAULT_FIELD_WIDTH = '260px;';
@@ -39,7 +47,7 @@ export const InputField = Styled.input<{ disabled: boolean, icon?: string }>`
 
   background-color: ${COLOR_BLACK_0};
   border: 2px solid ${COLOR_GRAY_LIGHT};
-  border-radius: ${BORDER_RADIUS_NORMAL};
+  border-radius: ${BORDER_RADIUS_SMALL};
   font-size: ${TEXT_NORMAL};
 
   padding: ${({ icon }): string => getFieldPadding(icon)};

@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_FULL, BORDER_RADIUS_NORMAL, BOX_SHADOW_OVERLAY, COLOR_BLACK, COLOR_WHITE } from '../../lib/values';
+import { BORDER_RADIUS_FULL, BORDER_RADIUS_SMALL, BOX_SHADOW_OVERLAY, COLOR_BLACK, COLOR_WHITE } from '../../lib/values';
 
 const DEFAULT_BANNER_OPACITY = '0';
 const DEFAULT_BANNER_TRANSFORM = 'translateX(0)';
@@ -25,7 +25,7 @@ export const BannerContainer = Styled.div<{ isVisible: boolean }>`
   z-index: 2;
 
   background-color: ${COLOR_BLACK};
-  border-radius: ${BORDER_RADIUS_NORMAL};
+  border-radius: ${BORDER_RADIUS_SMALL};
   box-shadow: ${BOX_SHADOW_OVERLAY};
   color: ${COLOR_WHITE};
 

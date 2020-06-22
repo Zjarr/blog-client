@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_GRAY_MEDIUM } from '../../lib/values';
+import { BORDER_RADIUS_FULL, COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_GRAY_MEDIUM } from '../../lib/values';
 
 const DEFAULT_CONTAINER_WIDTH = '100%';
 
@@ -31,7 +31,6 @@ export const IconCardContainer = Styled.div<{ width?: string }>`
 
 export const IconContainer = Styled.div`
   align-items: center;
-  border-radius: 48px;
   flex-shrink: 0;
   display: flex;
   height: 56px;
@@ -40,6 +39,7 @@ export const IconContainer = Styled.div`
   width: 56px;
 
   background-color: ${COLOR_GRAY_LIGHT};
+  border-radius: ${BORDER_RADIUS_FULL};
 `;
 
 export const IconTextContainer = Styled.div<{ disabled?: boolean, icon?: string }>`

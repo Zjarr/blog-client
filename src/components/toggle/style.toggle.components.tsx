@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_NORMAL, COLOR_GRAY_LIGHT, COLOR_GREEN, COLOR_RED, COLOR_WHITE } from '../../lib/values';
+import { BORDER_RADIUS_SMALL, COLOR_GRAY_LIGHT, COLOR_GREEN, COLOR_RED, COLOR_WHITE } from '../../lib/values';
 
 export const ToggleContainer = Styled.label`
   display: block;
@@ -19,11 +19,11 @@ export const SliderContainer = Styled.span`
 
   background-color: ${COLOR_WHITE};
   border: 2px solid ${COLOR_GRAY_LIGHT};
-  border-radius: ${BORDER_RADIUS_NORMAL};
+  border-radius: ${BORDER_RADIUS_SMALL};
 
   :before {
     background-color: ${COLOR_WHITE};
-    border-radius: 5px;
+    border-radius: 7px;
     bottom: 0;
     content: '';
     height: 36px;

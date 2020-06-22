@@ -2,7 +2,8 @@ import Styled from 'styled-components';
 
 import {
   BORDER_RADIUS_FULL,
-  BORDER_RADIUS_NORMAL,
+  BORDER_RADIUS_MEDIUM,
+  BORDER_RADIUS_SMALL,
   COLOR_BLACK,
   COLOR_BLACK_8,
   COLOR_GRAY_LIGHT,
@@ -36,7 +37,7 @@ export const ClipboardContainer = Styled.div`
   width: 100%;
 
   background-color: ${COLOR_BLACK_8};
-  border-radius: ${BORDER_RADIUS_NORMAL};
+  border-radius: ${BORDER_RADIUS_MEDIUM};
 `;
 
 export const ImageCardContainer = Styled.div<{ width?: string }>`
@@ -47,7 +48,7 @@ export const ImageCardContainer = Styled.div<{ width?: string }>`
   padding: 8px 16px;
   position: relative;
 
-  border-radius: ${BORDER_RADIUS_NORMAL};
+  border-radius: ${BORDER_RADIUS_MEDIUM};
 
   width: ${({ width }): string => getContainerWidth(width)};
 
@@ -137,7 +138,7 @@ export const URLContainer = Styled.div`
   width: 100%;
 
   border: 2px solid ${COLOR_GRAY_LIGHT};
-  border-radius: ${BORDER_RADIUS_NORMAL};
+  border-radius: ${BORDER_RADIUS_SMALL};
   font-size: ${TEXT_NORMAL};
   color: ${COLOR_WHITE};
 

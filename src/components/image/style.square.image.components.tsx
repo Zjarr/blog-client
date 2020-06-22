@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_NORMAL, COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_WHITE } from '../../lib/values';
+import { BORDER_RADIUS_SMALL, COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_WHITE } from '../../lib/values';
 
 const DEFAULT_IMAGE_CONTAINER_SIZE = '96px';
 
@@ -47,7 +47,7 @@ export const SquareImageContainer = Styled.div<{
   position: relative;
 
   background-color: ${COLOR_GRAY_LIGHT};
-  border-radius: ${BORDER_RADIUS_NORMAL};
+  border-radius: ${BORDER_RADIUS_SMALL};
 
   height: ${({ height }): string => getContainerSize(height)};
   width: ${({ width }): string => getContainerSize(width)};
@@ -57,7 +57,7 @@ export const SquareImageContainer = Styled.div<{
     transition: 0.25s ease;
     visibility: hidden;
 
-    border-radius: ${BORDER_RADIUS_NORMAL};
+    border-radius: ${BORDER_RADIUS_SMALL};
   }
 
   :hover ${SquareImageUpdateButton} {

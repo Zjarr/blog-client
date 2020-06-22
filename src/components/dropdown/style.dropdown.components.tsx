@@ -1,7 +1,7 @@
 import Styled from 'styled-components';
 
 import {
-  BORDER_RADIUS_NORMAL,
+  BORDER_RADIUS_SMALL,
   COLOR_BLACK,
   COLOR_BLACK_0,
   COLOR_GRAY_LIGHT,
@@ -69,7 +69,7 @@ export const DropdownTrigger = Styled.button<{ disabled: boolean, icon?: string,
   width: 100%;
 
   background-color: ${COLOR_WHITE};
-  border-radius: ${BORDER_RADIUS_NORMAL};
+  border-radius: ${BORDER_RADIUS_SMALL};
   color:${COLOR_BLACK};
   font-size: ${TEXT_NORMAL};
 
@@ -124,7 +124,7 @@ export const DropdownItemContainer = Styled.div<{ open: boolean, label?: string 
 
   background-color: ${COLOR_WHITE};
   border: 2px solid ${COLOR_PURPLE};
-  border-radius: ${BORDER_RADIUS_NORMAL};
+  border-radius: ${BORDER_RADIUS_SMALL};
 
   top: ${({ label }): string => getItemContainerTop(label)};
   opacity: ${({ open }): string => getItemContainerOpacity(open)};
@@ -146,7 +146,7 @@ export const DropdownItem = Styled.div`
   text-align: right;
   width: 100%;
 
-  border-radius: ${BORDER_RADIUS_NORMAL};
+  border-radius: ${BORDER_RADIUS_SMALL};
 
   :last-child {
     margin-bottom: 0;

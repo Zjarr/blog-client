@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_NORMAL, COLOR_WHITE } from '../../lib/values';
+import { BORDER_RADIUS_MEDIUM, COLOR_WHITE } from '../../lib/values';
 
 export const ImageListContainer = Styled.div`
   bottom: 16px;
@@ -10,7 +10,7 @@ export const ImageListContainer = Styled.div`
   top: 16px;
 
   background-color: ${COLOR_WHITE};
-  border-radius: ${BORDER_RADIUS_NORMAL};
+  border-radius: ${BORDER_RADIUS_MEDIUM};
 `;
 
 export const ListContainer = Styled.div`
