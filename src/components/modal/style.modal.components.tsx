@@ -14,8 +14,8 @@ const VISIBLE_CONTAINER_VISIBILITY = 'visible';
 
 const getBodyContainerTransform = (visible?: boolean): string => visible ? VISIBLE_BODY_TRANSFORM : DEFAULT_BODY_TRANSFORM;
 
-const getModalContainerOpacity = (visible?: boolean): string => visible ? VISIBLE_CONTAINER_OPACITY : DEFAULT_CONTAINER_OPACITY;
-const getModalContainerVisibility = (visible?: boolean): string => visible ? VISIBLE_CONTAINER_VISIBILITY : DEFAULT_CONTAINER_VISIBILITY;
+const getContainerOpacity = (visible?: boolean): string => visible ? VISIBLE_CONTAINER_OPACITY : DEFAULT_CONTAINER_OPACITY;
+const getContainerVisibility = (visible?: boolean): string => visible ? VISIBLE_CONTAINER_VISIBILITY : DEFAULT_CONTAINER_VISIBILITY;
 
 export const ModalContainer = Styled.div<{ visible: boolean }>`
   bottom: 0;
@@ -28,8 +28,8 @@ export const ModalContainer = Styled.div<{ visible: boolean }>`
 
   background-color: ${COLOR_BLACK_8};
 
-  opacity: ${({ visible }): string => getModalContainerOpacity(visible)};
-  visibility: ${({ visible }): string => getModalContainerVisibility(visible)};
+  opacity: ${({ visible }): string => getContainerOpacity(visible)};
+  visibility: ${({ visible }): string => getContainerVisibility(visible)};
 `;
 
 export const BodyContainer = Styled.div<{ visible: boolean }>`
@@ -41,11 +41,13 @@ export const BodyContainer = Styled.div<{ visible: boolean }>`
   transition: 0.25s ease;
   width: center;
 
+  opacity: ${({ visible }): string => getContainerOpacity(visible)};
   transform: ${({ visible }): string => getBodyContainerTransform(visible)};
+  visibility: ${({ visible }): string => getContainerVisibility(visible)};
 `;
 
 export const CloseButton = Styled(Button)`
   position: absolute;
-  right: 16px;
-  top: 16px;
+  right: 32px;
+  top: 32px;
 `;
