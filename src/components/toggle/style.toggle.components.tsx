@@ -9,32 +9,6 @@ export const ToggleContainer = Styled.label`
   width: 96px;
 `;
 
-export const CheckboxContainer = Styled.input`
-  height: 0;
-  opacity: 0;
-  width: 0;
-
-  + span {
-    background-color: ${COLOR_RED};
-    transition: 0.25s ease;
-  }
-
-  :checked + span {
-    background-color: ${COLOR_GREEN};
-    transition: 0.25s ease;
-
-    :before {
-      transform: translateX(44px);
-    }
-  }
-
-  :disabled + span {
-    cursor: not-allowed;
-
-    background-color: ${COLOR_GRAY_LIGHT};
-  }
-`;
-
 export const SliderContainer = Styled.span`
   bottom: 0;
   cursor: pointer;
@@ -59,5 +33,31 @@ export const SliderContainer = Styled.span`
     top: 0;
     transition: 0.25s ease;
     width: 40px;
+  }
+`;
+
+export const CheckboxContainer = Styled.input`
+  height: 0;
+  opacity: 0;
+  width: 0;
+
+  + ${SliderContainer} {
+    background-color: ${COLOR_RED};
+    transition: 0.25s ease;
+  }
+
+  :checked + ${SliderContainer} {
+    background-color: ${COLOR_GREEN};
+    transition: 0.25s ease;
+
+    :before {
+      transform: translateX(44px);
+    }
+  }
+
+  :disabled + ${SliderContainer} {
+    cursor: not-allowed;
+
+    background-color: ${COLOR_GRAY_LIGHT};
   }
 `;
