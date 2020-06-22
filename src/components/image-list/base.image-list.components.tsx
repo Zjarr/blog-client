@@ -26,7 +26,8 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
               type: 'image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              active: true
+              active: true,
+              clipboard: true
             },
             {
               title: 'Card title with long text for testing purposes',
@@ -34,7 +35,8 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
               type: 'image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              active: true
+              active: true,
+              clipboard: true
             },
             {
               title: 'Card title with long text for testing purposes',
@@ -42,7 +44,8 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
               type: 'image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              active: true
+              active: true,
+              clipboard: true
             },
             {
               title: 'Card title with long text for testing purposes',
@@ -50,7 +53,8 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
               type: 'image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              active: true
+              active: true,
+              clipboard: true
             },
             {
               title: 'Card title with long text for testing purposes',
@@ -58,7 +62,8 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
               type: 'image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              active: true
+              active: true,
+              clipboard: true
             },
             {
               title: 'Card title with long text for testing purposes',
@@ -66,7 +71,8 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
               type: 'image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              active: true
+              active: true,
+              clipboard: true
             },
             {
               title: 'Card title with long text for testing purposes',
@@ -74,7 +80,8 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
               type: 'image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              active: true
+              active: true,
+              clipboard: true
             },
             {
               title: 'Card title with long text for testing purposes',
@@ -82,7 +89,8 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
               type: 'image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              active: true
+              active: true,
+              clipboard: true
             }
           ]} />
         </ListContainer>
