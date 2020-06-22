@@ -39,7 +39,7 @@ export const BodyContainer = Styled.div<{ visible: boolean }>`
   height: 100%;
   justify-content: center;
   transition: 0.25s ease;
-  width: center;
+  width: 100%;
 
   opacity: ${({ visible }): string => getContainerOpacity(visible)};
   transform: ${({ visible }): string => getBodyContainerTransform(visible)};

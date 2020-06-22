@@ -1,6 +1,15 @@
 import Styled from 'styled-components';
 
-import { COLOR_BLACK, COLOR_BLACK_0, COLOR_GRAY_LIGHT, COLOR_GRAY_MEDIUM, COLOR_PURPLE, COLOR_WHITE, TEXT_NORMAL } from '../../lib/values';
+import {
+  BORDER_RADIUS_NORMAL,
+  COLOR_BLACK,
+  COLOR_BLACK_0,
+  COLOR_GRAY_LIGHT,
+  COLOR_GRAY_MEDIUM,
+  COLOR_PURPLE,
+  COLOR_WHITE,
+  TEXT_NORMAL
+} from '../../lib/values';
 
 const DEFAULT_CONTAINER_WIDTH = 'auto';
 
@@ -49,7 +58,6 @@ export const DropdownContainer = Styled.div<{ width?: string }>`
 
 export const DropdownTrigger = Styled.button<{ disabled: boolean, icon?: string, open: boolean }>`
   align-items: center;
-  border-radius: 10px;
   cursor: pointer;
   display: inline-block;
   height: 48px;
@@ -61,6 +69,7 @@ export const DropdownTrigger = Styled.button<{ disabled: boolean, icon?: string,
   width: 100%;
 
   background-color: ${COLOR_WHITE};
+  border-radius: ${BORDER_RADIUS_NORMAL};
   color:${COLOR_BLACK};
   font-size: ${TEXT_NORMAL};
 
@@ -103,7 +112,6 @@ export const DropdownTriggerContainer = Styled.div`
 `;
 
 export const DropdownItemContainer = Styled.div<{ open: boolean, label?: string }>`
-  border-radius: 10px;
   left: 0;
   max-height: 296px;
   opacity: 0;
@@ -116,6 +124,7 @@ export const DropdownItemContainer = Styled.div<{ open: boolean, label?: string 
 
   background-color: ${COLOR_WHITE};
   border: 2px solid ${COLOR_PURPLE};
+  border-radius: ${BORDER_RADIUS_NORMAL};
 
   top: ${({ label }): string => getItemContainerTop(label)};
   opacity: ${({ open }): string => getItemContainerOpacity(open)};
@@ -132,11 +141,12 @@ export const DropdownItemContainer = Styled.div<{ open: boolean, label?: string 
 `;
 
 export const DropdownItem = Styled.div`
-  border-radius: 10px;
   height: 48px;
   margin-bottom: 8px;
   text-align: right;
   width: 100%;
+
+  border-radius: ${BORDER_RADIUS_NORMAL};
 
   :last-child {
     margin-bottom: 0;

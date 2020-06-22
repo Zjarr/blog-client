@@ -1,9 +1,9 @@
 import Styled from 'styled-components';
 
+import { BORDER_RADIUS_FULL, BORDER_RADIUS_NORMAL, COLOR_GRAY_LIGHT, COLOR_PURPLE, COLOR_WHITE } from '../../lib/values';
+
 import { Image } from '../image';
 import { Text } from '../text';
-
-import { COLOR_GRAY_LIGHT, COLOR_PURPLE, COLOR_WHITE } from '../../lib/values';
 
 const DEFAULT_IMAGE_CONTAINER_BORDER_COLOR = COLOR_GRAY_LIGHT;
 
@@ -23,13 +23,14 @@ export const ButtonContainer = Styled.div`
 
 export const ImageContainer = Styled.div<{ active: boolean }>`
   align-items: center;
-  border-radius: 100%;
   display: flex;
   height: 240px;
   justify-content: center;
   margin: auto;
   transition: 0.25s ease;
   width: 240px;
+
+  border-radius: ${BORDER_RADIUS_FULL};
 
   border: 4px solid ${({ active }): string => getImageContainerBorderColor(active)};
 
@@ -45,13 +46,13 @@ export const ImageInput = Styled.input`
 `;
 
 export const ImageLabel = Styled.label`
-  border-radius: 100%;
   cursor: pointer;
   height: 220px;
   margin-bottom: 0;
   width: 220px;
 
   background-color: ${COLOR_GRAY_LIGHT};
+  border-radius: ${BORDER_RADIUS_FULL};
 `;
 
 export const ImageResult = Styled(Image)`
@@ -71,10 +72,10 @@ export const TitleContainer = Styled.div`
 `;
 
 export const UpdateImageContainer = Styled.div`
-  border-radius: 10px;
   height: 480px;
   position: relative;
   width: 480px;
 
   background-color: ${COLOR_WHITE};
+  border-radius: ${BORDER_RADIUS_NORMAL};
 `;

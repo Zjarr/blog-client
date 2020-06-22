@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { COLOR_BLACK, COLOR_BLACK_0, COLOR_GRAY_LIGHT, TEXT_NORMAL } from '../../lib/values';
+import { BORDER_RADIUS_NORMAL, COLOR_BLACK, COLOR_BLACK_0, COLOR_GRAY_LIGHT, TEXT_NORMAL } from '../../lib/values';
 
 const DEFAULT_CONTAINER_COLOR = COLOR_BLACK;
 const DEFAULT_CONTAINER_HEIGHT = '32px';
@@ -27,7 +27,6 @@ export const TextButtonContainer = Styled.button<{
   width?: string
 }>`
   align-items: center;
-  border-radius: 10px;
   cursor: pointer;
   display: flex;
   margin: 0;
@@ -36,6 +35,7 @@ export const TextButtonContainer = Styled.button<{
 
   background-color: ${COLOR_BLACK_0};
   border: 2px solid ${COLOR_BLACK_0};
+  border-radius: ${BORDER_RADIUS_NORMAL};
   font-size: ${TEXT_NORMAL};
 
   color: ${({ color }): string => getContainerColor(color)};

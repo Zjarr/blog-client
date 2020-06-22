@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { COLOR_BLACK, COLOR_BLACK_5, COLOR_WHITE } from '../../lib/values';
+import { BORDER_RADIUS_FULL, BORDER_RADIUS_NORMAL, BOX_SHADOW_OVERLAY, COLOR_BLACK, COLOR_WHITE } from '../../lib/values';
 
 const DEFAULT_BANNER_OPACITY = '0';
 const DEFAULT_BANNER_TRANSFORM = 'translateX(0)';
@@ -13,7 +13,6 @@ const getBannerTransform = (isVisible?: boolean): string => isVisible ? VISIBLE_
 
 export const BannerContainer = Styled.div<{ isVisible: boolean }>`
   align-items: center;
-  border-radius: 10px;
   bottom: 32px;
   display: flex;
   justify-content: center;
@@ -26,7 +25,8 @@ export const BannerContainer = Styled.div<{ isVisible: boolean }>`
   z-index: 2;
 
   background-color: ${COLOR_BLACK};
-  box-shadow: 0 0 8px 0px ${COLOR_BLACK_5};
+  border-radius: ${BORDER_RADIUS_NORMAL};
+  box-shadow: ${BOX_SHADOW_OVERLAY};
   color: ${COLOR_WHITE};
 
   opacity:  ${({ isVisible }): string => getBannerOpacity(isVisible)};
@@ -35,7 +35,6 @@ export const BannerContainer = Styled.div<{ isVisible: boolean }>`
 
 export const IconContainer = Styled.div<{ color?: string }>`
   align-items: center;
-  border-radius: 100%;
   display: flex;
   flex-shrink: 0;
   height: 32px;
@@ -44,6 +43,7 @@ export const IconContainer = Styled.div<{ color?: string }>`
   width: 32px;
 
   background-color: ${COLOR_WHITE};
+  border-radius: ${BORDER_RADIUS_FULL};
 `;
 
 export const TextContainer = Styled.div`

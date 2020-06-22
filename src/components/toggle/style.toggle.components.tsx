@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { COLOR_GRAY_LIGHT, COLOR_GREEN, COLOR_RED, COLOR_WHITE } from '../../lib/values';
+import { BORDER_RADIUS_NORMAL, COLOR_GRAY_LIGHT, COLOR_GREEN, COLOR_RED, COLOR_WHITE } from '../../lib/values';
 
 export const ToggleContainer = Styled.label`
   display: block;
@@ -36,15 +36,16 @@ export const CheckboxContainer = Styled.input`
 `;
 
 export const SliderContainer = Styled.span`
-  background-color: ${COLOR_WHITE};
-  border: 2px solid ${COLOR_GRAY_LIGHT};
-  border-radius: 10px;
   bottom: 0;
   cursor: pointer;
   left: 0;
   position: absolute;
   right: 0;
   top: 0;
+
+  background-color: ${COLOR_WHITE};
+  border: 2px solid ${COLOR_GRAY_LIGHT};
+  border-radius: ${BORDER_RADIUS_NORMAL};
 
   :before {
     background-color: ${COLOR_WHITE};

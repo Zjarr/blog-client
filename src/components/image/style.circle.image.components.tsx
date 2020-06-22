@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_WHITE } from '../../lib/values';
+import { BORDER_RADIUS_FULL, COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_WHITE } from '../../lib/values';
 
 const DEFAULT_IMAGE_CONTAINER_SIZE = '96px';
 
@@ -25,22 +25,23 @@ export const CircleImageContainer = Styled.div<{
   width?: string
 }>`
   align-items: center;
-  border-radius: 100%;
   display: flex;
   justify-content: center;
   overflow: hidden;
   position: relative;
 
   background-color: ${COLOR_GRAY_LIGHT};
+  border-radius: ${BORDER_RADIUS_FULL};
 
   height: ${({ height }): string => getContainerSize(height)};
   width: ${({ width }): string => getContainerSize(width)};
 
   button {
-    border-radius: 100%;
     opacity: 0;
     transition: 0.25s ease;
     visibility: hidden;
+
+    border-radius: ${BORDER_RADIUS_FULL};
   }
 
   :hover button {

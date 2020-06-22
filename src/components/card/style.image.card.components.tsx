@@ -1,6 +1,17 @@
 import Styled from 'styled-components';
 
-import { COLOR_BLACK, COLOR_BLACK_8, COLOR_GRAY_LIGHT, COLOR_GRAY_MEDIUM, COLOR_GREEN, COLOR_RED, COLOR_WHITE, TEXT_NORMAL } from '../../lib/values';
+import {
+  BORDER_RADIUS_FULL,
+  BORDER_RADIUS_NORMAL,
+  COLOR_BLACK,
+  COLOR_BLACK_8,
+  COLOR_GRAY_LIGHT,
+  COLOR_GRAY_MEDIUM,
+  COLOR_GREEN,
+  COLOR_RED,
+  COLOR_WHITE,
+  TEXT_NORMAL
+} from '../../lib/values';
 
 const DEFAULT_CONTAINER_WIDTH = '100%';
 const DEFAULT_STATE_INDICATOR_COLOR = COLOR_RED;
@@ -12,7 +23,6 @@ const getActiveIndicatorBGColor = (active?: boolean): string => active ? ACTIVE_
 const getContainerWidth = (width?: string): string => width ? width : DEFAULT_CONTAINER_WIDTH;
 
 export const ClipboardContainer = Styled.div`
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,16 +36,18 @@ export const ClipboardContainer = Styled.div`
   width: 100%;
 
   background-color: ${COLOR_BLACK_8};
+  border-radius: ${BORDER_RADIUS_NORMAL};
 `;
 
 export const ImageCardContainer = Styled.div<{ width?: string }>`
   align-items: center;
-  border-radius: 10px;
   display: flex;
   height: 112px;
   overflow: hidden;
   padding: 8px 16px;
   position: relative;
+
+  border-radius: ${BORDER_RADIUS_NORMAL};
 
   width: ${({ width }): string => getContainerWidth(width)};
 
@@ -48,7 +60,6 @@ export const ImageCardContainer = Styled.div<{ width?: string }>`
 
 export const ImageContainer = Styled.div`
   align-items: center;
-  border-radius: 100%;
   display: flex;
   flex-shrink: 0;
   height: 96px;
@@ -57,6 +68,7 @@ export const ImageContainer = Styled.div`
   width: 96px;
 
   background-color: ${COLOR_GRAY_LIGHT};
+  border-radius: ${BORDER_RADIUS_FULL};
 `;
 
 export const ImageMiddleContainer = Styled.div`
@@ -100,19 +112,19 @@ export const ImageFinalContainer = Styled.div`
 `;
 
 export const ImageStateIndicator = Styled.div<{ active?: boolean }>`
-  border-radius: 100%;
   height: 8px;
   position: absolute;
   right: 0px;
   top: 22px;
   width: 8px;
 
+  border-radius: ${BORDER_RADIUS_FULL};
+
   background-color: ${({ active }): string => getActiveIndicatorBGColor(active)};
 `;
 
 export const URLContainer = Styled.div`
   align-items: center;
-  border-radius: 10px;
   display: flex;
   font-family: Proxima Nova Regular;
   height: 48px;
@@ -125,6 +137,7 @@ export const URLContainer = Styled.div`
   width: 100%;
 
   border: 2px solid ${COLOR_GRAY_LIGHT};
+  border-radius: ${BORDER_RADIUS_NORMAL};
   font-size: ${TEXT_NORMAL};
   color: ${COLOR_WHITE};
 
