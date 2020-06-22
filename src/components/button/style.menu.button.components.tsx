@@ -67,6 +67,11 @@ export const MenuButtonContainer = Styled.button<{
   padding: ${({ shape }): string => getContainerPadding(shape)};
   width: ${({ shape }): string => getContainerWidth(shape)};
 
+  i {
+    color: ${({ active }): string => getIconColor(active)};
+    margin: ${({ shape }): string => getIconMargin(shape)};
+  }
+
   :before {
     content: '';
     left: 0;
@@ -75,11 +80,6 @@ export const MenuButtonContainer = Styled.button<{
     width: 8px;
 
     background-color: ${({ active, shape }): string => getContainerIndicatorColor(active, shape)};
-  }
-
-  i {
-    color: ${({ active }): string => getIconColor(active)};
-    margin: ${({ shape }): string => getIconMargin(shape)};
   }
 
   :hover {
