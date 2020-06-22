@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_GRAY_MEDIUM, COLOR_GREEN, COLOR_RED } from '../../lib/values';
+import { COLOR_BLACK, COLOR_BLACK_8, COLOR_GRAY_LIGHT, COLOR_GRAY_MEDIUM, COLOR_GREEN, COLOR_RED, COLOR_WHITE, TEXT_NORMAL } from '../../lib/values';
 
 const DEFAULT_CONTAINER_WIDTH = '100%';
 const DEFAULT_STATE_INDICATOR_COLOR = COLOR_RED;
@@ -11,15 +11,39 @@ const getActiveIndicatorBGColor = (active?: boolean): string => active ? ACTIVE_
 
 const getContainerWidth = (width?: string): string => width ? width : DEFAULT_CONTAINER_WIDTH;
 
+export const ClipboardContainer = Styled.div`
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  padding: 8px 16px;
+  position: absolute;
+  transition: 0.25s ease;
+  visibility: hidden;
+  width: 100%;
+
+  background-color: ${COLOR_BLACK_8};
+`;
+
 export const ImageCardContainer = Styled.div<{ width?: string }>`
   align-items: center;
   border-radius: 10px;
   display: flex;
   height: 112px;
+  overflow: hidden;
   padding: 8px 16px;
   position: relative;
 
   width: ${({ width }): string => getContainerWidth(width)};
+
+  :hover ${ClipboardContainer} {
+    opacity: 1;
+    transition: 0.25s ease;
+    visibility: visible;
+  }
 `;
 
 export const ImageContainer = Styled.div`
@@ -84,4 +108,39 @@ export const ImageStateIndicator = Styled.div<{ active?: boolean }>`
   width: 8px;
 
   background-color: ${({ active }): string => getActiveIndicatorBGColor(active)};
+`;
+
+export const URLContainer = Styled.div`
+  align-items: center;
+  border-radius: 10px;
+  display: flex;
+  font-family: Proxima Nova Regular;
+  height: 48px;
+  margin: 0;
+  outline: none;
+  overflow: hidden;
+  padding: 0px 48px 0px 16px;
+  position: relative;
+  transition: 0.25s ease;
+  width: 100%;
+
+  border: 2px solid ${COLOR_GRAY_LIGHT};
+  font-size: ${TEXT_NORMAL};
+  color: ${COLOR_WHITE};
+
+  div:first-child {
+    width: 100%;
+
+    p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  button {
+    position: absolute;
+    right: -2px;
+    top: -2px;
+  }
 `;
