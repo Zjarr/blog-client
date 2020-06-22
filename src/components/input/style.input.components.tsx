@@ -43,7 +43,6 @@ export const InputField = Styled.input<{ disabled: boolean, icon?: string }>`
   font-size: ${TEXT_NORMAL};
 
   padding: ${({ icon }): string => getFieldPadding(icon)};
-  
 
   :focus {
     transition: 0.25s ease;
