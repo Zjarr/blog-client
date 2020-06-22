@@ -12,7 +12,7 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
   };
 
   return (
-    <Modal buttonColor={''} onClose={handleCloseRequest} visible={visible} closeButton>
+    <Modal onClose={handleCloseRequest} visible={visible} closeButton>
       <ImageListContainer>
         <TitleContainer>
           <Text type={'title'}>Stored images</Text>
