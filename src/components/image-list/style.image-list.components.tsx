@@ -4,11 +4,11 @@ import { COLOR_WHITE } from '../../lib/values';
 
 export const ImageListContainer = Styled.div`
   border-radius: 10px;
-  bottom: 40px;
-  left: 40px;
+  bottom: 16px;
+  left: 16px;
   position: absolute;
-  right: 40px;
-  top: 40px;
+  right: 16px;
+  top: 16px;
 
   background-color: ${COLOR_WHITE};
 `;
