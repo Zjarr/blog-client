@@ -11,7 +11,7 @@ import {
 } from '../../lib/values';
 
 const DEFAULT_FIELD_PADDING = '0px 16px';
-const DEFAULT_FIELD_WIDTH = '260px;';
+const DEFAULT_FIELD_WIDTH = '100%';
 
 const FIELD_WITH_ICON_PADDING = '0px 16px 0px 48px';
 
