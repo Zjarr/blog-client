@@ -11,7 +11,7 @@ import {
   TEXT_NORMAL
 } from '../../lib/values';
 
-const DEFAULT_CONTAINER_WIDTH = 'auto';
+const DEFAULT_CONTAINER_WIDTH = '100%';
 
 const DEFAULT_ITEM_CONTAINER_OPACITY = '0';
 const DEFAULT_ITEM_CONTAINER_PADDING = '0px 8px';
