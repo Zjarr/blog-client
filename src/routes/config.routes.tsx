@@ -15,7 +15,8 @@ import {
 } from '../pages/blog';
 
 import {
-  NotFoundCommonPage
+  NotFoundCommonPage,
+  PlaygroundCommonPage
 } from '../pages/common';
 
 import {
@@ -51,6 +52,7 @@ export const Routes: React.FC<{}> = () => {
       <Route exact path="/blog/:blog" component={BlogBlogPage}></Route>
       <Route exact path="/blogs" component={BlogsBlogPage}></Route>
 
+      <Route path="/playground" component={PlaygroundCommonPage}></Route>
       <Route path="*" component={NotFoundCommonPage}></Route>
     </Switch>
   );
