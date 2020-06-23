@@ -368,14 +368,14 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
 
       <Text type={'title'}>Form Fields</Text>
       <p></p>
-      <FormField label={'Hello Label:'} marginBottom>
+      <FormField label={'Hello Label:'}>
         <Input icon={'group'} width={'33%'} />
         <Input icon={'group'} width={'33%'} />
         <Input icon={'group'} width={'33%'} />
         <Button type={'color'} icon={'group'} />
       </FormField>
 
-      <FormField label={'Hello Label:'} marginBottom>
+      <FormField label={'Hello Label:'}>
         <Input icon={'group'} />
         <Input icon={'group'} />
         <Dropdown
