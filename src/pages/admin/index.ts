@@ -1,2 +1,2 @@
-export * from './dashboard.admin.pages';
-export * from './login.admin.pages';
+export * from './dashboard';
+export * from './login';
