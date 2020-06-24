@@ -5,7 +5,7 @@ import { COLOR_GRAY_MEDIUM, COLOR_WHITE } from '../../lib/values';
 import { Icon } from '../icon';
 import { Text } from '../text';
 
-import { BannerContainer, IconContainer, TextContainer } from './style.banner.components';
+import { BannerContainer, IconContainer, TextContainer } from './banner.style';
 
 const DEFAULT_TIME = 5000;
 

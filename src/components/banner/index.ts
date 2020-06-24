@@ -1,1 +1,1 @@
-export * from './base.banner.components';
+export * from './banner.component';
