@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { COLOR_GRAY_MEDIUM, COLOR_WHITE } from '../../lib/values';
+import { COLOR_GRAY_MEDIUM, COLOR_WHITE } from '../../utils/values';
 
 import { Icon } from '../icon';
 import { ParagraphText } from '../text';

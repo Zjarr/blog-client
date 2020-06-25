@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useOutsideClick } from '../../lib/hooks';
+import { useOutsideClick } from '../../utils/hooks';
 
 import { OutsideClickContainer } from './outside-click.style';
 

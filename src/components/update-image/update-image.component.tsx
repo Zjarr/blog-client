@@ -1,11 +1,11 @@
 import React from 'react';
 
+import { toBase64 } from '../../utils/functions';
+import { COLOR_PURPLE } from '../../utils/values';
+
 import { SimpleButton } from '../button';
 import { Modal } from '../modal';
 import { TitleText } from '../text';
-
-import { toBase64 } from '../../lib/functions';
-import { COLOR_PURPLE } from '../../lib/values';
 
 import {
   ButtonContainer,

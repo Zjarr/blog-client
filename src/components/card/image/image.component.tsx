@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useNavigateTo } from '../../../lib/hooks';
-import { COLOR_BLACK_0, COLOR_GRAY_DARK, COLOR_GREEN, COLOR_WHITE } from '../../../lib/values';
+import { useNavigateTo } from '../../../utils/hooks';
+import { COLOR_BLACK_0, COLOR_GRAY_DARK, COLOR_GREEN, COLOR_WHITE } from '../../../utils/values';
 
 import { Banner } from '../../banner';
 import { SimpleButton, TextButton } from '../../button';

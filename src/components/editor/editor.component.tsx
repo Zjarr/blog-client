@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useTextArea } from '../../lib/hooks';
+import { useTextArea } from '../../utils/hooks';
 
 import { LabelText } from '../text';
 

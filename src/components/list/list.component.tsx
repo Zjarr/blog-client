@@ -1,7 +1,7 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 
-import { useInput } from '../../lib/hooks';
+import { useInput } from '../../utils/hooks';
 
 import { ImageCard, IImageCard } from '../card';
 import { Input } from '../input';

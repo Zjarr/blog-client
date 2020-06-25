@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { COLOR_WHITE } from '../../lib/values';
+import { COLOR_WHITE } from '../../utils/values';
 
 import { Modal } from '../modal';
 import { Spinner } from '../spinner';
