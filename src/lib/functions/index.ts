@@ -1,2 +1,2 @@
-export * from './alpha.functions.lib';
-export * from './to-base64.functions.lib';
+export * from './alpha.function';
+export * from './to-base64.function';
