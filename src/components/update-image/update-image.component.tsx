@@ -16,7 +16,7 @@ import {
   ImageText,
   TitleContainer,
   UpdateImageContainer
-} from './style.update-image.components';
+} from './update-image.style';
 
 export const UpdateImage: React.FC<IUpdateImage> = ({ src, onClose, visible }) => {
   const [imageSrc, setImageSrc] = React.useState<string>(src);
