@@ -1,1 +1,1 @@
-export * from './base.form-field.components';
+export * from './form-field.component';

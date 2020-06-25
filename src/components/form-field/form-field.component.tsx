@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Text } from '../text';
 
-import { BodyContainer, FormFieldContainer } from './style.form-fields.components';
+import { BodyContainer, FormFieldContainer } from './form-fields.style';
 
 export const FormField: React.FC<IFormField> = ({ children, label, ...rest }) => {
   return (
