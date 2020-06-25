@@ -7,7 +7,7 @@ import { ImageCard, IImageCard } from '../card';
 import { Input } from '../input';
 import { Paginator } from '../paginator';
 
-import { CardContainer, ListContainer, PaginatorContainer, SearchContainer } from './style.list.components';
+import { CardContainer, ListContainer, PaginatorContainer, SearchContainer } from './list.style';
 
 export const List: React.FC<IList> = ({ cards, onPrevClick, onSearch, onNextClick }) => {
   const searchInput = useInput('');
