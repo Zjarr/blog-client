@@ -1,1 +1,1 @@
-export * from './base.outside-click.components';
+export * from './outside-click.component';
