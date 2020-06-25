@@ -2,7 +2,7 @@ import React from 'react';
 
 import { SimpleButton } from '../../button';
 import { Icon } from '../../icon';
-import { Text } from '../../text';
+import { ParagraphText, SubtitleText } from '../../text';
 
 import {
   IconButtonContainer,
@@ -27,10 +27,10 @@ export const IconCard: React.FC<IIconCard> = ({ disabled, icon, onClick, text, t
 
       <IconTextContainer disabled={disabled} icon={icon} title={title}>
         {
-          title && <Text type={'subtitle'}>{title}</Text>
+          title && <SubtitleText>{title}</SubtitleText>
         }
         {
-          text && <Text type={'paragraph'} bold={!title}>{text}</Text>
+          text && <ParagraphText bold={!title}>{text}</ParagraphText>
         }
       </IconTextContainer>
 

@@ -7,7 +7,7 @@ import { Banner } from '../../banner';
 import { SimpleButton, TextButton } from '../../button';
 import { Icon } from '../../icon';
 import { Image } from '../../image';
-import { Text } from '../../text';
+import { LabelText, ParagraphText, SubtitleText } from '../../text';
 
 import {
   ClipboardContainer,
@@ -51,14 +51,14 @@ export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image
 
         <ImageMiddleContainer>
           {
-            title && <Text type={'subtitle'}>{title}</Text>
+            title && <SubtitleText>{title}</SubtitleText>
           }
           <ImageSecondaryTextContainer>
             {
-              text && <Text type={'paragraph'}>{text}</Text>
+              text && <ParagraphText>{text}</ParagraphText>
             }
             {
-              secondaryText && <Text type={'paragraph'}>{secondaryText}</Text>
+              secondaryText && <ParagraphText>{secondaryText}</ParagraphText>
             }
           </ImageSecondaryTextContainer>
         </ImageMiddleContainer>
@@ -74,9 +74,9 @@ export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image
         {
           clipboard &&
           <ClipboardContainer>
-            <Text type={'label'} color={COLOR_WHITE}>URL:</Text>
+            <LabelText color={COLOR_WHITE}>URL:</LabelText>
             <URLContainer>
-              <Text type={'paragraph'} color={COLOR_WHITE}>{link}</Text>
+              <ParagraphText color={COLOR_WHITE}>{link}</ParagraphText>
               <SimpleButton icon={'file_copy'} color={COLOR_BLACK_0} onClick={(): void => handleCopyClipboard(link)} />
             </URLContainer>
           </ClipboardContainer>

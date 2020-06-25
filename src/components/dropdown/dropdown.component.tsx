@@ -3,7 +3,7 @@ import React from 'react';
 import { TextButton } from '../button';
 import { Icon } from '../icon';
 import { OutsideClick } from '../outside-click';
-import { Text } from '../text';
+import { LabelText, ParagraphText } from '../text';
 
 import {
   DropdownContainer,
@@ -38,10 +38,10 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, icon, items, l
   };
 
   return (
-    <OutsideClick onPlaceChange={(outside: boolean): void => handleOutsideClick(outside)}>
-      <DropdownContainer width={width}>
+    <OutsideClick onPlaceChange={(outside: boolean): void => handleOutsideClick(outside)} width={width}>
+      <DropdownContainer>
         {
-          label && <Text type={'label'}>{label}</Text>
+          label && <LabelText>{label}</LabelText>
         }
         <DropdownTriggerContainer>
           <DropdownTrigger disabled={disabled} icon={icon} open={open} onClick={(): void => toggleDropdownItemContainer()} >
@@ -65,7 +65,7 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, icon, items, l
                   onClick={(): void => handleItemClick(item)}
                 >{item.name}</TextButton>
               </DropdownItem>
-            ) : <Text type={'paragraph'}>There are no items</Text>
+            ) : <ParagraphText>There are no items</ParagraphText>
           }
         </DropdownItemContainer>
       </DropdownContainer>

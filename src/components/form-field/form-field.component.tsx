@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Text } from '../text';
+import { LabelText } from '../text';
 
 import { BodyContainer, FormFieldContainer } from './form-fields.style';
 
@@ -8,7 +8,7 @@ export const FormField: React.FC<IFormField> = ({ children, label, ...rest }) =>
   return (
     <FormFieldContainer {...rest}>
       {
-        label && <Text type={'label'}>{label}</Text>
+        label && <LabelText>{label}</LabelText>
       }
       <BodyContainer>
         {children}

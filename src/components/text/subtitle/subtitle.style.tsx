@@ -1,13 +1,13 @@
 import Styled from 'styled-components';
 
-import { COLOR_GRAY_DARK, TEXT_NORMAL } from '../../lib/values';
+import { COLOR_BLACK, TEXT_BIG } from '../../../lib/values';
 
-const DEFAULT_MARGIN = '0 0 4px 12px';
+const DEFAULT_MARGIN = '0px';
 
-const getTextColor = (color?: string): string => color ? color : COLOR_GRAY_DARK;
+const getTextColor = (color?: string): string => color ? color : COLOR_BLACK;
 const getTextMargin = (margin?: string): string => margin ? margin : DEFAULT_MARGIN;
 
-export const LabelContainer = Styled.div<{ color?: string, margin?: string }>`
+export const SubTitleContainer = Styled.div<{ color?: string, margin?: string }>`
   align-items: center;
   display: flex;
 
@@ -16,13 +16,13 @@ export const LabelContainer = Styled.div<{ color?: string, margin?: string }>`
 
   i {
     margin-right: 8px;
-    font-size: 16px;
+    font-size: 24px;
   }
 `;
 
-export const Label = Styled.label`
+export const SubTitle = Styled.p`
   font-family: Proxima Nova Bold;
   margin: 0;
 
-  font-size: ${TEXT_NORMAL};
+  font-size: ${TEXT_BIG};
 `;

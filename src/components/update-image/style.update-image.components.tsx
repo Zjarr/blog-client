@@ -3,7 +3,7 @@ import Styled from 'styled-components';
 import { BORDER_RADIUS_FULL, BORDER_RADIUS_MEDIUM, COLOR_GRAY_LIGHT, COLOR_PURPLE, COLOR_WHITE } from '../../lib/values';
 
 import { Image } from '../image';
-import { Text } from '../text';
+import { SubtitleText } from '../text';
 
 const DEFAULT_IMAGE_CONTAINER_BORDER_COLOR = COLOR_GRAY_LIGHT;
 
@@ -62,7 +62,7 @@ export const ImageResult = Styled(Image)`
   width: 220px;
 `;
 
-export const ImageText = Styled(Text)`
+export const ImageText = Styled(SubtitleText)`
   pointer-events: none;
   position: absolute;
 `;

@@ -2,7 +2,9 @@ import React from 'react';
 
 import { useOutsideClick } from '../../lib/hooks';
 
-export const OutsideClick: React.FC<IOutsideClick> = ({ children, onPlaceChange }) => {
+import { OutsideClickContainer } from './outside-click.style';
+
+export const OutsideClick: React.FC<IOutsideClick> = ({ children, onPlaceChange, width }) => {
   const wrapperRef = React.useRef<HTMLDivElement>(null);
 
   const clickedOutside = useOutsideClick(wrapperRef);
@@ -12,10 +14,11 @@ export const OutsideClick: React.FC<IOutsideClick> = ({ children, onPlaceChange 
   }, [clickedOutside, onPlaceChange]);
 
   return (
-    <div ref={wrapperRef}>{children}</div>
+    <OutsideClickContainer ref={wrapperRef} width={width}>{children}</OutsideClickContainer>
   );
 };
 
 interface IOutsideClick {
   onPlaceChange: (outside: boolean) => void;
+  width?: string;
 }

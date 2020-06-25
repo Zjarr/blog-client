@@ -3,7 +3,7 @@ import React from 'react';
 import { COLOR_GRAY_MEDIUM, COLOR_WHITE } from '../../lib/values';
 
 import { Icon } from '../icon';
-import { Text } from '../text';
+import { ParagraphText } from '../text';
 
 import { BannerContainer, IconContainer, TextContainer } from './banner.style';
 
@@ -35,7 +35,7 @@ export const Banner: React.FC<IBanner> = ({ icon, text, visible, color, onHide, 
       </IconContainer>
 
       <TextContainer>
-        <Text type={'paragraph'} color={COLOR_WHITE}>{text}</Text>
+        <ParagraphText color={COLOR_WHITE}>{text}</ParagraphText>
       </TextContainer>
     </BannerContainer>
   );

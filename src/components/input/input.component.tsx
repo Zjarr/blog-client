@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Icon } from '../icon';
-import { Text } from '../text';
+import { LabelText } from '../text';
 
 import { InputContainer, InputField } from './input.style';
 
@@ -9,7 +9,7 @@ export const Input: React.FC<IInput> = ({ disabled = false, label, icon, width, 
   return (
     <InputContainer width={width}>
       {
-        label && <Text type={'label'}>{label}</Text>
+        label && <LabelText>{label}</LabelText>
       }
       {
         icon && <Icon name={icon} />

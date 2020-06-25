@@ -12,7 +12,7 @@ import { Input } from '../../components/input';
 import { List } from '../../components/list';
 import { Loading } from '../../components/loading';
 import { Renderer } from '../../components/renderer';
-import { Text } from '../../components/text';
+import { TitleText } from '../../components/text';
 import { Toggle } from '../../components/toggle';
 import { IUpdateImageResult, UpdateImage } from '../../components/update-image';
 import { COLOR_GREEN, COLOR_PURPLE } from '../../lib/values';
@@ -69,7 +69,7 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
 
   return (
     <>
-      <Text type={'title'}>Input</Text>
+      <TitleText>Input</TitleText>
       <p></p>
       <Input icon={'group'} label={'Name:'} />
       <p></p>
@@ -79,7 +79,7 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
       <br />
 
 
-      <Text type={'title'}>Dropdown</Text>
+      <TitleText>Dropdown</TitleText>
       <p></p>
       <Dropdown
         name={'Dropdown'}
@@ -124,7 +124,7 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
       <br />
 
 
-      <Text type={'title'}>Image</Text>
+      <TitleText>Image</TitleText>
       <p></p>
       <Image shape={'circle'} onUpdateClick={(): void => setUpdateImageModalVisible(true)} src={image} updatable />
       <p></p>
@@ -141,7 +141,7 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
       <br />
 
 
-      <Text type={'title'}>Toggle</Text>
+      <TitleText>Toggle</TitleText>
       <p></p>
       <Toggle label={'Active:'} disabled />
       <p></p>
@@ -151,7 +151,7 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
       <br />
 
 
-      <Text type={'title'}>Button</Text>
+      <TitleText>Button</TitleText>
       <p></p>
       <SimpleButton width={'auto'} color={COLOR_PURPLE} icon={'group'}>Hello</SimpleButton>
       <p></p>
@@ -193,7 +193,7 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
       <br />
 
 
-      <Text type={'title'}>Modal</Text>
+      <TitleText>Modal</TitleText>
       <p></p>
       <SimpleButton
         icon={'visibility'}
@@ -221,7 +221,7 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
       <br />
 
 
-      <Text type={'title'}>Card</Text>
+      <TitleText>Card</TitleText>
       <p></p>
       <IconCard text={'Card title with long text for testing purposes'} />
       <p></p>
@@ -278,7 +278,7 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
       <br />
 
 
-      <Text type={'title'}>List</Text>
+      <TitleText>List</TitleText>
       <p></p>
       <List cards={[
         {
@@ -344,7 +344,7 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
       <br />
 
 
-      <Text type={'title'}>Form Fields</Text>
+      <TitleText>Form Fields</TitleText>
       <p></p>
       <FormField label={'Hello Label:'}>
         <Input icon={'group'} width={'33%'} />
@@ -370,7 +370,7 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
       <br />
 
 
-      <Text type={'title'}>Text Editor</Text>
+      <TitleText>Text Editor</TitleText>
       <p></p>
       <Editor label={'Blog body:'} text={''} onTextChange={(text: string): void => setMD(text)} />
       <br />
@@ -378,7 +378,7 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
       <br />
 
 
-      <Text type={'title'}>Text Editor</Text>
+      <TitleText>Text Editor</TitleText>
       <p></p>
       <Renderer source={md} />
       <br />

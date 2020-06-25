@@ -11,8 +11,6 @@ import {
   TEXT_NORMAL
 } from '../../lib/values';
 
-const DEFAULT_CONTAINER_WIDTH = '100%';
-
 const DEFAULT_ITEM_CONTAINER_OPACITY = '0';
 const DEFAULT_ITEM_CONTAINER_PADDING = '0px 8px';
 const DEFAULT_ITEM_CONTAINER_TOP = '60px';
@@ -37,8 +35,6 @@ const getTriggerBorderColor = (active?: boolean, disabled?: boolean): string => 
   return active ? COLOR_PURPLE : COLOR_GRAY_LIGHT;
 };
 
-const getContainerWidth = (width?: string): string => width ? width : DEFAULT_CONTAINER_WIDTH;
-
 const getTriggerIconColor = (disabled?: boolean): string => disabled ? COLOR_BLACK_0 : COLOR_BLACK;
 const getTriggerPadding = (icon?: string): string => icon ? TRIGGER_WITH_ICON_PADDING : DEFAULT_TRIGGER_PADDING;
 const getTriggerRotate = (open?: boolean): string => open ? TRIGGER_ICON_ROTATE : DEFAULT_TRIGGER_ICON_ROTATE;
@@ -52,8 +48,7 @@ export const DropdownContainer = Styled.div<{ width?: string }>`
   display: inline-block;
   min-width: 260px;
   position: relative;
-
-  width: ${({ width }): string => getContainerWidth(width)};
+  width: 100%;
 `;
 
 export const DropdownTrigger = Styled.button<{ disabled: boolean, icon?: string, open: boolean }>`

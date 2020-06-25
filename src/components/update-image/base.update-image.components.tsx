@@ -2,7 +2,7 @@ import React from 'react';
 
 import { SimpleButton } from '../button';
 import { Modal } from '../modal';
-import { Text } from '../text';
+import { TitleText } from '../text';
 
 import { toBase64 } from '../../lib/functions';
 import { COLOR_PURPLE } from '../../lib/values';
@@ -75,12 +75,12 @@ export const UpdateImage: React.FC<IUpdateImage> = ({ src, onClose, visible }) =
     <Modal visible={visible} closeButton onClose={(): void => handleOnCloseRequest(false)}>
       <UpdateImageContainer>
         <TitleContainer>
-          <Text type={'title'}>Update image</Text>
+          <TitleText>Update image</TitleText>
         </TitleContainer>
 
         <ImageContainer active={!!imageSrc}>
           <ImageLabel htmlFor={'image-input'} />
-          <ImageText type={'subtitle'}>Choose image</ImageText>
+          <ImageText>Choose image</ImageText>
           <ImageInput id={'image-input'} ref={imageRef} type={'file'} accept={'image/*'} onChange={handleImageUpdate} />
 
           {

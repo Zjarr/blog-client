@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { COLOR_BLACK, TEXT_NORMAL } from '../../lib/values';
+import { COLOR_BLACK, TEXT_NORMAL } from '../../../lib/values';
 
 const DEFAULT_MARGIN = '0px';
 const DEFAULT_PARAGRAPH_FONT_FAMILIY = 'Proxima Nova Regular';

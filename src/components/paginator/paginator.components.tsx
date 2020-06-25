@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { TextButton } from '../button';
-import { Text } from '../text';
+import { ParagraphText } from '../text';
 
 import { PaginatorContainer } from './paginator.style';
 
@@ -23,7 +23,7 @@ export const Paginator: React.FC<IPaginator> = ({ current, onPrevClick, onNextCl
   return (
     <PaginatorContainer>
       <TextButton icon={'arrow_back_ios'} onClick={handlePrevClick} />
-      <Text type={'paragraph'}>{textToShow}</Text>
+      <ParagraphText>{textToShow}</ParagraphText>
       <TextButton icon={'arrow_forward_ios'} onClick={handleNextClick} />
     </PaginatorContainer>
   );

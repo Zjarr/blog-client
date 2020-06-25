@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useTextArea } from '../../lib/hooks';
 
-import { Text } from '../text';
+import { LabelText } from '../text';
 
 import { EditorContainer, EditorTextArea } from './editor.style';
 
@@ -17,7 +17,7 @@ export const Editor: React.FC<IEditor> = ({ label, onTextChange, text }) => {
 
   return (
     <EditorContainer>
-      <Text type={'label'}>{label}</Text>
+      <LabelText>{label}</LabelText>
       <EditorTextArea value={bodyInput.value} onChange={handleBodyChange} />
     </EditorContainer>
   );

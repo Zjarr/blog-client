@@ -4,7 +4,7 @@ import { COLOR_WHITE } from '../../lib/values';
 
 import { Modal } from '../modal';
 import { Spinner } from '../spinner';
-import { Text } from '../text';
+import { ParagraphText } from '../text';
 
 import { SpinnerContainer, TextContainer } from './loading.style';
 
@@ -16,9 +16,9 @@ export const Loading: React.FC<ILoading> = ({ text, visible }) => {
       </SpinnerContainer>
 
       <TextContainer>
-        <Text type={'paragraph'} color={COLOR_WHITE}>
+        <ParagraphText color={COLOR_WHITE}>
           {text}
-        </Text>
+        </ParagraphText>
       </TextContainer>
     </Modal>
   );
