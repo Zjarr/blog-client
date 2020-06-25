@@ -4,7 +4,7 @@ import { List } from '../list';
 import { Modal } from '../modal';
 import { Text } from '../text';
 
-import { ImageListContainer, ListContainer, TitleContainer } from './style.image-list.components';
+import { ImageListContainer, ListContainer, TitleContainer } from './image-list.style';
 
 export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
   const handleCloseRequest = (): void => {
