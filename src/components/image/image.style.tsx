@@ -1,17 +1,22 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_SMALL, COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_WHITE } from '../../lib/values';
+import { BORDER_RADIUS_FULL, BORDER_RADIUS_SMALL, COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_WHITE } from '../../lib/values';
 
+const CIRCLE_IMAGE_CONTAINER_BORDER_RADIUS = BORDER_RADIUS_FULL;
+
+const DEFAULT_IMAGE_CONTAINER_BORDER_RADIUS = BORDER_RADIUS_SMALL;
 const DEFAULT_IMAGE_CONTAINER_SIZE = '96px';
 
 const DEFAULT_IMAGE_HEIGHT = '100%';
 const DEFAULT_UPDATE_BUTTON_OPACITY = '1';
 const DEFAULT_UPDATE_BUTTON_VISIBILITY = 'visible';
 
-const NO_IMAGE_HEIGHT = '85%';
+const NO_IMAGE_HEIGHT = '65%';
 const NO_UPDATE_BUTTON_OPACITY = '0';
 const NO_UPDATE_BUTTON_VISIBILITY = 'hidden';
 
+const getContainerBorderRadius = (shape?: string): string => shape === 'circle' ?
+  CIRCLE_IMAGE_CONTAINER_BORDER_RADIUS : DEFAULT_IMAGE_CONTAINER_BORDER_RADIUS;
 const getContainerSize = (size?: string): string => size ? size : DEFAULT_IMAGE_CONTAINER_SIZE;
 
 const getImageSize = (noImg?: boolean): string => noImg ? NO_IMAGE_HEIGHT : DEFAULT_IMAGE_HEIGHT;
@@ -19,7 +24,7 @@ const getImageSize = (noImg?: boolean): string => noImg ? NO_IMAGE_HEIGHT : DEFA
 const getUpdateButtonOpacity = (updatable?: boolean): string => updatable ? DEFAULT_UPDATE_BUTTON_OPACITY : NO_UPDATE_BUTTON_OPACITY;
 const getUpdateButtonVisibility = (updatable?: boolean): string => updatable ? DEFAULT_UPDATE_BUTTON_VISIBILITY : NO_UPDATE_BUTTON_VISIBILITY;
 
-export const SquareImageUpdateButton = Styled.button`
+export const ImageUpdateButton = Styled.button<{ shape: string, }>`
   align-items: center;
   border: none;
   cursor: pointer;
@@ -33,10 +38,13 @@ export const SquareImageUpdateButton = Styled.button`
 
   background-color: ${COLOR_BLACK};
   color: ${COLOR_WHITE};
+
+  border-radius: ${({ shape }): string => getContainerBorderRadius(shape)};
 `;
 
-export const SquareImageContainer = Styled.div<{
+export const ImageContainer = Styled.div<{
   height?: string,
+  shape: string,
   updatable: boolean,
   width?: string
 }>`
@@ -47,20 +55,18 @@ export const SquareImageContainer = Styled.div<{
   position: relative;
 
   background-color: ${COLOR_GRAY_LIGHT};
-  border-radius: ${BORDER_RADIUS_SMALL};
 
+  border-radius: ${({ shape }): string => getContainerBorderRadius(shape)};
   height: ${({ height }): string => getContainerSize(height)};
   width: ${({ width }): string => getContainerSize(width)};
 
-  ${SquareImageUpdateButton} {
+  ${ImageUpdateButton} {
     opacity: 0;
     transition: 0.25s ease;
     visibility: hidden;
-
-    border-radius: ${BORDER_RADIUS_SMALL};
   }
 
-  :hover ${SquareImageUpdateButton} {
+  :hover ${ImageUpdateButton} {
     transition: 0.25s ease;
 
     opacity: ${({ updatable }): string => getUpdateButtonOpacity(updatable)};
@@ -68,7 +74,7 @@ export const SquareImageContainer = Styled.div<{
   }
 `;
 
-export const SquareImage = Styled.img<{ noImg?: boolean }>`
+export const Img = Styled.img<{ noImg?: boolean }>`
   object-fit: cover;
 
   height: ${({ noImg }): string => getImageSize(noImg)};

@@ -45,7 +45,7 @@ export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image
           {
             icon ?
               <Icon name={icon} size={'48px'} /> :
-              <Image type={'circle'} height={'96px'} width={'96px'} src={image} />
+              <Image shape={'circle'} height={'96px'} width={'96px'} src={image} />
           }
         </ImageContainer>
 

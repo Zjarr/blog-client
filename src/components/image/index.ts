@@ -1,1 +1,1 @@
-export * from './base.image.components';
+export * from './image.component';

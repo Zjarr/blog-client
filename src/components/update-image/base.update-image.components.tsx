@@ -84,7 +84,7 @@ export const UpdateImage: React.FC<IUpdateImage> = ({ src, onClose, visible }) =
           <ImageInput id={'image-input'} ref={imageRef} type={'file'} accept={'image/*'} onChange={handleImageUpdate} />
 
           {
-            imageSrc && <ImageResult type={'circle'} src={imageSrc} />
+            imageSrc && <ImageResult shape={'circle'} src={imageSrc} />
           }
         </ImageContainer>
 

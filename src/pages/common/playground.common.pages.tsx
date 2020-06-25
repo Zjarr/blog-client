@@ -126,9 +126,9 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
 
       <Text type={'title'}>Image</Text>
       <p></p>
-      <Image type={'circle'} onUpdateClick={(): void => setUpdateImageModalVisible(true)} src={image} updatable />
+      <Image shape={'circle'} onUpdateClick={(): void => setUpdateImageModalVisible(true)} src={image} updatable />
       <p></p>
-      <Image type={'square'} onUpdateClick={(): void => setUpdateImageModalVisible(true)} src={image} updatable />
+      <Image shape={'square'} onUpdateClick={(): void => setUpdateImageModalVisible(true)} src={image} updatable />
       <UpdateImage
         visible={updateImageModalVisible}
         onClose={(result: IUpdateImageResult | null): void => {
