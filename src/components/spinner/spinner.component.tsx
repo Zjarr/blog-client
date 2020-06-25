@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SpinnerBody, SpinnerContainer } from './style.spinner.components';
+import { SpinnerBody, SpinnerContainer } from './spinner.style';
 
 export const Spinner: React.FC<ISpinner> = ({ color, ...rest }) => {
   return (
