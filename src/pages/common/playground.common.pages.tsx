@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Banner } from '../../components/banner';
 import { MenuButton, SimpleButton, TextButton } from '../../components/button';
-import { Card } from '../../components/card';
+import { IconCard, ImageCard } from '../../components/card';
 import { Dropdown } from '../../components/dropdown';
 import { Editor } from '../../components/editor';
 import { FormField } from '../../components/form-field';
@@ -223,66 +223,55 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
 
       <Text type={'title'}>Card</Text>
       <p></p>
-      <Card
-        text={'Card title with long text for testing purposes'}
-        type={'icon'}
-      />
+      <IconCard text={'Card title with long text for testing purposes'} />
       <p></p>
-      <Card
+      <IconCard
         text={'Card title with long text for testing purposes'}
-        type={'icon'}
         disabled
       />
       <p></p>
-      <Card
+      <IconCard
         title={'Card title with long text for testing purposes'}
         text={'Card title with long text for testing purposes'}
-        type={'icon'}
       />
       <p></p>
-      <Card
+      <IconCard
         title={'Card title with long text for testing purposes'}
         text={'Card title with long text for testing purposes'}
-        type={'icon'}
         disabled
       />
       <p></p>
-      <Card
+      <IconCard
         title={'Card title with long text for testing purposes'}
         text={'Card title with long text for testing purposes'}
-        type={'icon'}
         icon={'group'}
       />
       <p></p>
-      <Card
+      <IconCard
         title={'Card title with long text for testing purposes'}
         text={'Card title with long text for testing purposes'}
-        type={'icon'}
         icon={'group'}
         disabled
       />
       <p></p>
-      <Card
+      <ImageCard
         title={'Card title with long text for testing purposes'}
         text={'Card title with long text for testing purposes'}
         secondaryText={'Card title with long text for testing purposes'}
-        type={'image'}
         image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'}
         active
       />
       <p></p>
-      <Card
+      <ImageCard
         title={'Card title with long text for testing purposes'}
         text={'Card title with long text for testing purposes'}
         secondaryText={'Card title with long text for testing purposes'}
         icon={'group'}
-        type={'image'}
       />
       <p></p>
-      <Card
+      <ImageCard
         title={'Card title with long text for testing purposes'}
         text={'Card title with long text for testing purposes'}
-        type={'image'}
       />
       <br />
       <br />
@@ -296,7 +285,6 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
           title: 'Card title with long text for testing purposes',
           text: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
-          type: 'image',
           image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
           link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
           active: false
@@ -305,7 +293,6 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
           title: 'Card title with long text for testing purposes',
           text: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
-          type: 'image',
           image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
           active: true
         },
@@ -313,7 +300,6 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
           title: 'Card title with long text for testing purposes',
           text: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
-          type: 'image',
           image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
           active: true
         },
@@ -321,7 +307,6 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
           title: 'Card title with long text for testing purposes',
           text: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
-          type: 'image',
           image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
           active: true
         },
@@ -329,7 +314,6 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
           title: 'Card title with long text for testing purposes',
           text: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
-          type: 'image',
           image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
           active: true
         },
@@ -337,7 +321,6 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
           title: 'Card title with long text for testing purposes',
           text: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
-          type: 'image',
           image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
           active: true
         },
@@ -345,7 +328,6 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
           title: 'Card title with long text for testing purposes',
           text: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
-          type: 'image',
           image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
           active: true
         },
@@ -353,7 +335,6 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
           title: 'Card title with long text for testing purposes',
           text: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
-          type: 'image',
           image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
           active: true
         }

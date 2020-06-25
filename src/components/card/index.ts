@@ -1,1 +1,2 @@
-export * from './base.card.components';
+export * from './icon';
+export * from './image';

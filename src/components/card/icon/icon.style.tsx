@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_FULL, COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_GRAY_MEDIUM } from '../../lib/values';
+import { BORDER_RADIUS_FULL, COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_GRAY_MEDIUM } from '../../../lib/values';
 
 const DEFAULT_CONTAINER_WIDTH = '100%';
 

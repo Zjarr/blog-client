@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 
 import { useInput } from '../../lib/hooks';
 
-import { Card, ICard } from '../card';
+import { ImageCard, IImageCard } from '../card';
 import { Input } from '../input';
 import { Paginator } from '../paginator';
 
@@ -28,10 +28,10 @@ export const List: React.FC<IList> = ({ cards, onPrevClick, onSearch, onNextClic
     return onNextClick && onNextClick();
   };
 
-  const getCardItems = (cards: ICard[]): JSX.Element[] => {
+  const getCardItems = (cards: IImageCard[]): JSX.Element[] => {
     return cards.map((card, index) =>
-      <CardContainer md={6} key={`${card.type}${index}`}>
-        <Card {...card} />
+      <CardContainer md={6} key={`${index}`}>
+        <ImageCard {...card} />
       </CardContainer>
     );
   };
@@ -56,7 +56,7 @@ export const List: React.FC<IList> = ({ cards, onPrevClick, onSearch, onNextClic
 };
 
 interface IList {
-  cards: ICard[];
+  cards: IImageCard[];
   onPrevClick?: () => void;
   onSearch?: (searchString: string) => void;
   onNextClick?: () => void;

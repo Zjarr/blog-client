@@ -12,7 +12,7 @@ import {
   COLOR_RED,
   COLOR_WHITE,
   TEXT_NORMAL
-} from '../../lib/values';
+} from '../../../lib/values';
 
 const DEFAULT_CONTAINER_WIDTH = '100%';
 const DEFAULT_STATE_INDICATOR_COLOR = COLOR_RED;
