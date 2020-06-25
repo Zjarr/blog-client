@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BodyContainer, CloseButton, ModalContainer } from './style.modal.components';
+import { BodyContainer, CloseButton, ModalContainer } from './modal.style';
 
 export const Modal: React.FC<IModal> = ({ children, closeButton, onClose, visible }) => {
   const [showBody, setShowBody] = React.useState<boolean>(false);
