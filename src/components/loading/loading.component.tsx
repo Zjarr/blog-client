@@ -6,7 +6,7 @@ import { Modal } from '../modal';
 import { Spinner } from '../spinner';
 import { Text } from '../text';
 
-import { SpinnerContainer, TextContainer } from './style.loading.components';
+import { SpinnerContainer, TextContainer } from './loading.style';
 
 export const Loading: React.FC<ILoading> = ({ text, visible }) => {
   return (

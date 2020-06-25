@@ -1,1 +1,1 @@
-export * from './base.loading.components';
+export * from './loading.component';
