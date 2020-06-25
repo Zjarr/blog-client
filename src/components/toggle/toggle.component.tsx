@@ -2,7 +2,7 @@ import React from 'react';
 
 import { LabelText } from '../text';
 
-import { CheckboxContainer, SliderContainer, ToggleContainer } from './style.toggle.components';
+import { CheckboxContainer, SliderContainer, ToggleContainer } from './toggle.style';
 
 export const Toggle: React.FC<IToggle> = ({ disabled = false, label, ...rest }) => {
   return (

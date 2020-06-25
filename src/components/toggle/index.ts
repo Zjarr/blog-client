@@ -1,1 +1,1 @@
-export * from './base.toggle.components';
+export * from './toggle.component';
