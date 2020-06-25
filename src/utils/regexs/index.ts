@@ -1,1 +1,1 @@
-export * from './rgba.regexs';
+export * from './rgba.regex';
