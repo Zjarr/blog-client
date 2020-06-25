@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IconContainer } from './style.icon.components';
+import { IconContainer } from './icon.style.';
 
 export const Icon: React.FC<IIcon> = ({ name, ...rest }) => {
   return (
