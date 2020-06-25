@@ -1,8 +1,10 @@
 import React from 'react';
+
+import { useNavigateTo } from '../../lib/hooks';
 import { COLOR_BLACK_0, COLOR_GRAY_DARK, COLOR_GREEN, COLOR_WHITE } from '../../lib/values';
 
 import { Banner } from '../banner';
-import { Button } from '../button';
+import { SimpleButton, TextButton } from '../button';
 import { Icon } from '../icon';
 import { Image } from '../image';
 import { Text } from '../text';
@@ -27,6 +29,7 @@ import {
 
 export const Card: React.FC<ICard> = ({ active, clipboard, disabled, icon, image, link, onClick, secondaryText, text, title, type, ...rest }) => {
   const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
+  const navigateTo = useNavigateTo();
 
   const handleButtonClick = (): void => {
     return onClick && onClick();
@@ -76,7 +79,7 @@ export const Card: React.FC<ICard> = ({ active, clipboard, disabled, icon, image
             <ImageStateIndicator active={active} />
             {
               link && !clipboard &&
-              <Button as={'a'} href={link} type={'text'} color={COLOR_GRAY_DARK}>View</Button>
+              <TextButton onClick={(): void => navigateTo(link)} color={COLOR_GRAY_DARK}>View</TextButton>
             }
           </ImageFinalContainer>
 
@@ -86,7 +89,7 @@ export const Card: React.FC<ICard> = ({ active, clipboard, disabled, icon, image
               <Text type={'label'} color={COLOR_WHITE}>URL:</Text>
               <URLContainer>
                 <Text type={'paragraph'} color={COLOR_WHITE}>{link}</Text>
-                <Button type={'color'} icon={'file_copy'} color={COLOR_BLACK_0} onClick={(): void => handleCopyClipboard(link)} />
+                <SimpleButton icon={'file_copy'} color={COLOR_BLACK_0} onClick={(): void => handleCopyClipboard(link)} />
               </URLContainer>
             </ClipboardContainer>
           }
@@ -124,10 +127,9 @@ export const Card: React.FC<ICard> = ({ active, clipboard, disabled, icon, image
         {
           !disabled &&
           <IconButtonContainer>
-            <Button
+            <SimpleButton
               height={'48px'}
               icon={'close'}
-              type={'color'}
               width={'48px'}
 
               onClick={handleButtonClick}

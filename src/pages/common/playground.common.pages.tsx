@@ -1,21 +1,20 @@
 import React from 'react';
 
-import { Input } from '../../components/input';
 import { Banner } from '../../components/banner';
+import { MenuButton, SimpleButton, TextButton } from '../../components/button';
 import { Card } from '../../components/card';
 import { Dropdown } from '../../components/dropdown';
-import { Image } from '../../components/image';
-import { Toggle } from '../../components/toggle';
-import { Text } from '../../components/text';
-import { Button } from '../../components/button';
-import { Loading } from '../../components/loading';
-import { List } from '../../components/list';
-import { FormField } from '../../components/form-field';
 import { Editor } from '../../components/editor';
-import { Renderer } from '../../components/renderer';
-import { UpdateImage, IUpdateImageResult } from '../../components/update-image';
+import { FormField } from '../../components/form-field';
+import { Image } from '../../components/image';
 import { ImageList } from '../../components/image-list';
-
+import { Input } from '../../components/input';
+import { List } from '../../components/list';
+import { Loading } from '../../components/loading';
+import { Renderer } from '../../components/renderer';
+import { Text } from '../../components/text';
+import { Toggle } from '../../components/toggle';
+import { IUpdateImageResult, UpdateImage } from '../../components/update-image';
 import { COLOR_GREEN, COLOR_PURPLE } from '../../lib/values';
 
 const string = `
@@ -154,41 +153,41 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
 
       <Text type={'title'}>Button</Text>
       <p></p>
-      <Button type={'color'} width={'auto'} color={COLOR_PURPLE} icon={'group'}>Hello</Button>
+      <SimpleButton width={'auto'} color={COLOR_PURPLE} icon={'group'}>Hello</SimpleButton>
       <p></p>
-      <Button type={'color'} width={'auto'} icon={'group'}>Hello</Button>
+      <SimpleButton width={'auto'} icon={'group'}>Hello</SimpleButton>
       <p></p>
-      <Button type={'color'} icon={'group'}></Button>
+      <SimpleButton icon={'group'}></SimpleButton>
       <p></p>
-      <Button type={'color'} width={'auto'} icon={'group'} disabled>Hello</Button>
+      <SimpleButton width={'auto'} icon={'group'} disabled>Hello</SimpleButton>
       <p></p>
-      <Button type={'color'} icon={'group'} disabled></Button>
+      <SimpleButton icon={'group'} disabled></SimpleButton>
       <p></p>
-      <Button type={'color'} shape={'circle'} color={COLOR_PURPLE} icon={'group'}>Hello</Button>
+      <SimpleButton shape={'circle'} color={COLOR_PURPLE} icon={'group'}>Hello</SimpleButton>
       <p></p>
-      <Button type={'color'} shape={'circle'} icon={'group'}>Hello</Button>
+      <SimpleButton shape={'circle'} icon={'group'}>Hello</SimpleButton>
       <p></p>
-      <Button type={'color'} shape={'circle'} color={COLOR_PURPLE} icon={'group'}></Button>
+      <SimpleButton shape={'circle'} color={COLOR_PURPLE} icon={'group'}></SimpleButton>
       <p></p>
-      <Button type={'color'} shape={'circle'} icon={'group'} disabled>Hello</Button>
+      <SimpleButton shape={'circle'} icon={'group'} disabled>Hello</SimpleButton>
       <p></p>
-      <Button type={'color'} shape={'circle'} icon={'group'} disabled></Button>
+      <SimpleButton shape={'circle'} icon={'group'} disabled></SimpleButton>
       <p></p>
-      <Button type={'menu'} icon={'group'}>Hello</Button>
+      <MenuButton icon={'group'}>Hello</MenuButton>
       <p></p>
-      <Button type={'menu'} icon={'group'} active>Hello</Button>
+      <MenuButton icon={'group'} active>Hello</MenuButton>
       <p></p>
-      <Button type={'menu'} shape={'circle'} icon={'group'}>Hello</Button>
+      <MenuButton shape={'circle'} icon={'group'}>Hello</MenuButton>
       <p></p>
-      <Button type={'menu'} shape={'circle'} icon={'group'} active>Hello</Button>
+      <MenuButton shape={'circle'} icon={'group'} active>Hello</MenuButton>
       <p></p>
-      <Button type={'text'} icon={'group'}>Hello</Button>
+      <TextButton icon={'group'}>Hello</TextButton>
       <p></p>
-      <Button type={'text'} icon={'group'} disabled>Hello</Button>
+      <TextButton icon={'group'} disabled>Hello</TextButton>
       <p></p>
-      <Button type={'text'}>Hello</Button>
+      <TextButton>Hello</TextButton>
       <p></p>
-      <Button type={'text'} disabled>Hello</Button>
+      <TextButton disabled>Hello</TextButton>
       <br />
       <br />
       <br />
@@ -196,25 +195,23 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
 
       <Text type={'title'}>Modal</Text>
       <p></p>
-      <Button
+      <SimpleButton
         icon={'visibility'}
-        type={'color'}
         width={'auto'}
 
         onClick={(): void => setLoadingModalVisible(true)}
-      >Show Loading Modal</Button>
+      >Show Loading Modal</SimpleButton>
       <Loading
         text={'Adding new user...'}
         visible={loadingModalVisible}
       />
       <p></p>
-      <Button
+      <SimpleButton
         icon={'visibility'}
-        type={'color'}
         width={'auto'}
 
         onClick={(): void => setImageListModalVisible(true)}
-      >Show Image List Modal</Button>
+      >Show Image List Modal</SimpleButton>
       <ImageList
         onClose={(): void => setImageListModalVisible(false)}
         visible={imageListModalVisible}
@@ -372,7 +369,7 @@ export const PlaygroundCommonPage: React.FC<{}> = () => {
         <Input icon={'group'} width={'33%'} />
         <Input icon={'group'} width={'33%'} />
         <Input icon={'group'} width={'33%'} />
-        <Button type={'color'} icon={'group'} />
+        <SimpleButton icon={'group'} />
       </FormField>
 
       <FormField label={'Hello Label:'}>

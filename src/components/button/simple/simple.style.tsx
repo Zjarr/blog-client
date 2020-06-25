@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_FULL, BORDER_RADIUS_SMALL, COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_WHITE, TEXT_NORMAL, TEXT_SMALL } from '../../lib/values';
+import { BORDER_RADIUS_FULL, BORDER_RADIUS_SMALL, COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_WHITE, TEXT_NORMAL, TEXT_SMALL } from '../../../lib/values';
 
 const CIRCLE_CONTAINER_BORDER_RADIUS = BORDER_RADIUS_FULL;
 const CIRCLE_CONTAINER_FLEX_DIRECTION = 'column';
@@ -67,7 +67,7 @@ const getIconMargin = (iconOnly?: boolean, shape?: string): string => {
   return shape === 'circle' ? CIRCLE_ICON_MARGIN : DEFAULT_ICON_MARGIN;
 };
 
-export const ColorButtonContainer = Styled.button<{
+export const SimpleButtonContainer = Styled.button<{
   align?: string,
   color?: string,
   disabled?: boolean,

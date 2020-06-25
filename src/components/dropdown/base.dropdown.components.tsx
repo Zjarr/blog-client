@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button } from '../button';
+import { TextButton } from '../button';
 import { Icon } from '../icon';
 import { OutsideClick } from '../outside-click';
 import { Text } from '../text';
@@ -58,13 +58,12 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, icon, items, l
           {
             items.length > 0 ? items.map((item: IDropdownItem, index: number) =>
               <DropdownItem key={`${item.name + item.value + index}`}>
-                <Button
+                <TextButton
                   align={'flex-end'}
                   height={'48px'}
-                  type={'text'}
                   width={'100%'}
                   onClick={(): void => handleItemClick(item)}
-                >{item.name}</Button>
+                >{item.name}</TextButton>
               </DropdownItem>
             ) : <Text type={'paragraph'}>There are no items</Text>
           }

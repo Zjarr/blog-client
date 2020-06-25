@@ -2,7 +2,7 @@ import Styled from 'styled-components';
 
 import { COLOR_BLACK_8 } from '../../lib/values';
 
-import { Button } from '../button';
+import { SimpleButton } from '../button';
 
 const DEFAULT_BODY_TRANSFORM = 'scale(1.2)';
 const DEFAULT_CONTAINER_OPACITY = '0';
@@ -46,7 +46,7 @@ export const BodyContainer = Styled.div<{ visible: boolean }>`
   visibility: ${({ visible }): string => getContainerVisibility(visible)};
 `;
 
-export const CloseButton = Styled(Button)`
+export const CloseButton = Styled(SimpleButton)`
   position: absolute;
   right: 32px;
   top: 32px;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button } from '../../../components/button';
+import { SimpleButton } from '../../../components/button';
 import { FormField } from '../../../components/form-field';
 import { Input } from '../../../components/input';
 
@@ -20,8 +20,8 @@ export const LoginAdminPage: React.FC<{}> = () => {
       </FormField>
 
       <ButtonsContainer>
-        <Button type={'color'} width={'auto'}>Forgot password?</Button>
-        <Button type={'color'} color={COLOR_PURPLE} width={'auto'}>Login</Button>
+        <SimpleButton width={'auto'}>Forgot password?</SimpleButton>
+        <SimpleButton color={COLOR_PURPLE} width={'auto'}>Login</SimpleButton>
       </ButtonsContainer>
     </LoginContainer>
   );

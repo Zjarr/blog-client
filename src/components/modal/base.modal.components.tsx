@@ -34,7 +34,6 @@ export const Modal: React.FC<IModal> = ({ children, closeButton, onClose, visibl
         closeButton &&
         <CloseButton
           icon={'close'}
-          type={'color'}
 
           onClick={(): void => onClose && onClose()}
         />

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button } from '../button';
+import { SimpleButton } from '../button';
 import { Modal } from '../modal';
 import { Text } from '../text';
 
@@ -89,8 +89,8 @@ export const UpdateImage: React.FC<IUpdateImage> = ({ src, onClose, visible }) =
         </ImageContainer>
 
         <ButtonContainer>
-          <Button type={'color'} icon={'delete'} onClick={handleImageDelete} />
-          <Button type={'color'} color={COLOR_PURPLE} icon={'check'} onClick={(): void => handleOnCloseRequest(true)} />
+          <SimpleButton icon={'delete'} onClick={handleImageDelete} />
+          <SimpleButton color={COLOR_PURPLE} icon={'check'} onClick={(): void => handleOnCloseRequest(true)} />
         </ButtonContainer>
       </UpdateImageContainer>
     </Modal>
