@@ -3,7 +3,7 @@ import React from 'react';
 import { Icon } from '../icon';
 import { Text } from '../text';
 
-import { InputContainer, InputField } from './style.input.components';
+import { InputContainer, InputField } from './input.style';
 
 export const Input: React.FC<IInput> = ({ disabled = false, label, icon, width, ...rest }) => {
   return (
