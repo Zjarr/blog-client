@@ -1,1 +1,1 @@
-export * from './base.renderer.components';
+export * from './renderer.component';

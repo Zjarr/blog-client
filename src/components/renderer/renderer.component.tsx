@@ -1,7 +1,7 @@
 import MarkdownIt from 'markdown-it';
 import React from 'react';
 
-import { RendererContainer } from './style.renderer.components';
+import { RendererContainer } from './renderer.style';
 
 export const Renderer: React.FC<IRenderer> = ({ source }) => {
   const md = new MarkdownIt().set({
