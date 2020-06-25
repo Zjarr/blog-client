@@ -4,7 +4,7 @@ import { SimpleButton } from '../../components/button';
 import { FormField } from '../../components/form-field';
 import { Input } from '../../components/input';
 
-import { COLOR_PURPLE } from '../../lib/values';
+import { COLOR_PURPLE } from '../../utils/values';
 
 import { ButtonsContainer, LoginContainer } from './login.style';
 

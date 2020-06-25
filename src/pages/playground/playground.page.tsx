@@ -15,7 +15,8 @@ import { Renderer } from '../../components/renderer';
 import { TitleText } from '../../components/text';
 import { Toggle } from '../../components/toggle';
 import { IUpdateImageResult, UpdateImage } from '../../components/update-image';
-import { COLOR_GREEN, COLOR_PURPLE } from '../../lib/values';
+
+import { COLOR_GREEN, COLOR_PURPLE } from '../../utils/values';
 
 const string = `
 
