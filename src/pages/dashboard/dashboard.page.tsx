@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-export const DashboardAdminPage: React.FC<{}> = () => {
+export const DashboardPage: React.FC<{}> = () => {
   const { action, param, section } = useParams();
 
   return (

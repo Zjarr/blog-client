@@ -60,7 +60,7 @@ Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
 `;
 
 
-export const PlaygroundCommonPage: React.FC<{}> = () => {
+export const PlaygroundPage: React.FC<{}> = () => {
   const [image, setImage] = React.useState<string>('https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg');
   const [imageListModalVisible, setImageListModalVisible] = React.useState<boolean>(false);
   const [loadingModalVisible, setLoadingModalVisible] = React.useState<boolean>(false);

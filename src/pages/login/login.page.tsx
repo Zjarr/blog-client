@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { SimpleButton } from '../../../components/button';
-import { FormField } from '../../../components/form-field';
-import { Input } from '../../../components/input';
+import { SimpleButton } from '../../components/button';
+import { FormField } from '../../components/form-field';
+import { Input } from '../../components/input';
 
-import { COLOR_PURPLE } from '../../../lib/values';
+import { COLOR_PURPLE } from '../../lib/values';
 
-import { ButtonsContainer, LoginContainer } from './style.login.admin.pages';
+import { ButtonsContainer, LoginContainer } from './login.style';
 
-export const LoginAdminPage: React.FC<{}> = () => {
+export const LoginPage: React.FC<{}> = () => {
   return (
     <LoginContainer>
       <FormField label={'Email'}>
