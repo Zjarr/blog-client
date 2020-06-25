@@ -19,28 +19,28 @@ To get the project running locally:
 
 ## Naming convention & file structure
 - Files:
-	- `*unique-name*.subfolder.subfolder.folder.ts` where the `subfolder` and `folder` names must be the singular names of the file's parent folders. For example:
+	- `unique-name.type.filetype` where the `type` is the type of code that it is going to contain (function, hook, component, page, etc):
         ```
         .
         └── src
            ├── components
            │  └── button
-           │     ├── base.button.component.tsx
-           │     └── style.button.component.tsx
+           │     ├── button.component.tsx
+           │     └── button.style.tsx
            └── lib
            .  └── hooks
-           .     └── use-input.hooks.lib.ts
+           .     └── use-input.hook.ts
         ```
 
 - Folders:
-	- These don't have specific names, use as required but they must be meaningful. For example, if you need an `lib` folder to store common values, use: 
+	- These don't have specific names, use as required but they must be meaningful. For example, if you need an `utils` folder to store common values, use: 
         ```
         .
         └── src
-           ├── lib
+           ├── utils
            .  └── values
-           .     ├── days.values.lib.ts
-           .     └── months.values.lib.ts
+           .     ├── days.value.ts
+           .     └── months.value.ts
         ```
 
 - Branches:
