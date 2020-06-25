@@ -8,7 +8,7 @@ import {
   COLOR_GRAY_MEDIUM,
   COLOR_PURPLE,
   TEXT_NORMAL
-} from '../../lib/values';
+} from '../../utils/values';
 
 const DEFAULT_FIELD_PADDING = '0px 16px';
 const DEFAULT_FIELD_WIDTH = '100%';

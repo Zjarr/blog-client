@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_FULL, BORDER_RADIUS_MEDIUM, COLOR_GRAY_LIGHT, COLOR_PURPLE, COLOR_WHITE } from '../../lib/values';
+import { BORDER_RADIUS_FULL, BORDER_RADIUS_MEDIUM, COLOR_GRAY_LIGHT, COLOR_PURPLE, COLOR_WHITE } from '../../utils/values';
 
 import { Image } from '../image';
 import { SubtitleText } from '../text';

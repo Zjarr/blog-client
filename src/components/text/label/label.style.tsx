@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { COLOR_GRAY_DARK, TEXT_NORMAL } from '../../../lib/values';
+import { COLOR_GRAY_DARK, TEXT_NORMAL } from '../../../utils/values';
 
 const DEFAULT_MARGIN = '0 0 4px 12px';
 

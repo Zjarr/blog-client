@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_MEDIUM, COLOR_WHITE } from '../../lib/values';
+import { BORDER_RADIUS_MEDIUM, COLOR_WHITE } from '../../utils/values';
 
 export const ImageListContainer = Styled.div`
   bottom: 16px;

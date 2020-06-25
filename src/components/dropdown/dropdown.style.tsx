@@ -9,7 +9,7 @@ import {
   COLOR_PURPLE,
   COLOR_WHITE,
   TEXT_NORMAL
-} from '../../lib/values';
+} from '../../utils/values';
 
 const DEFAULT_ITEM_CONTAINER_OPACITY = '0';
 const DEFAULT_ITEM_CONTAINER_PADDING = '0px 8px';

@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_SMALL, COLOR_GRAY_LIGHT, COLOR_GREEN, COLOR_RED, COLOR_WHITE } from '../../lib/values';
+import { BORDER_RADIUS_SMALL, COLOR_GRAY_LIGHT, COLOR_GREEN, COLOR_RED, COLOR_WHITE } from '../../utils/values';
 
 export const ToggleContainer = Styled.label`
   display: block;

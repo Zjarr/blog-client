@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { COLOR_BLACK, TEXT_EXTRA_BIG } from '../../../lib/values';
+import { COLOR_BLACK, TEXT_EXTRA_BIG } from '../../../utils/values';
 
 const DEFAULT_MARGIN = '0px';
 

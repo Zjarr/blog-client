@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { COLOR_PURPLE, TEXT_CLIENT_BIG, TEXT_CLIENT_NORMAL } from '../../lib/values';
+import { COLOR_PURPLE, TEXT_CLIENT_BIG, TEXT_CLIENT_NORMAL } from '../../utils/values';
 
 export const RendererContainer = Styled.div`
   h1, h2, h3, h4, h5, h6 {

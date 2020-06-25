@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_SMALL, COLOR_BLACK, COLOR_BLACK_0, COLOR_GRAY_LIGHT, TEXT_NORMAL } from '../../../lib/values';
+import { BORDER_RADIUS_SMALL, COLOR_BLACK, COLOR_BLACK_0, COLOR_GRAY_LIGHT, TEXT_NORMAL } from '../../../utils/values';
 
 const DEFAULT_CONTAINER_COLOR = COLOR_BLACK;
 const DEFAULT_CONTAINER_HEIGHT = '32px';

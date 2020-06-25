@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_FULL, BORDER_RADIUS_SMALL, BOX_SHADOW_OVERLAY, COLOR_BLACK, COLOR_WHITE } from '../../lib/values';
+import { BORDER_RADIUS_FULL, BORDER_RADIUS_SMALL, BOX_SHADOW_OVERLAY, COLOR_BLACK, COLOR_WHITE } from '../../utils/values';
 
 const DEFAULT_BANNER_OPACITY = '0';
 const DEFAULT_BANNER_TRANSFORM = 'translateX(0)';

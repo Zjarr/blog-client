@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { COLOR_GRAY_DARK } from '../../lib/values';
+import { COLOR_GRAY_DARK } from '../../utils/values';
 
 export const PaginatorContainer = Styled.div`
   display: flex;

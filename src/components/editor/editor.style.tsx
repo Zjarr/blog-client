@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_SMALL, COLOR_BLACK_0, COLOR_GRAY_LIGHT, COLOR_PURPLE, TEXT_NORMAL } from '../../lib/values';
+import { BORDER_RADIUS_SMALL, COLOR_BLACK_0, COLOR_GRAY_LIGHT, COLOR_PURPLE, TEXT_NORMAL } from '../../utils/values';
 
 export const EditorContainer = Styled.div`
   position: relative;

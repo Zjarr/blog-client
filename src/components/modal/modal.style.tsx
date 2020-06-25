@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { COLOR_BLACK_8 } from '../../lib/values';
+import { COLOR_BLACK_8 } from '../../utils/values';
 
 import { SimpleButton } from '../button';
 

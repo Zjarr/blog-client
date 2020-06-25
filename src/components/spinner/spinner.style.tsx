@@ -1,7 +1,7 @@
 import Styled from 'styled-components';
 
-import { alpha } from '../../lib/functions';
-import { COLOR_WHITE, COLOR_WHITE_3 } from '../../lib/values';
+import { alpha } from '../../utils/functions';
+import { COLOR_WHITE, COLOR_WHITE_3 } from '../../utils/values';
 
 const DEFAULT_CONTAINER_BORDER_RADIUS = '8px';
 const DEFAULT_CONTAINER_COLOR = COLOR_WHITE_3;
