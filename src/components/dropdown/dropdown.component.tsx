@@ -12,7 +12,7 @@ import {
   DropdownTrigger,
   DropdownTriggerCaret,
   DropdownTriggerContainer
-} from './style.dropdown.components';
+} from './dropdown.style';
 
 export const Dropdown: React.FC<IDropdown> = ({ disabled = false, icon, items, label, name, onChange, width }) => {
   const [triggerName, setTriggerName] = React.useState<string>(name);
