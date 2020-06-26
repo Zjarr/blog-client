@@ -13,10 +13,10 @@ const CIRCLE_CONTAINER_WIDTH = '56px';
 const CIRCLE_ICON_COLOR = COLOR_PURPLE;
 const CIRCLE_ICON_MARGIN = '0 0 4px';
 
-const DEFAULT_CONTAINER_BORDER_RADIUS = '10px';
+const DEFAULT_CONTAINER_BORDER_RADIUS = '0px';
 const DEFAULT_CONTAINER_FLEX_DIRECTION = 'row';
 const DEFAULT_CONTAINER_HEIGHT = '48px';
-const DEFAULT_CONTAINER_PADDING = '0px 48px';
+const DEFAULT_CONTAINER_PADDING = '0px 32px';
 const DEFAULT_CONTAINER_TEXT_SIZE = TEXT_NORMAL;
 const DEFAULT_CONTAINER_TEXT_ALIGN = 'flex-start';
 const DEFAULT_CONTAINER_WIDTH = '100%';
@@ -77,7 +77,8 @@ export const MenuButtonContainer = Styled.button<{
     left: 0;
     position: absolute;
     height: 100%;
-    width: 8px;
+    transition: .25s ease;
+    width: 4px;
 
     background-color: ${({ active, shape }): string => getContainerIndicatorColor(active, shape)};
   }
