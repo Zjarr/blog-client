@@ -98,12 +98,17 @@ export const SimpleButtonContainer = Styled.button<{
   }
 
   :hover {
-    text-decoration: none;
     transition: 0.25s ease;
 
     background-color: ${({ color, disabled }): string => getContainerBackgroundColor(color, disabled, true)};
     border-color: ${({ color, disabled }): string => getContainerBorderColor(color, disabled, true)};
     color: ${({ color, disabled }): string => getContainerTextColor(color, disabled, true)};
+  }
+
+  :focus,
+  :hover {
+    outline: none;
+    text-decoration: none;
   }
 
   :disabled {

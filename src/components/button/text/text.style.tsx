@@ -47,9 +47,10 @@ export const TextButtonContainer = Styled.button<{
     margin: ${({ iconOnly }): string => getIconMarginRight(iconOnly)};
   }
 
+  :focus,
   :hover {
+    outline: none;
     text-decoration: none;
-    color: inherit;
   }
 
   :disabled {

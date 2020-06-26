@@ -83,9 +83,10 @@ export const MenuButtonContainer = Styled.button<{
     background-color: ${({ active, shape }): string => getContainerIndicatorColor(active, shape)};
   }
 
+  :focus,
   :hover {
+    outline: none;
     text-decoration: none;
-    transition: 0.25s ease;
   }
 
   :disabled {
