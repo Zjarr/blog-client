@@ -20,9 +20,11 @@ import {
   TopContainer
 } from './dashboard.style';
 
+import { DashboardSwitch } from './dashboard.switch';
+
 export const DashboardPage: React.FC<{}> = () => {
   const navigateTo = useNavigateTo();
-  const { section } = useParams();
+  const { action, param, section } = useParams();
 
   return (
     <DashboardContainer>
@@ -89,7 +91,9 @@ export const DashboardPage: React.FC<{}> = () => {
         </BottomContainer>
       </SidebarContainer>
 
-      <BodyContainer></BodyContainer>
+      <BodyContainer>
+        <DashboardSwitch action={action} param={param} section={section} />
+      </BodyContainer>
     </DashboardContainer>
   );
 };
