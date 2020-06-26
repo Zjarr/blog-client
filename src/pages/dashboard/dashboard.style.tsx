@@ -48,6 +48,7 @@ export const BottomContainer = Styled.div`
   width: 208px;
 
   background-color: ${COLOR_BLACK};
+  box-shadow: 0 0 16px 16px ${COLOR_BLACK};
 `;
 
 export const LogoImg = Styled.img`
