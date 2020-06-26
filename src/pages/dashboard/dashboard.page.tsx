@@ -30,7 +30,7 @@ export const DashboardPage: React.FC<{}> = () => {
     <DashboardContainer>
       <SidebarContainer>
         <TopContainer>
-          <Image shape={'circle'} height={'136px'} width={'136px'} />
+          <Image shape={'circle'} height={'120px'} width={'120px'} />
 
           <TopButtonContainer>
             <MenuButton
