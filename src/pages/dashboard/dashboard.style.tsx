@@ -43,7 +43,7 @@ export const BottomContainer = Styled.div`
   bottom: 0;
   display: flex;
   flex-direction: column;
-  padding-top: 16px;
+  padding: 8px;
   position: fixed;
   width: 208px;
 
