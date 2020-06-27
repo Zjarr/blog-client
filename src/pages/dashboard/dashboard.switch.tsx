@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { NotFoundPage } from '../not-found';
+import { SummaryPage } from '../summary';
 
 export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, section }) => {
   const profileComponentSwitch = (action?: string | null): React.ReactElement => {
@@ -51,7 +52,7 @@ export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, sec
   };
 
   const componentToRender = (section: string | null, action?: string | null, param?: string | null): React.ReactElement => {
-    if (!section) return <h1>Dashboard</h1>;
+    if (!section) return <SummaryPage />;
 
     if (section === 'profile') return profileComponentSwitch(action);
     if (section === 'blogs') return blogsComponentSwitch(action, param);

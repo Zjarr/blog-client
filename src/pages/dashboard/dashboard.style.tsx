@@ -71,7 +71,7 @@ export const Info = Styled.p`
 export const BodyContainer = Styled.div`
   height: 100%;
   overflow: hidden;
-  padding: 16px;
+  padding: 32px 16px;
   position: absolute;
   right: 0;
   top: 0;
