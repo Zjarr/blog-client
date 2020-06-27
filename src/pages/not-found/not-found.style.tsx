@@ -1,4 +1,5 @@
 import Styled from 'styled-components';
+
 import { COLOR_PURPLE } from '../../utils/values';
 
 export const NotFoundContainer = Styled.div`
