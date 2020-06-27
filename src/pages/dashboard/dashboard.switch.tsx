@@ -1,11 +1,13 @@
 import React from 'react';
 
+import { NotFoundPage } from '../not-found';
+
 export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, section }) => {
   const profileComponentSwitch = (action?: string | null): React.ReactElement => {
     if (action === 'view') return <h1>Profile: View Profile</h1>;
     if (!action) return <h1>Profile</h1>;
 
-    return <h1>Profile: Not Found</h1>;
+    return <NotFoundPage />;
   };
 
   const blogsComponentSwitch = (action?: string | null, param?: string | null): React.ReactElement => {
@@ -13,7 +15,7 @@ export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, sec
     if (action === 'add') return <h1>Blogs: Add</h1>;
     if (!action) return <h1>Blogs</h1>;
 
-    return <h1>Blogs: Not Found</h1>;
+    return <NotFoundPage />;
   };
 
   const categoriesComponentSwitch = (action?: string | null, param?: string | null): React.ReactElement => {
@@ -21,7 +23,7 @@ export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, sec
     if (action === 'add') return <h1>Categories: Add</h1>;
     if (!action) return <h1>Categories</h1>;
 
-    return <h1>Categories: Not Found</h1>;
+    return <NotFoundPage />;
   };
 
   const assetsComponentSwitch = (action?: string | null, param?: string | null): React.ReactElement => {
@@ -29,7 +31,7 @@ export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, sec
     if (action === 'add') return <h1>Assets: Add</h1>;
     if (!action) return <h1>Assets</h1>;
 
-    return <h1>Assets: Not Found</h1>;
+    return <NotFoundPage />;
   };
 
   const usersComponentSwitch = (action?: string | null, param?: string | null): React.ReactElement => {
@@ -37,7 +39,7 @@ export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, sec
     if (action === 'add') return <h1>Users: Add</h1>;
     if (!action) return <h1>Users</h1>;
 
-    return <h1>Users: Not Found</h1>;
+    return <NotFoundPage />;
   };
 
   const rolesComponentSwitch = (action?: string | null, param?: string | null): React.ReactElement => {
@@ -45,7 +47,7 @@ export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, sec
     if (action === 'add') return <h1>Roles: Add</h1>;
     if (!action) return <h1>Roles</h1>;
 
-    return <h1>Roles: Not Found</h1>;
+    return <NotFoundPage />;
   };
 
   const componentToRender = (section: string | null, action?: string | null, param?: string | null): React.ReactElement => {
@@ -58,7 +60,7 @@ export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, sec
     if (section === 'users') return usersComponentSwitch(action, param);
     if (section === 'roles') return rolesComponentSwitch(action, param);
 
-    return <h1>Not Found</h1>;
+    return <NotFoundPage />;
   };
 
   return componentToRender(section, action, param);
