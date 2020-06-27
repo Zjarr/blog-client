@@ -15,6 +15,7 @@ import { Renderer } from '../../components/renderer';
 import { TitleText } from '../../components/text';
 import { Toggle } from '../../components/toggle';
 import { IUpdateImageResult, UpdateImage } from '../../components/update-image';
+import { Header } from '../../components/header';
 
 import { COLOR_GREEN, COLOR_PURPLE } from '../../utils/values';
 
@@ -70,6 +71,15 @@ export const PlaygroundPage: React.FC<{}> = () => {
 
   return (
     <>
+      <TitleText>Header</TitleText>
+      <p></p>
+      <Header title={'Title'} backButtonText={'Home'} />
+      <p></p>
+      <Header title={'Title'} />
+      <br />
+      <br />
+      <br />
+
       <TitleText>Input</TitleText>
       <p></p>
       <Input icon={'group'} label={'Name:'} />
