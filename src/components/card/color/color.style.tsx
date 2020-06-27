@@ -7,8 +7,11 @@ const DEFAULT_COLOR_CONTAINER_COLOR = COLOR_PURPLE;
 const getColorContainerColor = (color: string): string => color ? color : DEFAULT_COLOR_CONTAINER_COLOR;
 
 export const ColorContainer = Styled.div<{ color: string }>`
-  padding: 16px;
+  display: flex;
+  flex-direction: column;
   height: 100%;
+  justify-content: space-between;
+  padding: 16px;
   width: 100%;
 
   border-radius: ${BORDER_RADIUS_SMALL};
@@ -23,7 +26,6 @@ export const MiddleContainer = Styled.div`
   align-items: flex-end;
   display: flex;
   flex-direction: column;
-  margin: 48px 0;
   width: 100%;
 `;
 
