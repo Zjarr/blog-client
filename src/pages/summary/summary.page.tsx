@@ -1,12 +1,14 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 
+import { ImageCard } from '../../components/card';
 import { ColorCard } from '../../components/card/color';
 import { Column } from '../../components/column';
 import { Header } from '../../components/header';
+import { LabelText } from '../../components/text';
 import { COLOR_MAGENTA, COLOR_PURPLE } from '../../utils/values';
 
-import { SummaryContainer } from './summary.style';
+import { CardContainer, ImageCardContainer, RecentEntriesContainer, SummaryContainer, ToBeReleasedContainer } from './summary.style';
 
 export const SummaryPage: React.FC<ISummaryPage> = () => {
   return (
@@ -14,9 +16,9 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
       <Header title={'Dashboard'} />
 
       <Row>
-        <Column lg={6}>
+        <Column lg={6} position={'left'}>
           <Row>
-            <Column lg={6} position={'left'}>
+            <CardContainer xl={6} position={'left'}>
               <ColorCard
                 button={'Go to blogs'}
                 color={COLOR_PURPLE}
@@ -24,8 +26,8 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
                 link={'/admin/dashboard/blogs'}
                 name={'Total blogs'}
                 number={54} />
-            </Column>
-            <Column lg={6} position={'right'}>
+            </CardContainer>
+            <CardContainer xl={6} position={'right'}>
               <ColorCard
                 button={'Go to assets'}
                 color={COLOR_MAGENTA}
@@ -33,18 +35,67 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
                 link={'/admin/dashboard/assets'}
                 name={'Total assets'}
                 number={102} />
-            </Column>
+            </CardContainer>
           </Row>
           <Row>
             <Column lg={12}></Column>
           </Row>
         </Column>
-        <Column lg={6}>
+        <Column lg={6} position={'right'}>
           <Row>
-            <Column lg={12}></Column>
+            <RecentEntriesContainer lg={12}>
+              <LabelText icon={'book'}>Recent entries</LabelText>
+              <ImageCardContainer>
+                <ImageCard
+                  title={'Card title with long text for testing purposes'}
+                  text={'Card title with long text for testing purposes'}
+                  secondaryText={'Card title with long text for testing purposes'}
+                  image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'}
+                  active />
+              </ImageCardContainer>
+              <ImageCardContainer>
+                <ImageCard
+                  title={'Card title with long text for testing purposes'}
+                  text={'Card title with long text for testing purposes'}
+                  secondaryText={'Card title with long text for testing purposes'}
+                  image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'}
+                  active />
+              </ImageCardContainer>
+              <ImageCardContainer>
+                <ImageCard
+                  title={'Card title with long text for testing purposes'}
+                  text={'Card title with long text for testing purposes'}
+                  secondaryText={'Card title with long text for testing purposes'}
+                  image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'}
+                  active />
+              </ImageCardContainer>
+            </RecentEntriesContainer>
           </Row>
           <Row>
-            <Column lg={12}></Column>
+            <ToBeReleasedContainer lg={12}>
+              <LabelText icon={'book'}>To be released</LabelText>
+              <ImageCardContainer>
+                <ImageCard
+                  title={'Card title with long text for testing purposes'}
+                  text={'Card title with long text for testing purposes'}
+                  secondaryText={'Card title with long text for testing purposes'}
+                  image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'} />
+              </ImageCardContainer>
+              <ImageCardContainer>
+                <ImageCard
+                  title={'Card title with long text for testing purposes'}
+                  text={'Card title with long text for testing purposes'}
+                  secondaryText={'Card title with long text for testing purposes'}
+                  image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'} />
+              </ImageCardContainer>
+              <ImageCardContainer>
+                <ImageCard
+                  title={'Card title with long text for testing purposes'}
+                  text={'Card title with long text for testing purposes'}
+                  secondaryText={'Card title with long text for testing purposes'}
+                  image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'} />
+              </ImageCardContainer>
+            </ToBeReleasedContainer>
           </Row>
         </Column>
       </Row>
