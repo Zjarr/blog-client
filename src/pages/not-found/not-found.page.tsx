@@ -1,7 +1,9 @@
 import React from 'react';
+
 import NotFoundWaves from '../../assets/images/not-found-waves.png';
 import { SimpleButton } from '../../components/button';
-import { COLOR_PURPLE, COLOR_GRAY_DARK } from '../../utils/values';
+import { ParagraphText, TitleText } from '../../components/text';
+import { COLOR_GRAY_DARK, COLOR_PURPLE } from '../../utils/values';
 
 import {
   BodyContainer,
@@ -12,8 +14,6 @@ import {
   WavesContainer,
   WavesImage
 } from './not-found.style';
-
-import { TitleText, ParagraphText } from '../../components/text';
 
 export const NotFoundPage: React.FC<INotFoundPage> = () => {
   return (
