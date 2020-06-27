@@ -1,9 +1,14 @@
+import Row from 'react-bootstrap/Row';
 import Styled from 'styled-components';
 
 import { Column } from '../../components/column';
 
 export const SummaryContainer = Styled.div`
   overflow-y: scroll;
+`;
+
+export const SummaryCardContainer = Styled(Row)`
+  margin-bottom: 48px;
 `;
 
 export const CardContainer = Styled(Column)`

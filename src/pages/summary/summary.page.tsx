@@ -8,7 +8,14 @@ import { Header } from '../../components/header';
 import { LabelText } from '../../components/text';
 import { COLOR_MAGENTA, COLOR_PURPLE } from '../../utils/values';
 
-import { CardContainer, ImageCardContainer, RecentEntriesContainer, SummaryContainer, ToBeReleasedContainer } from './summary.style';
+import {
+  CardContainer,
+  ImageCardContainer,
+  RecentEntriesContainer,
+  SummaryCardContainer,
+  SummaryContainer,
+  ToBeReleasedContainer
+} from './summary.style';
 
 export const SummaryPage: React.FC<ISummaryPage> = () => {
   return (
@@ -17,7 +24,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
 
       <Row>
         <Column lg={6} position={'left'}>
-          <Row>
+          <SummaryCardContainer>
             <CardContainer xl={6} position={'left'}>
               <ColorCard
                 button={'Go to blogs'}
@@ -36,9 +43,11 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
                 name={'Total assets'}
                 number={102} />
             </CardContainer>
-          </Row>
+          </SummaryCardContainer>
           <Row>
-            <Column lg={12}></Column>
+            <Column lg={12}>
+              <LabelText icon={'book'}>This week's entries</LabelText>
+            </Column>
           </Row>
         </Column>
         <Column lg={6} position={'right'}>
