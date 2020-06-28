@@ -5,6 +5,7 @@ import { BORDER_RADIUS_SMALL, COLOR_GRAY_LIGHT, COLOR_GREEN, COLOR_RED, COLOR_WH
 export const ToggleContainer = Styled.label`
   display: block;
   height: 48px;
+  margin-bottom: 0;
   position: relative;
   width: 96px;
 `;
