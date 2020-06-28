@@ -26,7 +26,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
       <Row>
         <Column xl={6} position={'left'}>
           <SummaryCardContainer>
-            <CardContainer xl={6} position={'left'}>
+            <CardContainer sm={6} position={'left'}>
               <ColorCard
                 button={'Go to blogs'}
                 color={COLOR_PURPLE}
@@ -35,7 +35,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
                 name={'Total blogs'}
                 number={54} />
             </CardContainer>
-            <CardContainer xl={6} position={'right'}>
+            <CardContainer sm={6} position={'right'}>
               <ColorCard
                 button={'Go to images'}
                 color={COLOR_MAGENTA}
