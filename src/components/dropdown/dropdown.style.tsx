@@ -46,7 +46,6 @@ const getItemContainerVisibility = (open?: boolean): string => open ? ITEM_CONTA
 
 export const DropdownContainer = Styled.div<{ width?: string }>`
   display: inline-block;
-  min-width: 260px;
   position: relative;
   width: 100%;
 `;
@@ -60,7 +59,9 @@ export const DropdownTrigger = Styled.button<{ disabled: boolean, icon?: string,
   overflow: hidden;
   position: relative;
   text-align: left;
+  text-overflow: ellipsis;
   transition: 0.25s ease;
+  white-space: nowrap;
   width: 100%;
 
   background-color: ${COLOR_WHITE};
