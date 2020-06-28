@@ -3,6 +3,7 @@ import Row from 'react-bootstrap/Row';
 
 import { ImageCard } from '../../components/card';
 import { ColorCard } from '../../components/card/color';
+import { Chart } from '../../components/chart';
 import { Column } from '../../components/column';
 import { Header } from '../../components/header';
 import { LabelText } from '../../components/text';
@@ -10,17 +11,17 @@ import { COLOR_MAGENTA, COLOR_PURPLE } from '../../utils/values';
 
 import {
   CardContainer,
+  ChartContainer,
   ImageCardContainer,
   RecentEntriesContainer,
   SummaryCardContainer,
-  SummaryContainer,
-  ToBeReleasedContainer
+  SummaryContainer
 } from './summary.style';
 
 export const SummaryPage: React.FC<ISummaryPage> = () => {
   return (
     <SummaryContainer>
-      <Header title={'Dashboard'} />
+      <Header title={'Dashboard'} backButtonText={'Back'}/>
 
       <Row>
         <Column lg={6} position={'left'}>
@@ -46,7 +47,10 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
           </SummaryCardContainer>
           <Row>
             <Column lg={12}>
-              <LabelText icon={'book'}>This week's entries</LabelText>
+              <LabelText icon={'book'}>Last 7 days entries</LabelText>
+              <ChartContainer>
+                <Chart data={[8, 4, 5, 1, 7, 2, 0]}/>
+              </ChartContainer>
             </Column>
           </Row>
         </Column>
@@ -81,7 +85,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
             </RecentEntriesContainer>
           </Row>
           <Row>
-            <ToBeReleasedContainer lg={12}>
+            <Column lg={12}>
               <LabelText icon={'book'}>To be released</LabelText>
               <ImageCardContainer>
                 <ImageCard
@@ -104,7 +108,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
                   secondaryText={'Card title with long text for testing purposes'}
                   image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'} />
               </ImageCardContainer>
-            </ToBeReleasedContainer>
+            </Column>
           </Row>
         </Column>
       </Row>
