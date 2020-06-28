@@ -37,11 +37,11 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
             </CardContainer>
             <CardContainer xl={6} position={'right'}>
               <ColorCard
-                button={'Go to assets'}
+                button={'Go to images'}
                 color={COLOR_MAGENTA}
                 icon={'insert_photo'}
-                link={'/admin/dashboard/assets'}
-                name={'Total assets'}
+                link={'/admin/dashboard/images'}
+                name={'Total images'}
                 number={102} />
             </CardContainer>
           </SummaryCardContainer>
