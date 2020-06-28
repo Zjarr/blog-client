@@ -74,26 +74,11 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
                   image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'}
                   active />
               </ImageCardContainer>
-              <ImageCardContainer>
-                <ImageCard
-                  title={'Card title with long text for testing purposes'}
-                  text={'Card title with long text for testing purposes'}
-                  secondaryText={'Card title with long text for testing purposes'}
-                  image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'}
-                  active />
-              </ImageCardContainer>
             </RecentEntriesContainer>
           </Row>
           <Row>
             <Column lg={12}>
               <SubtitleText icon={'book'}>To be released</SubtitleText>
-              <ImageCardContainer>
-                <ImageCard
-                  title={'Card title with long text for testing purposes'}
-                  text={'Card title with long text for testing purposes'}
-                  secondaryText={'Card title with long text for testing purposes'}
-                  image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'} />
-              </ImageCardContainer>
               <ImageCardContainer>
                 <ImageCard
                   title={'Card title with long text for testing purposes'}

@@ -74,10 +74,10 @@ export const MenuButtonContainer = Styled.button<{
 
   :before {
     content: '';
+    height: 100%;
     left: 0;
     position: absolute;
-    height: 100%;
-    transition: .25s ease;
+    transition: 0.25s ease;
     width: 4px;
 
     background-color: ${({ active, shape }): string => getContainerIndicatorColor(active, shape)};

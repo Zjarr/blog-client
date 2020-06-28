@@ -17,14 +17,8 @@ export const SummaryCardContainer = Styled(Row)`
   margin-bottom: 48px;
 `;
 
-export const ChartContainer = Styled.div`
-  height: 360px;
-  margin-top: 16px;
-  overflow: hidden;
-`;
-
 export const CardContainer = Styled(Column)`
-  height: 404px;
+  height: 308px;
 `;
 
 export const RecentEntriesContainer = Styled(Column)`
@@ -32,5 +26,15 @@ export const RecentEntriesContainer = Styled(Column)`
 `;
 
 export const ImageCardContainer = Styled.div`
-  margin-top: 8px;
+  margin-bottom: 32px;
+
+  :last-child {
+    margin-bottom: 0;
+  }
+`;
+
+export const ChartContainer = Styled.div`
+  height: 256px;
+  margin-top: 16px;
+  overflow: hidden;
 `;
