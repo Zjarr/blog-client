@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ListBlogPage } from '../blog/list';
 import { NotFoundPage } from '../not-found';
 import { SummaryPage } from '../summary';
 
@@ -14,7 +15,7 @@ export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, sec
   const blogsComponentSwitch = (action?: string | null, param?: string | null): React.ReactElement => {
     if (action === 'view') return <h1>Blogs: View {param}</h1>;
     if (action === 'add') return <h1>Blogs: Add</h1>;
-    if (!action) return <h1>Blogs</h1>;
+    if (!action) return <ListBlogPage />;
 
     return <NotFoundPage />;
   };
