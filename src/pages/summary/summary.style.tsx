@@ -3,7 +3,7 @@ import Styled from 'styled-components';
 
 import { Column } from '../../components/column';
 
-import { BORDER_RADIUS_BIG_INNER } from '../../utils/values';
+import { BORDER_RADIUS_BIG_INNER, BORDER_RADIUS_SMALL } from '../../utils/values';
 
 export const SummaryContainer = Styled.div`
   height: 100%;
@@ -29,7 +29,7 @@ export const ImageCardContainer = Styled.div`
   margin-bottom: 32px;
 
   :last-child {
-    margin-bottom: 0;
+    margin-bottom: 0px;
   }
 `;
 
@@ -37,4 +37,6 @@ export const ChartContainer = Styled.div`
   height: 256px;
   margin-top: 16px;
   overflow: hidden;
+
+  border-radius: ${BORDER_RADIUS_SMALL};
 `;
