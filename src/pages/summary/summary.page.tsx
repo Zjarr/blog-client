@@ -24,7 +24,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
       <Header title={'Dashboard'} />
 
       <Row>
-        <Column lg={6} position={'left'}>
+        <Column xl={6} position={'left'}>
           <SummaryCardContainer>
             <CardContainer xl={6} position={'left'}>
               <ColorCard
@@ -46,7 +46,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
             </CardContainer>
           </SummaryCardContainer>
           <Row>
-            <Column lg={12}>
+            <Column xl={12}>
               <SubtitleText icon={'book'}>Last 7 days entries</SubtitleText>
               <ChartContainer>
                 <Chart data={[8, 4, 5, 1, 7, 2, 0]}/>
@@ -54,7 +54,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
             </Column>
           </Row>
         </Column>
-        <Column lg={6} position={'right'}>
+        <Column xl={6} position={'right'}>
           <Row>
             <RecentEntriesContainer lg={12}>
               <SubtitleText icon={'book'}>Recent entries</SubtitleText>
@@ -77,7 +77,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
             </RecentEntriesContainer>
           </Row>
           <Row>
-            <Column lg={12}>
+            <Column xl={12}>
               <SubtitleText icon={'book'}>To be released</SubtitleText>
               <ImageCardContainer>
                 <ImageCard

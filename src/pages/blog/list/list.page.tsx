@@ -98,6 +98,22 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/dashboard/blogs/view/123456',
               active: true
+            },
+            {
+              title: 'Card title with long text for testing purposes',
+              text: 'Card title with long text for testing purposes',
+              secondaryText: 'Card title with long text for testing purposes',
+              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              link: '/admin/dashboard/blogs/view/123456',
+              active: true
+            },
+            {
+              title: 'Card title with long text for testing purposes',
+              text: 'Card title with long text for testing purposes',
+              secondaryText: 'Card title with long text for testing purposes',
+              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              link: '/admin/dashboard/blogs/view/123456',
+              active: true
             }
           ]} />
         </Column>
@@ -115,30 +131,6 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
 
           <FormField label={'Category:'}>
             <Dropdown icon={'category'} name={'Any'} items={[]} onChange={(): void => {}} />
-          </FormField>
-
-          <FormField label={'From:'}>
-            <Column md={4} position={'left'}>
-              <Dropdown name={'Month'} items={[]} onChange={(): void => {}} />
-            </Column>
-            <Column md={4} position={'center'}>
-              <Dropdown name={'Day'} items={[]} onChange={(): void => {}} />
-            </Column>
-            <Column md={4} position={'right'}>
-              <Dropdown name={'Year'} items={[]} onChange={(): void => {}} />
-            </Column>
-          </FormField>
-
-          <FormField label={'To:'}>
-            <Column md={4} position={'left'}>
-              <Dropdown name={'Month'} items={[]} onChange={(): void => {}} />
-            </Column>
-            <Column md={4} position={'center'}>
-              <Dropdown name={'Day'} items={[]} onChange={(): void => {}} />
-            </Column>
-            <Column md={4} position={'right'}>
-              <Dropdown name={'Year'} items={[]} onChange={(): void => {}} />
-            </Column>
           </FormField>
         </Column>
       </Row>

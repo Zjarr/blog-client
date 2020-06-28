@@ -3,14 +3,12 @@ import Styled from 'styled-components';
 
 import { Column } from '../../components/column';
 
-import { BORDER_RADIUS_BIG_INNER, BORDER_RADIUS_SMALL } from '../../utils/values';
+import { BORDER_RADIUS_SMALL } from '../../utils/values';
 
 export const SummaryContainer = Styled.div`
   height: 100%;
+  padding: 16px;
   overflow-y: scroll;
-
-  border-bottom-left-radius: ${BORDER_RADIUS_BIG_INNER};
-  border-top-left-radius: ${BORDER_RADIUS_BIG_INNER};
 `;
 
 export const SummaryCardContainer = Styled(Row)`

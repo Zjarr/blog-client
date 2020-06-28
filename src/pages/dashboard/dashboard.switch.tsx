@@ -7,11 +7,11 @@ import { NotFoundPage } from '../not-found';
 import { ListRolePage } from '../role/list';
 import { SummaryPage } from '../summary';
 import { ListUserPage } from '../user/list';
+import { ProfileUserPage } from '../user/profile';
 
 export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, section }) => {
   const profileComponentSwitch = (action?: string | null): React.ReactElement => {
-    if (action === 'view') return <h1>Profile: View Profile</h1>;
-    if (!action) return <h1>Profile</h1>;
+    if (!action) return <ProfileUserPage />;
 
     return <NotFoundPage />;
   };
