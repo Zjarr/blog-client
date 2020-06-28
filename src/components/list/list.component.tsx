@@ -30,7 +30,7 @@ export const List: React.FC<IList> = ({ cards, onPrevClick, onSearch, onNextClic
 
   const getCardItems = (cards: IImageCard[]): JSX.Element[] => {
     return cards.map((card, index) =>
-      <CardContainer md={6} key={`${index}`}>
+      <CardContainer lg={6} key={`${index}`}>
         <ImageCard {...card} />
       </CardContainer>
     );
