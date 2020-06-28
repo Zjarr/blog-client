@@ -105,19 +105,19 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
         <Column xl={3} position={'right'}>
           <SubtitleText icon={'filter_list'}>Filter</SubtitleText>
 
-          <FormField label={'Author'}>
+          <FormField label={'Author:'}>
             <Dropdown icon={'person'} name={'Any'} items={[]} onChange={(): void => {}} />
           </FormField>
 
-          <FormField label={'Published'}>
+          <FormField label={'Published:'}>
             <Toggle />
           </FormField>
 
-          <FormField label={'Category'}>
+          <FormField label={'Category:'}>
             <Dropdown icon={'category'} name={'Any'} items={[]} onChange={(): void => {}} />
           </FormField>
 
-          <FormField label={'From'}>
+          <FormField label={'From:'}>
             <Column md={4} position={'left'}>
               <Dropdown name={'Month'} items={[]} onChange={(): void => {}} />
             </Column>
@@ -129,7 +129,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             </Column>
           </FormField>
 
-          <FormField label={'To'}>
+          <FormField label={'To:'}>
             <Column md={4} position={'left'}>
               <Dropdown name={'Month'} items={[]} onChange={(): void => {}} />
             </Column>
