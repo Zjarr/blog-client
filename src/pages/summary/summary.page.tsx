@@ -21,7 +21,7 @@ import {
 export const SummaryPage: React.FC<ISummaryPage> = () => {
   return (
     <SummaryContainer>
-      <Header title={'Dashboard'} backButtonText={'Back'}/>
+      <Header title={'Dashboard'} />
 
       <Row>
         <Column lg={6} position={'left'}>
