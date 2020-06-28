@@ -1,14 +1,14 @@
 import Styled from 'styled-components';
 
-import Col from 'react-bootstrap/Col';
+import { Column } from '../column';
 
-export const CardContainer = Styled(Col)`
+export const CardContainer = Styled(Column)`
   margin-bottom: 32px;
 `;
 
 export const ListContainer = Styled.div`
+  margin-bottom: 48px;
   position: relative;
-  margin-bottom: 64px;
 `;
 
 export const SearchContainer = Styled.div`
