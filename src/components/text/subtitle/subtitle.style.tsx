@@ -2,7 +2,7 @@ import Styled from 'styled-components';
 
 import { COLOR_BLACK, TEXT_BIG } from '../../../utils/values';
 
-const DEFAULT_MARGIN = '0px';
+const DEFAULT_MARGIN = '0px 0px 16px 0px';
 
 const getTextColor = (color?: string): string => color ? color : COLOR_BLACK;
 const getTextMargin = (margin?: string): string => margin ? margin : DEFAULT_MARGIN;
