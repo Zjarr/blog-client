@@ -6,7 +6,7 @@ import { ColorCard } from '../../components/card/color';
 import { Chart } from '../../components/chart';
 import { Column } from '../../components/column';
 import { Header } from '../../components/header';
-import { LabelText } from '../../components/text';
+import { SubtitleText } from '../../components/text';
 import { COLOR_MAGENTA, COLOR_PURPLE } from '../../utils/values';
 
 import {
@@ -47,7 +47,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
           </SummaryCardContainer>
           <Row>
             <Column lg={12}>
-              <LabelText icon={'book'}>Last 7 days entries</LabelText>
+              <SubtitleText icon={'book'}>Last 7 days entries</SubtitleText>
               <ChartContainer>
                 <Chart data={[8, 4, 5, 1, 7, 2, 0]}/>
               </ChartContainer>
@@ -57,7 +57,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
         <Column lg={6} position={'right'}>
           <Row>
             <RecentEntriesContainer lg={12}>
-              <LabelText icon={'book'}>Recent entries</LabelText>
+              <SubtitleText icon={'book'}>Recent entries</SubtitleText>
               <ImageCardContainer>
                 <ImageCard
                   title={'Card title with long text for testing purposes'}
@@ -86,7 +86,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
           </Row>
           <Row>
             <Column lg={12}>
-              <LabelText icon={'book'}>To be released</LabelText>
+              <SubtitleText icon={'book'}>To be released</SubtitleText>
               <ImageCardContainer>
                 <ImageCard
                   title={'Card title with long text for testing purposes'}
