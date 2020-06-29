@@ -4,8 +4,8 @@ import { IconContainer } from './icon.style';
 
 export const Icon: React.FC<IIcon> = ({ name, ...rest }) => {
   return (
-    <IconContainer {...rest}>
-      {name}
+    <IconContainer className={name} {...rest}>
+      {!name.includes('socicon-') && name}
     </IconContainer>
   );
 };
