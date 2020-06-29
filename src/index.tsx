@@ -6,8 +6,10 @@ import { Pages } from './pages';
 import { unregister } from './serviceWorker';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './assets/fonts/material-icons/index.css';
 import './assets/fonts/proxima-nova/index.css';
+import './assets/fonts/social-icons/index.css';
 import './styles/body.style.css';
 import './styles/bootstrap.style.css';
 
