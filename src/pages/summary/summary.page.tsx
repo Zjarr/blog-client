@@ -60,17 +60,17 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
               <SubtitleText icon={'book'}>Recent entries</SubtitleText>
               <ImageCardContainer>
                 <ImageCard
-                  title={'Card title with long text for testing purposes'}
-                  text={'Card title with long text for testing purposes'}
-                  secondaryText={'Card title with long text for testing purposes'}
+                  title={'Recent blog name'}
+                  text={'By Pablo Navarro'}
+                  secondaryText={'June 28th, 2020'}
                   image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'}
                   active />
               </ImageCardContainer>
               <ImageCardContainer>
                 <ImageCard
-                  title={'Card title with long text for testing purposes'}
-                  text={'Card title with long text for testing purposes'}
-                  secondaryText={'Card title with long text for testing purposes'}
+                  title={'Recent blog name'}
+                  text={'By Pablo Navarro'}
+                  secondaryText={'June 28th, 2020'}
                   image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'}
                   active />
               </ImageCardContainer>
@@ -81,16 +81,16 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
               <SubtitleText icon={'book'}>To be released</SubtitleText>
               <ImageCardContainer>
                 <ImageCard
-                  title={'Card title with long text for testing purposes'}
-                  text={'Card title with long text for testing purposes'}
-                  secondaryText={'Card title with long text for testing purposes'}
+                  title={'To be released blog name'}
+                  text={'By Pablo Navarro'}
+                  secondaryText={'June 28th, 2020'}
                   image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'} />
               </ImageCardContainer>
               <ImageCardContainer>
                 <ImageCard
-                  title={'Card title with long text for testing purposes'}
-                  text={'Card title with long text for testing purposes'}
-                  secondaryText={'Card title with long text for testing purposes'}
+                  title={'To be released blog name'}
+                  text={'By Pablo Navarro'}
+                  secondaryText={'June 28th, 2020'}
                   image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'} />
               </ImageCardContainer>
             </Column>
