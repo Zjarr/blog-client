@@ -3,7 +3,7 @@ import Styled from 'styled-components';
 import { Column } from '../column';
 
 export const ListContainer = Styled.div`
-  padding-bottom: 32px;
+  padding-bottom: 40px;
   position: relative;
   height: 100%;
 `;
@@ -25,7 +25,7 @@ export const CardContainer = Styled(Column)`
 `;
 
 export const PaginatorContainer = Styled.div`
-  bottom: 0;
+  bottom: 8px;
   display: flex;
   justify-content: flex-end;
   position: absolute;
