@@ -20,81 +20,17 @@ export const ListUserPage: React.FC<IListUserPage> = () => {
         <Column xl={9} position={'left'}>
           <List cards={[
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some user Name',
+              text: 'Administrator',
+              secondaryText: 'June 20th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/users/view/123456',
               active: false
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/users/view/123456',
-              active: true
-            },
-            {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/users/view/123456',
-              active: true
-            },
-            {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/users/view/123456',
-              active: true
-            },
-            {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/users/view/123456',
-              active: true
-            },
-            {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/users/view/123456',
-              active: true
-            },
-            {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/users/view/123456',
-              active: true
-            },
-            {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/users/view/123456',
-              active: true
-            },
-            {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/users/view/123456',
-              active: true
-            },
-            {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some user Name',
+              text: 'Administrator',
+              secondaryText: 'June 20th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/users/view/123456',
               active: true
@@ -106,7 +42,7 @@ export const ListUserPage: React.FC<IListUserPage> = () => {
           <SubtitleText icon={'filter_list'}>Filter</SubtitleText>
 
           <FormField label={'Role:'}>
-            <Dropdown icon={'policy'} name={'Any'} items={[]} onChange={(): void => {}} />
+            <Dropdown icon={'policy'} name={'Any'} items={[]} onChange={(): void => { }} />
           </FormField>
 
           <FormField label={'Active:'}>

@@ -20,97 +20,97 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
         <Column xl={9} position={'left'}>
           <List cards={[
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some airplane blog title',
+              text: 'By Pablo Navarro',
+              secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
               active: false
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some airplane blog title',
+              text: 'By Pablo Navarro',
+              secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some airplane blog title',
+              text: 'By Pablo Navarro',
+              secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some airplane blog title',
+              text: 'By Pablo Navarro',
+              secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some airplane blog title',
+              text: 'By Pablo Navarro',
+              secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some airplane blog title',
+              text: 'By Pablo Navarro',
+              secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some airplane blog title',
+              text: 'By Pablo Navarro',
+              secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some airplane blog title',
+              text: 'By Pablo Navarro',
+              secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some airplane blog title',
+              text: 'By Pablo Navarro',
+              secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some airplane blog title',
+              text: 'By Pablo Navarro',
+              secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some airplane blog title',
+              text: 'By Pablo Navarro',
+              secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some airplane blog title',
+              text: 'By Pablo Navarro',
+              secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
               active: true

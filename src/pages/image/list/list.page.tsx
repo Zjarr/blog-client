@@ -19,81 +19,71 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
         <Column xl={9} position={'left'}>
           <List cards={[
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some title for the image',
+              text: 'This is a short description for the image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/images/view/123456',
               active: false
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some title for the image',
+              text: 'This is a short description for the image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/images/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some title for the image',
+              text: 'This is a short description for the image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/images/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some title for the image',
+              text: 'This is a short description for the image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/images/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some title for the image',
+              text: 'This is a short description for the image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/images/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some title for the image',
+              text: 'This is a short description for the image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/images/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some title for the image',
+              text: 'This is a short description for the image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/images/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some title for the image',
+              text: 'This is a short description for the image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/images/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some title for the image',
+              text: 'This is a short description for the image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/images/view/123456',
               active: true
             },
             {
-              title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
-              secondaryText: 'Card title with long text for testing purposes',
+              title: 'Some title for the image',
+              text: 'This is a short description for the image',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/images/view/123456',
               active: true
