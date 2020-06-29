@@ -1,5 +1,4 @@
 import React from 'react';
-import Row from 'react-bootstrap/Row';
 
 import { Column } from '../../../components/column';
 import { Dropdown } from '../../../components/dropdown';
@@ -9,14 +8,14 @@ import { List } from '../../../components/list';
 import { SubtitleText } from '../../../components/text';
 import { Toggle } from '../../../components/toggle';
 
-import { UserListContainer } from './list.style';
+import { ListContainer, UserListContainer } from './list.style';
 
 export const ListUserPage: React.FC<IListUserPage> = () => {
   return (
     <UserListContainer>
       <Header title={'Users'} />
 
-      <Row>
+      <ListContainer>
         <Column xl={9} position={'left'}>
           <List cards={[
             {
@@ -49,7 +48,7 @@ export const ListUserPage: React.FC<IListUserPage> = () => {
             <Toggle />
           </FormField>
         </Column>
-      </Row>
+      </ListContainer>
     </UserListContainer>
   );
 };

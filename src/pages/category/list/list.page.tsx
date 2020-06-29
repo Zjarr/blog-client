@@ -1,5 +1,4 @@
 import React from 'react';
-import Row from 'react-bootstrap/Row';
 
 import { Column } from '../../../components/column';
 import { FormField } from '../../../components/form-field';
@@ -8,14 +7,14 @@ import { List } from '../../../components/list';
 import { SubtitleText } from '../../../components/text';
 import { Toggle } from '../../../components/toggle';
 
-import { CategoryListContainer } from './list.style';
+import { CategoryListContainer, ListContainer } from './list.style';
 
 export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
   return (
     <CategoryListContainer>
       <Header title={'Categories'} />
 
-      <Row>
+      <ListContainer>
         <Column xl={9} position={'left'}>
           <List cards={[
             {
@@ -98,7 +97,7 @@ export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
             <Toggle />
           </FormField>
         </Column>
-      </Row>
+      </ListContainer>
     </CategoryListContainer>
   );
 };

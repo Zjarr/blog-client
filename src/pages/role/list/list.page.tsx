@@ -1,5 +1,4 @@
 import React from 'react';
-import Row from 'react-bootstrap/Row';
 
 import { Column } from '../../../components/column';
 import { FormField } from '../../../components/form-field';
@@ -8,14 +7,14 @@ import { List } from '../../../components/list';
 import { SubtitleText } from '../../../components/text';
 import { Toggle } from '../../../components/toggle';
 
-import { RoleListContainer } from './list.style';
+import { ListContainer, RoleListContainer } from './list.style';
 
 export const ListRolePage: React.FC<IListRolePage> = () => {
   return (
     <RoleListContainer>
       <Header title={'Roles'} />
 
-      <Row>
+      <ListContainer>
         <Column xl={9} position={'left'}>
           <List cards={[
             {
@@ -49,7 +48,7 @@ export const ListRolePage: React.FC<IListRolePage> = () => {
             <Toggle />
           </FormField>
         </Column>
-      </Row>
+      </ListContainer>
     </RoleListContainer>
   );
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import Row from 'react-bootstrap/Row';
 
 import { Column } from '../../../components/column';
 import { Dropdown } from '../../../components/dropdown';
@@ -9,14 +8,14 @@ import { List } from '../../../components/list';
 import { SubtitleText } from '../../../components/text';
 import { Toggle } from '../../../components/toggle';
 
-import { BlogListContainer } from './list.style';
+import { BlogListContainer, ListContainer } from './list.style';
 
 export const ListBlogPage: React.FC<IListBlogPage> = () => {
   return (
     <BlogListContainer>
       <Header title={'Blogs'} />
 
-      <Row>
+      <ListContainer>
         <Column xl={9} position={'left'}>
           <List cards={[
             {
@@ -133,7 +132,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             <Dropdown icon={'category'} name={'Any'} items={[]} onChange={(): void => {}} />
           </FormField>
         </Column>
-      </Row>
+      </ListContainer>
     </BlogListContainer>
   );
 };
