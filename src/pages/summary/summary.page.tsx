@@ -31,7 +31,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
                 button={'Go to blogs'}
                 color={COLOR_PURPLE}
                 icon={'book'}
-                link={'/admin/dashboard/blogs'}
+                link={'/admin/blogs'}
                 name={'Total blogs'}
                 number={54} />
             </CardContainer>
@@ -40,7 +40,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
                 button={'Go to images'}
                 color={COLOR_MAGENTA}
                 icon={'insert_photo'}
-                link={'/admin/dashboard/images'}
+                link={'/admin/images'}
                 name={'Total images'}
                 number={102} />
             </CardContainer>

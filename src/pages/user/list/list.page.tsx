@@ -24,7 +24,7 @@ export const ListUserPage: React.FC<IListUserPage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/users/view/123456',
+              link: '/admin/users/view/123456',
               active: false
             },
             {
@@ -32,7 +32,7 @@ export const ListUserPage: React.FC<IListUserPage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/users/view/123456',
+              link: '/admin/users/view/123456',
               active: true
             },
             {
@@ -40,7 +40,7 @@ export const ListUserPage: React.FC<IListUserPage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/users/view/123456',
+              link: '/admin/users/view/123456',
               active: true
             },
             {
@@ -48,7 +48,7 @@ export const ListUserPage: React.FC<IListUserPage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/users/view/123456',
+              link: '/admin/users/view/123456',
               active: true
             },
             {
@@ -56,7 +56,7 @@ export const ListUserPage: React.FC<IListUserPage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/users/view/123456',
+              link: '/admin/users/view/123456',
               active: true
             },
             {
@@ -64,7 +64,7 @@ export const ListUserPage: React.FC<IListUserPage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/users/view/123456',
+              link: '/admin/users/view/123456',
               active: true
             },
             {
@@ -72,7 +72,7 @@ export const ListUserPage: React.FC<IListUserPage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/users/view/123456',
+              link: '/admin/users/view/123456',
               active: true
             },
             {
@@ -80,7 +80,7 @@ export const ListUserPage: React.FC<IListUserPage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/users/view/123456',
+              link: '/admin/users/view/123456',
               active: true
             },
             {
@@ -88,7 +88,7 @@ export const ListUserPage: React.FC<IListUserPage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/users/view/123456',
+              link: '/admin/users/view/123456',
               active: true
             },
             {
@@ -96,7 +96,7 @@ export const ListUserPage: React.FC<IListUserPage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/users/view/123456',
+              link: '/admin/users/view/123456',
               active: true
             }
           ]} />

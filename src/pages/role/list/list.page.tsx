@@ -23,7 +23,7 @@ export const ListRolePage: React.FC<IListRolePage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/roles/view/123456',
+              link: '/admin/roles/view/123456',
               active: false
             },
             {
@@ -31,7 +31,7 @@ export const ListRolePage: React.FC<IListRolePage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/roles/view/123456',
+              link: '/admin/roles/view/123456',
               active: true
             },
             {
@@ -39,7 +39,7 @@ export const ListRolePage: React.FC<IListRolePage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/roles/view/123456',
+              link: '/admin/roles/view/123456',
               active: true
             },
             {
@@ -47,7 +47,7 @@ export const ListRolePage: React.FC<IListRolePage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/roles/view/123456',
+              link: '/admin/roles/view/123456',
               active: true
             },
             {
@@ -55,7 +55,7 @@ export const ListRolePage: React.FC<IListRolePage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/roles/view/123456',
+              link: '/admin/roles/view/123456',
               active: true
             },
             {
@@ -63,7 +63,7 @@ export const ListRolePage: React.FC<IListRolePage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/roles/view/123456',
+              link: '/admin/roles/view/123456',
               active: true
             },
             {
@@ -71,7 +71,7 @@ export const ListRolePage: React.FC<IListRolePage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/roles/view/123456',
+              link: '/admin/roles/view/123456',
               active: true
             },
             {
@@ -79,7 +79,7 @@ export const ListRolePage: React.FC<IListRolePage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/roles/view/123456',
+              link: '/admin/roles/view/123456',
               active: true
             },
             {
@@ -87,7 +87,7 @@ export const ListRolePage: React.FC<IListRolePage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/roles/view/123456',
+              link: '/admin/roles/view/123456',
               active: true
             },
             {
@@ -95,7 +95,7 @@ export const ListRolePage: React.FC<IListRolePage> = () => {
               text: 'Card title with long text for testing purposes',
               secondaryText: 'Card title with long text for testing purposes',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: '/admin/dashboard/roles/view/123456',
+              link: '/admin/roles/view/123456',
               active: true
             }
           ]} />

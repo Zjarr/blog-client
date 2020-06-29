@@ -57,7 +57,7 @@ export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, sec
   };
 
   const componentToRender = (section: string | null, action?: string | null, param?: string | null): React.ReactElement => {
-    if (!section) return <SummaryPage />;
+    if (section === 'dashboard') return <SummaryPage />;
 
     if (section === 'profile') return profileComponentSwitch(action);
     if (section === 'blogs') return blogsComponentSwitch(action, param);

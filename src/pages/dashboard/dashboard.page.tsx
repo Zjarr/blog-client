@@ -30,13 +30,13 @@ export const DashboardPage: React.FC<{}> = () => {
     <DashboardContainer>
       <SidebarContainer>
         <TopContainer>
-          <Image shape={'circle'} height={'120px'} width={'120px'} />
+          <Image shape={'circle'} height={'120px'} width={'120px'} src={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'} />
 
           <TopButtonContainer>
             <MenuButton
               active={section === 'profile'}
               icon={'person'}
-              onClick={(): void => navigateTo('/admin/dashboard/profile')}
+              onClick={(): void => navigateTo('/admin/profile')}
               shape={'circle'}>Profile</MenuButton>
             <MenuButton
               icon={'power_settings_new'}
@@ -46,7 +46,7 @@ export const DashboardPage: React.FC<{}> = () => {
 
         <MiddleButtonContainer>
           <MenuButton
-            active={!section}
+            active={section === 'dashboard'}
             onClick={(): void => navigateTo('/admin/dashboard')}
             icon={'home'}>Dashboard</MenuButton>
         </MiddleButtonContainer>
@@ -56,15 +56,15 @@ export const DashboardPage: React.FC<{}> = () => {
 
           <MenuButton
             active={section === 'blogs'}
-            onClick={(): void => navigateTo('/admin/dashboard/blogs')}
+            onClick={(): void => navigateTo('/admin/blogs')}
             icon={'book'}>Blogs</MenuButton>
           <MenuButton
             active={section === 'categories'}
-            onClick={(): void => navigateTo('/admin/dashboard/categories')}
+            onClick={(): void => navigateTo('/admin/categories')}
             icon={'category'}>Categories</MenuButton>
           <MenuButton
             active={section === 'images'}
-            onClick={(): void => navigateTo('/admin/dashboard/images')}
+            onClick={(): void => navigateTo('/admin/images')}
             icon={'insert_photo'}>Images</MenuButton>
         </MiddleButtonContainer>
 
@@ -73,11 +73,11 @@ export const DashboardPage: React.FC<{}> = () => {
 
           <MenuButton
             active={section === 'users'}
-            onClick={(): void => navigateTo('/admin/dashboard/users')}
+            onClick={(): void => navigateTo('/admin/users')}
             icon={'supervised_user_circle'}>Users</MenuButton>
           <MenuButton
             active={section === 'roles'}
-            onClick={(): void => navigateTo('/admin/dashboard/roles')}
+            onClick={(): void => navigateTo('/admin/roles')}
             icon={'policy'}>Roles</MenuButton>
         </MiddleButtonContainer>
 

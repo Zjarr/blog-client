@@ -13,15 +13,15 @@ export const Pages: React.FC<{}> = () => {
       {/* ADMIN ROUTES */}
       <Route exact path="/admin" component={LoginPage}></Route>
 
-      <PrivatePage exact path="/admin/dashboard/:section/:action/:param">
+      <PrivatePage exact path="/admin/:section/:action/:param">
         <DashboardPage />
       </PrivatePage>
 
-      <PrivatePage exact path="/admin/dashboard/:section/:action">
+      <PrivatePage exact path="/admin/:section/:action">
         <DashboardPage />
       </PrivatePage>
 
-      <PrivatePage exact path="/admin/dashboard/:section">
+      <PrivatePage exact path="/admin/:section">
         <DashboardPage />
       </PrivatePage>
 
