@@ -1,6 +1,7 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 
+import { SimpleButton } from '../../../components/button';
 import { IconCard } from '../../../components/card';
 import { Column } from '../../../components/column';
 import { Dropdown } from '../../../components/dropdown';
@@ -10,10 +11,17 @@ import { Image } from '../../../components/image';
 import { Input } from '../../../components/input';
 import { SubtitleText } from '../../../components/text';
 import { TextArea } from '../../../components/textarea';
-
-import { BodyContainer, EditContainer, ImageColumn, SocialNetworksContainer, CurrentContainer, FooterContainer } from './edit.style';
-import { SimpleButton } from '../../../components/button';
 import { COLOR_PURPLE } from '../../../utils/values';
+
+import {
+  AddButtonContainer,
+  BodyContainer,
+  CurrentContainer,
+  EditContainer,
+  FooterContainer,
+  ImageColumn,
+  SocialNetworksContainer
+} from './edit.style';
 
 export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   return (
@@ -71,6 +79,10 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
               </FormField>
             </Column>
           </Row>
+
+          <AddButtonContainer>
+            <SimpleButton icon={'add'} width={'auto'}>Add social network</SimpleButton>
+          </AddButtonContainer>
         </SocialNetworksContainer>
 
         <CurrentContainer>
@@ -91,8 +103,8 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
       </BodyContainer>
 
       <FooterContainer>
-        <SimpleButton icon={'clear'}></SimpleButton>
-        <SimpleButton color={COLOR_PURPLE} icon={'done'}></SimpleButton>
+        <SimpleButton icon={'clear'} />
+        <SimpleButton color={COLOR_PURPLE} icon={'done'} />
       </FooterContainer>
     </EditContainer>
   );
