@@ -20,7 +20,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
           <List cards={[
             {
               title: 'Some airplane blog title',
-              text: 'By Pablo Navarro',
+              text: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
@@ -28,7 +28,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'By Pablo Navarro',
+              text: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
@@ -36,7 +36,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'By Pablo Navarro',
+              text: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
@@ -44,7 +44,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'By Pablo Navarro',
+              text: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
@@ -52,7 +52,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'By Pablo Navarro',
+              text: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
@@ -60,7 +60,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'By Pablo Navarro',
+              text: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
@@ -68,7 +68,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'By Pablo Navarro',
+              text: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
@@ -76,7 +76,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'By Pablo Navarro',
+              text: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
@@ -84,7 +84,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'By Pablo Navarro',
+              text: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
@@ -92,7 +92,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'By Pablo Navarro',
+              text: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
@@ -100,7 +100,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'By Pablo Navarro',
+              text: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',
@@ -108,7 +108,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'By Pablo Navarro',
+              text: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
               link: '/admin/blogs/view/123456',

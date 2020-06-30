@@ -61,7 +61,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
               <ImageCardContainer>
                 <ImageCard
                   title={'Recent blog name'}
-                  text={'By Pablo Navarro'}
+                  text={'Planes | Travel | Experience'}
                   secondaryText={'June 28th, 2020'}
                   image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'}
                   active />
@@ -69,7 +69,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
               <ImageCardContainer>
                 <ImageCard
                   title={'Recent blog name'}
-                  text={'By Pablo Navarro'}
+                  text={'Planes | Travel | Experience'}
                   secondaryText={'June 28th, 2020'}
                   image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'}
                   active />
@@ -82,14 +82,14 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
               <ImageCardContainer>
                 <ImageCard
                   title={'To be released blog name'}
-                  text={'By Pablo Navarro'}
+                  text={'Planes | Travel | Experience'}
                   secondaryText={'June 28th, 2020'}
                   image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'} />
               </ImageCardContainer>
               <ImageCardContainer>
                 <ImageCard
                   title={'To be released blog name'}
-                  text={'By Pablo Navarro'}
+                  text={'Planes | Travel | Experience'}
                   secondaryText={'June 28th, 2020'}
                   image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'} />
               </ImageCardContainer>
