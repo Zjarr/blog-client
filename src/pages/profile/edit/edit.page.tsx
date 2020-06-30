@@ -11,7 +11,9 @@ import { Input } from '../../../components/input';
 import { SubtitleText } from '../../../components/text';
 import { TextArea } from '../../../components/textarea';
 
-import { BodyContainer, EditContainer } from './edit.style';
+import { BodyContainer, EditContainer, ImageColumn, SocialNetworksContainer, CurrentContainer, FooterContainer } from './edit.style';
+import { SimpleButton } from '../../../components/button';
+import { COLOR_PURPLE } from '../../../utils/values';
 
 export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   return (
@@ -23,9 +25,9 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
 
       <BodyContainer>
         <Row>
-          <Column xl={4} position={'left'}>
+          <ImageColumn xl={4} position={'left'}>
             <Image shape={'circle'} height={'180px'} width={'180px'} updatable />
-          </Column>
+          </ImageColumn>
 
           <Column xl={4} position={'center'}>
             <FormField label={'Name:'}>
@@ -36,53 +38,62 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
               <Input icon={'person'} placeholder={'Doe'} />
             </FormField>
 
-            <FormField label={'Email:'}>
+            <FormField label={'Email:'} noMargin>
               <Input icon={'mail'} placeholder={'john.doe@email.com'} />
             </FormField>
           </Column>
 
           <Column xl={4} position={'right'}>
-            <FormField label={'About:'} height={'148px'}>
+            <FormField label={'About:'} height={'148px'} noMargin>
               <TextArea />
             </FormField>
           </Column>
         </Row>
 
-        <SubtitleText>Social networks</SubtitleText>
-        <Row>
-          <Column xl={4} position={'left'}>
-            <FormField label={'Name:'}>
-              <Input icon={'web'} placeholder={'Facebook'} />
-            </FormField>
-          </Column>
+        <SocialNetworksContainer>
+          <SubtitleText>Social networks</SubtitleText>
+          <Row>
+            <Column xl={4} position={'left'}>
+              <FormField label={'Name:'} noMargin>
+                <Input icon={'web'} placeholder={'Facebook'} />
+              </FormField>
+            </Column>
 
-          <Column xl={4} position={'center'}>
-            <FormField label={'Icon:'}>
-              <Dropdown name={'Select one'} icon={'public'} items={[]} onChange={(): void => { }} />
-            </FormField>
-          </Column>
+            <Column xl={4} position={'center'}>
+              <FormField label={'Icon:'} noMargin>
+                <Dropdown name={'Select one'} icon={'public'} items={[]} onChange={(): void => { }} />
+              </FormField>
+            </Column>
 
-          <Column xl={4} position={'right'}>
-            <FormField label={'URL:'}>
-              <Input icon={'link'} placeholder={'facebook.com/john.doe'} />
-            </FormField>
-          </Column>
-        </Row>
+            <Column xl={4} position={'right'}>
+              <FormField label={'URL:'} noMargin>
+                <Input icon={'link'} placeholder={'facebook.com/john.doe'} />
+              </FormField>
+            </Column>
+          </Row>
+        </SocialNetworksContainer>
 
-        <SubtitleText>Current</SubtitleText>
-        <Row>
-          <Column xl={4} position={'left'}>
-            <IconCard icon={'socicon-instagram'} title={'Instagram'} text={'instagram.com/pablo'} />
-          </Column>
+        <CurrentContainer>
+          <SubtitleText>Current</SubtitleText>
+          <Row>
+            <Column xl={4} position={'left'}>
+              <IconCard icon={'socicon-instagram'} title={'Instagram'} text={'instagram.com/pablo'} />
+            </Column>
 
-          <Column xl={4} position={'center'}>
-            <IconCard icon={'socicon-instagram'} title={'Instagram'} text={'instagram.com/pablo'} />
-          </Column>
-          <Column xl={4} position={'right'}>
-            <IconCard icon={'socicon-instagram'} title={'Instagram'} text={'instagram.com/pablo'} />
-          </Column>
-        </Row>
+            <Column xl={4} position={'center'}>
+              <IconCard icon={'socicon-instagram'} title={'Instagram'} text={'instagram.com/pablo'} />
+            </Column>
+            <Column xl={4} position={'right'}>
+              <IconCard icon={'socicon-instagram'} title={'Instagram'} text={'instagram.com/pablo'} />
+            </Column>
+          </Row>
+        </CurrentContainer>
       </BodyContainer>
+
+      <FooterContainer>
+        <SimpleButton icon={'clear'}></SimpleButton>
+        <SimpleButton color={COLOR_PURPLE} icon={'done'}></SimpleButton>
+      </FooterContainer>
     </EditContainer>
   );
 };
