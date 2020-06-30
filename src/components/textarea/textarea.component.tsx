@@ -18,7 +18,7 @@ export const TextArea: React.FC<ITextArea> = ({ label, ...rest }) => {
 };
 
 interface ITextArea {
-  label: string;
+  label?: string;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   value?: string;
 }
