@@ -1,15 +1,17 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 
-import { EditContainer, BodyContainer } from './edit.style';
-import { Header } from '../../../components/header';
-
+import { IconCard } from '../../../components/card';
 import { Column } from '../../../components/column';
-import { Image } from '../../../components/image';
+import { Dropdown } from '../../../components/dropdown';
 import { FormField } from '../../../components/form-field';
+import { Header } from '../../../components/header';
+import { Image } from '../../../components/image';
 import { Input } from '../../../components/input';
 import { SubtitleText } from '../../../components/text';
-import { IconCard } from '../../../components/card';
+import { TextArea } from '../../../components/textarea';
+
+import { BodyContainer, EditContainer } from './edit.style';
 
 export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   return (
@@ -26,22 +28,22 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
           </Column>
 
           <Column xl={4} position={'center'}>
-            <FormField label={'Name'}>
-              <Input icon={'person'} />
+            <FormField label={'Name:'}>
+              <Input icon={'person'} placeholder={'John'} />
             </FormField>
 
-            <FormField label={'Lastname'}>
-              <Input icon={'person'} />
+            <FormField label={'Lastname:'}>
+              <Input icon={'person'} placeholder={'Doe'} />
             </FormField>
 
-            <FormField label={'Email'}>
-              <Input icon={'mail'} />
+            <FormField label={'Email:'}>
+              <Input icon={'mail'} placeholder={'john.doe@email.com'} />
             </FormField>
           </Column>
 
           <Column xl={4} position={'right'}>
-            <FormField label={'Email'}>
-              <Input icon={'mail'} />
+            <FormField label={'About:'} height={'148px'}>
+              <TextArea />
             </FormField>
           </Column>
         </Row>
@@ -49,20 +51,20 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
         <SubtitleText>Social networks</SubtitleText>
         <Row>
           <Column xl={4} position={'left'}>
-            <FormField label={'Email'}>
-              <Input icon={'mail'} />
+            <FormField label={'Name:'}>
+              <Input icon={'web'} placeholder={'Facebook'} />
             </FormField>
           </Column>
 
           <Column xl={4} position={'center'}>
-            <FormField label={'Email'}>
-              <Input icon={'mail'} />
+            <FormField label={'Icon:'}>
+              <Dropdown name={'Select one'} icon={'public'} items={[]} onChange={(): void => { }} />
             </FormField>
           </Column>
 
           <Column xl={4} position={'right'}>
-            <FormField label={'Email'}>
-              <Input icon={'mail'} />
+            <FormField label={'URL:'}>
+              <Input icon={'link'} placeholder={'facebook.com/john.doe'} />
             </FormField>
           </Column>
         </Row>
