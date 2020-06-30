@@ -2,11 +2,11 @@ import Styled from 'styled-components';
 
 import { BORDER_RADIUS_SMALL, COLOR_BLACK_0, COLOR_GRAY_LIGHT, COLOR_PURPLE, TEXT_NORMAL } from '../../utils/values';
 
-export const EditorContainer = Styled.div`
+export const TextAreaContainer = Styled.div`
   position: relative;
 `;
 
-export const EditorTextArea = Styled.textarea`
+export const TextAreaField = Styled.textarea`
   cursor: text;
   font-family: Proxima Nova Regular;
   height: 100%;

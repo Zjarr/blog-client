@@ -4,8 +4,8 @@ import { Banner } from '../../components/banner';
 import { MenuButton, SimpleButton, TextButton } from '../../components/button';
 import { IconCard, ImageCard } from '../../components/card';
 import { Dropdown } from '../../components/dropdown';
-import { Editor } from '../../components/editor';
 import { FormField } from '../../components/form-field';
+import { Header } from '../../components/header';
 import { Image } from '../../components/image';
 import { ImageList } from '../../components/image-list';
 import { Input } from '../../components/input';
@@ -13,10 +13,9 @@ import { List } from '../../components/list';
 import { Loading } from '../../components/loading';
 import { Renderer } from '../../components/renderer';
 import { TitleText } from '../../components/text';
+import { TextArea } from '../../components/textarea';
 import { Toggle } from '../../components/toggle';
 import { IUpdateImageResult, UpdateImage } from '../../components/update-image';
-import { Header } from '../../components/header';
-
 import { COLOR_GREEN, COLOR_PURPLE } from '../../utils/values';
 
 const string = `
@@ -66,7 +65,7 @@ export const PlaygroundPage: React.FC<{}> = () => {
   const [image, setImage] = React.useState<string>('https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg');
   const [imageListModalVisible, setImageListModalVisible] = React.useState<boolean>(false);
   const [loadingModalVisible, setLoadingModalVisible] = React.useState<boolean>(false);
-  const [md, setMD] = React.useState<string>(string);
+  const [md] = React.useState<string>(string);
   const [updateImageModalVisible, setUpdateImageModalVisible] = React.useState<boolean>(false);
 
   return (
@@ -383,7 +382,7 @@ export const PlaygroundPage: React.FC<{}> = () => {
 
       <TitleText>Text Editor</TitleText>
       <p></p>
-      <Editor label={'Blog body:'} text={''} onTextChange={(text: string): void => setMD(text)} />
+      <TextArea label={'Blog body:'} />
       <br />
       <br />
       <br />
