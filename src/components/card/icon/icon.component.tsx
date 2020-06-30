@@ -39,7 +39,7 @@ export const IconCard: React.FC<IIconCard> = ({ disabled, icon, onClick, text, t
         <IconButtonContainer>
           <SimpleButton
             height={'48px'}
-            icon={'close'}
+            icon={'clear'}
             width={'48px'}
 
             onClick={handleButtonClick}
