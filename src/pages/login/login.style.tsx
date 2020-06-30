@@ -16,5 +16,4 @@ export const ButtonsContainer = Styled.div`
   justify-content: space-between;
   position: absolute;
   right: 0;
-  width: 254px;
 `;

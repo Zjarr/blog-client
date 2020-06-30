@@ -20,7 +20,6 @@ export const LoginPage: React.FC<{}> = () => {
       </FormField>
 
       <ButtonsContainer>
-        <SimpleButton width={'auto'}>Forgot password?</SimpleButton>
         <SimpleButton color={COLOR_PURPLE} width={'auto'}>Login</SimpleButton>
       </ButtonsContainer>
     </LoginContainer>

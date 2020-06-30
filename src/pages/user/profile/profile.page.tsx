@@ -16,7 +16,6 @@ import {
   Label,
   Name,
   ProfileContainer,
-  Role,
   SocialContainer
 } from './profile.style';
 
@@ -31,7 +30,6 @@ export const ProfileUserPage: React.FC<IProfileUserPage> = () => {
 
           <BasicInfoContainer>
             <Name>Pablo Navarro</Name>
-            <Role >Administrator</Role>
           </BasicInfoContainer>
 
           <SocialContainer>

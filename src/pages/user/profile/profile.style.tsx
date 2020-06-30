@@ -2,7 +2,7 @@ import Styled from 'styled-components';
 
 import { Column } from '../../../components/column';
 
-import { COLOR_GRAY_DARK, TEXT_BIG, TEXT_NORMAL } from '../../../utils/values';
+import { COLOR_GRAY_DARK, TEXT_BIG } from '../../../utils/values';
 
 export const ProfileContainer = Styled.div`
   height: 100%;
@@ -62,12 +62,7 @@ export const Info = Styled.p``;
 
 export const Name = Styled.p`
   font-family: Proxima Nova Bold;
-  margin-bottom: 0;
+  margin-bottom: 16px;
 
   font-size: ${TEXT_BIG};
-`;
-
-export const Role = Styled.p`
-  color: ${COLOR_GRAY_DARK};
-  font-size: ${TEXT_NORMAL};
 `;

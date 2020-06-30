@@ -68,19 +68,6 @@ export const DashboardPage: React.FC<{}> = () => {
             icon={'insert_photo'}>Images</MenuButton>
         </MiddleButtonContainer>
 
-        <MiddleButtonContainer>
-          <LabelText>Admin</LabelText>
-
-          <MenuButton
-            active={section === 'users'}
-            onClick={(): void => navigateTo('/admin/users')}
-            icon={'supervised_user_circle'}>Users</MenuButton>
-          <MenuButton
-            active={section === 'roles'}
-            onClick={(): void => navigateTo('/admin/roles')}
-            icon={'policy'}>Roles</MenuButton>
-        </MiddleButtonContainer>
-
         <BottomContainer>
           <LogoImg src={Logo} />
 

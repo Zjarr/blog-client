@@ -4,9 +4,7 @@ import { ListBlogPage } from '../blog/list';
 import { ListCategoryPage } from '../category/list';
 import { ListImagePage } from '../image/list';
 import { NotFoundPage } from '../not-found';
-import { ListRolePage } from '../role/list';
 import { SummaryPage } from '../summary';
-import { ListUserPage } from '../user/list';
 import { ProfileUserPage } from '../user/profile';
 
 export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, section }) => {
@@ -40,22 +38,6 @@ export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, sec
     return <NotFoundPage />;
   };
 
-  const usersComponentSwitch = (action?: string | null, param?: string | null): React.ReactElement => {
-    if (action === 'view') return <h1>Users: View {param}</h1>;
-    if (action === 'add') return <h1>Users: Add</h1>;
-    if (!action) return <ListUserPage />;
-
-    return <NotFoundPage />;
-  };
-
-  const rolesComponentSwitch = (action?: string | null, param?: string | null): React.ReactElement => {
-    if (action === 'view') return <h1>Roles: View {param}</h1>;
-    if (action === 'add') return <h1>Roles: Add</h1>;
-    if (!action) return <ListRolePage />;
-
-    return <NotFoundPage />;
-  };
-
   const componentToRender = (section: string | null, action?: string | null, param?: string | null): React.ReactElement => {
     if (section === 'dashboard') return <SummaryPage />;
 
@@ -63,8 +45,6 @@ export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, sec
     if (section === 'blogs') return blogsComponentSwitch(action, param);
     if (section === 'categories') return categoriesComponentSwitch(action, param);
     if (section === 'images') return imagesComponentSwitch(action, param);
-    if (section === 'users') return usersComponentSwitch(action, param);
-    if (section === 'roles') return rolesComponentSwitch(action, param);
 
     return <NotFoundPage />;
   };
