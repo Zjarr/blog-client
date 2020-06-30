@@ -81,7 +81,7 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
           </Row>
 
           <AddButtonContainer>
-            <SimpleButton icon={'add'} width={'auto'}>Add social network</SimpleButton>
+            <SimpleButton icon={'add'} color={COLOR_PURPLE} width={'auto'}>Add social network</SimpleButton>
           </AddButtonContainer>
         </SocialNetworksContainer>
 
