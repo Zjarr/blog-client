@@ -3,7 +3,9 @@ import Styled from 'styled-components';
 import { BORDER_RADIUS_SMALL, COLOR_BLACK_0, COLOR_GRAY_LIGHT, COLOR_PURPLE, TEXT_NORMAL } from '../../utils/values';
 
 export const TextAreaContainer = Styled.div`
+  height: 100%;
   position: relative;
+  width: 100%;
 `;
 
 export const TextAreaField = Styled.textarea`
@@ -13,7 +15,7 @@ export const TextAreaField = Styled.textarea`
   margin: 0;
   outline: none;
   overflow: hidden;
-  padding: 8px 16px;
+  padding: 10px 16px;
   resize: none;
   transition: 0.25s ease;
   width: 100%;
