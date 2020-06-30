@@ -4,7 +4,7 @@ import { Column } from '../../../components/column';
 
 import { COLOR_GRAY_DARK, TEXT_BIG } from '../../../utils/values';
 
-export const ProfileContainer = Styled.div`
+export const ViewContainer = Styled.div`
   height: 100%;
   padding: 16px;
   overflow-y: scroll;

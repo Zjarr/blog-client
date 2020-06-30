@@ -15,14 +15,17 @@ import {
   InfoContainer,
   Label,
   Name,
-  ProfileContainer,
+  ViewContainer,
   SocialContainer
-} from './profile.style';
+} from './view.style';
+import { useNavigateTo } from '../../../utils/hooks';
 
-export const ProfileUserPage: React.FC<IProfileUserPage> = () => {
+export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
+  const navigateTo = useNavigateTo();
+
   return (
-    <ProfileContainer>
-      <Header title={'My profile'} />
+    <ViewContainer>
+      <Header title={'Profile'} />
 
       <Row>
         <ContentContainer md={{ span: 6, offset: 3 }}>
@@ -63,12 +66,12 @@ export const ProfileUserPage: React.FC<IProfileUserPage> = () => {
       </Row>
 
       <ButtonContainer>
-        <SimpleButton icon={'vpn_key'}/>
-        <SimpleButton icon={'edit'} color={COLOR_PURPLE}/>
+        <SimpleButton icon={'vpn_key'} />
+        <SimpleButton icon={'edit'} color={COLOR_PURPLE} onClick={(): void => navigateTo('/admin/profile/edit')} />
       </ButtonContainer>
-    </ProfileContainer>
+    </ViewContainer>
   );
 };
 
-interface IProfileUserPage {
+interface IViewProfilePage {
 }
