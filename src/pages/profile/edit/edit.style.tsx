@@ -20,6 +20,13 @@ export const SocialNetworksContainer = Styled.div`
   margin-top: 48px;
 `;
 
+export const AddButtonContainer = Styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+  width: 100%;
+`;
+
 export const CurrentContainer = Styled.div`
   margin-top: 48px;
 `;
