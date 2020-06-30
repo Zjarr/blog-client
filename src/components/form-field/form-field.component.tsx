@@ -10,7 +10,7 @@ export const FormField: React.FC<IFormField> = ({ children, label, ...rest }) =>
       {
         label && <LabelText>{label}</LabelText>
       }
-      <BodyContainer>
+      <BodyContainer >
         {children}
       </BodyContainer>
     </FormFieldContainer>
@@ -19,6 +19,7 @@ export const FormField: React.FC<IFormField> = ({ children, label, ...rest }) =>
 
 interface IFormField {
   label?: string;
+  height?: string;
   noMargin?: boolean;
   width?: string;
 }
