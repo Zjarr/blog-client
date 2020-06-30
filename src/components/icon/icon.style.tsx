@@ -1,6 +1,8 @@
 import Styled from 'styled-components';
 
-const DEFAULT_ICON_COLOR = 'inherit';
+import { COLOR_BLACK } from '../../utils/values';
+
+const DEFAULT_ICON_COLOR = COLOR_BLACK;
 const DEFAULT_ICON_SIZE = '16px';
 
 const getIconColor = (color?: string): string => color ? color : DEFAULT_ICON_COLOR;
