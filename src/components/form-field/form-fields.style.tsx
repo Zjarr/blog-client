@@ -1,7 +1,7 @@
 import Styled from 'styled-components';
 import Row from 'react-bootstrap/Row';
 
-const DEFAULT_FORM_FIELD_CONTAINER_HEIGHT = 'auto%';
+const DEFAULT_FORM_FIELD_CONTAINER_HEIGHT = 'auto';
 const DEFAULT_FORM_FIELD_CONTAINER_MARGIN_BOTTOM = '24px';
 const DEFAULT_FORM_FIELD_CONTAINER_WIDTH = '100%';
 
