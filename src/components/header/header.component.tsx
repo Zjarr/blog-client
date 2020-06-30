@@ -1,16 +1,24 @@
 import React from 'react';
 
+import { useNavigateTo } from '../../utils/hooks';
+import { COLOR_GRAY_DARK } from '../../utils/values';
+
 import { TextButton } from '../button';
 import { TitleText } from '../text';
 
 import { HeaderContainer, TitleContainer } from './header.style';
-import { COLOR_GRAY_DARK } from '../../utils/values';
 
-export const Header: React.FC<IHeader> = ({ backButtonText, title }) => {
+export const Header: React.FC<IHeader> = ({ backButtonLink, backButtonText, title }) => {
+  const navigateTo = useNavigateTo();
+
   return (
     <HeaderContainer>
       {
-        backButtonText && <TextButton color={COLOR_GRAY_DARK} icon={'arrow_back_ios'}>{backButtonText}</TextButton>
+        backButtonText && backButtonLink &&
+        <TextButton
+          color={COLOR_GRAY_DARK}
+          icon={'arrow_back_ios'}
+          onClick={(): void => navigateTo(backButtonLink)}>{backButtonText}</TextButton>
       }
 
       <TitleContainer>
@@ -21,6 +29,7 @@ export const Header: React.FC<IHeader> = ({ backButtonText, title }) => {
 };
 
 interface IHeader {
+  backButtonLink?: string;
   backButtonText?: string;
   title: string;
 }
