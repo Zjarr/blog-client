@@ -5,12 +5,13 @@ import { ListCategoryPage } from '../category/list';
 import { ListImagePage } from '../image/list';
 import { NotFoundPage } from '../not-found';
 import { SummaryPage } from '../summary';
-import { ProfileUserPage } from '../user/profile';
+import { ViewProfilePage } from '../profile/view';
+import { EditProfilePage } from '../profile/edit';
 
 export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, section }) => {
   const profileComponentSwitch = (action?: string | null): React.ReactElement => {
-    if (action === 'view') return <h1>Profile: View</h1>;
-    if (!action) return <ProfileUserPage />;
+    if (action === 'edit') return <EditProfilePage />;
+    if (!action) return <ViewProfilePage />;
 
     return <NotFoundPage />;
   };
