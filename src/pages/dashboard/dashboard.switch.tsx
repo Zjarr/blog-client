@@ -9,6 +9,7 @@ import { ProfileUserPage } from '../user/profile';
 
 export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, section }) => {
   const profileComponentSwitch = (action?: string | null): React.ReactElement => {
+    if (action === 'view') return <h1>Profile: View</h1>;
     if (!action) return <ProfileUserPage />;
 
     return <NotFoundPage />;
