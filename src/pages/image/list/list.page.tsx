@@ -1,11 +1,14 @@
 import React from 'react';
 
+import { SimpleButton } from '../../../components/button';
 import { Column } from '../../../components/column';
+import { Footer } from '../../../components/footer';
 import { FormField } from '../../../components/form-field';
 import { Header } from '../../../components/header';
 import { List } from '../../../components/list';
 import { SubtitleText } from '../../../components/text';
 import { Toggle } from '../../../components/toggle';
+import { COLOR_PURPLE } from '../../../utils/values';
 
 import { ImageListContainer, ListContainer } from './list.style';
 
@@ -108,6 +111,10 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
           </FormField>
         </Column>
       </ListContainer>
+
+      <Footer>
+        <SimpleButton color={COLOR_PURPLE} icon={'add'} />
+      </Footer>
     </ImageListContainer>
   );
 };
