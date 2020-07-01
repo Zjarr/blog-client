@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_SMALL, COLOR_BLACK_0, COLOR_GRAY_LIGHT, COLOR_PURPLE, TEXT_NORMAL } from '../../utils/values';
+import { BORDER_RADIUS_SMALL, COLOR_BLACK, COLOR_BLACK_0, COLOR_GRAY_LIGHT, COLOR_GRAY_MEDIUM, COLOR_PURPLE, TEXT_NORMAL } from '../../utils/values';
 
 export const TextAreaContainer = Styled.div`
   height: 100%;
@@ -29,5 +29,16 @@ export const TextAreaField = Styled.textarea`
     transition: 0.25s ease;
     
     border-color: ${COLOR_PURPLE};
+  }
+
+  ::placeholder {
+    color: ${COLOR_GRAY_MEDIUM};
+  }
+
+  :disabled {
+    cursor: default;
+
+    border-color: ${COLOR_BLACK_0};
+    color: ${COLOR_BLACK};
   }
 `;

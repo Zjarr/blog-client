@@ -18,6 +18,7 @@ export const TextArea: React.FC<ITextArea> = ({ label, ...rest }) => {
 };
 
 interface ITextArea {
+  disabled?: boolean;
   label?: string;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   value?: string;
