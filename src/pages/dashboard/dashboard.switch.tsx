@@ -17,24 +17,21 @@ export const DashboardSwitch: React.FC<IDashboardSwitch> = ({ action, param, sec
   };
 
   const blogsComponentSwitch = (action?: string | null, param?: string | null): React.ReactElement => {
-    if (action === 'view') return <h1>Blogs: View {param}</h1>;
-    if (action === 'add') return <h1>Blogs: Add</h1>;
+    if (action === 'add' || action === 'edit' || action === 'view') return <h1>Blogs {action} {param}</h1>;
     if (!action) return <ListBlogPage />;
 
     return <NotFoundPage />;
   };
 
   const categoriesComponentSwitch = (action?: string | null, param?: string | null): React.ReactElement => {
-    if (action === 'view') return <h1>Categories: View {param}</h1>;
-    if (action === 'add') return <h1>Categories: Add</h1>;
+    if (action === 'add' || action === 'edit' || action === 'view') return <h1>Categories {action} {param}</h1>;
     if (!action) return <ListCategoryPage />;
 
     return <NotFoundPage />;
   };
 
   const imagesComponentSwitch = (action?: string | null, param?: string | null): React.ReactElement => {
-    if (action === 'view') return <h1>Images: View {param}</h1>;
-    if (action === 'add') return <h1>Images: Add</h1>;
+    if (action === 'add' || action === 'edit' || action === 'view') return <h1>Images {action} {param}</h1>;
     if (!action) return <ListImagePage />;
 
     return <NotFoundPage />;
