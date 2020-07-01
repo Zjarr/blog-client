@@ -8,11 +8,14 @@ import { Header } from '../../../components/header';
 import { List } from '../../../components/list';
 import { SubtitleText } from '../../../components/text';
 import { Toggle } from '../../../components/toggle';
+import { useNavigateTo } from '../../../utils/hooks';
 import { COLOR_PURPLE } from '../../../utils/values';
 
 import { ImageListContainer, ListContainer } from './list.style';
 
 export const ListImagePage: React.FC<IListImagePage> = () => {
+  const navigateTo = useNavigateTo();
+
   return (
     <ImageListContainer>
       <Header title={'Images'} />
@@ -113,7 +116,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
       </ListContainer>
 
       <Footer>
-        <SimpleButton color={COLOR_PURPLE} icon={'add'} />
+        <SimpleButton color={COLOR_PURPLE} icon={'add'} onClick={(): void => navigateTo('/admin/images/add')} />
       </Footer>
     </ImageListContainer>
   );

@@ -1,16 +1,22 @@
 import React from 'react';
 
+import { SimpleButton } from '../../../components/button';
 import { Column } from '../../../components/column';
 import { Dropdown } from '../../../components/dropdown';
+import { Footer } from '../../../components/footer';
 import { FormField } from '../../../components/form-field';
 import { Header } from '../../../components/header';
 import { List } from '../../../components/list';
 import { SubtitleText } from '../../../components/text';
 import { Toggle } from '../../../components/toggle';
+import { useNavigateTo } from '../../../utils/hooks';
+import { COLOR_PURPLE } from '../../../utils/values';
 
 import { BlogListContainer, ListContainer } from './list.style';
 
 export const ListBlogPage: React.FC<IListBlogPage> = () => {
+  const navigateTo = useNavigateTo();
+
   return (
     <BlogListContainer>
       <Header title={'Blogs'} />
@@ -129,6 +135,10 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
           </FormField>
         </Column>
       </ListContainer>
+
+      <Footer>
+        <SimpleButton color={COLOR_PURPLE} icon={'add'} onClick={(): void => navigateTo('/admin/blogs/add')} />
+      </Footer>
     </BlogListContainer>
   );
 };

@@ -1,15 +1,21 @@
 import React from 'react';
 
+import { SimpleButton } from '../../../components/button';
 import { Column } from '../../../components/column';
+import { Footer } from '../../../components/footer';
 import { FormField } from '../../../components/form-field';
 import { Header } from '../../../components/header';
 import { List } from '../../../components/list';
 import { SubtitleText } from '../../../components/text';
 import { Toggle } from '../../../components/toggle';
+import { useNavigateTo } from '../../../utils/hooks';
+import { COLOR_PURPLE } from '../../../utils/values';
 
 import { CategoryListContainer, ListContainer } from './list.style';
 
 export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
+  const navigateTo = useNavigateTo();
+
   return (
     <CategoryListContainer>
       <Header title={'Categories'} />
@@ -108,6 +114,10 @@ export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
           </FormField>
         </Column>
       </ListContainer>
+
+      <Footer>
+        <SimpleButton color={COLOR_PURPLE} icon={'add'} onClick={(): void => navigateTo('/admin/categories/add')} />
+      </Footer>
     </CategoryListContainer>
   );
 };
