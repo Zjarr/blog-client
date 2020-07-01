@@ -5,6 +5,7 @@ import { SimpleButton } from '../../../components/button';
 import { IconCard } from '../../../components/card';
 import { Column } from '../../../components/column';
 import { Dropdown } from '../../../components/dropdown';
+import { Footer } from '../../../components/footer';
 import { FormField } from '../../../components/form-field';
 import { Header } from '../../../components/header';
 import { Image } from '../../../components/image';
@@ -18,7 +19,6 @@ import {
   BodyContainer,
   CurrentContainer,
   EditContainer,
-  FooterContainer,
   ImageColumn,
   SocialNetworksContainer
 } from './edit.style';
@@ -102,10 +102,10 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
         </CurrentContainer>
       </BodyContainer>
 
-      <FooterContainer>
+      <Footer>
         <SimpleButton icon={'clear'} />
         <SimpleButton color={COLOR_PURPLE} icon={'done'} />
-      </FooterContainer>
+      </Footer>
     </EditContainer>
   );
 };
