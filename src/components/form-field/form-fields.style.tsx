@@ -15,9 +15,15 @@ const getFormFieldContainerWidth = (width?: string): string => width ? width : D
 
 export const BodyContainer = Styled(Row)`
   height: 100%;
+
+  > *:not(:first-child) {
+    margin-left: 16px;
+  }
 `;
 
 export const FormFieldContainer = Styled.div<{ height?: string, noMargin?: boolean, width?: string }>`
+  display: flex;
+  flex-direction: column;
   position: relative;
 
   height: ${({ height }): string => getFormFieldContainerHeight(height)};
