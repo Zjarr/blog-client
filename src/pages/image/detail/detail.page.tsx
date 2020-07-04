@@ -10,21 +10,29 @@ import { Image } from '../../../components/image';
 import { Input } from '../../../components/input';
 import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
+import { useNavigateTo } from '../../../utils/hooks';
 import { COLOR_PURPLE } from '../../../utils/values';
 
 import { BodyContainer, DetailContainer, ImageColumn } from './detail.style';
 
-export const DetailImagePage: React.FC<IDetailImage> = ({ action }) => {
-  const [editMode, setEditMode] = React.useState<boolean>(false);
-  const [header, setHeader] = React.useState<string>('');
+export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
+  const [headerTitle, setHeaderTitle] = React.useState<string>('');
 
-  const toggleEditView = (): void => {
-    return setEditMode(!editMode);
+  const navigateTo = useNavigateTo();
+
+  const handleCancelClick = (): void => {
+    if (action === 'add') return navigateTo('/admin/images');
+    if (action === 'edit') return navigateTo(`/admin/images/view/${param}`);
+  };
+
+  const handleDoneClick = (): void => {
+    if (action === 'view') return navigateTo(`/admin/images/edit/${param}`);
   };
 
   const initPageProperties = React.useCallback((action): void => {
-    if (action === 'add') setHeader('Add image');
-    if (action === 'view') setHeader('Image details');
+    if (action === 'add') setHeaderTitle('Add image');
+    if (action === 'edit') setHeaderTitle('Edit image');
+    if (action === 'view') setHeaderTitle('Image details');
   }, []);
 
   React.useEffect(() => {
@@ -33,31 +41,31 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action }) => {
 
   return (
     <DetailContainer>
-      <Header title={header} backButtonText={'Images'} backButtonLink={'/admin/images'} />
+      <Header title={headerTitle} backButtonText={'Images'} backButtonLink={'/admin/images'} />
 
       <BodyContainer>
         <Row>
           <ImageColumn xl={4} position={'left'}>
-            <Image shape={'circle'} height={'180px'} width={'180px'} updatable={editMode} />
+            <Image shape={'circle'} height={'180px'} width={'180px'} updatable={action !== 'view'} />
           </ImageColumn>
 
           <Column xl={4} position={'center'}>
             <FormField label={'Name:'}>
-              <Input icon={'insert_photo'} placeholder={'An awesome image'} disabled={!editMode} />
+              <Input icon={'insert_photo'} placeholder={'An awesome image'} disabled={action === 'view'} />
             </FormField>
 
             <FormField label={'Alt:'}>
-              <Input icon={'insert_photo'} placeholder={'Awesome alt text'} disabled={!editMode} />
+              <Input icon={'insert_photo'} placeholder={'Awesome alt text'} disabled={action === 'view'} />
             </FormField>
 
             <FormField label={'Active:'}>
-              <Toggle disabled={!editMode} />
+              <Toggle disabled={action === 'view'} />
             </FormField>
           </Column>
 
           <Column xl={4} position={'right'}>
             <FormField height={'148px'} label={'Description:'}>
-              <TextArea disabled={!editMode} />
+              <TextArea disabled={action === 'view'} />
             </FormField>
           </Column>
         </Row>
@@ -65,9 +73,9 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action }) => {
 
       <Footer>
         {
-          editMode && <SimpleButton icon={'clear'} onClick={toggleEditView} />
+          (action === 'add' || action === 'edit') && <SimpleButton icon={'clear'} onClick={handleCancelClick} />
         }
-        <SimpleButton color={COLOR_PURPLE} icon={editMode ? 'done' : 'edit'} onClick={toggleEditView} />
+        <SimpleButton color={COLOR_PURPLE} icon={action === 'view' ? 'edit' : 'done'} onClick={handleDoneClick} />
       </Footer>
     </DetailContainer>
   );
