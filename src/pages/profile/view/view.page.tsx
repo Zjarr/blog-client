@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import { SimpleButton } from '../../../components/button';
 import { Header } from '../../../components/header';
 import { Image } from '../../../components/image';
+import { useNavigateTo } from '../../../utils/hooks';
 import { COLOR_PURPLE } from '../../../utils/values';
 
 import {
@@ -15,10 +16,9 @@ import {
   InfoContainer,
   Label,
   Name,
-  ViewContainer,
-  SocialContainer
+  SocialContainer,
+  ViewContainer
 } from './view.style';
-import { useNavigateTo } from '../../../utils/hooks';
 
 export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
   const navigateTo = useNavigateTo();
@@ -62,7 +62,6 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
             </InfoContainer>
           </AdvancedInfoContainer>
         </ContentContainer>
-
       </Row>
 
       <ButtonContainer>

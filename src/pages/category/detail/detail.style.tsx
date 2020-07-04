@@ -1,4 +1,5 @@
 import Styled from 'styled-components';
+import Row from 'react-bootstrap/Row';
 
 export const DetailContainer = Styled.div`
   height: 100%;
@@ -6,4 +7,4 @@ export const DetailContainer = Styled.div`
   overflow-y: scroll;
 `;
 
-export const BodyContainer = Styled.div``;
+export const BodyContainer = Styled(Row)``;

@@ -1,3 +1,4 @@
+import Row from 'react-bootstrap/Row';
 import Styled from 'styled-components';
 
 import { Column } from '../../../components/column';
@@ -8,7 +9,7 @@ export const DetailContainer = Styled.div`
   overflow-y: scroll;
 `;
 
-export const BodyContainer = Styled.div``;
+export const BodyContainer = Styled(Row)``;
 
 export const ImageColumn = Styled(Column)`
   align-items: center;
