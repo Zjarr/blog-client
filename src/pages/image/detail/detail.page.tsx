@@ -1,5 +1,4 @@
 import React from 'react';
-import Row from 'react-bootstrap/Row';
 
 import { SimpleButton } from '../../../components/button';
 import { Column } from '../../../components/column';
@@ -44,31 +43,29 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
       <Header title={headerTitle} backButtonText={'Images'} backButtonLink={'/admin/images'} />
 
       <BodyContainer>
-        <Row>
-          <ImageColumn xl={4} position={'left'}>
-            <Image shape={'circle'} height={'180px'} width={'180px'} updatable={action !== 'view'} />
-          </ImageColumn>
+        <ImageColumn xl={4} position={'left'}>
+          <Image shape={'circle'} height={'180px'} width={'180px'} updatable={action !== 'view'} />
+        </ImageColumn>
 
-          <Column xl={4} position={'center'}>
-            <FormField label={'Name:'}>
-              <Input icon={'insert_photo'} placeholder={'An awesome image'} disabled={action === 'view'} />
-            </FormField>
+        <Column xl={4} position={'center'}>
+          <FormField label={'Name:'}>
+            <Input icon={'insert_photo'} placeholder={'An awesome image'} disabled={action === 'view'} />
+          </FormField>
 
-            <FormField label={'Alt:'}>
-              <Input icon={'insert_photo'} placeholder={'Awesome alt text'} disabled={action === 'view'} />
-            </FormField>
+          <FormField label={'Alt:'}>
+            <Input icon={'insert_photo'} placeholder={'Awesome alt text'} disabled={action === 'view'} />
+          </FormField>
 
-            <FormField label={'Active:'}>
-              <Toggle disabled={action === 'view'} />
-            </FormField>
-          </Column>
+          <FormField label={'Active:'}>
+            <Toggle disabled={action === 'view'} />
+          </FormField>
+        </Column>
 
-          <Column xl={4} position={'right'}>
-            <FormField height={'148px'} label={'Description:'}>
-              <TextArea disabled={action === 'view'} />
-            </FormField>
-          </Column>
-        </Row>
+        <Column xl={4} position={'right'}>
+          <FormField height={'148px'} label={'Description:'}>
+            <TextArea disabled={action === 'view'} />
+          </FormField>
+        </Column>
       </BodyContainer>
 
       <Footer>

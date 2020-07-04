@@ -1,5 +1,4 @@
 import React from 'react';
-import Row from 'react-bootstrap/Row';
 
 import { SimpleButton } from '../../../components/button';
 import { Column } from '../../../components/column';
@@ -44,29 +43,27 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
       <Header title={headerTitle} backButtonText={'Categories'} backButtonLink={'/admin/categories'} />
 
       <BodyContainer>
-        <Row>
-          <Column xl={4} position={'left'}>
-            <FormField label={'Name:'}>
-              <Input icon={'category'} placeholder={'Awesome category'} disabled={action === 'view'} />
-            </FormField>
+        <Column xl={4} position={'left'}>
+          <FormField label={'Name:'}>
+            <Input icon={'category'} placeholder={'Awesome category'} disabled={action === 'view'} />
+          </FormField>
 
-            <FormField label={'Icon:'}>
-              <Dropdown icon={'category'} items={[]} onChange={(): void => { }} name={'Select one'} disabled={action === 'view'} />
-            </FormField>
-          </Column>
+          <FormField label={'Icon:'}>
+            <Dropdown icon={'category'} items={[]} onChange={(): void => { }} name={'Select one'} disabled={action === 'view'} />
+          </FormField>
+        </Column>
 
-          <Column xl={4} position={'center'}>
-            <FormField label={'Description:'} height={'148px'}>
-              <TextArea disabled={action === 'view'} />
-            </FormField>
-          </Column>
+        <Column xl={4} position={'center'}>
+          <FormField label={'Description:'} height={'148px'}>
+            <TextArea disabled={action === 'view'} />
+          </FormField>
+        </Column>
 
-          <Column xl={4} position={'right'}>
-            <FormField label={'Active:'}>
-              <Toggle disabled={action === 'view'} />
-            </FormField>
-          </Column>
-        </Row>
+        <Column xl={4} position={'right'}>
+          <FormField label={'Active:'}>
+            <Toggle disabled={action === 'view'} />
+          </FormField>
+        </Column>
       </BodyContainer>
 
       <Footer>
