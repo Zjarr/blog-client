@@ -17,6 +17,7 @@ export const SliderContainer = Styled.span`
   position: absolute;
   right: 0;
   top: 0;
+  user-select: none;
 
   background-color: ${COLOR_WHITE};
   border: 2px solid ${COLOR_GRAY_LIGHT};
