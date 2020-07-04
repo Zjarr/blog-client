@@ -5,3 +5,5 @@ export const DetailContainer = Styled.div`
   padding: 16px 16px 112px;
   overflow-y: scroll;
 `;
+
+export const BodyContainer = Styled.div``;
