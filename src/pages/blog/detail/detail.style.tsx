@@ -8,3 +8,12 @@ export const DetailContainer = Styled.div`
 `;
 
 export const BodyContainer = Styled(Row)``;
+
+export const EditorButtonsContainer = Styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  button:last-child {
+    margin-left: 16px;
+  }
+`;
