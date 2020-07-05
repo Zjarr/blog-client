@@ -1,33 +1,34 @@
 import React from 'react';
 
 import { SimpleButton } from '../../../components/button';
+import { IconCard } from '../../../components/card';
+import { Column } from '../../../components/column';
+import { Dropdown } from '../../../components/dropdown';
 import { Footer } from '../../../components/footer';
+import { FormField } from '../../../components/form-field';
 import { Header } from '../../../components/header';
-import { useNavigateTo } from '../../../utils/hooks';
+import { Image } from '../../../components/image';
+import { Input } from '../../../components/input';
+import { Renderer } from '../../../components/renderer';
+import { LabelText } from '../../../components/text';
+import { TextArea } from '../../../components/textarea';
+import { Toggle } from '../../../components/toggle';
+import { useNavigateTo, useTextArea } from '../../../utils/hooks';
+import { ISource } from '../../../utils/interfaces';
 import { COLOR_PURPLE } from '../../../utils/values';
 
 import { BodyContainer, DetailContainer, EditorButtonsContainer, SimpleListContainer } from './detail.style';
-import { Column } from '../../../components/column';
-import { Image } from '../../../components/image';
-import { FormField } from '../../../components/form-field';
-import { TextArea } from '../../../components/textarea';
-import { Input } from '../../../components/input';
-import { Toggle } from '../../../components/toggle';
-import { Dropdown } from '../../../components/dropdown';
-import { IconCard } from '../../../components/card';
-import { ISource } from '../../../utils/interfaces';
-import { LabelText } from '../../../components/text';
 
 export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
+  const [previewBlog, setPreviewBlog] = React.useState<boolean>(false);
+
   const [headerTitle, setHeaderTitle] = React.useState<string>('');
-  const [categories] = React.useState<string[]>(['hello', 'hello', 'hello', 'hello']);
-  const [sources] = React.useState<ISource[]>([
-    { name: 'Hello', url: 'www.google.com' },
-    { name: 'Hello', url: 'www.google.com' },
-    { name: 'Hello', url: 'www.google.com' }
-  ]);
+
+  const [categories] = React.useState<string[]>([]);
+  const [sources] = React.useState<ISource[]>([]);
 
   const navigateTo = useNavigateTo();
+  const blogBody = useTextArea();
 
   const handleCancelClick = (): void => {
     if (action === 'add') return navigateTo('/admin/blogs');
@@ -36,6 +37,10 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
 
   const handleDoneClick = (): void => {
     if (action === 'view') return navigateTo(`/admin/blogs/edit/${param}`);
+  };
+
+  const togglePreviewClick = (): void => {
+    return setPreviewBlog(!previewBlog);
   };
 
   const initPageProperties = React.useCallback((action): void => {
@@ -54,15 +59,27 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
 
       <BodyContainer>
         <Column xl={8} position={'left'}>
-          <FormField label={'Body:'} height={'calc(100vh - 232px)'}>
-            <TextArea disabled={action === 'view'} />
-          </FormField>
+          {
+            action === 'view' || previewBlog ?
+              <FormField label={'Result:'} minHeight={'calc(100vh - 232px)'}>
+                <Renderer source={blogBody.value} />
+              </FormField>
+              :
+              <FormField label={'Body:'} height={'calc(100vh - 232px)'}>
+                <TextArea disabled={action === 'view'} {...blogBody} />
+              </FormField>
+          }
 
           {
             action !== 'view' &&
             <EditorButtonsContainer>
-              <SimpleButton icon={'visibility'} width={'auto'}>View images</SimpleButton>
-              <SimpleButton color={COLOR_PURPLE} icon={'insert_photo'} width={'auto'}>Preview result</SimpleButton>
+              <SimpleButton icon={'insert_photo'} width={'auto'}>View images</SimpleButton>
+
+              <SimpleButton
+                onClick={togglePreviewClick}
+                color={COLOR_PURPLE}
+                icon={'visibility'}
+                width={'auto'}>{previewBlog ? 'Edit body' : 'Preview result'}</SimpleButton>
             </EditorButtonsContainer>
           }
         </Column>
@@ -80,7 +97,7 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
             <Input icon={'star'} placeholder={'unique-blog-name'} disabled={action === 'view'} />
           </FormField>
 
-          <FormField label={'Description:'} height={'136px'}>
+          <FormField label={'Description:'} height={'135px'}>
             <TextArea disabled={action === 'view'} />
           </FormField>
 
