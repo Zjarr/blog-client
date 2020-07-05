@@ -14,7 +14,7 @@ export const TextAreaField = Styled.textarea`
   height: 100%;
   margin: 0;
   outline: none;
-  overflow: hidden;
+  overflow: auto;
   padding: 10px 16px;
   resize: none;
   transition: 0.25s ease;
