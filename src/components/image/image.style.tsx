@@ -8,10 +8,14 @@ const DEFAULT_IMAGE_CONTAINER_BORDER_RADIUS = BORDER_RADIUS_SMALL;
 const DEFAULT_IMAGE_CONTAINER_SIZE = '96px';
 
 const DEFAULT_IMAGE_HEIGHT = '100%';
+const DEFAULT_IMAGE_OBJECT_FIT = 'cover';
+const DEFAULT_IMAGE_WIDTH = '100%';
 const DEFAULT_UPDATE_BUTTON_OPACITY = '1';
 const DEFAULT_UPDATE_BUTTON_VISIBILITY = 'visible';
 
 const NO_IMAGE_HEIGHT = '65%';
+const NO_IMAGE_OBJECT_FIT = 'container';
+const NO_IMAGE_WIDTH = 'auto';
 const NO_UPDATE_BUTTON_OPACITY = '0';
 const NO_UPDATE_BUTTON_VISIBILITY = 'hidden';
 
@@ -19,7 +23,9 @@ const getContainerBorderRadius = (shape?: string): string => shape === 'circle' 
   CIRCLE_IMAGE_CONTAINER_BORDER_RADIUS : DEFAULT_IMAGE_CONTAINER_BORDER_RADIUS;
 const getContainerSize = (size?: string): string => size ? size : DEFAULT_IMAGE_CONTAINER_SIZE;
 
-const getImageSize = (noImg?: boolean): string => noImg ? NO_IMAGE_HEIGHT : DEFAULT_IMAGE_HEIGHT;
+const getImageHeight = (noImg?: boolean): string => noImg ? NO_IMAGE_HEIGHT : DEFAULT_IMAGE_HEIGHT;
+const getImageObjectFit = (noImg?: boolean): string => noImg ? NO_IMAGE_OBJECT_FIT : DEFAULT_IMAGE_OBJECT_FIT;
+const getImageWidth = (noImg?: boolean): string => noImg ? NO_IMAGE_WIDTH : DEFAULT_IMAGE_WIDTH;
 
 const getUpdateButtonOpacity = (updatable?: boolean): string => updatable ? DEFAULT_UPDATE_BUTTON_OPACITY : NO_UPDATE_BUTTON_OPACITY;
 const getUpdateButtonVisibility = (updatable?: boolean): string => updatable ? DEFAULT_UPDATE_BUTTON_VISIBILITY : NO_UPDATE_BUTTON_VISIBILITY;
@@ -75,8 +81,7 @@ export const ImageContainer = Styled.div<{
 `;
 
 export const Img = Styled.img<{ noImg?: boolean }>`
-  object-fit: cover;
-
-  height: ${({ noImg }): string => getImageSize(noImg)};
-  width: ${({ noImg }): string => getImageSize(noImg)};
+  height: ${({ noImg }): string => getImageHeight(noImg)};
+  object-fit: ${({ noImg }): string => getImageObjectFit(noImg)};
+  width: ${({ noImg }): string => getImageWidth(noImg)};
 `;
