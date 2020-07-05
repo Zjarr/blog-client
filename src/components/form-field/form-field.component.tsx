@@ -20,6 +20,7 @@ export const FormField: React.FC<IFormField> = ({ children, label, ...rest }) =>
 interface IFormField {
   label?: string;
   height?: string;
+  minHeight?: string;
   noMargin?: boolean;
   width?: string;
 }
