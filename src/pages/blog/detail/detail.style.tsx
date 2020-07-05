@@ -17,3 +17,7 @@ export const EditorButtonsContainer = Styled.div`
     margin-left: 16px;
   }
 `;
+
+export const SimpleListContainer = Styled.div`
+  margin-bottom: 16px;
+`;

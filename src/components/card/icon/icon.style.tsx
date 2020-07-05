@@ -23,7 +23,7 @@ export const IconCardContainer = Styled.div<{ width?: string }>`
   display: flex;
   min-height: 64px;
   overflow: hidden;
-  padding: 8px 16px;
+  padding: 8px 4px;
   position: relative;
 
   width: ${({ width }): string => getContainerWidth(width)};
@@ -70,5 +70,5 @@ export const IconTextContainer = Styled.div<{ disabled?: boolean, icon?: string 
 
 export const IconButtonContainer = Styled.div`
   position: absolute;
-  right: 16px;
+  right: 0px;
 `;
