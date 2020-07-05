@@ -8,7 +8,7 @@ export const FooterContainer = Styled.div`
   position: fixed;
   right: 0;
 
-  button:last-child {
+  button:not(first-child) {
     margin-left: 16px;
   }
 `;
