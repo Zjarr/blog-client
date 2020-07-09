@@ -5,6 +5,7 @@ import { BORDER_RADIUS_MEDIUM, COLOR_WHITE } from '../../utils/values';
 export const ImageListContainer = Styled.div`
   bottom: 16px;
   left: 16px;
+  padding: 16px;
   position: absolute;
   right: 16px;
   top: 16px;
@@ -14,7 +15,9 @@ export const ImageListContainer = Styled.div`
 `;
 
 export const ListContainer = Styled.div`
-  bottom: 0;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
   position: absolute;
 `;
 
