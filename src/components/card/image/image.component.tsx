@@ -1,9 +1,7 @@
 import React from 'react';
 
 import { useNavigateTo } from '../../../utils/hooks';
-import { COLOR_BLACK_0, COLOR_GRAY_DARK, COLOR_GREEN, COLOR_WHITE } from '../../../utils/values';
-
-import { Banner } from '../../banner';
+import { COLOR_BLACK_0, COLOR_GRAY_DARK, COLOR_WHITE } from '../../../utils/values';
 import { SimpleButton, TextButton } from '../../button';
 import { Icon } from '../../icon';
 import { Image } from '../../image';
@@ -21,8 +19,17 @@ import {
 } from './image.style';
 
 export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image, link, secondaryText, text, title, width }) => {
-  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
+  const [clipboardIcon, setClipBoardIcon] = React.useState<string>('file_copy');
+
   const navigateTo = useNavigateTo();
+
+  const toggleClipboardIcon = (): void => {
+    setClipBoardIcon('done');
+
+    setTimeout(() => {
+      setClipBoardIcon('file_copy');
+    }, 2000);
+  };
 
   const handleCopyClipboard = (link?: string): void => {
     const el = document.createElement('input');
@@ -35,7 +42,7 @@ export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image
     document.execCommand('copy');
     document.body.removeChild(el);
 
-    return setBannerVisible(true);
+    return toggleClipboardIcon();
   };
 
   return (
@@ -77,18 +84,11 @@ export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image
             <LabelText color={COLOR_WHITE}>URL:</LabelText>
             <URLContainer>
               <ParagraphText color={COLOR_WHITE}>{link}</ParagraphText>
-              <SimpleButton icon={'file_copy'} color={COLOR_BLACK_0} onClick={(): void => handleCopyClipboard(link)} />
+              <SimpleButton icon={clipboardIcon} color={COLOR_BLACK_0} onClick={(): void => handleCopyClipboard(link)} />
             </URLContainer>
           </ClipboardContainer>
         }
       </ImageCardContainer>
-
-      <Banner
-        color={COLOR_GREEN}
-        icon={'check'}
-        text={'URL has been copied to clipboard'}
-        visible={bannerVisible}
-        onHide={(): void => setBannerVisible(false)} />
     </>
   );
 };
