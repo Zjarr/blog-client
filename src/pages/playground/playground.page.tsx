@@ -3,6 +3,7 @@ import React from 'react';
 import { Banner } from '../../components/banner';
 import { MenuButton, SimpleButton, TextButton } from '../../components/button';
 import { IconCard, ImageCard } from '../../components/card';
+import { ChangePassword } from '../../components/change-password';
 import { Dropdown } from '../../components/dropdown';
 import { FormField } from '../../components/form-field';
 import { Header } from '../../components/header';
@@ -16,11 +17,10 @@ import { TitleText } from '../../components/text';
 import { TextArea } from '../../components/textarea';
 import { Toggle } from '../../components/toggle';
 import { IUpdateImageResult, UpdateImage } from '../../components/update-image';
+
 import { COLOR_GREEN, COLOR_PURPLE } from '../../utils/values';
 
 const string = `
-
-
 # Lorem ipsum
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus a dui accumsan, tempor turpis quis, efficitur diam.
@@ -65,6 +65,8 @@ export const PlaygroundPage: React.FC<{}> = () => {
   const [image, setImage] = React.useState<string>('https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg');
   const [imageListModalVisible, setImageListModalVisible] = React.useState<boolean>(false);
   const [loadingModalVisible, setLoadingModalVisible] = React.useState<boolean>(false);
+  const [changePasswordModalVisible, setChangePasswordModalVisible] = React.useState<boolean>(false);
+
   const [md] = React.useState<string>(string);
   const [updateImageModalVisible, setUpdateImageModalVisible] = React.useState<boolean>(false);
 
@@ -208,9 +210,7 @@ export const PlaygroundPage: React.FC<{}> = () => {
       <SimpleButton
         icon={'visibility'}
         width={'auto'}
-
-        onClick={(): void => setLoadingModalVisible(true)}
-      >Show Loading Modal</SimpleButton>
+        onClick={(): void => setLoadingModalVisible(true)}>Show Loading Modal</SimpleButton>
       <Loading
         text={'Adding new user...'}
         visible={loadingModalVisible}
@@ -219,12 +219,19 @@ export const PlaygroundPage: React.FC<{}> = () => {
       <SimpleButton
         icon={'visibility'}
         width={'auto'}
-
-        onClick={(): void => setImageListModalVisible(true)}
-      >Show Image List Modal</SimpleButton>
+        onClick={(): void => setImageListModalVisible(true)}>Show Image List Modal</SimpleButton>
       <ImageList
         onClose={(): void => setImageListModalVisible(false)}
         visible={imageListModalVisible}
+      />
+      <p></p>
+      <SimpleButton
+        icon={'visibility'}
+        width={'auto'}
+        onClick={(): void => setChangePasswordModalVisible(true)}>Show Change Password Modal</SimpleButton>
+      <ChangePassword
+        onClose={(): void => setChangePasswordModalVisible(false)}
+        visible={changePasswordModalVisible}
       />
       <br />
       <br />
