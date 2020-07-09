@@ -24,11 +24,11 @@ export const ButtonContainer = Styled.div`
 export const ImageContainer = Styled.div<{ active: boolean }>`
   align-items: center;
   display: flex;
-  height: 240px;
+  height: 264px;
   justify-content: center;
   margin: auto;
   transition: 0.25s ease;
-  width: 240px;
+  width: 264px;
 
   border-radius: ${BORDER_RADIUS_FULL};
 
@@ -47,19 +47,19 @@ export const ImageInput = Styled.input`
 
 export const ImageLabel = Styled.label`
   cursor: pointer;
-  height: 220px;
+  height: 240px;
   margin-bottom: 0;
-  width: 220px;
+  width: 240px;
 
   background-color: ${COLOR_GRAY_LIGHT};
   border-radius: ${BORDER_RADIUS_FULL};
 `;
 
 export const ImageResult = Styled(Image)`
-  height: 220px;
+  height: 240px;
   pointer-events: none;
   position: absolute;
-  width: 220px;
+  width: 240px;
 `;
 
 export const ImageText = Styled(SubtitleText)`
@@ -68,7 +68,7 @@ export const ImageText = Styled(SubtitleText)`
 `;
 
 export const TitleContainer = Styled.div`
-  padding: 24px 24px 48px;
+  padding: 24px 24px 40px;
 `;
 
 export const UpdateImageContainer = Styled.div`
