@@ -364,16 +364,17 @@ export const PlaygroundPage: React.FC<{}> = () => {
       <TitleText>Form Fields</TitleText>
       <p></p>
       <FormField label={'Hello Label:'}>
-        <Input icon={'group'} width={'33%'} />
-        <Input icon={'group'} width={'33%'} />
-        <Input icon={'group'} width={'33%'} />
+        <Input icon={'group'} width={'calc(100% / 3 - 32px)'} />
+        <Input icon={'group'} width={'calc(100% / 3 - 32px)'} />
+        <Input icon={'group'} width={'calc(100% / 3 - 32px)'} />
         <SimpleButton icon={'group'} />
       </FormField>
 
       <FormField label={'Hello Label:'}>
-        <Input icon={'group'} />
-        <Input icon={'group'} />
+        <Input icon={'group'} width={'calc(100% / 3 - 10.67px)'} />
+        <Input icon={'group'} width={'calc(100% / 3 - 10.67px)'} />
         <Dropdown
+          width={'calc(100% / 3 - 10.67px)'}
           name={'Dropdown'}
           items={[
             { name: 'value', value: 'name' }
