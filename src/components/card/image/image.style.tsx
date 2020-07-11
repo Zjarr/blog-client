@@ -1,5 +1,4 @@
 import Styled from 'styled-components';
-
 import {
   BORDER_RADIUS_FULL,
   BORDER_RADIUS_MEDIUM,
@@ -73,17 +72,16 @@ export const ImageContainer = Styled.div`
 `;
 
 export const ImageMiddleContainer = Styled.div`
-  justify-content: space-around;
   display: flex;
   flex-direction: column;
   height: 100%;
-  margin-right: 48px;
-  min-width: 0;
+  justify-content: space-around;
   position: relative;
+  width: calc(100% - 184px);
 
   p {
-    overflow: hidden;
     margin-bottom: 0;
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 
@@ -100,23 +98,23 @@ export const ImageSecondaryTextContainer = Styled.div`
 `;
 
 export const ImageFinalContainer = Styled.div`
-  position: absolute;
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  right: 16px;
+  justify-content: space-between;
+  margin-left: 16px;
+  width: 56px;
 
-  a,
   button {
-    bottom: 4px;
-    right: -16px;
-    position: absolute;
+    margin-bottom: -4px;
+    margin-right: -16px;
   }
 `;
 
 export const ImageStateIndicator = Styled.div<{ active?: boolean }>`
   height: 8px;
-  position: absolute;
-  right: 0px;
-  top: 22px;
+  margin-top: 14px;
   width: 8px;
 
   border-radius: ${BORDER_RADIUS_FULL};
