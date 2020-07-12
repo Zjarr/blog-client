@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'Socicon';
-  src: url('https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/Socicon.woff2?ls8ev') format('woff2');
   font-weight: normal;
   font-style: normal;
+  src: url(./social-icons.woff2) format('woff2');
 }
 
 [class^="socicon-"], [class*=" socicon-"] {
