@@ -5,7 +5,7 @@ import { BORDER_RADIUS_MEDIUM, COLOR_WHITE } from '../../utils/values';
 export const ButtonContainer = Styled.div`
   bottom: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   left: 0;
   padding: 16px;
   position: absolute;
