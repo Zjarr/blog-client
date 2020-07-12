@@ -23,7 +23,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
 
       <ListContainer>
         <Column xl={9} position={'left'}>
-          <List cards={[
+          <List loading={true} cards={[
             {
               title: 'Some airplane blog title',
               text: 'Planes | Travel | Experience',
@@ -127,7 +127,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
           <SubtitleText icon={'filter_list'}>Filter</SubtitleText>
 
           <FormField label={'Category:'}>
-            <Dropdown icon={'category'} name={'Any'} items={[]} onChange={(): void => {}} />
+            <Dropdown icon={'category'} name={'Any'} items={[]} onChange={(): void => { }} />
           </FormField>
 
           <FormField label={'Published:'}>

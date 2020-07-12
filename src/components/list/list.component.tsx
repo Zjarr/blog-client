@@ -3,13 +3,15 @@ import Row from 'react-bootstrap/Row';
 
 import { useInput } from '../../utils/hooks';
 
-import { ImageCard, IImageCard } from '../card';
+import { IImageCard, ImageCard } from '../card';
 import { Input } from '../input';
 import { Paginator } from '../paginator';
 
 import { CardContainer, ListContainer, PaginatorContainer, SearchContainer } from './list.style';
 
-export const List: React.FC<IList> = ({ cards, onPrevClick, onSearch, onNextClick }) => {
+const skeletonCards = 12;
+
+export const List: React.FC<IList> = ({ cards, loading, onPrevClick, onSearch, onNextClick }) => {
   const searchInput = useInput('');
 
   const handleSearchOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -28,14 +30,6 @@ export const List: React.FC<IList> = ({ cards, onPrevClick, onSearch, onNextClic
     return onNextClick && onNextClick();
   };
 
-  const getCardItems = (cards: IImageCard[]): JSX.Element[] => {
-    return cards.map((card, index) =>
-      <CardContainer lg={6} key={`${index}`}>
-        <ImageCard {...card} />
-      </CardContainer>
-    );
-  };
-
   return (
     <ListContainer>
       <SearchContainer>
@@ -44,19 +38,33 @@ export const List: React.FC<IList> = ({ cards, onPrevClick, onSearch, onNextClic
 
       <Row>
         {
-          cards && getCardItems(cards)
+          loading && [...Array(skeletonCards)].map((_, index) =>
+            <CardContainer lg={6} key={`card-${index}`}>
+              <ImageCard loading />
+            </CardContainer>
+          )
+        }
+        {
+          !loading && cards && cards.map((card, index) =>
+            <CardContainer lg={6} key={`card-${index}`}>
+              <ImageCard {...card} />
+            </CardContainer>
+          )
         }
       </Row>
 
-      <PaginatorContainer>
-        <Paginator current={1} total={1} onPrevClick={handlePrevClick} onNextClick={handleNextClick} />
-      </PaginatorContainer>
+      {
+        !loading && <PaginatorContainer>
+          <Paginator current={1} total={1} onPrevClick={handlePrevClick} onNextClick={handleNextClick} />
+        </PaginatorContainer>
+      }
     </ListContainer>
   );
 };
 
 interface IList {
   cards: IImageCard[];
+  loading: boolean;
   onPrevClick?: () => void;
   onSearch?: (searchString: string) => void;
   onNextClick?: () => void;

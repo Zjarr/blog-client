@@ -15,10 +15,15 @@ import {
   ImageMiddleContainer,
   ImageSecondaryTextContainer,
   ImageStateIndicator,
+  SkeletonButton,
+  SkeletonImage,
+  SkeletonIndicator,
+  SkeletonText,
+  SkeletonTitle,
   URLContainer
 } from './image.style';
 
-export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image, link, secondaryText, text, title, width }) => {
+export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image, link, loading, secondaryText, text, title, width }) => {
   const [clipboardIcon, setClipBoardIcon] = React.useState<string>('file_copy');
 
   const navigateTo = useNavigateTo();
@@ -45,51 +50,73 @@ export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image
     return toggleClipboardIcon();
   };
 
-  return (
-    <>
-      <ImageCardContainer width={width}>
+  if (loading) {
+    return (
+      <ImageCardContainer width={width} loading >
         <ImageContainer>
-          {
-            icon ?
-              <Icon name={icon} size={'48px'} /> :
-              <Image shape={'circle'} height={'96px'} width={'96px'} src={image} />
-          }
+          <SkeletonImage />
         </ImageContainer>
 
         <ImageMiddleContainer>
-          {
-            title && <SubtitleText>{title}</SubtitleText>
-          }
+          <SkeletonTitle />
+
           <ImageSecondaryTextContainer>
-            {
-              text && <ParagraphText>{text}</ParagraphText>
-            }
-            {
-              secondaryText && <ParagraphText>{secondaryText}</ParagraphText>
-            }
+            <SkeletonText />
+            <SkeletonText />
           </ImageSecondaryTextContainer>
         </ImageMiddleContainer>
 
         <ImageFinalContainer>
-          <ImageStateIndicator active={active} />
-          {
-            link && !clipboard &&
-            <TextButton onClick={(): void => navigateTo(link)} color={COLOR_GRAY_DARK}>View</TextButton>
-          }
+          <SkeletonIndicator />
+          <SkeletonButton />
         </ImageFinalContainer>
-
-        {
-          clipboard &&
-          <ClipboardContainer>
-            <LabelText color={COLOR_WHITE}>URL:</LabelText>
-            <URLContainer>
-              <ParagraphText color={COLOR_WHITE}>{link}</ParagraphText>
-              <SimpleButton icon={clipboardIcon} color={COLOR_BLACK_0} onClick={(): void => handleCopyClipboard(link)} />
-            </URLContainer>
-          </ClipboardContainer>
-        }
       </ImageCardContainer>
-    </>
+    );
+  }
+
+  return (
+    <ImageCardContainer width={width}>
+      <ImageContainer>
+        {
+          icon ?
+            <Icon name={icon} size={'48px'} /> :
+            <Image shape={'circle'} height={'96px'} width={'96px'} src={image} />
+        }
+      </ImageContainer>
+
+      <ImageMiddleContainer>
+        {
+          title && <SubtitleText>{title}</SubtitleText>
+        }
+        <ImageSecondaryTextContainer>
+          {
+            text && <ParagraphText>{text}</ParagraphText>
+          }
+          {
+            secondaryText && <ParagraphText>{secondaryText}</ParagraphText>
+          }
+        </ImageSecondaryTextContainer>
+      </ImageMiddleContainer>
+
+      <ImageFinalContainer>
+        <ImageStateIndicator active={active} />
+        {
+          link && !clipboard &&
+          <TextButton onClick={(): void => navigateTo(link)} color={COLOR_GRAY_DARK}>View</TextButton>
+        }
+      </ImageFinalContainer>
+
+      {
+        clipboard &&
+        <ClipboardContainer>
+          <LabelText color={COLOR_WHITE}>URL:</LabelText>
+          <URLContainer>
+            <ParagraphText color={COLOR_WHITE}>{link}</ParagraphText>
+            <SimpleButton icon={clipboardIcon} color={COLOR_BLACK_0} onClick={(): void => handleCopyClipboard(link)} />
+          </URLContainer>
+        </ClipboardContainer>
+      }
+    </ImageCardContainer>
   );
 };
 
@@ -99,6 +126,7 @@ export interface IImageCard {
   icon?: string;
   image?: string;
   link?: string;
+  loading?: boolean;
   text?: string;
   secondaryText?: string;
   title?: string;
