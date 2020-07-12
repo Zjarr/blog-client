@@ -1,10 +1,12 @@
 import React from 'react';
 
 import { useNavigateTo } from '../../../utils/hooks';
-import { COLOR_BLACK_0, COLOR_GRAY_DARK, COLOR_WHITE } from '../../../utils/values';
+import { BORDER_RADIUS_SMALL, COLOR_BLACK_0, COLOR_GRAY_DARK, COLOR_WHITE } from '../../../utils/values';
+
 import { SimpleButton, TextButton } from '../../button';
 import { Icon } from '../../icon';
 import { Image } from '../../image';
+import { Skeleton } from '../../skeleton';
 import { LabelText, ParagraphText, SubtitleText } from '../../text';
 
 import {
@@ -15,11 +17,6 @@ import {
   ImageMiddleContainer,
   ImageSecondaryTextContainer,
   ImageStateIndicator,
-  SkeletonButton,
-  SkeletonImage,
-  SkeletonIndicator,
-  SkeletonText,
-  SkeletonTitle,
   URLContainer
 } from './image.style';
 
@@ -54,21 +51,21 @@ export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image
     return (
       <ImageCardContainer width={width}>
         <ImageContainer>
-          <SkeletonImage />
+          <Skeleton height={'96px'} width={'96px'} />
         </ImageContainer>
 
         <ImageMiddleContainer>
-          <SkeletonTitle />
+          <Skeleton border={BORDER_RADIUS_SMALL} height={'28px'} margin={'0px 0px 16px'} width={'80%'} />
 
           <ImageSecondaryTextContainer>
-            <SkeletonText />
-            <SkeletonText />
+            <Skeleton border={BORDER_RADIUS_SMALL} height={'16px'} margin={'0px 0px 8px'} />
+            <Skeleton border={BORDER_RADIUS_SMALL} height={'16px'} width={'50%'} />
           </ImageSecondaryTextContainer>
         </ImageMiddleContainer>
 
         <ImageFinalContainer>
-          <SkeletonIndicator />
-          <SkeletonButton />
+          <Skeleton height={'8px'} margin={'14px 0px 0px'} width={'8px'} />
+          <Skeleton border={BORDER_RADIUS_SMALL} height={'16px'} margin={'0px 0px 4px'} />
         </ImageFinalContainer>
       </ImageCardContainer>
     );

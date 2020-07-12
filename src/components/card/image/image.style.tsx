@@ -11,9 +11,7 @@ import {
   COLOR_GREEN,
   COLOR_RED,
   COLOR_WHITE,
-  TEXT_NORMAL,
-  COLOR_BLACK_0,
-  COLOR_BLACK_1
+  TEXT_NORMAL
 } from '../../../utils/values';
 
 const DEFAULT_CONTAINER_WIDTH = '100%';
@@ -158,78 +156,4 @@ export const URLContainer = Styled.div`
     right: -2px;
     top: -2px;
   }
-`;
-
-const Skeleton = Styled.div`
-  overflow: hidden;
-  position: relative;
-
-  background-color: ${COLOR_GRAY_LIGHT};
-
-  :after {
-    animation: 2s skeleton-load infinite;
-    content: '';
-    height: 100%;
-    position: absolute;
-    width: 100%;
-
-    background-color: ${COLOR_BLACK_0};
-  }
-
-  @keyframes skeleton-load {
-    0% {
-      background-color: ${COLOR_BLACK_0};
-    }
-
-    50% {
-      background-color: ${COLOR_BLACK_1};
-    }
-
-    100% {
-      background-color: ${COLOR_BLACK_0};
-    }
-  }
-`;
-
-export const SkeletonButton = Styled(Skeleton)`
-  height: 16px;
-  margin-bottom: 4px;
-  width: 100%;
-
-  border-radius: ${BORDER_RADIUS_SMALL};
-`;
-
-export const SkeletonImage = Styled(Skeleton)`
-  height: 96px;
-  width: 96px;
-
-  border-radius: ${BORDER_RADIUS_FULL};
-`;
-
-export const SkeletonIndicator = Styled(Skeleton)`
-  height: 8px;
-  margin-top: 14px;
-  width: 8px;
-
-  border-radius: ${BORDER_RADIUS_FULL};
-`;
-
-export const SkeletonText = Styled(Skeleton)`
-  height: 16px;
-  width: 50%;
-
-  border-radius: ${BORDER_RADIUS_SMALL};
-
-  :first-child {
-    margin-bottom: 8px;
-    width: 100%;
-  }
-`;
-
-export const SkeletonTitle = Styled(Skeleton)`
-  height: 28px;
-  margin-bottom: 16px;
-  width: 80%;
-
-  border-radius: ${BORDER_RADIUS_SMALL};
 `;
