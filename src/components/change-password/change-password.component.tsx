@@ -42,7 +42,6 @@ export const ChangePassword: React.FC<IChangePassword> = ({ onClose, visible }) 
         </PasswordContainer>
 
         <ButtonContainer>
-          <SimpleButton icon={'clear'} onClick={handleCloseRequest} />
           <SimpleButton icon={'done'} color={COLOR_PURPLE} />
         </ButtonContainer>
       </ChangePasswordContainer>
