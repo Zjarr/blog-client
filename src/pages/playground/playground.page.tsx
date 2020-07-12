@@ -290,6 +290,8 @@ export const PlaygroundPage: React.FC<{}> = () => {
         title={'Card title with long text for testing purposes'}
         text={'Card title with long text for testing purposes'}
       />
+      <p></p>
+      <ImageCard loading />
       <br />
       <br />
       <br />
