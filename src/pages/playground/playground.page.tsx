@@ -297,7 +297,7 @@ export const PlaygroundPage: React.FC<{}> = () => {
 
       <TitleText>List</TitleText>
       <p></p>
-      <List cards={[
+      <List loading={false} cards={[
         {
           title: 'Card title with long text for testing purposes',
           text: 'Card title with long text for testing purposes',

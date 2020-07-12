@@ -22,7 +22,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
 
       <ListContainer>
         <Column xl={9} position={'left'}>
-          <List cards={[
+          <List loading={false} cards={[
             {
               title: 'Some title for the image',
               text: 'This is a short description for the image',

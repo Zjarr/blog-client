@@ -22,7 +22,7 @@ export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
 
       <ListContainer>
         <Column xl={9} position={'left'}>
-          <List cards={[
+          <List loading={false} cards={[
             {
               title: 'Some category title',
               text: 'This is a short description for the category',

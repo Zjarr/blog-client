@@ -19,7 +19,7 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
         </TitleContainer>
 
         <ListContainer>
-          <List cards={[
+          <List loading={false} cards={[
             {
               title: 'Card title with long text for testing purposes',
               text: 'Card title with long text for testing purposes',
