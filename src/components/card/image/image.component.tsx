@@ -52,7 +52,7 @@ export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image
 
   if (loading) {
     return (
-      <ImageCardContainer width={width} loading >
+      <ImageCardContainer width={width}>
         <ImageContainer>
           <SkeletonImage />
         </ImageContainer>

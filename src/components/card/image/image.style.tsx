@@ -4,7 +4,6 @@ import {
   BORDER_RADIUS_FULL,
   BORDER_RADIUS_MEDIUM,
   BORDER_RADIUS_SMALL,
-  BOX_SHADOW_SKELETON_LOADING,
   COLOR_BLACK,
   COLOR_BLACK_8,
   COLOR_GRAY_LIGHT,
@@ -12,8 +11,9 @@ import {
   COLOR_GREEN,
   COLOR_RED,
   COLOR_WHITE,
-  COLOR_WHITE_3,
-  TEXT_NORMAL
+  TEXT_NORMAL,
+  COLOR_BLACK_0,
+  COLOR_BLACK_1
 } from '../../../utils/values';
 
 const DEFAULT_CONTAINER_WIDTH = '100%';
@@ -22,33 +22,6 @@ const DEFAULT_STATE_INDICATOR_COLOR = COLOR_RED;
 const ACTIVE_STATE_INDICATOR_COLOR = COLOR_GREEN;
 
 const getActiveIndicatorBGColor = (active?: boolean): string => active ? ACTIVE_STATE_INDICATOR_COLOR : DEFAULT_STATE_INDICATOR_COLOR;
-
-const getContainerLoading = (loading?: boolean): string | null => {
-  if (!loading) return null;
-
-  return (
-    `:after {
-      animation: 2s skeleton-load infinite;
-      content: '';
-      height: 100%;
-      position: absolute;
-      width: 24px;
-
-      background-color: ${COLOR_WHITE_3};
-      box-shadow: ${BOX_SHADOW_SKELETON_LOADING};
-    }
-
-    @keyframes skeleton-load {
-      from {
-        left: -24px;
-      }
-
-      to {
-        left: 100%;
-      }
-    }`
-  );
-};
 
 const getContainerWidth = (width?: string): string => width ? width : DEFAULT_CONTAINER_WIDTH;
 
@@ -69,7 +42,7 @@ export const ClipboardContainer = Styled.div`
   border-radius: ${BORDER_RADIUS_MEDIUM};
 `;
 
-export const ImageCardContainer = Styled.div<{ loading?: boolean, width?: string }>`
+export const ImageCardContainer = Styled.div<{ width?: string }>`
   align-items: center;
   display: flex;
   height: 112px;
@@ -86,8 +59,6 @@ export const ImageCardContainer = Styled.div<{ loading?: boolean, width?: string
     transition: 0.25s ease;
     visibility: visible;
   }
-
-  ${({ loading }): string | null => getContainerLoading(loading)};
 `;
 
 export const ImageContainer = Styled.div`
@@ -189,37 +160,64 @@ export const URLContainer = Styled.div`
   }
 `;
 
-export const SkeletonButton = Styled.div`
+const Skeleton = Styled.div`
+  overflow: hidden;
+  position: relative;
+
+  background-color: ${COLOR_GRAY_LIGHT};
+
+  :after {
+    animation: 2s skeleton-load infinite;
+    content: '';
+    height: 100%;
+    position: absolute;
+    width: 100%;
+
+    background-color: ${COLOR_BLACK_0};
+  }
+
+  @keyframes skeleton-load {
+    0% {
+      background-color: ${COLOR_BLACK_0};
+    }
+
+    50% {
+      background-color: ${COLOR_BLACK_1};
+    }
+
+    100% {
+      background-color: ${COLOR_BLACK_0};
+    }
+  }
+`;
+
+export const SkeletonButton = Styled(Skeleton)`
   height: 16px;
   margin-bottom: 4px;
   width: 100%;
 
-  background-color: ${COLOR_GRAY_LIGHT};
   border-radius: ${BORDER_RADIUS_SMALL};
 `;
 
-export const SkeletonImage = Styled.div`
+export const SkeletonImage = Styled(Skeleton)`
   height: 96px;
   width: 96px;
 
-  background-color: ${COLOR_GRAY_LIGHT};
   border-radius: ${BORDER_RADIUS_FULL};
 `;
 
-export const SkeletonIndicator = Styled.div`
+export const SkeletonIndicator = Styled(Skeleton)`
   height: 8px;
   margin-top: 14px;
   width: 8px;
 
-  background-color: ${COLOR_GRAY_LIGHT};
   border-radius: ${BORDER_RADIUS_FULL};
 `;
 
-export const SkeletonText = Styled.div`
+export const SkeletonText = Styled(Skeleton)`
   height: 16px;
   width: 50%;
 
-  background-color: ${COLOR_GRAY_LIGHT};
   border-radius: ${BORDER_RADIUS_SMALL};
 
   :first-child {
@@ -228,11 +226,10 @@ export const SkeletonText = Styled.div`
   }
 `;
 
-export const SkeletonTitle = Styled.div`
+export const SkeletonTitle = Styled(Skeleton)`
   height: 28px;
   margin-bottom: 16px;
   width: 80%;
 
-  background-color: ${COLOR_GRAY_LIGHT};
   border-radius: ${BORDER_RADIUS_SMALL};
 `;
