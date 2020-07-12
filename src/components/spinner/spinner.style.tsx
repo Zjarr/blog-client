@@ -34,21 +34,22 @@ export const SpinnerContainer = Styled.div<{
 `;
 
 export const SpinnerBody = Styled.div<{ height?: string, color?: string }>`
-  animation: spinnerSlide 2s infinite;
+  animation: spinner-slide 2s infinite;
   height: 100%;
-  transform: translateX(-100%);
+  left: -50%;
+  position: absolute;
   width: 50%;
 
   background-color: ${({ color }): string => getSpinnerColor(color)};
   border-radius: ${({ height }): string => getBorderRadius(height)};
 
-  @keyframes spinnerSlide {
+  @keyframes spinner-slide {
     from {
-      transform: translateX(-100%);
+      left: -50%;
     }
 
     to {
-      transform: translateX(200%);
+      left: 100%;
     }
   }
 `;
