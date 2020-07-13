@@ -34,13 +34,22 @@ export const ButtonContainer = Styled.div`
 
 export const WavesContainer = Styled.div`
   height: 100%;
+  overflow: hidden;
   position: absolute;
   right: 0;
   top: 0;
+  width: 100%;
 `;
 
-export const WavesImage = Styled.img`
-  height: 100%;
+export const WaveImage = Styled.img.attrs<{ right: number, top: number }>(({ right, top }) => ({
+  style: {
+    transform: `translate(${right}px, ${top}px)`
+  }
+})) <{ right: number, top: number }>`
+  height: calc(100% + 20px);
   object-fit: cover;
+  position: absolute;
+  right: -10px;
+  top: -10px;
   width: auto;
 `;
