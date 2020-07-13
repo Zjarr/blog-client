@@ -1,8 +1,8 @@
 import React from 'react';
 
-export const useInput = (inputValue: string, checkValue = false): IInputHook => {
-  const [checked, setChecked] = React.useState<boolean>(checkValue);
-  const [value, setValue] = React.useState<string>(inputValue);
+export const useInput = (initialValue?: string, checkValue?: boolean): IInputHook => {
+  const [checked, setChecked] = React.useState<boolean>(checkValue || false);
+  const [value, setValue] = React.useState<string>(initialValue || '');
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setChecked(e.target.checked);
