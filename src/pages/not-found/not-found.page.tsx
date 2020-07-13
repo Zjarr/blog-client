@@ -5,6 +5,7 @@ import PurpleWave from '../../assets/images/purple-wave.png';
 
 import { SimpleButton } from '../../components/button';
 import { ParagraphText, TitleText } from '../../components/text';
+import { useMousePosition, useWindowSize } from '../../utils/hooks';
 import { COLOR_GRAY_DARK, COLOR_PURPLE } from '../../utils/values';
 
 import {
@@ -18,42 +19,32 @@ import {
 } from './not-found.style';
 
 export const NotFoundPage: React.FC<INotFoundPage> = () => {
-  const [windowHeightCenter, setWindowHeightCenter] = React.useState<number>(window.innerHeight / 2);
-  const [windowWidthCenter, setWindowWidthCenter] = React.useState<number>(window.innerWidth / 2);
+  const { windowHeight, windowWidth } = useWindowSize();
+  const { mouseX, mouseY } = useMousePosition();
 
-  const [top, setTop] = React.useState<number>(0);
   const [right, setRight] = React.useState<number>(0);
+  const [top, setTop] = React.useState<number>(0);
 
-  const getMousePosition = React.useCallback((event: MouseEvent): void => {
-    const percentFromCenterX = (event.clientX - windowWidthCenter) * 100 / windowWidthCenter;
-    const percentFromCenterY = -(event.clientY - windowHeightCenter) * 100 / windowHeightCenter;
+  const calcDistancePercentage = React.useCallback((mouseX: number, mouseY: number, heightCenter: number, widthCenter: number): void => {
+    const percentFromCenterX = (mouseX - widthCenter) / widthCenter;
+    const percentFromCenterY = -(mouseY - heightCenter) / heightCenter;
 
-    setRight(percentFromCenterX / 10);
-    setTop(percentFromCenterY / 10);
-  }, [windowHeightCenter, windowWidthCenter]);
-
-  const getWindowSize = React.useCallback((): void => {
-    setWindowHeightCenter(window.innerHeight / 2);
-    setWindowWidthCenter(window.innerWidth / 2);
+    setRight(percentFromCenterX);
+    setTop(percentFromCenterY);
   }, []);
 
   React.useEffect(() => {
-    document.addEventListener('mousemove', getMousePosition);
+    const heightCenter = windowHeight / 2;
+    const widthCenter = windowWidth / 2;
 
-    return (): void => document.removeEventListener('mousemove', getMousePosition);
-  }, [getMousePosition]);
-
-  React.useEffect(() => {
-    window.addEventListener('resize', getWindowSize);
-
-    return (): void => window.removeEventListener('resize', getWindowSize);
-  }, [getWindowSize]);
+    return calcDistancePercentage(mouseX, mouseY, heightCenter, widthCenter);
+  }, [calcDistancePercentage, mouseX, mouseY, windowHeight, windowWidth]);
 
   return (
     <NotFoundContainer>
       <WavesContainer>
-        <WaveImage src={PurpleWave} right={-right} top={-top} />
-        <WaveImage src={BlackWave} right={right} top={top} />
+        <WaveImage src={PurpleWave} right={right * 3} top={top * 3} />
+        <WaveImage src={BlackWave} right={right * 10} top={top * 10} />
       </WavesContainer>
 
       <BodyContainer>
