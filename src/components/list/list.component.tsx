@@ -1,13 +1,26 @@
 import React from 'react';
-import Row from 'react-bootstrap/Row';
+
+import Rocket from '../../assets/images/rocket.png';
 
 import { useInput } from '../../utils/hooks';
 
 import { IImageCard, ImageCard } from '../card';
 import { Input } from '../input';
 import { Paginator } from '../paginator';
+import { ParagraphText } from '../text';
 
-import { CardContainer, ListContainer, PaginatorContainer, SearchContainer } from './list.style';
+import {
+  CardContainer,
+  EmptyListContainer,
+  ImageContainer,
+  ListContainer,
+  PaginatorContainer,
+  RocketImage,
+  SearchContainer,
+  TextContainer,
+  CardsListContainer
+} from './list.style';
+import { COLOR_GRAY_MEDIUM } from '../../utils/values';
 
 const skeletonCards = 12;
 
@@ -36,7 +49,7 @@ export const List: React.FC<IList> = ({ cards, loading, onPrevClick, onSearch, o
         <Input icon={'search'} placeholder={'Search by name'} type={'text'} value={searchInput.value} onChange={handleSearchOnChange} />
       </SearchContainer>
 
-      <Row>
+      <CardsListContainer empty={cards.length ? 0 : 1}>
         {
           loading && [...Array(skeletonCards)].map((_, index) =>
             <CardContainer lg={6} key={`card-${index}`}>
@@ -51,10 +64,23 @@ export const List: React.FC<IList> = ({ cards, loading, onPrevClick, onSearch, o
             </CardContainer>
           )
         }
-      </Row>
+        {
+          !loading && !cards.length &&
+          <EmptyListContainer>
+            <ImageContainer>
+              <RocketImage src={Rocket} />
+            </ImageContainer>
+
+            <TextContainer>
+              <ParagraphText color={COLOR_GRAY_MEDIUM}>Oops!</ParagraphText>
+              <ParagraphText color={COLOR_GRAY_MEDIUM}>This looks empty. Did you add some fuel?</ParagraphText>
+            </TextContainer>
+          </EmptyListContainer>
+        }
+      </CardsListContainer>
 
       {
-        !loading && <PaginatorContainer>
+        !loading && cards.length > 0 && <PaginatorContainer>
           <Paginator current={1} total={1} onPrevClick={handlePrevClick} onNextClick={handleNextClick} />
         </PaginatorContainer>
       }
