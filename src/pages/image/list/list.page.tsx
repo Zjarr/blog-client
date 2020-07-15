@@ -27,7 +27,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
               title: 'Some title for the image',
               text: 'This is a short description for the image',
               secondaryText: 'Image alt text',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
               link: '/admin/images/view/123456',
               active: false
             },
@@ -35,7 +35,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
               title: 'Some title for the image',
               text: 'This is a short description for the image',
               secondaryText: 'Image alt text',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
               link: '/admin/images/view/123456',
               active: true
             },
@@ -43,7 +43,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
               title: 'Some title for the image',
               text: 'This is a short description for the image',
               secondaryText: 'Image alt text',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
               link: '/admin/images/view/123456',
               active: true
             },
@@ -51,7 +51,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
               title: 'Some title for the image',
               text: 'This is a short description for the image',
               secondaryText: 'Image alt text',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
               link: '/admin/images/view/123456',
               active: true
             },
@@ -59,7 +59,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
               title: 'Some title for the image',
               text: 'This is a short description for the image',
               secondaryText: 'Image alt text',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
               link: '/admin/images/view/123456',
               active: true
             },
@@ -67,7 +67,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
               title: 'Some title for the image',
               text: 'This is a short description for the image',
               secondaryText: 'Image alt text',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
               link: '/admin/images/view/123456',
               active: true
             },
@@ -75,7 +75,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
               title: 'Some title for the image',
               text: 'This is a short description for the image',
               secondaryText: 'Image alt text',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
               link: '/admin/images/view/123456',
               active: true
             },
@@ -83,7 +83,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
               title: 'Some title for the image',
               text: 'This is a short description for the image',
               secondaryText: 'Image alt text',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
               link: '/admin/images/view/123456',
               active: true
             },
@@ -91,7 +91,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
               title: 'Some title for the image',
               text: 'This is a short description for the image',
               secondaryText: 'Image alt text',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
               link: '/admin/images/view/123456',
               active: true
             },
@@ -99,7 +99,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
               title: 'Some title for the image',
               text: 'This is a short description for the image',
               secondaryText: 'Image alt text',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
               link: '/admin/images/view/123456',
               active: true
             }
@@ -122,5 +122,4 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
   );
 };
 
-interface IListImagePage {
-}
+interface IListImagePage { }

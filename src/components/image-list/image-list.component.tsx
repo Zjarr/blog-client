@@ -23,64 +23,64 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
             {
               title: 'Card title with long text for testing purposes',
               text: 'Card title with long text for testing purposes',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
+              link: '',
               active: true,
               clipboard: true
             },
             {
               title: 'Card title with long text for testing purposes',
               text: 'Card title with long text for testing purposes',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
+              link: '',
               active: true,
               clipboard: true
             },
             {
               title: 'Card title with long text for testing purposes',
               text: 'Card title with long text for testing purposes',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
+              link: '',
               active: true,
               clipboard: true
             },
             {
               title: 'Card title with long text for testing purposes',
               text: 'Card title with long text for testing purposes',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
+              link: '',
               active: true,
               clipboard: true
             },
             {
               title: 'Card title with long text for testing purposes',
               text: 'Card title with long text for testing purposes',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
+              link: '',
               active: true,
               clipboard: true
             },
             {
               title: 'Card title with long text for testing purposes',
               text: 'Card title with long text for testing purposes',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
+              link: '',
               active: true,
               clipboard: true
             },
             {
               title: 'Card title with long text for testing purposes',
               text: 'Card title with long text for testing purposes',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
+              link: '',
               active: true,
               clipboard: true
             },
             {
               title: 'Card title with long text for testing purposes',
               text: 'Card title with long text for testing purposes',
-              image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-              link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+              image: '',
+              link: '',
               active: true,
               clipboard: true
             }
