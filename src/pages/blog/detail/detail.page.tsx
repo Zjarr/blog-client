@@ -8,11 +8,13 @@ import { Footer } from '../../../components/footer';
 import { FormField } from '../../../components/form-field';
 import { Header } from '../../../components/header';
 import { Image } from '../../../components/image';
+import { ImageList } from '../../../components/image-list';
 import { Input } from '../../../components/input';
 import { Renderer } from '../../../components/renderer';
 import { LabelText } from '../../../components/text';
 import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
+import { IUpdateImageResult, UpdateImage } from '../../../components/update-image';
 import { useNavigateTo, useTextArea } from '../../../utils/hooks';
 import { ISource } from '../../../utils/interfaces';
 import { COLOR_PURPLE } from '../../../utils/values';
@@ -20,7 +22,10 @@ import { COLOR_PURPLE } from '../../../utils/values';
 import { BodyContainer, DetailContainer, EditorButtonsContainer, SimpleListContainer } from './detail.style';
 
 export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
+  const [imagesModalVisible, setImagesModalVisible] = React.useState<boolean>(false);
+  const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
   const [previewBlog, setPreviewBlog] = React.useState<boolean>(false);
+  const [image, setImage] = React.useState<string>('');
 
   const [headerTitle, setHeaderTitle] = React.useState<string>('');
 
@@ -41,6 +46,11 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
 
   const togglePreviewClick = (): void => {
     return setPreviewBlog(!previewBlog);
+  };
+
+  const handleImageUpdateModalClose = (result: IUpdateImageResult | null): void => {
+    setImage(result ? result.base64 : image);
+    setImageModalVisible(false);
   };
 
   const initPageProperties = React.useCallback((action): void => {
@@ -73,7 +83,10 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
           {
             action !== 'view' &&
             <EditorButtonsContainer>
-              <SimpleButton icon={'insert_photo'} width={'auto'}>View images</SimpleButton>
+              <SimpleButton
+                onClick={(): void => setImagesModalVisible(true)}
+                icon={'insert_photo'}
+                width={'auto'}>View images</SimpleButton>
 
               <SimpleButton
                 onClick={togglePreviewClick}
@@ -86,7 +99,13 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
 
         <Column xl={4} position={'right'}>
           <FormField label={'Image:'}>
-            <Image shape={'square'} width={'100%'} height={'240px'} updatable={action !== 'view'} />
+            <Image
+              onUpdateClick={(): void => setImageModalVisible(true)}
+              updatable={action !== 'view'}
+              height={'240px'}
+              shape={'square'}
+              width={'100%'}
+              src={image} />
           </FormField>
 
           <FormField label={'Title:'}>
@@ -154,6 +173,15 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
         }
         <SimpleButton color={COLOR_PURPLE} icon={action === 'view' ? 'edit' : 'done'} onClick={handleDoneClick} />
       </Footer>
+
+      <ImageList
+        onClose={(): void => setImagesModalVisible(false)}
+        visible={imagesModalVisible} />
+
+      <UpdateImage
+        onClose={handleImageUpdateModalClose}
+        visible={imageModalVisible}
+        src={image} />
     </DetailContainer>
   );
 };
