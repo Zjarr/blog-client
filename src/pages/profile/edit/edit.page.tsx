@@ -12,6 +12,7 @@ import { Image } from '../../../components/image';
 import { Input } from '../../../components/input';
 import { SubtitleText } from '../../../components/text';
 import { TextArea } from '../../../components/textarea';
+import { IUpdateImageResult, UpdateImage } from '../../../components/update-image';
 import { COLOR_PURPLE } from '../../../utils/values';
 
 import {
@@ -24,6 +25,14 @@ import {
 } from './edit.style';
 
 export const EditProfilePage: React.FC<IEditProfilePage> = () => {
+  const [image, setImage] = React.useState<string>('');
+  const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
+
+  const handleImageUpdateModalClose = (result: IUpdateImageResult | null): void => {
+    setImage(result ? result.base64 : image);
+    setImageModalVisible(false);
+  };
+
   return (
     <EditContainer>
       <Header
@@ -34,7 +43,13 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
       <BodyContainer>
         <Row>
           <ImageColumn xl={4} position={'left'}>
-            <Image shape={'circle'} height={'180px'} width={'180px'} updatable />
+            <Image
+              onUpdateClick={(): void => setImageModalVisible(true)}
+              shape={'circle'}
+              height={'180px'}
+              width={'180px'}
+              src={image}
+              updatable />
           </ImageColumn>
 
           <Column xl={4} position={'center'}>
@@ -52,7 +67,7 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
           </Column>
 
           <Column xl={4} position={'right'}>
-            <FormField label={'About:'} height={'148px'} noMargin>
+            <FormField label={'About:'} height={'176px'} noMargin>
               <TextArea />
             </FormField>
           </Column>
@@ -106,9 +121,13 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
         <SimpleButton icon={'clear'} />
         <SimpleButton color={COLOR_PURPLE} icon={'done'} />
       </Footer>
+
+      <UpdateImage
+        onClose={handleImageUpdateModalClose}
+        visible={imageModalVisible}
+        src={image} />
     </EditContainer>
   );
 };
 
-interface IEditProfilePage {
-}
+interface IEditProfilePage { }
