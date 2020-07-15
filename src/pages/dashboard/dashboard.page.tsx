@@ -22,7 +22,7 @@ import {
 
 import { DashboardSwitch } from './dashboard.switch';
 
-export const DashboardPage: React.FC<{}> = () => {
+export const DashboardPage: React.FC<IDashboardPage> = () => {
   const navigateTo = useNavigateTo();
   const { action, param, section } = useParams();
 
@@ -30,7 +30,7 @@ export const DashboardPage: React.FC<{}> = () => {
     <DashboardContainer>
       <SidebarContainer>
         <TopContainer>
-          <Image shape={'circle'} height={'120px'} width={'120px'} src={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'} />
+          <Image shape={'circle'} height={'120px'} width={'120px'} src={''} />
 
           <TopButtonContainer>
             <MenuButton
@@ -84,3 +84,5 @@ export const DashboardPage: React.FC<{}> = () => {
     </DashboardContainer>
   );
 };
+
+interface IDashboardPage { }

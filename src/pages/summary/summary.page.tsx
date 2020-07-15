@@ -49,7 +49,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
             <Column xl={12}>
               <SubtitleText icon={'book'}>Last 7 days entries</SubtitleText>
               <ChartContainer>
-                <Chart data={[8, 4, 5, 1, 7, 2, 0]}/>
+                <Chart data={[8, 4, 5, 1, 7, 2, 0]} />
               </ChartContainer>
             </Column>
           </Row>
@@ -63,7 +63,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
                   title={'Recent blog name'}
                   text={'Planes | Travel | Experience'}
                   secondaryText={'June 28th, 2020'}
-                  image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'}
+                  image={''}
                   active />
               </ImageCardContainer>
               <ImageCardContainer>
@@ -71,7 +71,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
                   title={'Recent blog name'}
                   text={'Planes | Travel | Experience'}
                   secondaryText={'June 28th, 2020'}
-                  image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'}
+                  image={''}
                   active />
               </ImageCardContainer>
             </RecentEntriesContainer>
@@ -84,14 +84,14 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
                   title={'To be released blog name'}
                   text={'Planes | Travel | Experience'}
                   secondaryText={'June 28th, 2020'}
-                  image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'} />
+                  image={''} />
               </ImageCardContainer>
               <ImageCardContainer>
                 <ImageCard
                   title={'To be released blog name'}
                   text={'Planes | Travel | Experience'}
                   secondaryText={'June 28th, 2020'}
-                  image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'} />
+                  image={''} />
               </ImageCardContainer>
             </Column>
           </Row>
@@ -101,5 +101,4 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   );
 };
 
-interface ISummaryPage {
-}
+interface ISummaryPage { }

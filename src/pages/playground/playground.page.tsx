@@ -61,11 +61,11 @@ Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
 `;
 
 
-export const PlaygroundPage: React.FC<{}> = () => {
-  const [image, setImage] = React.useState<string>('https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg');
+export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
+  const [changePasswordModalVisible, setChangePasswordModalVisible] = React.useState<boolean>(false);
   const [imageListModalVisible, setImageListModalVisible] = React.useState<boolean>(false);
   const [loadingModalVisible, setLoadingModalVisible] = React.useState<boolean>(false);
-  const [changePasswordModalVisible, setChangePasswordModalVisible] = React.useState<boolean>(false);
+  const [image, setImage] = React.useState<string>('');
 
   const [md] = React.useState<string>(string);
   const [updateImageModalVisible, setUpdateImageModalVisible] = React.useState<boolean>(false);
@@ -275,7 +275,7 @@ export const PlaygroundPage: React.FC<{}> = () => {
         title={'Card title with long text for testing purposes'}
         text={'Card title with long text for testing purposes'}
         secondaryText={'Card title with long text for testing purposes'}
-        image={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'}
+        image={''}
         active
       />
       <p></p>
@@ -304,57 +304,57 @@ export const PlaygroundPage: React.FC<{}> = () => {
           title: 'Card title with long text for testing purposes',
           text: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
-          image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
-          link: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+          image: '',
+          link: '',
           active: false
         },
         {
           title: 'Card title with long text for testing purposes',
           text: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
-          image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+          image: '',
           active: true
         },
         {
           title: 'Card title with long text for testing purposes',
           text: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
-          image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+          image: '',
           active: true
         },
         {
           title: 'Card title with long text for testing purposes',
           text: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
-          image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+          image: '',
           active: true
         },
         {
           title: 'Card title with long text for testing purposes',
           text: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
-          image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+          image: '',
           active: true
         },
         {
           title: 'Card title with long text for testing purposes',
           text: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
-          image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+          image: '',
           active: true
         },
         {
           title: 'Card title with long text for testing purposes',
           text: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
-          image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+          image: '',
           active: true
         },
         {
           title: 'Card title with long text for testing purposes',
           text: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
-          image: 'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg',
+          image: '',
           active: true
         }
       ]} />
@@ -409,3 +409,5 @@ export const PlaygroundPage: React.FC<{}> = () => {
     </>
   );
 };
+
+interface IPlaygroundPage { }
