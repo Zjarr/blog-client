@@ -54,7 +54,7 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
         </Column>
 
         <Column xl={4} position={'center'}>
-          <FormField label={'Description:'} height={'148px'}>
+          <FormField label={'Description:'} height={'176px'}>
             <TextArea disabled={action === 'view'} />
           </FormField>
         </Column>
