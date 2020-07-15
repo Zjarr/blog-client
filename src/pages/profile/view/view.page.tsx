@@ -2,6 +2,7 @@ import React from 'react';
 import Row from 'react-bootstrap/Row';
 
 import { SimpleButton } from '../../../components/button';
+import { ChangePassword } from '../../../components/change-password';
 import { Header } from '../../../components/header';
 import { Image } from '../../../components/image';
 import { useNavigateTo } from '../../../utils/hooks';
@@ -21,6 +22,8 @@ import {
 } from './view.style';
 
 export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
+  const [passwordModalVisible, setPasswordModalVisible] = React.useState<boolean>(false);
+
   const navigateTo = useNavigateTo();
 
   return (
@@ -29,7 +32,7 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
 
       <Row>
         <ContentContainer md={{ span: 6, offset: 3 }}>
-          <Image src={'https://www.aircraftcompare.com/wp-content/uploads/2019/04/78.jpg'} height={'180px'} width={'180px'} shape={'circle'} />
+          <Image src={''} height={'180px'} width={'180px'} shape={'circle'} />
 
           <BasicInfoContainer>
             <Name>Pablo Navarro</Name>
@@ -65,12 +68,13 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
       </Row>
 
       <ButtonContainer>
-        <SimpleButton icon={'vpn_key'} />
+        <SimpleButton icon={'vpn_key'} onClick={(): void => setPasswordModalVisible(true)} />
         <SimpleButton icon={'edit'} color={COLOR_PURPLE} onClick={(): void => navigateTo('/admin/profile/edit')} />
       </ButtonContainer>
+
+      <ChangePassword visible={passwordModalVisible} onClose={(): void => setPasswordModalVisible(false)} />
     </ViewContainer>
   );
 };
 
-interface IViewProfilePage {
-}
+interface IViewProfilePage { }
