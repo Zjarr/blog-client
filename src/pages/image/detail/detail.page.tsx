@@ -9,13 +9,16 @@ import { Image } from '../../../components/image';
 import { Input } from '../../../components/input';
 import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
+import { IUpdateImageResult, UpdateImage } from '../../../components/update-image';
 import { useNavigateTo } from '../../../utils/hooks';
 import { COLOR_PURPLE } from '../../../utils/values';
 
 import { BodyContainer, DetailContainer, ImageColumn } from './detail.style';
 
 export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
+  const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
   const [headerTitle, setHeaderTitle] = React.useState<string>('');
+  const [image, setImage] = React.useState<string>('');
 
   const navigateTo = useNavigateTo();
 
@@ -26,6 +29,11 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
 
   const handleDoneClick = (): void => {
     if (action === 'view') return navigateTo(`/admin/images/edit/${param}`);
+  };
+
+  const handleImageUpdateModalClose = (result: IUpdateImageResult | null): void => {
+    setImage(result ? result.base64 : image);
+    setImageModalVisible(false);
   };
 
   const initPageProperties = React.useCallback((action): void => {
@@ -44,7 +52,13 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
 
       <BodyContainer>
         <ImageColumn xl={4} position={'left'}>
-          <Image shape={'circle'} height={'180px'} width={'180px'} updatable={action !== 'view'} />
+          <Image
+            onUpdateClick={(): void => setImageModalVisible(true)}
+            updatable={action !== 'view'}
+            shape={'circle'}
+            height={'180px'}
+            width={'180px'}
+            src={image} />
         </ImageColumn>
 
         <Column xl={4} position={'center'}>
@@ -62,7 +76,7 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
         </Column>
 
         <Column xl={4} position={'right'}>
-          <FormField height={'148px'} label={'Description:'}>
+          <FormField height={'176px'} label={'Description:'}>
             <TextArea disabled={action === 'view'} />
           </FormField>
         </Column>
@@ -74,6 +88,11 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
         }
         <SimpleButton color={COLOR_PURPLE} icon={action === 'view' ? 'edit' : 'done'} onClick={handleDoneClick} />
       </Footer>
+
+      <UpdateImage
+        onClose={handleImageUpdateModalClose}
+        visible={imageModalVisible}
+        src={image} />
     </DetailContainer>
   );
 };
