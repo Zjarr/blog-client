@@ -16,7 +16,7 @@ import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
 import { IUpdateImageResult, UpdateImage } from '../../../components/update-image';
 import { useNavigateTo, useTextArea } from '../../../utils/hooks';
-import { ISource } from '../../../utils/interfaces';
+import { ICategory, ISource } from '../../../utils/interfaces';
 import { COLOR_PURPLE } from '../../../utils/values';
 
 import { BodyContainer, DetailContainer, EditorButtonsContainer, SimpleListContainer } from './detail.style';
@@ -29,7 +29,7 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
 
   const [headerTitle, setHeaderTitle] = React.useState<string>('');
 
-  const [categories] = React.useState<string[]>([]);
+  const [categories] = React.useState<ICategory[]>([]);
   const [sources] = React.useState<ISource[]>([]);
 
   const navigateTo = useNavigateTo();
@@ -116,7 +116,7 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
             <Input icon={'star'} placeholder={'unique-blog-name'} disabled={action === 'view'} />
           </FormField>
 
-          <FormField label={'Description:'} height={'135px'}>
+          <FormField label={'Description:'} height={'160px'}>
             <TextArea disabled={action === 'view'} />
           </FormField>
 
@@ -138,7 +138,7 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
               <LabelText>{action === 'view' ? 'Categories:' : 'Selected categories:'}</LabelText>
               {
                 categories.map((category, index) =>
-                  <IconCard key={`category-${category}-${index}`} title={category} disabled={action === 'view'} />
+                  <IconCard key={`category-${category}-${index}`} title={category.name} disabled={action === 'view'} />
                 )
               }
             </SimpleListContainer>
