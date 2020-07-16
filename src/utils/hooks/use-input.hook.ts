@@ -12,6 +12,7 @@ export const useInput = (initialValue?: string, checkValue?: boolean): IInputHoo
   return {
     checked,
     onChange,
+    resetValue: (): void => setValue(initialValue || ''),
     value
   };
 };
@@ -19,5 +20,6 @@ export const useInput = (initialValue?: string, checkValue?: boolean): IInputHoo
 export interface IInputHook {
   checked: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  resetValue: () => void;
   value: string;
 }
