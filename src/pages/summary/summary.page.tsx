@@ -39,7 +39,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
               <ColorCard
                 button={'Go to images'}
                 color={COLOR_MAGENTA}
-                icon={'insert_photo'}
+                icon={'image'}
                 link={'/admin/images'}
                 name={'Total images'}
                 number={102} />

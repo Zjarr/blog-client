@@ -85,7 +85,7 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
             <EditorButtonsContainer>
               <SimpleButton
                 onClick={(): void => setImagesModalVisible(true)}
-                icon={'insert_photo'}
+                icon={'image'}
                 width={'auto'}>View images</SimpleButton>
 
               <SimpleButton
@@ -148,7 +148,7 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
             action !== 'view' &&
             <FormField label={'Sources:'}>
               <Input icon={'public'} placeholder={'Source name'} width={'calc(50% - 40px)'} />
-              <Input icon={'insert_link'} placeholder={'Source url'} width={'calc(50% - 40px)'} />
+              <Input icon={'link'} placeholder={'Source url'} width={'calc(50% - 40px)'} />
               <SimpleButton icon={'add'} />
             </FormField>
           }

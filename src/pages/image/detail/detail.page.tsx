@@ -63,11 +63,11 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
 
         <Column xl={4} position={'center'}>
           <FormField label={'Name:'}>
-            <Input icon={'insert_photo'} placeholder={'An awesome image'} disabled={action === 'view'} />
+            <Input icon={'image'} placeholder={'An awesome image'} disabled={action === 'view'} />
           </FormField>
 
           <FormField label={'Alt:'}>
-            <Input icon={'insert_photo'} placeholder={'Awesome alt text'} disabled={action === 'view'} />
+            <Input icon={'image'} placeholder={'Awesome alt text'} disabled={action === 'view'} />
           </FormField>
 
           <FormField label={'Active:'}>
