@@ -65,7 +65,7 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
           <MenuButton
             active={section === 'images'}
             onClick={(): void => navigateTo('/admin/images')}
-            icon={'insert_photo'}>Images</MenuButton>
+            icon={'image'}>Images</MenuButton>
         </MiddleButtonContainer>
 
         <BottomContainer>
