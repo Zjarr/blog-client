@@ -59,7 +59,8 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, icon, items, l
             items.length > 0 ? items.map((item: IDropdownItem, index: number) =>
               <DropdownItem key={`${item.name + item.value + index}`}>
                 <TextButton
-                  align={'flex-end'}
+                  align={'space-between'}
+                  icon={item.icon}
                   height={'48px'}
                   width={'100%'}
                   onClick={(): void => handleItemClick(item)}
@@ -74,6 +75,7 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, icon, items, l
 };
 
 export interface IDropdownItem {
+  icon?: string;
   name: string;
   value: string | number;
 }

@@ -10,7 +10,7 @@ import { Input } from '../../../components/input';
 import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
 import { useNavigateTo } from '../../../utils/hooks';
-import { COLOR_PURPLE } from '../../../utils/values';
+import { COLOR_PURPLE, VALUE_CATEGORIES } from '../../../utils/values';
 
 import { BodyContainer, DetailContainer } from './detail.style';
 
@@ -49,7 +49,7 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
           </FormField>
 
           <FormField label={'Icon:'}>
-            <Dropdown icon={'category'} items={[]} onChange={(): void => { }} name={'Select one'} disabled={action === 'view'} />
+            <Dropdown icon={'category'} items={VALUE_CATEGORIES} onChange={(): void => { }} name={'Select one'} disabled={action === 'view'} />
           </FormField>
         </Column>
 
