@@ -9,11 +9,13 @@ export const useTextArea = (initialValue?: string): ITextAreaHook => {
 
   return {
     onChange,
+    resetValue: (): void => setValue(initialValue || ''),
     value
   };
 };
 
 export interface ITextAreaHook {
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  resetValue: () => void;
   value: string;
 }

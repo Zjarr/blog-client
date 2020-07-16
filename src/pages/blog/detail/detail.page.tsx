@@ -15,7 +15,7 @@ import { LabelText } from '../../../components/text';
 import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
 import { IUpdateImageResult, UpdateImage } from '../../../components/update-image';
-import { useNavigateTo, useTextArea } from '../../../utils/hooks';
+import { useNavigateTo, useTextArea, useInput } from '../../../utils/hooks';
 import { ICategory, ISource } from '../../../utils/interfaces';
 import { COLOR_PURPLE } from '../../../utils/values';
 
@@ -30,10 +30,12 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   const [headerTitle, setHeaderTitle] = React.useState<string>('');
 
   const [categories] = React.useState<ICategory[]>([]);
-  const [sources] = React.useState<ISource[]>([]);
+  const [sources, setSources] = React.useState<ISource[]>([]);
 
   const navigateTo = useNavigateTo();
-  const blogBody = useTextArea();
+  const blogBodyTextArea = useTextArea();
+  const sourceNameInput = useInput();
+  const sourceUrlInput = useInput();
 
   const handleCancelClick = (): void => {
     if (action === 'add') return navigateTo('/admin/blogs');
@@ -51,6 +53,24 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   const handleImageUpdateModalClose = (result: IUpdateImageResult | null): void => {
     setImage(result ? result.base64 : image);
     setImageModalVisible(false);
+  };
+
+  const addSource = (): void => {
+    const source: ISource = {
+      name: sourceNameInput.value,
+      url: sourceUrlInput.value
+    };
+
+    sourceNameInput.resetValue();
+    sourceUrlInput.resetValue();
+
+    return setSources([...sources, { ...source }]);
+  };
+
+  const removeSource = (index: number): void => {
+    sources.splice(index, 1);
+
+    return setSources([...sources]);
   };
 
   const initPageProperties = React.useCallback((action): void => {
@@ -72,11 +92,11 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
           {
             action === 'view' || previewBlog ?
               <FormField label={'Result:'} minHeight={'calc(100vh - 232px)'}>
-                <Renderer source={blogBody.value} />
+                <Renderer source={blogBodyTextArea.value} />
               </FormField>
               :
               <FormField label={'Body:'} height={'calc(100vh - 232px)'}>
-                <TextArea disabled={action === 'view'} {...blogBody} />
+                <TextArea disabled={action === 'view'} {...blogBodyTextArea} />
               </FormField>
           }
 
@@ -147,9 +167,9 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
           {
             action !== 'view' &&
             <FormField label={'Sources:'}>
-              <Input icon={'public'} placeholder={'Source name'} width={'calc(50% - 40px)'} />
-              <Input icon={'link'} placeholder={'Source url'} width={'calc(50% - 40px)'} />
-              <SimpleButton icon={'add'} />
+              <Input icon={'public'} placeholder={'Source name'} width={'calc(50% - 40px)'} {...sourceNameInput} />
+              <Input icon={'link'} placeholder={'Source url'} width={'calc(50% - 40px)'} {...sourceUrlInput} />
+              <SimpleButton icon={'add'} onClick={addSource} />
             </FormField>
           }
 
@@ -159,7 +179,12 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
               <LabelText>{action === 'view' ? 'Sources:' : 'Selected sources:'}</LabelText>
               {
                 sources.map((source: ISource, index: number) =>
-                  <IconCard key={`source-${source.name}-${index}`} title={source.name} text={source.url} disabled={action === 'view'} />
+                  <IconCard
+                    onClick={(): void => removeSource(index)}
+                    key={`source-${source.name}-${index}`}
+                    disabled={action === 'view'}
+                    title={source.name}
+                    text={source.url} />
                 )
               }
             </SimpleListContainer>
