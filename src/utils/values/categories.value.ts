@@ -1,6 +1,6 @@
-import { IDropdownItem } from '../../components/dropdown';
+import { IIcon } from '../interfaces';
 
-export const VALUE_CATEGORIES: IDropdownItem[] = [
+export const VALUE_CATEGORIES: IIcon[] = [
   { icon: 'pets', name: 'Pets', value: 'pets' },
   { icon: 'android', name: 'Android', value: 'android' },
   { icon: 'book', name: 'Book', value: 'book' },
