@@ -13,9 +13,9 @@ import {
   DropdownTriggerCaret,
   DropdownTriggerContainer
 } from './dropdown.style';
+import { ICategory } from '../../utils/interfaces';
 
-export const Dropdown: React.FC<IDropdown> = ({ disabled = false, icon, items, label, name, onChange, width }) => {
-  const [triggerName, setTriggerName] = React.useState<string>(name);
+export const Dropdown: React.FC<IDropdown> = ({ disabled = false, field, icon, items, label, name, onChange, width }) => {
   const [open, setOpen] = React.useState<boolean>(false);
 
   const toggleDropdownItemContainer = (): void => {
@@ -23,7 +23,6 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, icon, items, l
   };
 
   const handleItemClick = (item: IDropdownItem): void => {
-    setTriggerName(item.name);
     setOpen(false);
 
     return onChange(item);
@@ -45,7 +44,7 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, icon, items, l
         }
         <DropdownTriggerContainer>
           <DropdownTrigger disabled={disabled} icon={icon} open={open} onClick={(): void => toggleDropdownItemContainer()} >
-            {triggerName}
+            {name}
           </DropdownTrigger>
           {
             icon && <Icon name={icon} />
@@ -57,7 +56,7 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, icon, items, l
         <DropdownItemContainer open={open} label={label}>
           {
             items.length > 0 ? items.map((item: IDropdownItem, index: number) =>
-              <DropdownItem key={`${item.name + item.value + index}`}>
+              <DropdownItem key={`dropdown-item-${field ? item[field] : item.name}-${index}`}>
                 <TextButton
                   align={'space-between'}
                   icon={item.icon}
@@ -74,14 +73,13 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, icon, items, l
   );
 };
 
-export interface IDropdownItem {
-  icon?: string;
-  name: string;
-  value: string | number;
-}
+interface IDropdownItem extends Partial<ICategory> {
+  value?: string | number;
+};
 
 interface IDropdown {
   disabled?: boolean;
+  field?: keyof ICategory;
   icon?: string;
   items: IDropdownItem[];
   label?: string;
