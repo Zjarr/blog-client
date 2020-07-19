@@ -1,16 +1,12 @@
 import React from 'react';
 
 import { Icon } from '../icon';
-import { LabelText } from '../text';
 
 import { InputContainer, InputField } from './input.style';
 
-export const Input: React.FC<IInput> = ({ disabled = false, label, icon, width, ...rest }) => {
+export const Input: React.FC<IInput> = ({ disabled = false, icon, width, ...rest }) => {
   return (
     <InputContainer width={width}>
-      {
-        label && <LabelText>{label}</LabelText>
-      }
       {
         icon && <Icon name={icon} />
       }
@@ -22,7 +18,6 @@ export const Input: React.FC<IInput> = ({ disabled = false, label, icon, width, 
 interface IInput {
   disabled?: boolean;
   icon?: string;
-  label?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   type?: string;
