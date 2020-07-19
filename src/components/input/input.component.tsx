@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { COLOR_RED } from '../../utils/values';
-
 import { Icon } from '../icon';
 
 import { Error, InputContainer, InputField } from './input.style';
@@ -15,7 +13,7 @@ export const Input: React.FC<IInput> = ({ disabled = false, error, icon, width, 
       <InputField disabled={disabled} error={error} icon={icon} {...rest} />
 
       {
-        error && <Error color={COLOR_RED}>{error}</Error>
+        error && <Error>{error}</Error>
       }
     </InputContainer>
   );

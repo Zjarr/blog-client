@@ -8,10 +8,9 @@ import {
   COLOR_GRAY_MEDIUM,
   COLOR_PURPLE,
   COLOR_RED,
-  TEXT_NORMAL
+  TEXT_NORMAL,
+  TEXT_SMALL
 } from '../../utils/values';
-
-import { ParagraphText } from '../text';
 
 const DEFAULT_FIELD_BORDER_COLOR = COLOR_GRAY_LIGHT;
 const DEFAULT_FIELD_PADDING = '0px 16px';
@@ -83,20 +82,24 @@ export const InputField = Styled.input<{ disabled: boolean, error?: string, icon
   }
 `;
 
-export const Error = Styled(ParagraphText)`
+export const Error = Styled.p`
   animation: 0.25s show-error;
-  bottom: -24px;
+  bottom: -20px;
   left: 12px;
+  margin-bottom: 0;
   position: absolute;
+
+  color: ${COLOR_RED};
+  font-size: ${TEXT_SMALL};
 
   @keyframes show-error {
     from {
-      bottom: -28px;
+      bottom: -24px;
       opacity: 0;
     }
 
     to {
-      bottom: -24px;
+      bottom: -20px;
       opacity: 1;
     }
   }
