@@ -13,7 +13,6 @@ import {
 
 const DEFAULT_ITEM_CONTAINER_OPACITY = '0';
 const DEFAULT_ITEM_CONTAINER_PADDING = '0px 8px';
-const DEFAULT_ITEM_CONTAINER_TOP = '60px';
 const DEFAULT_ITEM_CONTAINER_VISIBILITY = 'hidden';
 
 const DEFAULT_TRIGGER_PADDING = '8px 48px 8px 16px';
@@ -22,7 +21,6 @@ const DEFAULT_TRIGGER_ICON_ROTATE = 'rotate(0deg)';
 const ITEM_CONTAINER_OPEN_OPACITY = '1';
 const ITEM_CONTAINER_OPEN_PADDING = '8px';
 const ITEM_CONTAINER_OPEN_VISIBILITY = 'visible';
-const ITEM_CONTAINER_WITH_LABEL_TOP = '80px';
 
 const TRIGGER_WITH_ICON_PADDING = '8px 48px';
 const TRIGGER_ICON_ROTATE = 'rotate(180deg)';
@@ -41,7 +39,6 @@ const getTriggerRotate = (open?: boolean): string => open ? TRIGGER_ICON_ROTATE 
 
 const getItemContainerOpacity = (open?: boolean): string => open ? ITEM_CONTAINER_OPEN_OPACITY : DEFAULT_ITEM_CONTAINER_OPACITY;
 const getItemContainerPadding = (open?: boolean): string => open ? ITEM_CONTAINER_OPEN_PADDING : DEFAULT_ITEM_CONTAINER_PADDING;
-const getItemContainerTop = (label?: string): string => label ? ITEM_CONTAINER_WITH_LABEL_TOP : DEFAULT_ITEM_CONTAINER_TOP;
 const getItemContainerVisibility = (open?: boolean): string => open ? ITEM_CONTAINER_OPEN_VISIBILITY : DEFAULT_ITEM_CONTAINER_VISIBILITY;
 
 export const DropdownContainer = Styled.div<{ width?: string }>`
@@ -107,22 +104,22 @@ export const DropdownTriggerContainer = Styled.div`
   }
 `;
 
-export const DropdownItemContainer = Styled.div<{ open: boolean, label?: string }>`
+export const DropdownItemContainer = Styled.div<{ open: boolean }>`
   left: 0;
   max-height: 296px;
   opacity: 0;
   overflow: scroll;
   position: absolute;
   right: 0;
-  z-index: 1;
-  visibility: hidden;
+  top: 60px;
   transition: 0.25s ease;
+  visibility: hidden;
+  z-index: 1;
 
   background-color: ${COLOR_WHITE};
   border: 2px solid ${COLOR_PURPLE};
   border-radius: ${BORDER_RADIUS_SMALL};
 
-  top: ${({ label }): string => getItemContainerTop(label)};
   opacity: ${({ open }): string => getItemContainerOpacity(open)};
   padding: ${({ open }): string => getItemContainerPadding(open)};
   visibility: ${({ open }): string => getItemContainerVisibility(open)};
