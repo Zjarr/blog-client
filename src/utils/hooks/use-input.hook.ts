@@ -3,6 +3,7 @@ import React from 'react';
 export const useInput = (initialValue?: string, checkValue?: boolean): IInputHook => {
   const [checked, setChecked] = React.useState<boolean>(checkValue || false);
   const [value, setValue] = React.useState<string>(initialValue || '');
+  const [error, setError] = React.useState<string>('');
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setChecked(e.target.checked);
@@ -11,15 +12,21 @@ export const useInput = (initialValue?: string, checkValue?: boolean): IInputHoo
 
   return {
     checked,
+    error,
     onChange,
-    resetValue: (): void => setValue(initialValue || ''),
+    setChecked,
+    setError,
+    setValue,
     value
   };
 };
 
 export interface IInputHook {
   checked: boolean;
+  error: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  resetValue: () => void;
+  setChecked: (value: boolean) => void;
+  setError: (error: string) => void;
+  setValue: (value: string) => void;
   value: string;
 }
