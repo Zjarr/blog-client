@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { IDropdownItem } from '../../utils/interfaces';
+
 import { TextButton } from '../button';
 import { Icon } from '../icon';
 import { OutsideClick } from '../outside-click';
@@ -13,7 +15,6 @@ import {
   DropdownTriggerCaret,
   DropdownTriggerContainer
 } from './dropdown.style';
-import { ICategory } from '../../utils/interfaces';
 
 export const Dropdown: React.FC<IDropdown> = ({ disabled = false, field, icon, items, label, name, onChange, width }) => {
   const [open, setOpen] = React.useState<boolean>(false);
@@ -73,13 +74,9 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, field, icon, i
   );
 };
 
-interface IDropdownItem extends Partial<ICategory> {
-  value?: string | number;
-};
-
 interface IDropdown {
   disabled?: boolean;
-  field?: keyof ICategory;
+  field?: keyof IDropdownItem;
   icon?: string;
   items: IDropdownItem[];
   label?: string;
