@@ -14,22 +14,24 @@ import { Renderer } from '../../../components/renderer';
 import { LabelText } from '../../../components/text';
 import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
-import { IUpdateImageResult, UpdateImage } from '../../../components/update-image';
-import { useNavigateTo, useTextArea, useInput } from '../../../utils/hooks';
-import { ICategory, ISource } from '../../../utils/interfaces';
+import { UpdateImage } from '../../../components/update-image';
+import { useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
+import { ICategory, IDropdownItem, IImageResult, ISource } from '../../../utils/interfaces';
 import { COLOR_PURPLE } from '../../../utils/values';
 
 import { BodyContainer, DetailContainer, EditorButtonsContainer, SimpleListContainer } from './detail.style';
 
 export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
-  const [imagesModalVisible, setImagesModalVisible] = React.useState<boolean>(false);
-  const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
   const [previewBlog, setPreviewBlog] = React.useState<boolean>(false);
-  const [image, setImage] = React.useState<string>('');
-
   const [headerTitle, setHeaderTitle] = React.useState<string>('');
 
-  const [categories] = React.useState<ICategory[]>([]);
+  const [imagesModalVisible, setImagesModalVisible] = React.useState<boolean>(false);
+  const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
+  const [image, setImage] = React.useState<string>('');
+
+  const [dropdownCategory, setDropdownCategory] = React.useState<ICategory | null>();
+  const [categories, setCategories] = React.useState<ICategory[]>([]);
+
   const [sources, setSources] = React.useState<ISource[]>([]);
 
   const navigateTo = useNavigateTo();
@@ -50,9 +52,25 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
     return setPreviewBlog(!previewBlog);
   };
 
-  const handleImageUpdateModalClose = (result: IUpdateImageResult | null): void => {
+  const handleImageUpdateModalClose = (result: IImageResult | null): void => {
     setImage(result ? result.base64 : image);
     setImageModalVisible(false);
+  };
+
+  const addCategory = (): void => {
+    if (!dropdownCategory) {
+      return;
+    }
+
+    const isCategoryAlreadyAdded = !!categories.find((category: ICategory) => category.id === dropdownCategory.id);
+
+    if (isCategoryAlreadyAdded) {
+      return;
+    }
+
+    setCategories([...categories, { ...dropdownCategory }]);
+
+    return setDropdownCategory(null);
   };
 
   const addSource = (): void => {
@@ -147,8 +165,13 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
           {
             action !== 'view' &&
             <FormField label={'Categories:'}>
-              <Dropdown icon={'category'} items={[]} onChange={(): void => { }} name={'Select one'} width={'calc(100% - 64px)'} />
-              <SimpleButton icon={'add'} />
+              <Dropdown
+                onChange={(category: IDropdownItem): void => setDropdownCategory(category as ICategory)}
+                name={dropdownCategory?.name || 'Select one'}
+                width={'calc(100% - 64px)'}
+                items={[]}
+                icon={'category'} />
+              <SimpleButton icon={'add'} onClick={addCategory} />
             </FormField>
           }
 
