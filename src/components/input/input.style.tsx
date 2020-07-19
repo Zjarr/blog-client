@@ -7,14 +7,27 @@ import {
   COLOR_GRAY_LIGHT,
   COLOR_GRAY_MEDIUM,
   COLOR_PURPLE,
+  COLOR_RED,
   TEXT_NORMAL
 } from '../../utils/values';
 
+import { ParagraphText } from '../text';
+
+const DEFAULT_FIELD_BORDER_COLOR = COLOR_GRAY_LIGHT;
 const DEFAULT_FIELD_PADDING = '0px 16px';
 const DEFAULT_FIELD_WIDTH = '100%';
 
+const FIELD_ERROR_BORDER_COLOR = COLOR_RED;
+const FIELD_FOCUS_BORDER_COLOR = COLOR_PURPLE;
 const FIELD_WITH_ICON_PADDING = '0px 16px 0px 48px';
 
+const getFieldBorderColor = (error?: string, focus?: boolean): string => {
+  if (error) {
+    return FIELD_ERROR_BORDER_COLOR;
+  }
+
+  return focus ? FIELD_FOCUS_BORDER_COLOR : DEFAULT_FIELD_BORDER_COLOR;
+};
 const getFieldPadding = (icon?: string): string => icon ? FIELD_WITH_ICON_PADDING : DEFAULT_FIELD_PADDING;
 const getFieldWidth = (width?: string): string => width ? width : DEFAULT_FIELD_WIDTH;
 
@@ -33,7 +46,7 @@ export const InputContainer = Styled.div<{ width?: string }>`
   }
 `;
 
-export const InputField = Styled.input<{ disabled: boolean, icon?: string }>`
+export const InputField = Styled.input<{ disabled: boolean, error?: string, icon?: string }>`
   cursor: text;
   font-family: Proxima Nova Regular;
   height: 48px;
@@ -46,16 +59,16 @@ export const InputField = Styled.input<{ disabled: boolean, icon?: string }>`
   width: 100%;
 
   background-color: ${COLOR_BLACK_0};
-  border: 2px solid ${COLOR_GRAY_LIGHT};
   border-radius: ${BORDER_RADIUS_SMALL};
   font-size: ${TEXT_NORMAL};
 
+  border: 2px solid ${({ error }): string => getFieldBorderColor(error)};
   padding: ${({ icon }): string => getFieldPadding(icon)};
 
   :focus {
     transition: 0.25s ease;
     
-    border-color: ${COLOR_PURPLE};
+    border-color: ${({ error }): string => getFieldBorderColor(error, true)};
   }
 
   ::placeholder {
@@ -67,5 +80,24 @@ export const InputField = Styled.input<{ disabled: boolean, icon?: string }>`
 
     border-color: ${COLOR_BLACK_0};
     color: ${COLOR_BLACK};
+  }
+`;
+
+export const Error = Styled(ParagraphText)`
+  animation: 0.25s show-error;
+  bottom: -24px;
+  left: 12px;
+  position: absolute;
+
+  @keyframes show-error {
+    from {
+      bottom: -28px;
+      opacity: 0;
+    }
+
+    to {
+      bottom: -24px;
+      opacity: 1;
+    }
   }
 `;
