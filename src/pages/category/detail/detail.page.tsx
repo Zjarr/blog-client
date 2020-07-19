@@ -9,7 +9,7 @@ import { Header } from '../../../components/header';
 import { Input } from '../../../components/input';
 import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
-import { useNavigateTo } from '../../../utils/hooks';
+import { useDropdown, useNavigateTo } from '../../../utils/hooks';
 import { COLOR_PURPLE, VALUE_CATEGORIES } from '../../../utils/values';
 
 import { BodyContainer, DetailContainer } from './detail.style';
@@ -17,6 +17,7 @@ import { BodyContainer, DetailContainer } from './detail.style';
 export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param }) => {
   const [headerTitle, setHeaderTitle] = React.useState<string>('');
 
+  const categoriesDropdown = useDropdown(VALUE_CATEGORIES);
   const navigateTo = useNavigateTo();
 
   const handleCancelClick = (): void => {
@@ -49,7 +50,11 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
           </FormField>
 
           <FormField label={'Icon:'}>
-            <Dropdown icon={'category'} items={VALUE_CATEGORIES} onChange={(): void => { }} name={'Select one'} disabled={action === 'view'} />
+            <Dropdown
+              name={categoriesDropdown?.value?.name || 'Select one'}
+              disabled={action === 'view'}
+              {...categoriesDropdown}
+              icon={'category'} />
           </FormField>
         </Column>
 

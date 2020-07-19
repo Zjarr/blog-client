@@ -17,7 +17,7 @@ export const useTextArea = (initialValue?: string): ITextAreaHook => {
   };
 };
 
-export interface ITextAreaHook {
+interface ITextAreaHook {
   error?: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   setError: (error: string) => void;

@@ -21,7 +21,7 @@ export const useInput = (initialValue?: string, checkValue?: boolean): IInputHoo
   };
 };
 
-export interface IInputHook {
+interface IInputHook {
   checked: boolean;
   error: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
