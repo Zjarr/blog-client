@@ -12,7 +12,8 @@ import { Image } from '../../../components/image';
 import { Input } from '../../../components/input';
 import { SubtitleText } from '../../../components/text';
 import { TextArea } from '../../../components/textarea';
-import { IUpdateImageResult, UpdateImage } from '../../../components/update-image';
+import { UpdateImage } from '../../../components/update-image';
+import { IImageResult } from '../../../utils/interfaces';
 import { COLOR_PURPLE } from '../../../utils/values';
 
 import {
@@ -28,7 +29,7 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   const [image, setImage] = React.useState<string>('');
   const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
 
-  const handleImageUpdateModalClose = (result: IUpdateImageResult | null): void => {
+  const handleImageUpdateModalClose = (result: IImageResult | null): void => {
     setImage(result ? result.base64 : image);
     setImageModalVisible(false);
   };

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { toBase64 } from '../../utils/functions';
+import { IImageResult } from '../../utils/interfaces';
 import { COLOR_PURPLE } from '../../utils/values';
 
 import { SimpleButton } from '../button';
@@ -20,7 +21,7 @@ import {
 
 export const UpdateImage: React.FC<IUpdateImage> = ({ src, onClose, visible }) => {
   const [imageSrc, setImageSrc] = React.useState<string>(src);
-  const [uploadedImageResult, setUploadedImageResult] = React.useState<IUpdateImageResult | null>(null);
+  const [uploadedImageResult, setUploadedImageResult] = React.useState<IImageResult | null>(null);
   const imageRef = React.useRef<HTMLInputElement>(null);
 
   const handleOnCloseRequest = (update: boolean): void => {
@@ -97,13 +98,8 @@ export const UpdateImage: React.FC<IUpdateImage> = ({ src, onClose, visible }) =
   );
 };
 
-export interface IUpdateImageResult {
-  file: File | null;
-  base64: string
-}
-
 interface IUpdateImage {
   src: string;
   visible: boolean;
-  onClose: (result: IUpdateImageResult | null) => void;
+  onClose: (result: IImageResult | null) => void;
 }

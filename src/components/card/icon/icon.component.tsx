@@ -50,7 +50,7 @@ export const IconCard: React.FC<IIconCard> = ({ disabled, icon, onClick, text, t
   );
 };
 
-export interface IIconCard {
+interface IIconCard {
   disabled?: boolean;
   icon?: string;
   onClick?: () => void;

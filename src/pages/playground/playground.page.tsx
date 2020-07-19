@@ -16,8 +16,8 @@ import { Renderer } from '../../components/renderer';
 import { TitleText } from '../../components/text';
 import { TextArea } from '../../components/textarea';
 import { Toggle } from '../../components/toggle';
-import { IUpdateImageResult, UpdateImage } from '../../components/update-image';
-
+import { UpdateImage } from '../../components/update-image';
+import { IImageResult } from '../../utils/interfaces';
 import { COLOR_GREEN, COLOR_PURPLE } from '../../utils/values';
 
 const string = `
@@ -143,7 +143,7 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
       <Image shape={'square'} onUpdateClick={(): void => setUpdateImageModalVisible(true)} src={image} updatable />
       <UpdateImage
         visible={updateImageModalVisible}
-        onClose={(result: IUpdateImageResult | null): void => {
+        onClose={(result: IImageResult | null): void => {
           setImage(result ? result.base64 : image);
           setUpdateImageModalVisible(false);
         }}
