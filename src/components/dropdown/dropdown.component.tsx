@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IDropdownItem } from '../../utils/interfaces';
+import { IDropdownValue } from '../../utils/interfaces';
 
 import { TextButton } from '../button';
 import { Icon } from '../icon';
@@ -9,24 +9,24 @@ import { ParagraphText } from '../text';
 
 import {
   DropdownContainer,
-  DropdownItem,
-  DropdownItemContainer,
   DropdownTrigger,
   DropdownTriggerCaret,
-  DropdownTriggerContainer
+  DropdownTriggerContainer,
+  DropdownValue,
+  DropdownValueContainer
 } from './dropdown.style';
 
-export const Dropdown: React.FC<IDropdown> = ({ disabled = false, field, icon, items, name, onChange, width }) => {
+export const Dropdown: React.FC<IDropdown> = ({ disabled = false, field, icon, values, name, onChange, width }) => {
   const [open, setOpen] = React.useState<boolean>(false);
 
-  const toggleDropdownItemContainer = (): void => {
+  const toggleDropdownValueContainer = (): void => {
     return setOpen(!open);
   };
 
-  const handleItemClick = (item: IDropdownItem): void => {
+  const handleValueClick = (value: IDropdownValue): void => {
     setOpen(false);
 
-    return onChange(item);
+    return onChange(value);
   };
 
   const handleOutsideClick = (outside: boolean): void => {
@@ -41,7 +41,7 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, field, icon, i
     <OutsideClick onPlaceChange={(outside: boolean): void => handleOutsideClick(outside)} width={width}>
       <DropdownContainer>
         <DropdownTriggerContainer>
-          <DropdownTrigger disabled={disabled} icon={icon} open={open} onClick={(): void => toggleDropdownItemContainer()} >
+          <DropdownTrigger disabled={disabled} icon={icon} open={open} onClick={(): void => toggleDropdownValueContainer()} >
             {name}
           </DropdownTrigger>
           {
@@ -51,21 +51,21 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, field, icon, i
             <Icon name={'keyboard_arrow_down'} size={'24px'} />
           </DropdownTriggerCaret>
         </DropdownTriggerContainer>
-        <DropdownItemContainer open={open}>
+        <DropdownValueContainer open={open}>
           {
-            items.length > 0 ? items.map((item: IDropdownItem, index: number) =>
-              <DropdownItem key={`dropdown-item-${field ? item[field] : item.name}-${index}`}>
+            values.length > 0 ? values.map((value: IDropdownValue, index: number) =>
+              <DropdownValue key={`dropdown-value-${field ? value[field] : value.name}-${index}`}>
                 <TextButton
                   align={'space-between'}
-                  icon={item.icon}
+                  icon={value.icon}
                   height={'48px'}
                   width={'100%'}
-                  onClick={(): void => handleItemClick(item)}
-                >{item.name}</TextButton>
-              </DropdownItem>
-            ) : <ParagraphText>There are no items</ParagraphText>
+                  onClick={(): void => handleValueClick(value)}
+                >{value.name}</TextButton>
+              </DropdownValue>
+            ) : <ParagraphText>No options to choose from.</ParagraphText>
           }
-        </DropdownItemContainer>
+        </DropdownValueContainer>
       </DropdownContainer>
     </OutsideClick>
   );
@@ -73,10 +73,10 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, field, icon, i
 
 interface IDropdown {
   disabled?: boolean;
-  field?: keyof IDropdownItem;
+  field?: keyof IDropdownValue;
   icon?: string;
-  items: IDropdownItem[];
   name: string;
-  onChange: (item: IDropdownItem) => void;
+  onChange: (value: IDropdownValue) => void;
+  values: IDropdownValue[];
   width?: string;
 };

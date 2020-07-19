@@ -11,19 +11,19 @@ import {
   TEXT_NORMAL
 } from '../../utils/values';
 
-const DEFAULT_ITEM_CONTAINER_OPACITY = '0';
-const DEFAULT_ITEM_CONTAINER_PADDING = '0px 8px';
-const DEFAULT_ITEM_CONTAINER_VISIBILITY = 'hidden';
-
 const DEFAULT_TRIGGER_PADDING = '8px 48px 8px 16px';
 const DEFAULT_TRIGGER_ICON_ROTATE = 'rotate(0deg)';
 
-const ITEM_CONTAINER_OPEN_OPACITY = '1';
-const ITEM_CONTAINER_OPEN_PADDING = '8px';
-const ITEM_CONTAINER_OPEN_VISIBILITY = 'visible';
+const DEFAULT_VALUE_CONTAINER_OPACITY = '0';
+const DEFAULT_VALUE_CONTAINER_PADDING = '0px 8px';
+const DEFAULT_VALUE_CONTAINER_VISIBILITY = 'hidden';
 
 const TRIGGER_WITH_ICON_PADDING = '8px 48px';
 const TRIGGER_ICON_ROTATE = 'rotate(180deg)';
+
+const VALUE_CONTAINER_OPEN_OPACITY = '1';
+const VALUE_CONTAINER_OPEN_PADDING = '8px';
+const VALUE_CONTAINER_OPEN_VISIBILITY = 'visible';
 
 const getTriggerBorderColor = (active?: boolean, disabled?: boolean): string => {
   if (disabled) {
@@ -37,9 +37,9 @@ const getTriggerIconColor = (disabled?: boolean): string => disabled ? COLOR_BLA
 const getTriggerPadding = (icon?: string): string => icon ? TRIGGER_WITH_ICON_PADDING : DEFAULT_TRIGGER_PADDING;
 const getTriggerRotate = (open?: boolean): string => open ? TRIGGER_ICON_ROTATE : DEFAULT_TRIGGER_ICON_ROTATE;
 
-const getItemContainerOpacity = (open?: boolean): string => open ? ITEM_CONTAINER_OPEN_OPACITY : DEFAULT_ITEM_CONTAINER_OPACITY;
-const getItemContainerPadding = (open?: boolean): string => open ? ITEM_CONTAINER_OPEN_PADDING : DEFAULT_ITEM_CONTAINER_PADDING;
-const getItemContainerVisibility = (open?: boolean): string => open ? ITEM_CONTAINER_OPEN_VISIBILITY : DEFAULT_ITEM_CONTAINER_VISIBILITY;
+const getValueContainerOpacity = (open?: boolean): string => open ? VALUE_CONTAINER_OPEN_OPACITY : DEFAULT_VALUE_CONTAINER_OPACITY;
+const getValueContainerPadding = (open?: boolean): string => open ? VALUE_CONTAINER_OPEN_PADDING : DEFAULT_VALUE_CONTAINER_PADDING;
+const getValueContainerVisibility = (open?: boolean): string => open ? VALUE_CONTAINER_OPEN_VISIBILITY : DEFAULT_VALUE_CONTAINER_VISIBILITY;
 
 export const DropdownContainer = Styled.div<{ width?: string }>`
   display: inline-block;
@@ -104,7 +104,7 @@ export const DropdownTriggerContainer = Styled.div`
   }
 `;
 
-export const DropdownItemContainer = Styled.div<{ open: boolean }>`
+export const DropdownValueContainer = Styled.div<{ open: boolean }>`
   left: 0;
   max-height: 296px;
   opacity: 0;
@@ -120,9 +120,9 @@ export const DropdownItemContainer = Styled.div<{ open: boolean }>`
   border: 2px solid ${COLOR_PURPLE};
   border-radius: ${BORDER_RADIUS_SMALL};
 
-  opacity: ${({ open }): string => getItemContainerOpacity(open)};
-  padding: ${({ open }): string => getItemContainerPadding(open)};
-  visibility: ${({ open }): string => getItemContainerVisibility(open)};
+  opacity: ${({ open }): string => getValueContainerOpacity(open)};
+  padding: ${({ open }): string => getValueContainerPadding(open)};
+  visibility: ${({ open }): string => getValueContainerVisibility(open)};
 
   p {
     margin: 4px 0;
@@ -133,7 +133,7 @@ export const DropdownItemContainer = Styled.div<{ open: boolean }>`
   }
 `;
 
-export const DropdownItem = Styled.div`
+export const DropdownValue = Styled.div`
   height: 48px;
   margin-bottom: 8px;
   text-align: right;

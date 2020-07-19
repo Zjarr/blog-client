@@ -16,7 +16,7 @@ import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
 import { UpdateImage } from '../../../components/update-image';
 import { useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
-import { ICategory, IDropdownItem, IImageResult, ISource } from '../../../utils/interfaces';
+import { ICategory, IDropdownValue, IImageResult, ISource } from '../../../utils/interfaces';
 import { COLOR_PURPLE } from '../../../utils/values';
 
 import { BodyContainer, DetailContainer, EditorButtonsContainer, SimpleListContainer } from './detail.style';
@@ -172,10 +172,10 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
             action !== 'view' &&
             <FormField label={'Categories:'}>
               <Dropdown
-                onChange={(category: IDropdownItem): void => setDropdownCategory(category as ICategory)}
+                onChange={(category: IDropdownValue): void => setDropdownCategory(category as ICategory)}
                 name={dropdownCategory?.name || 'Select one'}
                 width={'calc(100% - 64px)'}
-                items={[]}
+                values={[]}
                 icon={'category'} />
               <SimpleButton icon={'add'} onClick={addCategory} />
             </FormField>

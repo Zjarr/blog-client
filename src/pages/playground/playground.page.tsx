@@ -97,14 +97,14 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
       <p></p>
       <Dropdown
         name={'Dropdown'}
-        items={[]}
+        values={[]}
         icon={'group'}
         onChange={(): void => { }}
       />
       <p></p>
       <Dropdown
         name={'Dropdown'}
-        items={[
+        values={[
           { name: 'value', value: 'name' }
         ]}
         icon={'group'}
@@ -113,7 +113,7 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
       <p></p>
       <Dropdown
         name={'Dropdown'}
-        items={[
+        values={[
           { name: 'value', value: 'name' },
           { name: 'value', value: 'name' },
           { name: 'value', value: 'name' }
@@ -124,7 +124,7 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
       <p></p>
       <Dropdown
         name={'Dropdown'}
-        items={[]}
+        values={[]}
         icon={'group'}
         onChange={(): void => { }}
         disabled
@@ -376,7 +376,7 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
         <Dropdown
           width={'calc(100% / 3 - 10.67px)'}
           name={'Dropdown'}
-          items={[
+          values={[
             { name: 'value', value: 'name' }
           ]}
           icon={'group'}

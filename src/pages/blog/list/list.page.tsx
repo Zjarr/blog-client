@@ -127,7 +127,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
           <SubtitleText icon={'filter_list'}>Filter</SubtitleText>
 
           <FormField label={'Category:'}>
-            <Dropdown icon={'category'} name={'Any'} items={[]} onChange={(): void => { }} />
+            <Dropdown icon={'category'} name={'Any'} values={[]} onChange={(): void => { }} />
           </FormField>
 
           <FormField label={'Published:'}>

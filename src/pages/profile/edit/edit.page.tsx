@@ -13,8 +13,8 @@ import { Input } from '../../../components/input';
 import { SubtitleText } from '../../../components/text';
 import { TextArea } from '../../../components/textarea';
 import { UpdateImage } from '../../../components/update-image';
-import { useInput } from '../../../utils/hooks';
-import { IDropdownItem, IIcon, IImageResult, ISocial } from '../../../utils/interfaces';
+import { useDropdown, useInput } from '../../../utils/hooks';
+import { IImageResult, ISocial } from '../../../utils/interfaces';
 import { COLOR_PURPLE, VALUE_SOCIAL } from '../../../utils/values';
 
 import {
@@ -30,10 +30,9 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
   const [image, setImage] = React.useState<string>('');
 
-  const [socialIcon, setSocialIcon] = React.useState<IIcon | null>(null);
-
   const [socialNetworks, setSocialNetworks] = React.useState<ISocial[]>([]);
 
+  const socialIcon = useDropdown(VALUE_SOCIAL);
   const socialName = useInput();
   const socialURL = useInput();
 
@@ -60,17 +59,17 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
       socialURL.setError('This field is required.');
     }
 
-    if (!socialName.value || !socialURL.value || !socialIcon) {
+    if (!socialName.value || !socialURL.value || !socialIcon?.value?.icon) {
       return;
     }
 
     const socialNetwork: ISocial = {
       name: socialName.value,
-      icon: socialIcon.icon,
+      icon: socialIcon.value.icon,
       url: socialURL.value
     };
 
-    setSocialIcon(null);
+    socialIcon.setValue(null);
     socialName.setValue('');
     socialURL.setValue('');
 
@@ -135,10 +134,9 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
             <Column xl={4} position={'center'}>
               <FormField label={'Icon:'} noMargin>
                 <Dropdown
-                  onChange={(icon: IDropdownItem): void => setSocialIcon(icon as IIcon)}
-                  name={socialIcon?.name || 'Select one'}
-                  items={VALUE_SOCIAL}
-                  icon={'public'} />
+                  name={socialIcon?.value?.name || 'Select one'}
+                  icon={'public'}
+                  {...socialIcon} />
               </FormField>
             </Column>
 
