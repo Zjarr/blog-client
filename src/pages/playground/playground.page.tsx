@@ -83,9 +83,9 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
 
       <TitleText>Input</TitleText>
       <p></p>
-      <Input icon={'group'} label={'Name:'} />
+      <Input icon={'group'} value={'Pablo Navarro'} />
       <p></p>
-      <Input icon={'group'} label={'Name:'} value={'Pablo Navarro'} disabled />
+      <Input icon={'group'} value={'Pablo Navarro'} disabled />
       <br />
       <br />
       <br />
@@ -95,7 +95,6 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
       <p></p>
       <Dropdown
         name={'Dropdown'}
-        label={'Year:'}
         items={[]}
         icon={'group'}
         onChange={(): void => { }}
@@ -103,7 +102,6 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
       <p></p>
       <Dropdown
         name={'Dropdown'}
-        label={'Year:'}
         items={[
           { name: 'value', value: 'name' }
         ]}
@@ -113,7 +111,6 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
       <p></p>
       <Dropdown
         name={'Dropdown'}
-        label={'Year:'}
         items={[
           { name: 'value', value: 'name' },
           { name: 'value', value: 'name' },
@@ -125,7 +122,6 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
       <p></p>
       <Dropdown
         name={'Dropdown'}
-        label={'Year:'}
         items={[]}
         icon={'group'}
         onChange={(): void => { }}
@@ -155,9 +151,9 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
 
       <TitleText>Toggle</TitleText>
       <p></p>
-      <Toggle label={'Active:'} disabled />
+      <Toggle disabled />
       <p></p>
-      <Toggle label={'Active:'} />
+      <Toggle />
       <br />
       <br />
       <br />
