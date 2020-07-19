@@ -73,6 +73,12 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
     return setDropdownCategory(null);
   };
 
+  const removeCategory = (index: number): void => {
+    categories.splice(index, 1);
+
+    return setCategories([...categories]);
+  };
+
   const addSource = (): void => {
     const source: ISource = {
       name: sourceNameInput.value,
@@ -181,7 +187,11 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
               <LabelText>{action === 'view' ? 'Categories:' : 'Selected categories:'}</LabelText>
               {
                 categories.map((category, index) =>
-                  <IconCard key={`category-${category}-${index}`} title={category.name} disabled={action === 'view'} />
+                  <IconCard
+                    onClick={(): void => removeCategory(index)}
+                    key={`category-${category}-${index}`}
+                    disabled={action === 'view'}
+                    title={category.name} />
                 )
               }
             </SimpleListContainer>
