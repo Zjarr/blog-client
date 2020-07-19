@@ -85,8 +85,8 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
       url: sourceUrlInput.value
     };
 
-    sourceNameInput.resetValue();
-    sourceUrlInput.resetValue();
+    sourceNameInput.setValue('');
+    sourceUrlInput.setValue('');
 
     return setSources([...sources, { ...source }]);
   };
