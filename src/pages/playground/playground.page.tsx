@@ -83,9 +83,11 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
 
       <TitleText>Input</TitleText>
       <p></p>
-      <Input icon={'group'} value={'Pablo Navarro'} />
+      <Input icon={'group'} value={'Pablo Navarro'} onChange={(): void => { }} />
       <p></p>
-      <Input icon={'group'} value={'Pablo Navarro'} disabled />
+      <Input icon={'group'} value={'Pablo Navarro'} onChange={(): void => { }} disabled />
+      <p></p>
+      <Input icon={'group'} value={'Pablo Navarro'} onChange={(): void => { }} error={'Some error text. You need to fix this'} />
       <br />
       <br />
       <br />
