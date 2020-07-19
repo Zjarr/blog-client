@@ -9,8 +9,9 @@ import { Image } from '../../../components/image';
 import { Input } from '../../../components/input';
 import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
-import { IUpdateImageResult, UpdateImage } from '../../../components/update-image';
+import { UpdateImage } from '../../../components/update-image';
 import { useNavigateTo } from '../../../utils/hooks';
+import { IImageResult } from '../../../utils/interfaces';
 import { COLOR_PURPLE } from '../../../utils/values';
 
 import { BodyContainer, DetailContainer, ImageColumn } from './detail.style';
@@ -31,7 +32,7 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
     if (action === 'view') return navigateTo(`/admin/images/edit/${param}`);
   };
 
-  const handleImageUpdateModalClose = (result: IUpdateImageResult | null): void => {
+  const handleImageUpdateModalClose = (result: IImageResult | null): void => {
     setImage(result ? result.base64 : image);
     setImageModalVisible(false);
   };
