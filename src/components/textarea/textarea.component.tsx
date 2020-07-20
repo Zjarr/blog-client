@@ -1,10 +1,11 @@
 import React from 'react';
 
+import { Error } from '../error';
 import { LabelText } from '../text';
 
 import { TextAreaContainer, TextAreaField } from './textarea.style';
 
-export const TextArea: React.FC<ITextArea> = ({ label, ...rest }) => {
+export const TextArea: React.FC<ITextArea> = ({ error, label, ...rest }) => {
   return (
     <TextAreaContainer>
       {
@@ -12,13 +13,18 @@ export const TextArea: React.FC<ITextArea> = ({ label, ...rest }) => {
         <LabelText>{label}</LabelText>
       }
 
-      <TextAreaField {...rest} />
+      <TextAreaField error={error} {...rest} />
+
+      {
+        error && <Error>{error}</Error>
+      }
     </TextAreaContainer>
   );
 };
 
 interface ITextArea {
   disabled?: boolean;
+  error?: string;
   label?: string;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   value?: string;

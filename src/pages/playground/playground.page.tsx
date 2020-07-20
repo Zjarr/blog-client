@@ -129,6 +129,14 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
         onChange={(): void => { }}
         disabled
       />
+      <p></p>
+      <Dropdown
+        name={'Dropdown'}
+        error={'Some error to fix.'}
+        values={[]}
+        icon={'group'}
+        onChange={(): void => { }}
+      />
       <br />
       <br />
       <br />
@@ -391,6 +399,10 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
       <TitleText>Text Editor</TitleText>
       <p></p>
       <TextArea label={'Blog body:'} />
+      <p></p>
+      <TextArea label={'Blog body:'} disabled />
+      <p></p>
+      <TextArea label={'Blog body:'} error={'some error to fix.'} />
       <br />
       <br />
       <br />

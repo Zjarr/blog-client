@@ -7,6 +7,7 @@ import {
   COLOR_GRAY_LIGHT,
   COLOR_GRAY_MEDIUM,
   COLOR_PURPLE,
+  COLOR_RED,
   COLOR_WHITE,
   TEXT_NORMAL
 } from '../../utils/values';
@@ -25,9 +26,13 @@ const VALUE_CONTAINER_OPEN_OPACITY = '1';
 const VALUE_CONTAINER_OPEN_PADDING = '8px';
 const VALUE_CONTAINER_OPEN_VISIBILITY = 'visible';
 
-const getTriggerBorderColor = (active?: boolean, disabled?: boolean): string => {
+const getTriggerBorderColor = (active?: boolean, error?: string, disabled?: boolean): string => {
   if (disabled) {
     return COLOR_BLACK_0;
+  }
+
+  if (error) {
+    return COLOR_RED;
   }
 
   return active ? COLOR_PURPLE : COLOR_GRAY_LIGHT;
@@ -37,6 +42,7 @@ const getTriggerIconColor = (disabled?: boolean): string => disabled ? COLOR_BLA
 const getTriggerPadding = (icon?: string): string => icon ? TRIGGER_WITH_ICON_PADDING : DEFAULT_TRIGGER_PADDING;
 const getTriggerRotate = (open?: boolean): string => open ? TRIGGER_ICON_ROTATE : DEFAULT_TRIGGER_ICON_ROTATE;
 
+const getValueContainerBorderColor = (error?: string): string => error ? COLOR_RED : COLOR_PURPLE;
 const getValueContainerOpacity = (open?: boolean): string => open ? VALUE_CONTAINER_OPEN_OPACITY : DEFAULT_VALUE_CONTAINER_OPACITY;
 const getValueContainerPadding = (open?: boolean): string => open ? VALUE_CONTAINER_OPEN_PADDING : DEFAULT_VALUE_CONTAINER_PADDING;
 const getValueContainerVisibility = (open?: boolean): string => open ? VALUE_CONTAINER_OPEN_VISIBILITY : DEFAULT_VALUE_CONTAINER_VISIBILITY;
@@ -47,7 +53,7 @@ export const DropdownContainer = Styled.div<{ width?: string }>`
   width: 100%;
 `;
 
-export const DropdownTrigger = Styled.button<{ disabled: boolean, icon?: string, open: boolean }>`
+export const DropdownTrigger = Styled.button<{ disabled: boolean, error?: string, icon?: string, open: boolean }>`
   align-items: center;
   cursor: pointer;
   display: inline-block;
@@ -66,7 +72,7 @@ export const DropdownTrigger = Styled.button<{ disabled: boolean, icon?: string,
   color:${COLOR_BLACK};
   font-size: ${TEXT_NORMAL};
 
-  border: 2px solid ${({ disabled, open }): string => getTriggerBorderColor(open, disabled)};
+  border: 2px solid ${({ disabled, error, open }): string => getTriggerBorderColor(open, error, disabled)};
   padding: ${({ icon }): string => getTriggerPadding(icon)};
 
   :disabled {
@@ -104,7 +110,7 @@ export const DropdownTriggerContainer = Styled.div`
   }
 `;
 
-export const DropdownValueContainer = Styled.div<{ open: boolean }>`
+export const DropdownValueContainer = Styled.div<{ error?: string, open: boolean }>`
   left: 0;
   max-height: 296px;
   opacity: 0;
@@ -117,9 +123,9 @@ export const DropdownValueContainer = Styled.div<{ open: boolean }>`
   z-index: 1;
 
   background-color: ${COLOR_WHITE};
-  border: 2px solid ${COLOR_PURPLE};
   border-radius: ${BORDER_RADIUS_SMALL};
 
+  border: 2px solid ${({ error }): string => getValueContainerBorderColor(error)};
   opacity: ${({ open }): string => getValueContainerOpacity(open)};
   padding: ${({ open }): string => getValueContainerPadding(open)};
   visibility: ${({ open }): string => getValueContainerVisibility(open)};

@@ -55,11 +55,15 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
       socialName.setError('This field is required.');
     }
 
+    if (!socialIcon?.value?.icon) {
+      socialIcon.setError('This field is required.');
+    }
+
     if (!socialURL.value) {
       socialURL.setError('This field is required.');
     }
 
-    if (!socialName.value || !socialURL.value || !socialIcon?.value?.icon) {
+    if (!socialName.value || !socialIcon?.value?.icon || !socialURL.value) {
       return;
     }
 
