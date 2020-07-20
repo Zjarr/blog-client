@@ -3,6 +3,7 @@ import React from 'react';
 import { IDropdownValue } from '../../utils/interfaces';
 
 import { TextButton } from '../button';
+import { Error } from '../error';
 import { Icon } from '../icon';
 import { OutsideClick } from '../outside-click';
 import { ParagraphText } from '../text';
@@ -16,7 +17,7 @@ import {
   DropdownValueContainer
 } from './dropdown.style';
 
-export const Dropdown: React.FC<IDropdown> = ({ disabled = false, field, icon, values, name, onChange, width }) => {
+export const Dropdown: React.FC<IDropdown> = ({ disabled = false, error, field, icon, values, name, onChange, width }) => {
   const [open, setOpen] = React.useState<boolean>(false);
 
   const toggleDropdownValueContainer = (): void => {
@@ -41,7 +42,7 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, field, icon, v
     <OutsideClick onPlaceChange={(outside: boolean): void => handleOutsideClick(outside)} width={width}>
       <DropdownContainer>
         <DropdownTriggerContainer>
-          <DropdownTrigger disabled={disabled} icon={icon} open={open} onClick={(): void => toggleDropdownValueContainer()} >
+          <DropdownTrigger disabled={disabled} error={error} icon={icon} open={open} onClick={(): void => toggleDropdownValueContainer()} >
             {name}
           </DropdownTrigger>
           {
@@ -50,8 +51,11 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, field, icon, v
           <DropdownTriggerCaret disabled={disabled} open={open}>
             <Icon name={'keyboard_arrow_down'} size={'24px'} />
           </DropdownTriggerCaret>
+          {
+            error && <Error>{error}</Error>
+          }
         </DropdownTriggerContainer>
-        <DropdownValueContainer open={open}>
+        <DropdownValueContainer open={open} error={error}>
           {
             values.length > 0 ? values.map((value: IDropdownValue, index: number) =>
               <DropdownValue key={`dropdown-value-${field ? value[field] : value.name}-${index}`}>
@@ -73,6 +77,7 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, field, icon, v
 
 interface IDropdown {
   disabled?: boolean;
+  error?: string;
   field?: keyof IDropdownValue;
   icon?: string;
   name: string;

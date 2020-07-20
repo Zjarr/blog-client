@@ -1,8 +1,9 @@
 import React from 'react';
 
+import { Error } from '../error';
 import { Icon } from '../icon';
 
-import { Error, InputContainer, InputField } from './input.style';
+import { InputContainer, InputField } from './input.style';
 
 export const Input: React.FC<IInput> = ({ disabled = false, error, icon, width, ...rest }) => {
   return (

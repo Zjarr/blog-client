@@ -8,8 +8,7 @@ import {
   COLOR_GRAY_MEDIUM,
   COLOR_PURPLE,
   COLOR_RED,
-  TEXT_NORMAL,
-  TEXT_SMALL
+  TEXT_NORMAL
 } from '../../utils/values';
 
 const DEFAULT_FIELD_BORDER_COLOR = COLOR_GRAY_LIGHT;
@@ -79,28 +78,5 @@ export const InputField = Styled.input<{ disabled: boolean, error?: string, icon
 
     border-color: ${COLOR_BLACK_0};
     color: ${COLOR_BLACK};
-  }
-`;
-
-export const Error = Styled.p`
-  animation: 0.25s show-error;
-  bottom: -20px;
-  left: 12px;
-  margin-bottom: 0;
-  position: absolute;
-
-  color: ${COLOR_RED};
-  font-size: ${TEXT_SMALL};
-
-  @keyframes show-error {
-    from {
-      bottom: -24px;
-      opacity: 0;
-    }
-
-    to {
-      bottom: -20px;
-      opacity: 1;
-    }
   }
 `;
