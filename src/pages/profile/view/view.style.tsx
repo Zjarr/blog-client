@@ -1,8 +1,7 @@
 import Styled from 'styled-components';
 
 import { Column } from '../../../components/column';
-
-import { COLOR_GRAY_DARK, TEXT_BIG } from '../../../utils/values';
+import { COLOR_GRAY_DARK } from '../../../utils/values';
 
 export const ViewContainer = Styled.div`
   height: 100%;
@@ -25,15 +24,16 @@ export const BasicInfoContainer = Styled.div`
 
 export const SocialContainer = Styled.div`
   display: flex;
-  margin-bottom: 48px;
+  flex-wrap: wrap;
+  justify-content: center;
 
   button {
-    margin: 0px 16px;
+    margin: 16px 16px 0px;
   }
 `;
 
 export const AdvancedInfoContainer = Styled.div`
-  max-width: 480px;
+  width: 100%;
 `;
 
 export const ButtonContainer = Styled.div`
@@ -48,7 +48,7 @@ export const ButtonContainer = Styled.div`
 `;
 
 export const InfoContainer = Styled.div`
-  margin-bottom: 32px;
+  margin-top: 32px;
 `;
 
 export const Label = Styled.p`
@@ -59,10 +59,3 @@ export const Label = Styled.p`
 `;
 
 export const Info = Styled.p``;
-
-export const Name = Styled.p`
-  font-family: Proxima Nova Bold;
-  margin-bottom: 16px;
-
-  font-size: ${TEXT_BIG};
-`;
