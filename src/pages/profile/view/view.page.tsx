@@ -5,7 +5,9 @@ import { SimpleButton } from '../../../components/button';
 import { ChangePassword } from '../../../components/change-password';
 import { Header } from '../../../components/header';
 import { Image } from '../../../components/image';
+import { SubtitleText } from '../../../components/text';
 import { useNavigateTo } from '../../../utils/hooks';
+import { ISocial } from '../../../utils/interfaces';
 import { COLOR_PURPLE } from '../../../utils/values';
 
 import {
@@ -16,13 +18,13 @@ import {
   Info,
   InfoContainer,
   Label,
-  Name,
   SocialContainer,
   ViewContainer
 } from './view.style';
 
 export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
   const [passwordModalVisible, setPasswordModalVisible] = React.useState<boolean>(false);
+  const [socialNetworks] = React.useState<ISocial[]>([]);
 
   const navigateTo = useNavigateTo();
 
@@ -35,14 +37,22 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
           <Image src={''} height={'180px'} width={'180px'} shape={'circle'} />
 
           <BasicInfoContainer>
-            <Name>Pablo Navarro</Name>
+            <SubtitleText margin={'0px'}>Pablo Navarro</SubtitleText>
           </BasicInfoContainer>
 
-          <SocialContainer>
-            <SimpleButton shape={'circle'} icon={'socicon-facebook'} />
-            <SimpleButton shape={'circle'} icon={'socicon-twitter'} />
-            <SimpleButton shape={'circle'} icon={'socicon-instagram'} />
-          </SocialContainer>
+          {
+            socialNetworks.length > 0 &&
+            <SocialContainer>
+              {
+                socialNetworks.map((socialNetwork: ISocial, index: number) =>
+                  <SimpleButton
+                    key={`social-network=${socialNetwork.name}-${index}`}
+                    icon={socialNetwork.icon}
+                    shape={'circle'} />
+                )
+              }
+            </SocialContainer>
+          }
 
           <AdvancedInfoContainer>
             <InfoContainer>
