@@ -23,7 +23,6 @@ export const SocialNetworksContainer = Styled.div`
 export const AddButtonContainer = Styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-top: 16px;
   width: 100%;
 `;
 
