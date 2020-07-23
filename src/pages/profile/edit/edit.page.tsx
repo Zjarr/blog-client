@@ -114,13 +114,13 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
               <Input icon={'person'} placeholder={'Doe'} />
             </FormField>
 
-            <FormField label={'Email:'} noMargin>
+            <FormField label={'Email:'}>
               <Input icon={'mail'} placeholder={'john.doe@email.com'} />
             </FormField>
           </Column>
 
           <Column xl={4} position={'right'}>
-            <FormField label={'About:'} height={'176px'} noMargin>
+            <FormField label={'About:'} height={'176px'}>
               <TextArea />
             </FormField>
           </Column>
@@ -130,13 +130,13 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
           <SubtitleText>Social networks</SubtitleText>
           <Row>
             <Column xl={4} position={'left'}>
-              <FormField label={'Name:'} noMargin>
+              <FormField label={'Name:'}>
                 <Input icon={'web'} placeholder={'Facebook'} {...socialName} />
               </FormField>
             </Column>
 
             <Column xl={4} position={'center'}>
-              <FormField label={'Icon:'} noMargin>
+              <FormField label={'Icon:'}>
                 <Dropdown
                   name={socialIcon?.value?.name || 'Select one'}
                   icon={'public'}
@@ -145,7 +145,7 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
             </Column>
 
             <Column xl={4} position={'right'}>
-              <FormField label={'URL:'} noMargin>
+              <FormField label={'URL:'}>
                 <Input icon={'link'} placeholder={'facebook.com/john.doe'} {...socialURL} />
               </FormField>
             </Column>
