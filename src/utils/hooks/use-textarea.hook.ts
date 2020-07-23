@@ -5,6 +5,10 @@ export const useTextArea = (initialValue?: string): ITextAreaHook => {
   const [error, setError] = React.useState<string>();
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+    if (error) {
+      setError('');
+    }
+
     setValue(e.target.value);
   };
 

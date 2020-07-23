@@ -8,6 +8,10 @@ export const useDropdown = (initialValues?: IDropdownValue[]): IDropdownHook => 
   const [error, setError] = React.useState<string>('');
 
   const onChange = (value: IDropdownValue): void => {
+    if (error) {
+      setError('');
+    }
+
     setValue(value);
   };
 

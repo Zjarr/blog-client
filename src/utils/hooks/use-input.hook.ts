@@ -6,6 +6,10 @@ export const useInput = (initialValue?: string, checkValue?: boolean): IInputHoo
   const [error, setError] = React.useState<string>('');
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    if (error) {
+      setError('');
+    }
+
     setChecked(e.target.checked);
     setValue(e.target.value);
   };
