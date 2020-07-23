@@ -1,6 +1,8 @@
 import Col from 'react-bootstrap/Col';
 import Styled from 'styled-components';
 
+import { MEDIA_MD, MEDIA_SM, MEDIA_XL } from '../../utils/values';
+
 const DEFAULT_COLUMN_PADDING = '0px 16px';
 
 const CENTER_COLUMN_PADDING = '0px 8px';
@@ -20,5 +22,23 @@ const getColumnPadding = (padding?: boolean, position?: string): string => {
 };
 
 export const Column = Styled(Col) <{ padding?: boolean, position?: string }>`
-  padding: ${({ padding, position }): string => getColumnPadding(padding, position)};
+  padding: 0;
+
+  ${MEDIA_XL} {
+    &[class*="xl"] {
+      padding: ${({ padding, position }): string => getColumnPadding(padding, position)};
+    }
+  }
+
+  ${MEDIA_MD} {
+    &[class*="md"] {
+      padding: ${({ padding, position }): string => getColumnPadding(padding, position)};
+    }
+  }
+
+  ${MEDIA_SM} {
+    &[class*="sm"] {
+      padding: ${({ padding, position }): string => getColumnPadding(padding, position)};
+    }
+  }
 `;
