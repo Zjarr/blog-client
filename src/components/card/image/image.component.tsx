@@ -58,7 +58,7 @@ export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image
           <Skeleton border={BORDER_RADIUS_SMALL} height={'28px'} margin={'0px 0px 16px'} width={'80%'} />
 
           <ImageSecondaryTextContainer>
-            <Skeleton border={BORDER_RADIUS_SMALL} height={'16px'} margin={'0px 0px 8px'} />
+            <Skeleton border={BORDER_RADIUS_SMALL} height={'16px'} margin={'0px 0px 8px'} width={'calc(100% - 16px)'} />
             <Skeleton border={BORDER_RADIUS_SMALL} height={'16px'} width={'50%'} />
           </ImageSecondaryTextContainer>
         </ImageMiddleContainer>

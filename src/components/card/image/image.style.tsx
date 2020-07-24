@@ -78,7 +78,7 @@ export const ImageMiddleContainer = Styled.div`
   height: 100%;
   justify-content: space-around;
   position: relative;
-  width: calc(100% - 184px);
+  width: calc(100% - 168px);
 
   p {
     margin-bottom: 0;
@@ -104,7 +104,6 @@ export const ImageFinalContainer = Styled.div`
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
-  margin-left: 16px;
   width: 56px;
 
   button {
