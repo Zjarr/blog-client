@@ -20,7 +20,9 @@ const NO_UPDATE_BUTTON_OPACITY = '0';
 const NO_UPDATE_BUTTON_VISIBILITY = 'hidden';
 
 const getContainerBorderRadius = (shape?: string): string => shape === 'circle' ?
-  CIRCLE_IMAGE_CONTAINER_BORDER_RADIUS : DEFAULT_IMAGE_CONTAINER_BORDER_RADIUS;
+  CIRCLE_IMAGE_CONTAINER_BORDER_RADIUS :
+  DEFAULT_IMAGE_CONTAINER_BORDER_RADIUS;
+
 const getContainerSize = (size?: string): string => size ? size : DEFAULT_IMAGE_CONTAINER_SIZE;
 
 const getImageHeight = (noImg?: boolean): string => noImg ? NO_IMAGE_HEIGHT : DEFAULT_IMAGE_HEIGHT;
@@ -30,7 +32,7 @@ const getImageWidth = (noImg?: boolean): string => noImg ? NO_IMAGE_WIDTH : DEFA
 const getUpdateButtonOpacity = (updatable?: boolean): string => updatable ? DEFAULT_UPDATE_BUTTON_OPACITY : NO_UPDATE_BUTTON_OPACITY;
 const getUpdateButtonVisibility = (updatable?: boolean): string => updatable ? DEFAULT_UPDATE_BUTTON_VISIBILITY : NO_UPDATE_BUTTON_VISIBILITY;
 
-export const ImageUpdateButton = Styled.button<{ shape: string, }>`
+export const ImageUpdateButton = Styled.button<{ shape: string }>`
   align-items: center;
   border: none;
   cursor: pointer;
