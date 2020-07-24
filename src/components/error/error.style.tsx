@@ -3,7 +3,7 @@ import Styled from 'styled-components';
 import { COLOR_RED, TEXT_SMALL } from '../../utils/values';
 
 export const ErrorText = Styled.p`
-  animation: 0.25s show-error;
+  animation: show-error 0.25s linear;
   bottom: -20px;
   left: 12px;
   margin-bottom: 0;

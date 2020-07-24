@@ -24,7 +24,7 @@ export const SkeletonContainer = Styled.div<{ border?: string, height?: string, 
   width: ${({ width }): string => getContainerWidth(width)};
 
   :after {
-    animation: 2s skeleton-load infinite;
+    animation: skeleton-load 2s infinite;
     content: '';
     height: 100%;
     position: absolute;
