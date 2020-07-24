@@ -29,8 +29,10 @@ const getSidebarAnimation = (menuOpen: boolean): string => `
 `;
 
 export const DashboardContainer = Styled.div`
-  height: 100vh;
+  bottom: 0;
   overflow: hidden;
+  position: absolute;
+  top: 0;
   width: 100%;
 
   background-color: ${COLOR_BLACK};
@@ -114,7 +116,6 @@ export const MobileMenuButtonContainer = Styled.div`
 
 export const BodyContainer = Styled.div<{ menuOpen: boolean }>`
   bottom: 0;
-  height: 100vh;
   overflow: hidden;
   position: absolute;
   top: 0;
