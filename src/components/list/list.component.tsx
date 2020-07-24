@@ -1,8 +1,8 @@
 import React from 'react';
 
 import Rocket from '../../assets/images/rocket.png';
-
 import { useInput } from '../../utils/hooks';
+import { COLOR_GRAY_MEDIUM } from '../../utils/values';
 
 import { IImageCard, ImageCard } from '../card';
 import { Input } from '../input';
@@ -11,16 +11,15 @@ import { ParagraphText } from '../text';
 
 import {
   CardContainer,
+  CardsListContainer,
   EmptyListContainer,
   ImageContainer,
   ListContainer,
   PaginatorContainer,
   RocketImage,
   SearchContainer,
-  TextContainer,
-  CardsListContainer
+  TextContainer
 } from './list.style';
-import { COLOR_GRAY_MEDIUM } from '../../utils/values';
 
 const skeletonCards = 12;
 
@@ -80,7 +79,8 @@ export const List: React.FC<IList> = ({ cards, loading, onPrevClick, onSearch, o
       </CardsListContainer>
 
       {
-        !loading && cards.length > 0 && <PaginatorContainer>
+        !loading && cards.length > 0 &&
+        <PaginatorContainer>
           <Paginator current={1} total={1} onPrevClick={handlePrevClick} onNextClick={handleNextClick} />
         </PaginatorContainer>
       }

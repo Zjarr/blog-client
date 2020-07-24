@@ -19,7 +19,6 @@ export const SearchContainer = Styled.div`
   display: flex;
   justify-content: flex-end;
   margin-bottom: 32px;
-  padding-right: 32px;
   width: 100%;
 
   div {
@@ -40,7 +39,6 @@ export const PaginatorContainer = Styled.div`
   display: flex;
   justify-content: flex-end;
   position: absolute;
-  padding-right: 16px;
   width: 100%;
 `;
 
