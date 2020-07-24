@@ -104,7 +104,7 @@ export const MobileMenuButtonContainer = Styled.div`
   display: block;
   left: 28px;
   position: absolute;
-  top: 16px;
+  top: 60px;
   z-index: 1;
 
   ${MEDIA_XL} {
@@ -113,7 +113,8 @@ export const MobileMenuButtonContainer = Styled.div`
 `;
 
 export const BodyContainer = Styled.div<{ menuOpen: boolean }>`
-  height: 100%;
+  bottom: 0;
+  height: 100vh;
   overflow: hidden;
   position: absolute;
   top: 0;
