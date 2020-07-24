@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Banner } from '../../components/banner';
 import { MenuButton, SimpleButton, TextButton } from '../../components/button';
+import { MobileButton } from '../../components/button/mobile';
 import { IconCard, ImageCard } from '../../components/card';
 import { ChangePassword } from '../../components/change-password';
 import { Dropdown } from '../../components/dropdown';
@@ -65,6 +66,7 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
   const [changePasswordModalVisible, setChangePasswordModalVisible] = React.useState<boolean>(false);
   const [imageListModalVisible, setImageListModalVisible] = React.useState<boolean>(false);
   const [loadingModalVisible, setLoadingModalVisible] = React.useState<boolean>(false);
+  const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
   const [image, setImage] = React.useState<string>('');
 
   const [md] = React.useState<string>(string);
@@ -206,6 +208,8 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
       <TextButton>Hello</TextButton>
       <p></p>
       <TextButton disabled>Hello</TextButton>
+      <p></p>
+      <MobileButton open={menuOpen} onClick={(): void => setMenuOpen(!menuOpen)}>Hello</MobileButton>
       <br />
       <br />
       <br />
