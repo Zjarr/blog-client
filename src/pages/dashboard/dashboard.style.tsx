@@ -80,7 +80,7 @@ export const BottomContainer = Styled.div<{ menuOpen: boolean }>`
   width: 208px;
 
   background-color: ${COLOR_BLACK};
-  box-shadow: 0 0 16px 16px ${COLOR_BLACK};
+  box-shadow: -32px 0 16px 16px ${COLOR_BLACK};
 
   ${({ menuOpen }): string => getSidebarAnimation(menuOpen)};
 `;
