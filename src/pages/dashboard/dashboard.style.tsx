@@ -1,6 +1,32 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_BIG, COLOR_BLACK, COLOR_WHITE, COLOR_GRAY_DARK } from '../../utils/values';
+import { BORDER_RADIUS_BIG, COLOR_BLACK, COLOR_GRAY_DARK, COLOR_WHITE, MEDIA_XL } from '../../utils/values';
+
+const DEFAULT_BODY_CONTAINER_BORDER_RADIUS = '0px';
+const DEFAULT_BODY_CONTAINER_LEFT = '0px';
+
+const MENU_OPEN_BODY_CONTAINER_BORDER_RADIUS = `${BORDER_RADIUS_BIG} 0px 0px ${BORDER_RADIUS_BIG}`;
+const MENU_OPEN_BODY_CONTAINER_LEFT = '208px';
+
+const getBodyContainerBorderRadius = (menuOpen: boolean): string => menuOpen ?
+  MENU_OPEN_BODY_CONTAINER_BORDER_RADIUS :
+  DEFAULT_BODY_CONTAINER_BORDER_RADIUS;
+
+const getBodyContainerLeft = (menuOpen: boolean): string => menuOpen ?
+  MENU_OPEN_BODY_CONTAINER_LEFT :
+  DEFAULT_BODY_CONTAINER_LEFT;
+
+const getSidebarAnimation = (menuOpen: boolean): string => `
+  transition: 0.25s ease;
+
+  opacity: ${menuOpen ? '1' : '0'};
+  transform: ${menuOpen ? 'scale(1)' : 'scale(0.8)'};
+
+  ${MEDIA_XL} {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
 
 export const DashboardContainer = Styled.div`
   height: 100vh;
@@ -19,11 +45,13 @@ export const SidebarContainer = Styled.div`
   width: 208px;
 `;
 
-export const TopContainer = Styled.div`
+export const TopContainer = Styled.div<{ menuOpen: boolean }>`
   align-items: center;
   display: flex;
   flex-direction: column;
   margin: 24px 0;
+  
+  ${({ menuOpen }): string => getSidebarAnimation(menuOpen)};
 `;
 
 export const TopButtonContainer = Styled.div`
@@ -34,11 +62,13 @@ export const TopButtonContainer = Styled.div`
   width: 100%;
 `;
 
-export const MiddleButtonContainer = Styled.div`
+export const MiddleButtonContainer = Styled.div<{ menuOpen: boolean }>`
   margin-bottom: 24px;
+
+  ${({ menuOpen }): string => getSidebarAnimation(menuOpen)};
 `;
 
-export const BottomContainer = Styled.div`
+export const BottomContainer = Styled.div<{ menuOpen: boolean }>`
   align-items: center;
   bottom: 0;
   display: flex;
@@ -49,6 +79,8 @@ export const BottomContainer = Styled.div`
 
   background-color: ${COLOR_BLACK};
   box-shadow: 0 0 16px 16px ${COLOR_BLACK};
+
+  ${({ menuOpen }): string => getSidebarAnimation(menuOpen)};
 `;
 
 export const LogoImg = Styled.img`
@@ -68,15 +100,35 @@ export const Info = Styled.p`
   color: ${COLOR_GRAY_DARK};
 `;
 
-export const BodyContainer = Styled.div`
+export const MobileMenuButtonContainer = Styled.div`
+  display: block;
+  left: 28px;
+  position: absolute;
+  top: 16px;
+  z-index: 1;
+
+  ${MEDIA_XL} {
+    display: none;
+  }
+`;
+
+export const BodyContainer = Styled.div<{ menuOpen: boolean }>`
   height: 100%;
   overflow: hidden;
   position: absolute;
-  right: 0;
   top: 0;
-  width: calc(100% - 208px);
+  transition: 0.25s ease;
+  width: 100%;
 
   background-color: ${COLOR_WHITE};
-  border-bottom-left-radius: ${BORDER_RADIUS_BIG};
-  border-top-left-radius: ${BORDER_RADIUS_BIG};
+
+  border-radius: ${({ menuOpen }): string => getBodyContainerBorderRadius(menuOpen)};
+  left: ${({ menuOpen }): string => getBodyContainerLeft(menuOpen)};
+
+  ${MEDIA_XL} {
+    left: 208px;
+    width: calc(100% - 208px);
+
+    border-radius: ${BORDER_RADIUS_BIG} 0px 0px ${BORDER_RADIUS_BIG};
+  }
 `;

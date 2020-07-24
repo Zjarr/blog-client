@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import Logo from '../../assets/images/logo-white.png';
 import { MenuButton } from '../../components/button';
+import { MobileButton } from '../../components/button/mobile';
 import { Image } from '../../components/image';
 import { LabelText } from '../../components/text';
 import { useNavigateTo } from '../../utils/hooks';
@@ -15,6 +16,7 @@ import {
   InfoContainer,
   LogoImg,
   MiddleButtonContainer,
+  MobileMenuButtonContainer,
   SidebarContainer,
   TopButtonContainer,
   TopContainer
@@ -23,13 +25,19 @@ import {
 import { DashboardSwitch } from './dashboard.switch';
 
 export const DashboardPage: React.FC<IDashboardPage> = () => {
-  const navigateTo = useNavigateTo();
+  const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
+
   const { action, param, section } = useParams();
+  const navigateTo = useNavigateTo();
+
+  const handleMenuButtonClick = (): void => {
+    return setMenuOpen(!menuOpen);
+  };
 
   return (
     <DashboardContainer>
       <SidebarContainer>
-        <TopContainer>
+        <TopContainer menuOpen={menuOpen}>
           <Image shape={'circle'} height={'120px'} width={'120px'} src={''} />
 
           <TopButtonContainer>
@@ -44,14 +52,14 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
           </TopButtonContainer>
         </TopContainer>
 
-        <MiddleButtonContainer>
+        <MiddleButtonContainer menuOpen={menuOpen}>
           <MenuButton
             active={section === 'dashboard'}
             onClick={(): void => navigateTo('/admin/dashboard')}
             icon={'home'}>Dashboard</MenuButton>
         </MiddleButtonContainer>
 
-        <MiddleButtonContainer>
+        <MiddleButtonContainer menuOpen={menuOpen}>
           <LabelText>Author</LabelText>
 
           <MenuButton
@@ -68,7 +76,7 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
             icon={'image'}>Images</MenuButton>
         </MiddleButtonContainer>
 
-        <BottomContainer>
+        <BottomContainer menuOpen={menuOpen}>
           <LogoImg src={Logo} />
 
           <InfoContainer>
@@ -78,7 +86,11 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
         </BottomContainer>
       </SidebarContainer>
 
-      <BodyContainer>
+      <BodyContainer menuOpen={menuOpen}>
+        <MobileMenuButtonContainer>
+          <MobileButton open={menuOpen} onClick={handleMenuButtonClick} />
+        </MobileMenuButtonContainer>
+
         <DashboardSwitch action={action} param={param} section={section} />
       </BodyContainer>
     </DashboardContainer>
