@@ -1,5 +1,9 @@
 /* Default styles for body */
 
+body {
+  overflow: hidden;
+}
+
 body * {
   box-sizing: border-box;
   font-family: 'Proxima Nova Regular';
