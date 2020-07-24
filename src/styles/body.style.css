@@ -1,5 +1,6 @@
 /* Default styles for body */
 
+html,
 body {
   overflow: hidden;
 }
