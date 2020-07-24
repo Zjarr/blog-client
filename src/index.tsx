@@ -12,6 +12,7 @@ import './assets/fonts/proxima-nova/index.css';
 import './assets/fonts/social-icons/index.css';
 import './styles/body.style.css';
 import './styles/bootstrap.style.css';
+import './styles/input.style.css';
 
 ReactDOM.render(
   <React.StrictMode>
