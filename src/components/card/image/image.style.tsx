@@ -15,13 +15,16 @@ import {
   TEXT_NORMAL
 } from '../../../utils/values';
 
+const DEFAULT_CONTAINER_PADDING = '8px 0px';
 const DEFAULT_CONTAINER_WIDTH = '100%';
+
 const DEFAULT_STATE_INDICATOR_COLOR = COLOR_RED;
 
 const ACTIVE_STATE_INDICATOR_COLOR = COLOR_GREEN;
 
 const getActiveIndicatorBGColor = (active?: boolean): string => active ? ACTIVE_STATE_INDICATOR_COLOR : DEFAULT_STATE_INDICATOR_COLOR;
 
+const getContainerPadding = (padding?: string): string => padding ? padding : DEFAULT_CONTAINER_PADDING;
 const getContainerWidth = (width?: string): string => width ? width : DEFAULT_CONTAINER_WIDTH;
 
 export const ClipboardContainer = Styled.div`
@@ -41,7 +44,7 @@ export const ClipboardContainer = Styled.div`
   border-radius: ${BORDER_RADIUS_MEDIUM};
 `;
 
-export const ImageCardContainer = Styled.div<{ width?: string }>`
+export const ImageCardContainer = Styled.div<{ padding?: string, width?: string }>`
   align-items: center;
   display: flex;
   flex-wrap: wrap;
@@ -63,7 +66,8 @@ export const ImageCardContainer = Styled.div<{ width?: string }>`
 
   ${MEDIA_SM} {
     height: 112px;
-    padding: 8px 16px;
+    
+    padding: ${({ padding }): string => getContainerPadding(padding)};
   }
 `;
 

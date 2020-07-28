@@ -42,6 +42,14 @@ export const List: React.FC<IList> = ({ cards, loading, onPrevClick, onSearch, o
     return onNextClick && onNextClick();
   };
 
+  const getCardPadding = (index: number): string => {
+    const position: number = index + 1;
+
+    if (position % 2 === 0) return '8px 8px 8px 16px';
+
+    return '8px 16px 8px 8px';
+  };
+
   return (
     <ListContainer>
       <SearchContainer>
@@ -52,14 +60,14 @@ export const List: React.FC<IList> = ({ cards, loading, onPrevClick, onSearch, o
         {
           loading && [...Array(skeletonCards)].map((_, index) =>
             <CardContainer lg={6} key={`card-${index}`}>
-              <ImageCard loading />
+              <ImageCard padding={getCardPadding(index)} loading />
             </CardContainer>
           )
         }
         {
           !loading && cards && cards.map((card, index) =>
             <CardContainer lg={6} key={`card-${index}`}>
-              <ImageCard {...card} />
+              <ImageCard padding={getCardPadding(index)} {...card} />
             </CardContainer>
           )
         }

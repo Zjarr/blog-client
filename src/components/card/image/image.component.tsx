@@ -20,7 +20,7 @@ import {
   URLContainer
 } from './image.style';
 
-export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image, link, loading, secondaryText, text, title, width }) => {
+export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image, link, loading, padding, secondaryText, text, title, width }) => {
   const [clipboardIcon, setClipBoardIcon] = React.useState<string>('file_copy');
 
   const navigateTo = useNavigateTo();
@@ -49,7 +49,7 @@ export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image
 
   if (loading) {
     return (
-      <ImageCardContainer width={width}>
+      <ImageCardContainer padding={padding} width={width}>
         <ImageContainer>
           <Skeleton height={'96px'} width={'96px'} />
         </ImageContainer>
@@ -72,7 +72,7 @@ export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image
   }
 
   return (
-    <ImageCardContainer width={width}>
+    <ImageCardContainer padding={padding} width={width}>
       <ImageContainer>
         {
           icon ?
@@ -124,8 +124,9 @@ export interface IImageCard {
   image?: string;
   link?: string;
   loading?: boolean;
-  text?: string;
+  padding?: string;
   secondaryText?: string;
+  text?: string;
   title?: string;
   width?: string;
 }
