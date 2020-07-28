@@ -15,7 +15,7 @@ export const TitleContainer = Styled.div<{ color?: string, margin?: string }>`
   margin: ${({ margin }): string => getTextMargin(margin)};
 
   i {
-    margin-right: 16px;
+    margin: 0px 16px;
     font-size: 32px;
   }
 `;
