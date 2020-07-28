@@ -30,7 +30,13 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
   const { action, param, section } = useParams();
   const navigateTo = useNavigateTo();
 
-  const handleMenuButtonClick = (): void => {
+  const handleSidebarButtonClick = (route?: string): void => {
+    if (route) navigateTo(route);
+
+    return toggleSidebar();
+  };
+
+  const toggleSidebar = (): void => {
     return setMenuOpen(!menuOpen);
   };
 
@@ -44,7 +50,7 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
             <MenuButton
               active={section === 'profile'}
               icon={'person'}
-              onClick={(): void => navigateTo('/admin/profile')}
+              onClick={(): void => handleSidebarButtonClick('/admin/profile')}
               shape={'circle'}>Profile</MenuButton>
             <MenuButton
               icon={'power_settings_new'}
@@ -55,7 +61,7 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
         <MiddleButtonContainer menuOpen={menuOpen}>
           <MenuButton
             active={section === 'dashboard'}
-            onClick={(): void => navigateTo('/admin/dashboard')}
+            onClick={(): void => handleSidebarButtonClick('/admin/dashboard')}
             icon={'home'}>Dashboard</MenuButton>
         </MiddleButtonContainer>
 
@@ -64,15 +70,15 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
 
           <MenuButton
             active={section === 'blogs'}
-            onClick={(): void => navigateTo('/admin/blogs')}
+            onClick={(): void => handleSidebarButtonClick('/admin/blogs')}
             icon={'book'}>Blogs</MenuButton>
           <MenuButton
             active={section === 'categories'}
-            onClick={(): void => navigateTo('/admin/categories')}
+            onClick={(): void => handleSidebarButtonClick('/admin/categories')}
             icon={'category'}>Categories</MenuButton>
           <MenuButton
             active={section === 'images'}
-            onClick={(): void => navigateTo('/admin/images')}
+            onClick={(): void => handleSidebarButtonClick('/admin/images')}
             icon={'image'}>Images</MenuButton>
         </MiddleButtonContainer>
 
@@ -88,7 +94,7 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
 
       <BodyContainer menuOpen={menuOpen}>
         <MobileMenuButtonContainer>
-          <MobileButton open={menuOpen} onClick={handleMenuButtonClick} />
+          <MobileButton open={menuOpen} onClick={toggleSidebar} />
         </MobileMenuButtonContainer>
 
         <DashboardSwitch action={action} param={param} section={section} />
