@@ -15,7 +15,7 @@ export const LabelContainer = Styled.div<{ color?: string, margin?: string }>`
   margin: ${({ margin }): string => getTextMargin(margin)};
 
   i {
-    margin-right: 8px;
+    margin: 0px 16px;
     font-size: 16px;
   }
 `;
