@@ -11,6 +11,7 @@ import {
   COLOR_GREEN,
   COLOR_RED,
   COLOR_WHITE,
+  MEDIA_SM,
   TEXT_NORMAL
 } from '../../../utils/values';
 
@@ -43,9 +44,11 @@ export const ClipboardContainer = Styled.div`
 export const ImageCardContainer = Styled.div<{ width?: string }>`
   align-items: center;
   display: flex;
-  height: 112px;
+  flex-wrap: wrap;
+  height: auto;
+  justify-content: center;
   overflow: hidden;
-  padding: 8px 16px;
+  padding: 8px;
   position: relative;
 
   border-radius: ${BORDER_RADIUS_MEDIUM};
@@ -57,6 +60,11 @@ export const ImageCardContainer = Styled.div<{ width?: string }>`
     transition: 0.25s ease;
     visibility: visible;
   }
+
+  ${MEDIA_SM} {
+    height: 112px;
+    padding: 8px 16px;
+  }
 `;
 
 export const ImageContainer = Styled.div`
@@ -65,11 +73,15 @@ export const ImageContainer = Styled.div`
   flex-shrink: 0;
   height: 96px;
   justify-content: center;
-  margin-right: 16px;
+  margin: 0px 0px 16px 0px;
   width: 96px;
 
   background-color: ${COLOR_GRAY_LIGHT};
   border-radius: ${BORDER_RADIUS_FULL};
+
+  ${MEDIA_SM} {
+    margin: 0px 16px 0px 0px;
+  }
 `;
 
 export const ImageMiddleContainer = Styled.div`
@@ -78,7 +90,11 @@ export const ImageMiddleContainer = Styled.div`
   height: 100%;
   justify-content: space-around;
   position: relative;
-  width: calc(100% - 168px);
+  width: calc(100% - 56px);
+
+  > div:first-child {
+    margin-bottom: 8px;
+  }
 
   p {
     margin-bottom: 0;
@@ -87,6 +103,14 @@ export const ImageMiddleContainer = Styled.div`
     white-space: nowrap;
 
     color: ${COLOR_BLACK};
+  }
+
+  ${MEDIA_SM} {
+    width: calc(100% - 168px);
+
+    > div:first-child {
+      margin-bottom: 16px;
+    }
   }
 `;
 
@@ -102,13 +126,17 @@ export const ImageFinalContainer = Styled.div`
   align-items: flex-end;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 92px;
   justify-content: space-between;
   width: 56px;
 
   button {
     margin-bottom: -4px;
     margin-right: -16px;
+  }
+
+  ${MEDIA_SM} {
+    height: 100%;
   }
 `;
 
