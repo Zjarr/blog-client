@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_BIG, COLOR_BLACK, COLOR_GRAY_DARK, COLOR_WHITE, MEDIA_XL } from '../../utils/values';
+import { BORDER_RADIUS_BIG, COLOR_BLACK, COLOR_GRAY_DARK, COLOR_WHITE, MEDIA_SM, MEDIA_XL } from '../../utils/values';
 
 const DEFAULT_BODY_CONTAINER_BORDER_RADIUS = '0px';
 const DEFAULT_BODY_CONTAINER_LEFT = '0px';
@@ -104,10 +104,14 @@ export const Info = Styled.p`
 
 export const MobileMenuButtonContainer = Styled.div`
   display: block;
-  left: 28px;
+  left: 16px;
   position: absolute;
   top: 60px;
   z-index: 1;
+
+  ${MEDIA_SM} {
+    left: 24px;
+  }
 
   ${MEDIA_XL} {
     display: none;
