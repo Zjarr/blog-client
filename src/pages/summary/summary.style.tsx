@@ -47,9 +47,13 @@ export const SummaryChartContainer = Styled(Row)`
 `;
 
 export const ChartContainer = Styled.div`
-  height: 256px;
+  height: 160px;
   margin-top: 16px;
   overflow: hidden;
 
   border-radius: ${BORDER_RADIUS_SMALL};
+
+  ${MEDIA_SM} {
+    height: 256px;
+  }
 `;
