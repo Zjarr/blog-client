@@ -6,7 +6,7 @@ import {
   COLOR_GRAY_LIGHT,
   COLOR_PURPLE,
   COLOR_WHITE,
-  MEDIA_MD,
+  MEDIA_LG,
   TEXT_BIG,
   TEXT_NORMAL
 } from '../../utils/values';
@@ -34,7 +34,7 @@ export const ImageContainer = Styled.div<{ active: boolean }>`
   align-items: center;
   bottom: 0;
   display: flex;
-  height: 160px;
+  height: 180px;
   justify-content: center;
   left: 0;
   margin: auto;
@@ -42,7 +42,7 @@ export const ImageContainer = Styled.div<{ active: boolean }>`
   right: 0;
   top: 24px;
   transition: 0.25s ease;
-  width: 160px;
+  width: 180px;
 
   border-radius: ${BORDER_RADIUS_FULL};
 
@@ -54,7 +54,7 @@ export const ImageContainer = Styled.div<{ active: boolean }>`
     border-color: ${COLOR_PURPLE};
   }
 
-  ${MEDIA_MD} {
+  ${MEDIA_LG} {
     height: 264px;
     width: 264px;
   }
@@ -66,26 +66,26 @@ export const ImageInput = Styled.input`
 
 export const ImageLabel = Styled.label`
   cursor: pointer;
-  height: 136px;
+  height: 160px;
   margin-bottom: 0;
-  width: 136px;
+  width: 160px;
 
   background-color: ${COLOR_GRAY_LIGHT};
   border-radius: ${BORDER_RADIUS_FULL};
 
-  ${MEDIA_MD} {
+  ${MEDIA_LG} {
     height: 240px;
     width: 240px;
   }
 `;
 
 export const ImageResult = Styled(Image)`
-  height: 136px;
+  height: 160px;
   pointer-events: none;
   position: absolute;
-  width: 136px;
+  width: 160px;
 
-  ${MEDIA_MD} {
+  ${MEDIA_LG} {
     height: 240px;
     width: 240px;
   }
@@ -100,7 +100,7 @@ export const ImageText = Styled(SubtitleText)`
     font-size: ${TEXT_NORMAL};
   }
 
-  ${MEDIA_MD} {
+  ${MEDIA_LG} {
     p {
       font-size: ${TEXT_BIG};
     }
@@ -110,7 +110,7 @@ export const ImageText = Styled(SubtitleText)`
 export const TitleContainer = Styled.div`
   padding: 24px 68px 40px 24px;
 
-  ${MEDIA_MD} {
+  ${MEDIA_LG} {
     padding: 24px 24px 40px;
   }
 `;
@@ -124,7 +124,7 @@ export const UpdateImageContainer = Styled.div`
   background-color: ${COLOR_WHITE};
   border-radius: ${BORDER_RADIUS_MEDIUM};
 
-  ${MEDIA_MD} {
+  ${MEDIA_LG} {
     height: 480px;
     width: 480px;
   }
