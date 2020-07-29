@@ -56,7 +56,7 @@ export const List: React.FC<IList> = ({ cards, loading, onPrevClick, onSearch, o
         <Input icon={'search'} placeholder={'Search by name'} type={'text'} value={searchInput.value} onChange={handleSearchOnChange} />
       </SearchContainer>
 
-      <CardsListContainer empty={cards.length ? 0 : 1}>
+      <CardsListContainer>
         {
           loading && [...Array(skeletonCards)].map((_, index) =>
             <CardContainer lg={6} key={`card-${index}`}>

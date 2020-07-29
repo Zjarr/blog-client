@@ -2,12 +2,7 @@ import Row from 'react-bootstrap/Row';
 import Styled from 'styled-components';
 
 import { Column } from '../column';
-
-const DEFAULT_CARDS_LIST_CONTAINER_HEIGHT = 'auto';
-
-const EMPTY_CARDS_LIST_CONTAINER_HEIGHT = 'calc(100% - 40px)';
-
-const getCardsListContainerHeight = (empty?: boolean): string => empty ? EMPTY_CARDS_LIST_CONTAINER_HEIGHT : DEFAULT_CARDS_LIST_CONTAINER_HEIGHT;
+import { MEDIA_MD, MEDIA_XL } from '../../utils/values';
 
 export const ListContainer = Styled.div`
   padding-bottom: 40px;
@@ -26,8 +21,8 @@ export const SearchContainer = Styled.div`
   }
 `;
 
-export const CardsListContainer = Styled(Row) <{ empty?: boolean }>`
-  height: ${({ empty }): string => getCardsListContainerHeight(empty)};
+export const CardsListContainer = Styled(Row)`
+  height: auto;
 `;
 
 export const CardContainer = Styled(Column)`
@@ -52,9 +47,20 @@ export const EmptyListContainer = Styled.div`
 `;
 
 export const ImageContainer = Styled.div`
-  height: 300px;
-  margin-bottom: 16px;
-  width: 300px;
+  height: 160px;
+  margin: 0px 0px 16px;
+  width: 160px;
+
+  ${MEDIA_MD} {
+    height: 240px;
+    width: 240px;
+  }
+
+  ${MEDIA_XL} {
+    height: 320px;
+    margin: 80px 0px 16px;
+    width: 320px;
+  }
 `;
 
 export const RocketImage = Styled.img`
