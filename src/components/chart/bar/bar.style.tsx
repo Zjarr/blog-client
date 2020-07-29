@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_SMALL, COLOR_GRAY_LIGHT, COLOR_LIGHTBLUE } from '../../../utils/values';
+import { BORDER_RADIUS_SMALL, COLOR_GRAY_LIGHT, COLOR_LIGHTBLUE, MEDIA_SM, TEXT_BIG, TEXT_NORMAL, TEXT_SMALL } from '../../../utils/values';
 
 const DEFAULT_BODY_HEIGHT = '0px';
 
@@ -19,29 +19,47 @@ export const HeadContainer = Styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 80px;
+  height: 60px;
   padding: 8px;
   width: 100%;
 
   background-color: ${COLOR_GRAY_LIGHT};
   border-top-left-radius: ${BORDER_RADIUS_SMALL};
   border-top-right-radius: ${BORDER_RADIUS_SMALL};
+
+  ${MEDIA_SM} {
+    height: 80px;
+  }
 `;
 
 export const Number = Styled.p`
-  font-size: 24px;
   margin-bottom: 0;
 
   color: ${COLOR_LIGHTBLUE};
+  font-size: ${TEXT_BIG};
+`;
+
+export const Day = Styled.p`
+  margin-bottom: 0;
+
+  font-size: ${TEXT_SMALL};
+  
+  ${MEDIA_SM} {
+    font-size: ${TEXT_NORMAL};
+  }
 `;
 
 export const BodyContainer = Styled.div<{ height: number }>`
-  --default-height: calc(100% - 80px);
-
   transition: 0.5s ease;
   width: 100%;
 
   background-color: ${COLOR_LIGHTBLUE};
 
   height: ${({ height }): string => getBodyContainer(height)};
+
+  --default-height: calc(100% - 60px);
+
+  ${MEDIA_SM} {
+    --default-height: calc(100% - 80px);
+  }
 `;

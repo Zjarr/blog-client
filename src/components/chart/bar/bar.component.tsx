@@ -1,15 +1,12 @@
 import React from 'react';
 
-import { ParagraphText } from '../../text';
-
-import { BarContainer, BodyContainer, HeadContainer, Number } from './bar.style';
-
+import { BarContainer, BodyContainer, Day, HeadContainer, Number } from './bar.style';
 export const BarChart: React.FC<IBarChart> = ({ day, number, height }) => {
   return (
     <BarContainer>
       <HeadContainer>
         <Number>{number}</Number>
-        <ParagraphText>{day}</ParagraphText>
+        <Day>{day}</Day>
       </HeadContainer>
 
       <BodyContainer height={height} />
