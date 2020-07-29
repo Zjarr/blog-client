@@ -2,8 +2,7 @@ import Row from 'react-bootstrap/Row';
 import Styled from 'styled-components';
 
 import { Column } from '../../components/column';
-
-import { BORDER_RADIUS_SMALL } from '../../utils/values';
+import { BORDER_RADIUS_SMALL, MEDIA_SM } from '../../utils/values';
 
 export const SummaryContainer = Styled.div`
   height: 100%;
@@ -16,10 +15,22 @@ export const SummaryCardContainer = Styled(Row)`
 `;
 
 export const CardContainer = Styled(Column)`
-  height: 308px;
+  height: 160px;
+
+  :first-child {
+    margin-bottom: 16px;
+  }
+
+  ${MEDIA_SM} {
+    height: 308px;
+
+    :first-child {
+      margin-bottom: 0px;
+    }
+  }
 `;
 
-export const RecentEntriesContainer = Styled(Column)`
+export const ListCardContainer = Styled(Column)`
   margin-bottom: 48px;
 `;
 
@@ -29,6 +40,10 @@ export const ImageCardContainer = Styled.div`
   :last-child {
     margin-bottom: 0px;
   }
+`;
+
+export const SummaryChartContainer = Styled(Row)`
+  margin-bottom: 48px;
 `;
 
 export const ChartContainer = Styled.div`
