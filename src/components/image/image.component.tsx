@@ -15,7 +15,7 @@ export const Image: React.FC<IImage> = ({ alt, onUpdateClick, shape, src, updata
     <ImageContainer updatable={updatable} shape={shape} {...rest}>
       <Img alt={alt} noImg={!src} src={src || ImagePlaceholder} {...rest} />
 
-      <ImageUpdateButton shape={shape} onClick={handleUpdateImageClick}>
+      <ImageUpdateButton disabled={!updatable} onClick={handleUpdateImageClick} shape={shape}>
         <Icon name={'edit'} size={'32px'} />
       </ImageUpdateButton>
     </ImageContainer>

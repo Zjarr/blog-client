@@ -11,13 +11,11 @@ const DEFAULT_IMAGE_HEIGHT = '100%';
 const DEFAULT_IMAGE_OBJECT_FIT = 'cover';
 const DEFAULT_IMAGE_WIDTH = '100%';
 const DEFAULT_UPDATE_BUTTON_OPACITY = '1';
-const DEFAULT_UPDATE_BUTTON_VISIBILITY = 'visible';
 
 const NO_IMAGE_HEIGHT = '65%';
 const NO_IMAGE_OBJECT_FIT = 'container';
 const NO_IMAGE_WIDTH = 'auto';
 const NO_UPDATE_BUTTON_OPACITY = '0';
-const NO_UPDATE_BUTTON_VISIBILITY = 'hidden';
 
 const getContainerBorderRadius = (shape?: string): string => shape === 'circle' ?
   CIRCLE_IMAGE_CONTAINER_BORDER_RADIUS :
@@ -30,7 +28,6 @@ const getImageObjectFit = (noImg?: boolean): string => noImg ? NO_IMAGE_OBJECT_F
 const getImageWidth = (noImg?: boolean): string => noImg ? NO_IMAGE_WIDTH : DEFAULT_IMAGE_WIDTH;
 
 const getUpdateButtonOpacity = (updatable?: boolean): string => updatable ? DEFAULT_UPDATE_BUTTON_OPACITY : NO_UPDATE_BUTTON_OPACITY;
-const getUpdateButtonVisibility = (updatable?: boolean): string => updatable ? DEFAULT_UPDATE_BUTTON_VISIBILITY : NO_UPDATE_BUTTON_VISIBILITY;
 
 export const ImageUpdateButton = Styled.button<{ shape: string }>`
   align-items: center;
@@ -71,14 +68,12 @@ export const ImageContainer = Styled.div<{
   ${ImageUpdateButton} {
     opacity: 0;
     transition: 0.25s ease;
-    visibility: hidden;
   }
 
   :hover ${ImageUpdateButton} {
     transition: 0.25s ease;
 
     opacity: ${({ updatable }): string => getUpdateButtonOpacity(updatable)};
-    visibility: ${({ updatable }): string => getUpdateButtonVisibility(updatable)};
   }
 `;
 
