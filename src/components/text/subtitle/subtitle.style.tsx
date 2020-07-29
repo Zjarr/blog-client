@@ -23,6 +23,10 @@ export const SubTitleContainer = Styled.div<{ color?: string, margin?: string }>
 export const SubTitle = Styled.p`
   font-family: Proxima Nova Bold;
   margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 
   font-size: ${TEXT_BIG};
 `;
