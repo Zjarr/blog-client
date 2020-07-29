@@ -1,5 +1,6 @@
 import Row from 'react-bootstrap/Row';
 import Styled from 'styled-components';
+import { MEDIA_SM } from '../../../utils/values';
 
 export const DetailContainer = Styled.div`
   height: 100%;
@@ -11,10 +12,20 @@ export const BodyContainer = Styled(Row)``;
 
 export const EditorButtonsContainer = Styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: flex-end;
+  margin-bottom: 24px;
 
-  button:last-child {
-    margin-left: 16px;
+  button:first-child {
+    margin: 0px 0px 16px 0px;
+  }
+
+  ${MEDIA_SM} {
+    flex-direction: row;
+
+    button:first-child {
+      margin: 0px 16px 0px 0px;
+    }
   }
 `;
 
