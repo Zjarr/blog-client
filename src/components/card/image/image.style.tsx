@@ -77,7 +77,7 @@ export const ImageContainer = Styled.div`
   flex-shrink: 0;
   height: 96px;
   justify-content: center;
-  margin: 0px 0px 16px 0px;
+  margin: 0px 0px 8px 0px;
   width: 96px;
 
   background-color: ${COLOR_GRAY_LIGHT};
@@ -97,7 +97,7 @@ export const ImageMiddleContainer = Styled.div`
   width: calc(100% - 56px);
 
   > div:first-child {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
   }
 
   p {
@@ -130,7 +130,7 @@ export const ImageFinalContainer = Styled.div`
   align-items: flex-end;
   display: flex;
   flex-direction: column;
-  height: 92px;
+  height: 88px;
   justify-content: space-between;
   width: 56px;
 

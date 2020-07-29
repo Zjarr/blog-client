@@ -13,8 +13,9 @@ import {
   CardContainer,
   ChartContainer,
   ImageCardContainer,
-  RecentEntriesContainer,
+  ListCardContainer,
   SummaryCardContainer,
+  SummaryChartContainer,
   SummaryContainer
 } from './summary.style';
 
@@ -45,18 +46,18 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
                 number={102} />
             </CardContainer>
           </SummaryCardContainer>
-          <Row>
+          <SummaryChartContainer>
             <Column xl={12}>
               <SubtitleText icon={'book'}>Last 7 days entries</SubtitleText>
               <ChartContainer>
                 <Chart data={[8, 4, 5, 1, 7, 2, 0]} />
               </ChartContainer>
             </Column>
-          </Row>
+          </SummaryChartContainer>
         </Column>
         <Column xl={6} position={'right'}>
           <Row>
-            <RecentEntriesContainer lg={12}>
+            <ListCardContainer lg={12}>
               <SubtitleText icon={'book'}>Recent entries</SubtitleText>
               <ImageCardContainer>
                 <ImageCard
@@ -64,6 +65,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
                   text={'Planes | Travel | Experience'}
                   secondaryText={'June 28th, 2020'}
                   image={''}
+                  link={'/admin/blogs/view/1234'}
                   active />
               </ImageCardContainer>
               <ImageCardContainer>
@@ -72,18 +74,20 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
                   text={'Planes | Travel | Experience'}
                   secondaryText={'June 28th, 2020'}
                   image={''}
+                  link={'/admin/blogs/view/1234'}
                   active />
               </ImageCardContainer>
-            </RecentEntriesContainer>
+            </ListCardContainer>
           </Row>
           <Row>
-            <Column xl={12}>
+            <ListCardContainer xl={12}>
               <SubtitleText icon={'book'}>To be released</SubtitleText>
               <ImageCardContainer>
                 <ImageCard
                   title={'To be released blog name'}
                   text={'Planes | Travel | Experience'}
                   secondaryText={'June 28th, 2020'}
+                  link={'/admin/blogs/view/1234'}
                   image={''} />
               </ImageCardContainer>
               <ImageCardContainer>
@@ -91,9 +95,10 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
                   title={'To be released blog name'}
                   text={'Planes | Travel | Experience'}
                   secondaryText={'June 28th, 2020'}
+                  link={'/admin/blogs/view/1234'}
                   image={''} />
               </ImageCardContainer>
-            </Column>
+            </ListCardContainer>
           </Row>
         </Column>
       </Row>

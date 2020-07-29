@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_SMALL, COLOR_PURPLE, COLOR_WHITE, COLOR_WHITE_5 } from '../../../utils/values';
+import { BORDER_RADIUS_SMALL, COLOR_PURPLE, COLOR_WHITE, COLOR_WHITE_5, MEDIA_SM } from '../../../utils/values';
 
 const DEFAULT_COLOR_CONTAINER_COLOR = COLOR_PURPLE;
 
@@ -30,8 +30,13 @@ export const MiddleContainer = Styled.div`
 `;
 
 export const Number = Styled.p`
-  margin-bottom: 0;
-  font-size: 80px;
+  font-size: 60px;
+  margin: -24px 0px 0px;
+
+  ${MEDIA_SM} {
+    font-size: 80px;
+    marging: 0;
+  }
 `;
 
 export const Name = Styled.p`
