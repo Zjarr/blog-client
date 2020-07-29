@@ -5,7 +5,7 @@ import { COLOR_BLACK, TEXT_NORMAL } from '../../../utils/values';
 const DEFAULT_MARGIN = '0px';
 const DEFAULT_PARAGRAPH_FONT_FAMILIY = 'Proxima Nova Regular';
 
-const BOLD_PARAGRAPH_FONT_FAMILIY = 'Proxima Nova BOLD';
+const BOLD_PARAGRAPH_FONT_FAMILIY = 'Proxima Nova Bold';
 
 const getTextColor = (color?: string): string => color ? color : COLOR_BLACK;
 const getTextFontFamily = (bold?: boolean): string => bold ? BOLD_PARAGRAPH_FONT_FAMILIY : DEFAULT_PARAGRAPH_FONT_FAMILIY;
@@ -26,6 +26,7 @@ export const ParagraphContainer = Styled.div<{ color?: string, margin?: string }
 
 export const Paragraph = Styled.p<{ bold?: boolean }>`
   margin: 0;
+  width: 100%;
 
   font-size: ${TEXT_NORMAL};
 
