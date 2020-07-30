@@ -45,6 +45,10 @@ export const ImageUpdateButton = Styled.button<{ shape: string }>`
   color: ${COLOR_WHITE};
 
   border-radius: ${({ shape }): string => getContainerBorderRadius(shape)};
+
+  :disabled {
+    display: none;
+  }
 `;
 
 export const ImageContainer = Styled.div<{
