@@ -1,13 +1,20 @@
 import Styled from 'styled-components';
 
 import { Column } from '../../../components/column';
-import { COLOR_GRAY_DARK } from '../../../utils/values';
+import { COLOR_GRAY_DARK, MEDIA_SM, MEDIA_XL } from '../../../utils/values';
 
 export const ViewContainer = Styled.div`
   height: 100%;
-  padding: 16px 16px 112px;
+  padding: 16px 16px 80px;
   overflow-y: scroll;
-  text-align: center;
+
+  ${MEDIA_SM} {
+    padding: 16px 16px 96px;
+  }
+
+  ${MEDIA_XL} {
+    padding: 16px 16px 112px;
+  }
 `;
 
 export const ContentContainer = Styled(Column)`
@@ -15,6 +22,7 @@ export const ContentContainer = Styled(Column)`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
   width: 100%;
 `;
 
@@ -34,17 +42,6 @@ export const SocialContainer = Styled.div`
 
 export const AdvancedInfoContainer = Styled.div`
   width: 100%;
-`;
-
-export const ButtonContainer = Styled.div`
-  bottom: 32px;
-  display: flex;
-  position: fixed;
-  right: 32px;
-
-  button:last-child {
-    margin-left: 16px;
-  }
 `;
 
 export const InfoContainer = Styled.div`
