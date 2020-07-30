@@ -7,7 +7,6 @@ import {
   COLOR_PURPLE,
   COLOR_WHITE,
   MEDIA_LG,
-  TEXT_BIG,
   TEXT_NORMAL
 } from '../../utils/values';
 
@@ -34,7 +33,7 @@ export const ImageContainer = Styled.div<{ active: boolean }>`
   align-items: center;
   bottom: 0;
   display: flex;
-  height: 180px;
+  height: 200px;
   justify-content: center;
   left: 0;
   margin: auto;
@@ -42,7 +41,7 @@ export const ImageContainer = Styled.div<{ active: boolean }>`
   right: 0;
   top: 24px;
   transition: 0.25s ease;
-  width: 180px;
+  width: 200px;
 
   border-radius: ${BORDER_RADIUS_FULL};
 
@@ -53,11 +52,6 @@ export const ImageContainer = Styled.div<{ active: boolean }>`
 
     border-color: ${COLOR_PURPLE};
   }
-
-  ${MEDIA_LG} {
-    height: 264px;
-    width: 264px;
-  }
 `;
 
 export const ImageInput = Styled.input`
@@ -66,29 +60,19 @@ export const ImageInput = Styled.input`
 
 export const ImageLabel = Styled.label`
   cursor: pointer;
-  height: 160px;
+  height: 180px;
   margin-bottom: 0;
-  width: 160px;
+  width: 180px;
 
   background-color: ${COLOR_GRAY_LIGHT};
   border-radius: ${BORDER_RADIUS_FULL};
-
-  ${MEDIA_LG} {
-    height: 240px;
-    width: 240px;
-  }
 `;
 
 export const ImageResult = Styled(Image)`
-  height: 160px;
+  height: 180px;
   pointer-events: none;
   position: absolute;
-  width: 160px;
-
-  ${MEDIA_LG} {
-    height: 240px;
-    width: 240px;
-  }
+  width: 180px;
 `;
 
 export const ImageText = Styled(SubtitleText)`
@@ -99,19 +83,13 @@ export const ImageText = Styled(SubtitleText)`
   p {
     font-size: ${TEXT_NORMAL};
   }
-
-  ${MEDIA_LG} {
-    p {
-      font-size: ${TEXT_BIG};
-    }
-  }
 `;
 
 export const TitleContainer = Styled.div`
-  padding: 24px 68px 40px 24px;
+  padding: 16px 68px 16px 16px;
 
   ${MEDIA_LG} {
-    padding: 24px 24px 40px;
+    padding: 24px;
   }
 `;
 
