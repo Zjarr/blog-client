@@ -146,7 +146,7 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
             <Image
               onUpdateClick={(): void => setImageModalVisible(true)}
               updatable={action !== 'view'}
-              height={'240px'}
+              height={'180px'}
               shape={'square'}
               width={'100%'}
               src={image} />
@@ -160,7 +160,7 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
             <Input icon={'star'} placeholder={'unique-blog-name'} disabled={action === 'view'} />
           </FormField>
 
-          <FormField label={'Description:'} height={'160px'}>
+          <FormField label={'Description:'} height={'176px'}>
             <TextArea disabled={action === 'view'} />
           </FormField>
 

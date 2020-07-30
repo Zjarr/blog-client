@@ -21,7 +21,6 @@ import {
   TopButtonContainer,
   TopContainer
 } from './dashboard.style';
-
 import { DashboardSwitch } from './dashboard.switch';
 
 export const DashboardPage: React.FC<IDashboardPage> = () => {
@@ -44,7 +43,7 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
     <DashboardContainer>
       <SidebarContainer>
         <TopContainer menuOpen={menuOpen}>
-          <Image shape={'circle'} height={'120px'} width={'120px'} src={''} />
+          <Image shape={'circle'} height={'140px'} width={'140px'} src={''} />
 
           <TopButtonContainer>
             <MenuButton
