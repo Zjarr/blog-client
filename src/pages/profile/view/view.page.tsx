@@ -3,6 +3,7 @@ import Row from 'react-bootstrap/Row';
 
 import { SimpleButton } from '../../../components/button';
 import { ChangePassword } from '../../../components/change-password';
+import { Footer } from '../../../components/footer';
 import { Header } from '../../../components/header';
 import { Image } from '../../../components/image';
 import { SubtitleText } from '../../../components/text';
@@ -13,7 +14,6 @@ import { COLOR_PURPLE } from '../../../utils/values';
 import {
   AdvancedInfoContainer,
   BasicInfoContainer,
-  ButtonContainer,
   ContentContainer,
   Info,
   InfoContainer,
@@ -77,10 +77,10 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
         </ContentContainer>
       </Row>
 
-      <ButtonContainer>
+      <Footer>
         <SimpleButton icon={'vpn_key'} onClick={(): void => setPasswordModalVisible(true)} />
         <SimpleButton icon={'edit'} color={COLOR_PURPLE} onClick={(): void => navigateTo('/admin/profile/edit')} />
-      </ButtonContainer>
+      </Footer>
 
       <ChangePassword visible={passwordModalVisible} onClose={(): void => setPasswordModalVisible(false)} />
     </ViewContainer>
