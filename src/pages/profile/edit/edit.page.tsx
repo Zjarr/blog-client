@@ -13,7 +13,7 @@ import { Input } from '../../../components/input';
 import { SubtitleText } from '../../../components/text';
 import { TextArea } from '../../../components/textarea';
 import { UpdateImage } from '../../../components/update-image';
-import { useDropdown, useInput } from '../../../utils/hooks';
+import { useDropdown, useInput, useNavigateTo } from '../../../utils/hooks';
 import { IImageResult, ISocial } from '../../../utils/interfaces';
 import { COLOR_PURPLE, VALUE_SOCIAL } from '../../../utils/values';
 
@@ -32,6 +32,7 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
 
   const [socialNetworks, setSocialNetworks] = React.useState<ISocial[]>([]);
 
+  const navigateTo = useNavigateTo();
   const socialIcon = useDropdown(VALUE_SOCIAL);
   const socialName = useInput();
   const socialURL = useInput();
@@ -175,7 +176,7 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
       </BodyContainer>
 
       <Footer>
-        <SimpleButton icon={'clear'} />
+        <SimpleButton icon={'clear'} onClick={(): void => navigateTo('/admin/profile')} />
         <SimpleButton color={COLOR_PURPLE} icon={'done'} />
       </Footer>
 
