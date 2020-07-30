@@ -1,15 +1,19 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_MEDIUM, COLOR_WHITE } from '../../utils/values';
+import { BORDER_RADIUS_MEDIUM, COLOR_WHITE, MEDIA_LG } from '../../utils/values';
 
 export const ButtonContainer = Styled.div`
-  bottom: 0;
+  bottom: 32px;
   display: flex;
   justify-content: flex-end;
-  left: 0;
-  padding: 16px;
-  position: absolute;
-  right: 0;
+  position: fixed;
+  right: 32px;
+
+  ${MEDIA_LG} {
+    bottom: 16px;
+    position: absolute;
+    right: 16px;
+  }
 `;
 
 export const PasswordContainer = Styled.div`
@@ -17,14 +21,25 @@ export const PasswordContainer = Styled.div`
 `;
 
 export const TitleContainer = Styled.div`
-  padding: 24px 24px 40px;
+  padding: 16px 68px 16px 16px;
+
+  ${MEDIA_LG} {
+    padding: 24px;
+  }
 `;
 
 export const ChangePasswordContainer = Styled.div`
-  height: 480px;
+  height: calc(100% - 32px);
+  overflow: auto;
+  padding-bottom: 56px;
   position: relative;
-  width: 480px;
+  width: calc(100% - 32px);
 
   background-color: ${COLOR_WHITE};
   border-radius: ${BORDER_RADIUS_MEDIUM};
+
+  ${MEDIA_LG} {
+    height: 480px;
+    width: 480px;
+  }
 `;
