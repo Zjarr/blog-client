@@ -83,6 +83,22 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
               link: '',
               active: true,
               clipboard: true
+            },
+            {
+              title: 'Card title with long text for testing purposes',
+              text: 'Card title with long text for testing purposes',
+              image: '',
+              link: '',
+              active: true,
+              clipboard: true
+            },
+            {
+              title: 'Card title with long text for testing purposes',
+              text: 'Card title with long text for testing purposes',
+              image: '',
+              link: '',
+              active: true,
+              clipboard: true
             }
           ]} />
         </ListContainer>
