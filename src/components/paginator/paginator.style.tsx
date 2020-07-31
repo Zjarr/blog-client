@@ -6,7 +6,7 @@ export const PaginatorContainer = Styled.div`
   display: flex;
 
   div {
-    margin: 0px 48px;
+    margin: 0px 32px;
   }
 
   * {

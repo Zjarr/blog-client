@@ -1,11 +1,11 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_MEDIUM, COLOR_WHITE } from '../../utils/values';
+import { BORDER_RADIUS_MEDIUM, COLOR_WHITE, MEDIA_LG } from '../../utils/values';
 
 export const ImageListContainer = Styled.div`
   bottom: 16px;
   left: 16px;
-  padding: 16px;
+  overflow-y: auto;
   position: absolute;
   right: 16px;
   top: 16px;
@@ -15,14 +15,13 @@ export const ImageListContainer = Styled.div`
 `;
 
 export const ListContainer = Styled.div`
-  bottom: 16px;
-  left: 16px;
-  right: 16px;
-  position: absolute;
+  padding: 16px;
 `;
 
 export const TitleContainer = Styled.div`
-  padding: 24px 24px 48px;
-  width: 100%;
-`;
+  padding: 16px 68px 16px 16px;
 
+  ${MEDIA_LG} {
+    padding: 24px;
+  }
+`;
