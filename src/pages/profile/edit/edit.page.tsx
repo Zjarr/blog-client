@@ -10,18 +10,19 @@ import { FormField } from '../../../components/form-field';
 import { Header } from '../../../components/header';
 import { Image } from '../../../components/image';
 import { Input } from '../../../components/input';
-import { SubtitleText } from '../../../components/text';
+import { ParagraphText, SubtitleText } from '../../../components/text';
 import { TextArea } from '../../../components/textarea';
 import { UpdateImage } from '../../../components/update-image';
 import { useDropdown, useInput, useNavigateTo } from '../../../utils/hooks';
 import { IImageResult, ISocial } from '../../../utils/interfaces';
-import { COLOR_PURPLE, VALUE_SOCIAL } from '../../../utils/values';
+import { COLOR_GRAY_MEDIUM, COLOR_PURPLE, VALUE_SOCIAL } from '../../../utils/values';
 
 import {
   AddButtonContainer,
   BodyContainer,
   CurrentContainer,
   EditContainer,
+  EmptyListContainer,
   ImageColumn,
   SocialNetworksContainer
 } from './edit.style';
@@ -159,19 +160,28 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
 
         <CurrentContainer>
           <SubtitleText>Current</SubtitleText>
-          <Row>
-            {
-              socialNetworks.map((socialNetwork: ISocial, index: number) =>
-                <Column xl={4} position={getSocialColumnPosition(index)} key={`social-${socialNetwork.name}-${index}`}>
-                  <IconCard
-                    onClick={(): void => removeSocialNetwork(index)}
-                    title={socialNetwork.name}
-                    icon={socialNetwork.icon}
-                    text={socialNetwork.url} />
-                </Column>
-              )
-            }
-          </Row>
+          {
+            socialNetworks.length > 0 &&
+            <Row>
+              {
+                socialNetworks.map((socialNetwork: ISocial, index: number) =>
+                  <Column xl={4} position={getSocialColumnPosition(index)} key={`social-${socialNetwork.name}-${index}`}>
+                    <IconCard
+                      onClick={(): void => removeSocialNetwork(index)}
+                      title={socialNetwork.name}
+                      icon={socialNetwork.icon}
+                      text={socialNetwork.url} />
+                  </Column>
+                )
+              }
+            </Row>
+          }
+          {
+            socialNetworks.length === 0 &&
+            <EmptyListContainer>
+              <ParagraphText color={COLOR_GRAY_MEDIUM}>Oops! There are no categories.</ParagraphText>
+            </EmptyListContainer>
+          }
         </CurrentContainer>
       </BodyContainer>
 

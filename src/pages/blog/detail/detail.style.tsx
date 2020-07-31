@@ -40,6 +40,10 @@ export const EditorButtonsContainer = Styled.div`
 
 export const SimpleListContainer = Styled.div`
   margin-bottom: 32px;
+
+  :last-child {
+    margin-bottom: 0;
+  }
 `;
 
 export const EmptyListContainer = Styled.div`

@@ -38,3 +38,7 @@ export const AddButtonContainer = Styled.div`
 export const CurrentContainer = Styled.div`
   margin-top: 48px;
 `;
+
+export const EmptyListContainer = Styled.div`
+  text-align: center;
+`;
