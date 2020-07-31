@@ -1,10 +1,12 @@
 import Styled from 'styled-components';
 
-import { COLOR_PURPLE } from '../../utils/values';
+import { COLOR_WHITE, COLOR_PURPLE } from '../../utils/values';
 
 export const NotFoundContainer = Styled.div`
-  height: 100%;
+  height: 100vh;
   width: 100%;
+
+  background-color: ${COLOR_WHITE};
 `;
 
 export const BodyContainer = Styled.div`
