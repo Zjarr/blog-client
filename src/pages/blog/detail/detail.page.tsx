@@ -11,15 +11,15 @@ import { Image } from '../../../components/image';
 import { ImageList } from '../../../components/image-list';
 import { Input } from '../../../components/input';
 import { Renderer } from '../../../components/renderer';
-import { LabelText } from '../../../components/text';
+import { LabelText, ParagraphText } from '../../../components/text';
 import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
 import { UpdateImage } from '../../../components/update-image';
 import { useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
 import { ICategory, IDropdownValue, IImageResult, ISource } from '../../../utils/interfaces';
-import { COLOR_PURPLE } from '../../../utils/values';
+import { COLOR_PURPLE, COLOR_GRAY_MEDIUM } from '../../../utils/values';
 
-import { BodyContainer, DetailContainer, EditorButtonsContainer, SimpleListContainer } from './detail.style';
+import { BodyContainer, DetailContainer, EditorButtonsContainer, EmptyListContainer, SimpleListContainer } from './detail.style';
 
 export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   const [previewBlog, setPreviewBlog] = React.useState<boolean>(false);
@@ -181,21 +181,24 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
             </FormField>
           }
 
-          {
-            categories &&
-            <SimpleListContainer>
-              <LabelText>{action === 'view' ? 'Categories:' : 'Selected categories:'}</LabelText>
-              {
-                categories.map((category, index) =>
-                  <IconCard
-                    onClick={(): void => removeCategory(index)}
-                    key={`category-${category}-${index}`}
-                    disabled={action === 'view'}
-                    title={category.name} />
-                )
-              }
-            </SimpleListContainer>
-          }
+          <SimpleListContainer>
+            <LabelText>{action === 'view' ? 'Categories:' : 'Selected categories:'}</LabelText>
+            {
+              categories.length > 0 && categories.map((category, index) =>
+                <IconCard
+                  onClick={(): void => removeCategory(index)}
+                  key={`category-${category}-${index}`}
+                  disabled={action === 'view'}
+                  title={category.name} />
+              )
+            }
+            {
+              categories.length === 0 &&
+              <EmptyListContainer>
+                <ParagraphText color={COLOR_GRAY_MEDIUM}>Oops! There are no categories.</ParagraphText>
+              </EmptyListContainer>
+            }
+          </SimpleListContainer>
 
           {
             action !== 'view' &&
@@ -206,22 +209,25 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
             </FormField>
           }
 
-          {
-            sources &&
-            <SimpleListContainer>
-              <LabelText>{action === 'view' ? 'Sources:' : 'Selected sources:'}</LabelText>
-              {
-                sources.map((source: ISource, index: number) =>
-                  <IconCard
-                    onClick={(): void => removeSource(index)}
-                    key={`source-${source.name}-${index}`}
-                    disabled={action === 'view'}
-                    title={source.name}
-                    text={source.url} />
-                )
-              }
-            </SimpleListContainer>
-          }
+          <SimpleListContainer>
+            <LabelText>{action === 'view' ? 'Sources:' : 'Selected sources:'}</LabelText>
+            {
+              sources.length > 0 && sources.map((source: ISource, index: number) =>
+                <IconCard
+                  onClick={(): void => removeSource(index)}
+                  key={`source-${source.name}-${index}`}
+                  disabled={action === 'view'}
+                  title={source.name}
+                  text={source.url} />
+              )
+            }
+            {
+              sources.length === 0 &&
+              <EmptyListContainer>
+                <ParagraphText color={COLOR_GRAY_MEDIUM}>Oops! There are no sources.</ParagraphText>
+              </EmptyListContainer>
+            }
+          </SimpleListContainer>
         </Column>
       </BodyContainer>
 
