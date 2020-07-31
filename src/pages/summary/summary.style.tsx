@@ -7,7 +7,7 @@ import { BORDER_RADIUS_SMALL, MEDIA_SM } from '../../utils/values';
 export const SummaryContainer = Styled.div`
   height: 100%;
   padding: 16px;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 export const SummaryCardContainer = Styled(Row)`

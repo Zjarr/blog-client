@@ -41,5 +41,4 @@ export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
   );
 };
 
-interface IListCategoryPage {
-}
+interface IListCategoryPage { }

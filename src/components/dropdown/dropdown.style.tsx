@@ -114,7 +114,7 @@ export const DropdownValueContainer = Styled.div<{ error?: string, open: boolean
   left: 0;
   max-height: 296px;
   opacity: 0;
-  overflow: scroll;
+  overflow: auto;
   position: absolute;
   right: 0;
   top: 60px;

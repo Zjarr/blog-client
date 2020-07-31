@@ -41,7 +41,7 @@ export const DashboardContainer = Styled.div`
 export const SidebarContainer = Styled.div`
   height: calc(100% - 98px);
   left: 0;
-  overflow-y: scroll;
+  overflow-y: auto;
   position: absolute;
   top: 0;
   width: 208px;
