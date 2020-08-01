@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-import { COLOR_WHITE, COLOR_PURPLE } from '../../utils/values';
+import { COLOR_PURPLE, COLOR_WHITE, MEDIA_LG, MEDIA_MD, MEDIA_SM } from '../../utils/values';
 
 export const NotFoundContainer = Styled.div`
   height: 100vh;
@@ -10,23 +10,48 @@ export const NotFoundContainer = Styled.div`
 `;
 
 export const BodyContainer = Styled.div`
-  bottom: 0;
-  height: 280px;
+  bottom: 48px;
+  height: 264px;
   margin: auto;
-  padding-left: 128px;
+  max-width: 246px;
+  padding-left: 32px;
   position: absolute;
-  top: 240px;
+
+  ${MEDIA_SM} {
+    bottom: 0;
+    height: 280px;
+    max-width: 100%;
+    padding-left: 64px;
+    top: auto;
+  }
+
+  ${MEDIA_MD} {
+    top: 200px;
+  }
+
+  ${MEDIA_LG} {
+    padding-left: 128px;
+    top: 0px;
+  }
 `;
 
 export const TextContainer = Styled.div`
-  margin-bottom: 32px;
+  margin-bottom: 0px;
+
+  ${MEDIA_SM} {
+    margin-bottom: 32px;
+  }
 `;
 
 export const Title = Styled.h1`
   font-size: 80px;
-  margin-bottom: 32px;
+  margin-bottom: 0px;
 
   color: ${COLOR_PURPLE};
+
+  ${MEDIA_MD} {
+    margin-bottom: 32px;
+  }
 `;
 
 export const ButtonContainer = Styled.div`
@@ -35,12 +60,20 @@ export const ButtonContainer = Styled.div`
 `;
 
 export const WavesContainer = Styled.div`
-  height: 100%;
+  bottom: 0;
+  left: 0;
   overflow: hidden;
   position: absolute;
-  right: 0;
+  right: -64px;
   top: 0;
-  width: 100%;
+
+  ${MEDIA_SM} {
+    right: -32px;
+  }
+
+  ${MEDIA_MD} {
+    right: 0px;
+  }
 `;
 
 export const WaveImage = Styled.img.attrs<{ right: number, top: number }>(({ right, top }) => ({
