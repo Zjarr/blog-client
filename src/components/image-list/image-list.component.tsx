@@ -1,10 +1,12 @@
 import React from 'react';
 
+import { Input } from '../input';
 import { List } from '../list';
 import { Modal } from '../modal';
+import { Paginator } from '../paginator';
 import { TitleText } from '../text';
 
-import { ImageListContainer, ListContainer, TitleContainer } from './image-list.style';
+import { ImageListContainer, ListContainer, PaginatorContainer, SearchContainer, TitleContainer } from './image-list.style';
 
 export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
   const handleCloseRequest = (): void => {
@@ -17,6 +19,10 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
         <TitleContainer>
           <TitleText>Stored images</TitleText>
         </TitleContainer>
+
+        <SearchContainer>
+          <Input icon={'search'} placeholder={'Image name'} />
+        </SearchContainer>
 
         <ListContainer>
           <List loading={false} cards={[
@@ -102,6 +108,10 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
             }
           ]} />
         </ListContainer>
+
+        <PaginatorContainer>
+          <Paginator current={1} total={1} onPrevClick={(): void => { }} onNextClick={(): void => { }} />
+        </PaginatorContainer>
       </ImageListContainer>
     </Modal>
   );
