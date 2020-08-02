@@ -3,13 +3,9 @@ import Styled from 'styled-components';
 
 import { Column } from '../column';
 
-export const ListContainer = Styled.div`
+export const ListContainer = Styled(Row)`
   position: relative;
   height: 100%;
-`;
-
-export const CardsListContainer = Styled(Row)`
-  height: calc(100% - 112px);
 `;
 
 export const CardContainer = Styled(Column)`
