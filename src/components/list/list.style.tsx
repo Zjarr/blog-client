@@ -1,11 +1,10 @@
 import Row from 'react-bootstrap/Row';
 import Styled from 'styled-components';
 
-import { Column } from '../column';
 import { MEDIA_MD, MEDIA_XL } from '../../utils/values';
+import { Column } from '../column';
 
 export const ListContainer = Styled.div`
-  padding-bottom: 40px;
   position: relative;
   height: 100%;
 `;
@@ -30,19 +29,22 @@ export const CardContainer = Styled(Column)`
 `;
 
 export const PaginatorContainer = Styled.div`
-  bottom: 8px;
   display: flex;
   justify-content: flex-end;
-  position: absolute;
   width: 100%;
 `;
 
 export const EmptyListContainer = Styled.div`
   align-items: center;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   height: 100%;
   justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
   width: 100%;
 `;
 

@@ -12,7 +12,7 @@ import { Toggle } from '../../../components/toggle';
 import { useNavigateTo } from '../../../utils/hooks';
 import { COLOR_PURPLE } from '../../../utils/values';
 
-import { BlogListContainer, ListContainer } from './list.style';
+import { BlogListContainer, FilterContainer, ListContainer } from './list.style';
 
 export const ListBlogPage: React.FC<IListBlogPage> = () => {
   const navigateTo = useNavigateTo();
@@ -123,7 +123,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
           ]} />
         </Column>
 
-        <Column xl={3} position={'right'}>
+        <FilterContainer xl={3} position={'right'}>
           <SubtitleText icon={'filter_list'}>Filter</SubtitleText>
 
           <FormField label={'Category:'}>
@@ -133,7 +133,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
           <FormField label={'Published:'}>
             <Toggle />
           </FormField>
-        </Column>
+        </FilterContainer>
       </ListContainer>
 
       <Footer>

@@ -11,7 +11,7 @@ import { Toggle } from '../../../components/toggle';
 import { useNavigateTo } from '../../../utils/hooks';
 import { COLOR_PURPLE } from '../../../utils/values';
 
-import { CategoryListContainer, ListContainer } from './list.style';
+import { CategoryListContainer, FilterContainer, ListContainer } from './list.style';
 
 export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
   const navigateTo = useNavigateTo();
@@ -25,13 +25,13 @@ export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
           <List loading={false} cards={[]} />
         </Column>
 
-        <Column xl={3} position={'right'}>
+        <FilterContainer xl={3} position={'right'}>
           <SubtitleText icon={'filter_list'}>Filter</SubtitleText>
 
           <FormField label={'Active:'}>
             <Toggle />
           </FormField>
-        </Column>
+        </FilterContainer>
       </ListContainer>
 
       <Footer>
