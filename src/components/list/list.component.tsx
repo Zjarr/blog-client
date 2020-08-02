@@ -21,9 +21,9 @@ export const List: React.FC<IList> = ({ cards, loading }) => {
   const getCardPadding = (index: number): string => {
     const position: number = index + 1;
 
-    if (position % 2 === 0) return '8px 8px 8px 16px';
+    if (position % 2 === 0) return '8px 0px 8px 16px';
 
-    return '8px 16px 8px 8px';
+    return '8px 16px 8px 0px';
   };
 
   return (
