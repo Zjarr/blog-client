@@ -89,7 +89,7 @@ export const ImageContainer = Styled.div`
 export const ImageMiddleContainer = Styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 96px;
   justify-content: space-around;
   position: relative;
   width: calc(100% - 56px);
@@ -120,17 +120,13 @@ export const ImageFinalContainer = Styled.div`
   align-items: flex-end;
   display: flex;
   flex-direction: column;
-  height: 88px;
+  height: 96px;
   justify-content: space-between;
   width: 56px;
 
   button {
     margin-bottom: -4px;
     margin-right: -16px;
-  }
-
-  ${MEDIA_SM} {
-    height: 100%;
   }
 `;
 
