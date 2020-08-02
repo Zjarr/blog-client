@@ -8,7 +8,6 @@ import { ParagraphText } from '../text';
 
 import {
   CardContainer,
-  CardsListContainer,
   EmptyListContainer,
   ImageContainer,
   ListContainer,
@@ -29,35 +28,33 @@ export const List: React.FC<IList> = ({ cards, loading }) => {
 
   return (
     <ListContainer>
-      <CardsListContainer>
-        {
-          loading && [...Array(skeletonCards)].map((_, index) =>
-            <CardContainer lg={6} key={`card-${index}`}>
-              <ImageCard padding={getCardPadding(index)} loading />
-            </CardContainer>
-          )
-        }
-        {
-          !loading && cards && cards.map((card, index) =>
-            <CardContainer lg={6} key={`card-${index}`}>
-              <ImageCard padding={getCardPadding(index)} {...card} />
-            </CardContainer>
-          )
-        }
-        {
-          !loading && !cards.length &&
-          <EmptyListContainer>
-            <ImageContainer>
-              <RocketImage src={Rocket} />
-            </ImageContainer>
+      {
+        loading && [...Array(skeletonCards)].map((_, index) =>
+          <CardContainer lg={6} key={`card-${index}`}>
+            <ImageCard padding={getCardPadding(index)} loading />
+          </CardContainer>
+        )
+      }
+      {
+        !loading && cards && cards.map((card, index) =>
+          <CardContainer lg={6} key={`card-${index}`}>
+            <ImageCard padding={getCardPadding(index)} {...card} />
+          </CardContainer>
+        )
+      }
+      {
+        !loading && !cards.length &&
+        <EmptyListContainer>
+          <ImageContainer>
+            <RocketImage src={Rocket} />
+          </ImageContainer>
 
-            <TextContainer>
-              <ParagraphText color={COLOR_GRAY_MEDIUM}>Oops!</ParagraphText>
-              <ParagraphText color={COLOR_GRAY_MEDIUM}>This looks empty. Did you add some fuel?</ParagraphText>
-            </TextContainer>
-          </EmptyListContainer>
-        }
-      </CardsListContainer>
+          <TextContainer>
+            <ParagraphText color={COLOR_GRAY_MEDIUM}>Oops!</ParagraphText>
+            <ParagraphText color={COLOR_GRAY_MEDIUM}>This looks empty. Did you add some fuel?</ParagraphText>
+          </TextContainer>
+        </EmptyListContainer>
+      }
     </ListContainer>
   );
 };
