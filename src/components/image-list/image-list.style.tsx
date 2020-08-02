@@ -14,14 +14,38 @@ export const ImageListContainer = Styled.div`
   border-radius: ${BORDER_RADIUS_MEDIUM};
 `;
 
-export const ListContainer = Styled.div`
-  padding: 16px;
-`;
-
 export const TitleContainer = Styled.div`
   padding: 16px 68px 16px 16px;
 
   ${MEDIA_LG} {
     padding: 24px;
   }
+`;
+
+export const SearchContainer = Styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px;
+  width: 100%;
+
+  > div {
+    width: 100%;
+  }
+
+  ${MEDIA_LG} {
+    > div {
+      width: 50%;
+    }
+  }
+`;
+
+export const ListContainer = Styled.div`
+  padding: 16px;
+`;
+
+export const PaginatorContainer = Styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 32px;
+  margin-top: -32px;
 `;
