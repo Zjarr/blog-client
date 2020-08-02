@@ -18,7 +18,7 @@ export const MobileButtonContainer = Styled.button`
   border: none;
   cursor: pointer;
   display: block;
-  height: 40px;
+  height: 48px;
   padding: 8px;
   width: 48px;
 
@@ -35,9 +35,9 @@ export const MenuLinesContainer = Styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 24px;
   justify-content: space-between;
-  width: 100%;
+  width: 32px;
 `;
 
 const MobileMenuLine = Styled.div<{ open: boolean }>`
