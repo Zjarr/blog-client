@@ -8,29 +8,12 @@ export const ListContainer = Styled.div`
   height: 100%;
 `;
 
-export const SearchContainer = Styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 32px;
-  width: 100%;
-
-  div {
-    width: 400px;
-  }
-`;
-
 export const CardsListContainer = Styled(Row)`
   height: calc(100% - 112px);
 `;
 
 export const CardContainer = Styled(Column)`
   margin-bottom: 32px;
-`;
-
-export const PaginatorContainer = Styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
 `;
 
 export const EmptyListContainer = Styled.div`
