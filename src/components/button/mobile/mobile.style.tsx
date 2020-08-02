@@ -24,6 +24,11 @@ export const MobileButtonContainer = Styled.button`
 
   background-color: ${COLOR_WHITE};
   border-radius: ${BORDER_RADIUS_SMALL};
+
+  :focus {
+    outline: none;
+    text-decoration: none;
+  }
 `;
 
 export const MenuLinesContainer = Styled.div`
