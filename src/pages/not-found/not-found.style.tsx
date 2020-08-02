@@ -10,37 +10,26 @@ export const NotFoundContainer = Styled.div`
 `;
 
 export const BodyContainer = Styled.div`
-  bottom: 48px;
-  height: 264px;
+  bottom: 80px;
+  height: 280px;
   margin: auto;
   max-width: 246px;
   padding-left: 32px;
   position: absolute;
 
   ${MEDIA_SM} {
-    bottom: 0;
-    height: 280px;
+    height: 232px;
     max-width: 100%;
     padding-left: 64px;
-    top: auto;
-  }
-
-  ${MEDIA_MD} {
-    top: 200px;
   }
 
   ${MEDIA_LG} {
     padding-left: 128px;
-    top: 0px;
   }
 `;
 
 export const TextContainer = Styled.div`
-  margin-bottom: 0px;
-
-  ${MEDIA_SM} {
-    margin-bottom: 32px;
-  }
+  margin-bottom: 16px;
 `;
 
 export const Title = Styled.h1`
@@ -48,10 +37,6 @@ export const Title = Styled.h1`
   margin-bottom: 0px;
 
   color: ${COLOR_PURPLE};
-
-  ${MEDIA_MD} {
-    margin-bottom: 32px;
-  }
 `;
 
 export const ButtonContainer = Styled.div`
@@ -64,11 +49,11 @@ export const WavesContainer = Styled.div`
   left: 0;
   overflow: hidden;
   position: absolute;
-  right: -64px;
+  right: -128px;
   top: 0;
 
   ${MEDIA_SM} {
-    right: -32px;
+    right: -64px;
   }
 
   ${MEDIA_MD} {
