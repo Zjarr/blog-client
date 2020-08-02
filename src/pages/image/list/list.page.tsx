@@ -12,6 +12,7 @@ import { useNavigateTo } from '../../../utils/hooks';
 import { COLOR_PURPLE } from '../../../utils/values';
 
 import { FilterContainer, ImageListContainer, ListContainer } from './list.style';
+import { Input } from '../../../components/input';
 
 export const ListImagePage: React.FC<IListImagePage> = () => {
   const navigateTo = useNavigateTo();
@@ -128,6 +129,10 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
 
         <FilterContainer xl={3} position={'right'}>
           <SubtitleText icon={'filter_list'}>Filter</SubtitleText>
+
+          <FormField label={'Search:'}>
+            <Input icon={'search'} placeholder={'Image name'} />
+          </FormField>
 
           <FormField label={'Active:'}>
             <Toggle />

@@ -12,6 +12,7 @@ import { useNavigateTo } from '../../../utils/hooks';
 import { COLOR_PURPLE } from '../../../utils/values';
 
 import { CategoryListContainer, FilterContainer, ListContainer } from './list.style';
+import { Input } from '../../../components/input';
 
 export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
   const navigateTo = useNavigateTo();
@@ -27,6 +28,10 @@ export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
 
         <FilterContainer xl={3} position={'right'}>
           <SubtitleText icon={'filter_list'}>Filter</SubtitleText>
+
+          <FormField label={'Search:'}>
+            <Input icon={'search'} placeholder={'Category name'} />
+          </FormField>
 
           <FormField label={'Active:'}>
             <Toggle />

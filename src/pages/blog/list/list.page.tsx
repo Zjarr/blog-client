@@ -6,6 +6,7 @@ import { Dropdown } from '../../../components/dropdown';
 import { Footer } from '../../../components/footer';
 import { FormField } from '../../../components/form-field';
 import { Header } from '../../../components/header';
+import { Input } from '../../../components/input';
 import { List } from '../../../components/list';
 import { SubtitleText } from '../../../components/text';
 import { Toggle } from '../../../components/toggle';
@@ -125,6 +126,10 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
 
         <FilterContainer xl={3} position={'right'}>
           <SubtitleText icon={'filter_list'}>Filter</SubtitleText>
+
+          <FormField label={'Search:'}>
+            <Input icon={'search'} placeholder={'Blog name'} />
+          </FormField>
 
           <FormField label={'Category:'}>
             <Dropdown icon={'category'} name={'Any'} values={[]} onChange={(): void => { }} />
