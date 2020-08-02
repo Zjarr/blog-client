@@ -25,80 +25,100 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
           <List loading={false} cards={[
             {
               title: 'Some title for the image',
-              text: 'This is a short description for the image',
+              primaryText: 'This is a short description for the image',
+              primaryTextIcon: 'description',
               secondaryText: 'Image alt text',
+              secondaryTextIcon: 'broken_image',
               image: '',
               link: '/admin/images/view/123456',
               active: false
             },
             {
               title: 'Some title for the image',
-              text: 'This is a short description for the image',
+              primaryText: 'This is a short description for the image',
+              primaryTextIcon: 'description',
               secondaryText: 'Image alt text',
+              secondaryTextIcon: 'broken_image',
               image: '',
               link: '/admin/images/view/123456',
               active: true
             },
             {
               title: 'Some title for the image',
-              text: 'This is a short description for the image',
+              primaryText: 'This is a short description for the image',
+              primaryTextIcon: 'description',
               secondaryText: 'Image alt text',
+              secondaryTextIcon: 'broken_image',
               image: '',
               link: '/admin/images/view/123456',
               active: true
             },
             {
               title: 'Some title for the image',
-              text: 'This is a short description for the image',
+              primaryText: 'This is a short description for the image',
+              primaryTextIcon: 'description',
               secondaryText: 'Image alt text',
+              secondaryTextIcon: 'broken_image',
               image: '',
               link: '/admin/images/view/123456',
               active: true
             },
             {
               title: 'Some title for the image',
-              text: 'This is a short description for the image',
+              primaryText: 'This is a short description for the image',
+              primaryTextIcon: 'description',
               secondaryText: 'Image alt text',
+              secondaryTextIcon: 'broken_image',
               image: '',
               link: '/admin/images/view/123456',
               active: true
             },
             {
               title: 'Some title for the image',
-              text: 'This is a short description for the image',
+              primaryText: 'This is a short description for the image',
+              primaryTextIcon: 'description',
               secondaryText: 'Image alt text',
+              secondaryTextIcon: 'broken_image',
               image: '',
               link: '/admin/images/view/123456',
               active: true
             },
             {
               title: 'Some title for the image',
-              text: 'This is a short description for the image',
+              primaryText: 'This is a short description for the image',
+              primaryTextIcon: 'description',
               secondaryText: 'Image alt text',
+              secondaryTextIcon: 'broken_image',
               image: '',
               link: '/admin/images/view/123456',
               active: true
             },
             {
               title: 'Some title for the image',
-              text: 'This is a short description for the image',
+              primaryText: 'This is a short description for the image',
+              primaryTextIcon: 'description',
               secondaryText: 'Image alt text',
+              secondaryTextIcon: 'broken_image',
               image: '',
               link: '/admin/images/view/123456',
               active: true
             },
             {
               title: 'Some title for the image',
-              text: 'This is a short description for the image',
+              primaryText: 'This is a short description for the image',
+              primaryTextIcon: 'description',
               secondaryText: 'Image alt text',
+              secondaryTextIcon: 'broken_image',
               image: '',
               link: '/admin/images/view/123456',
               active: true
             },
             {
               title: 'Some title for the image',
-              text: 'This is a short description for the image',
+              primaryText: 'This is a short description for the image',
+              primaryTextIcon: 'description',
               secondaryText: 'Image alt text',
+              secondaryTextIcon: 'broken_image',
               image: '',
               link: '/admin/images/view/123456',
               active: true

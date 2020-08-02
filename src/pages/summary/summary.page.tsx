@@ -62,8 +62,10 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
               <ImageCardContainer>
                 <ImageCard
                   title={'Recent blog name'}
-                  text={'Planes | Travel | Experience'}
+                  primaryText={'Planes | Travel | Experience'}
+                  primaryTextIcon={'category'}
                   secondaryText={'June 28th, 2020'}
+                  secondaryTextIcon={'event'}
                   image={''}
                   link={'/admin/blogs/view/1234'}
                   active />
@@ -71,8 +73,10 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
               <ImageCardContainer>
                 <ImageCard
                   title={'Recent blog name'}
-                  text={'Planes | Travel | Experience'}
+                  primaryText={'Planes | Travel | Experience'}
+                  primaryTextIcon={'category'}
                   secondaryText={'June 28th, 2020'}
+                  secondaryTextIcon={'event'}
                   image={''}
                   link={'/admin/blogs/view/1234'}
                   active />
@@ -85,16 +89,20 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
               <ImageCardContainer>
                 <ImageCard
                   title={'To be released blog name'}
-                  text={'Planes | Travel | Experience'}
+                  primaryText={'Planes | Travel | Experience'}
+                  primaryTextIcon={'category'}
                   secondaryText={'June 28th, 2020'}
+                  secondaryTextIcon={'event'}
                   link={'/admin/blogs/view/1234'}
                   image={''} />
               </ImageCardContainer>
               <ImageCardContainer>
                 <ImageCard
                   title={'To be released blog name'}
-                  text={'Planes | Travel | Experience'}
+                  primaryText={'Planes | Travel | Experience'}
+                  primaryTextIcon={'category'}
                   secondaryText={'June 28th, 2020'}
+                  secondaryTextIcon={'event'}
                   link={'/admin/blogs/view/1234'}
                   image={''} />
               </ImageCardContainer>

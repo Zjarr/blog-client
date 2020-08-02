@@ -4,11 +4,11 @@ import { Icon } from '../../icon';
 
 import { Paragraph, ParagraphContainer } from './paragraph.style';
 
-export const ParagraphText: React.FC<IParagraphText> = ({ bold, children, icon, ...rest }) => {
+export const ParagraphText: React.FC<IParagraphText> = ({ bold, children, color, icon, margin }) => {
   return (
-    <ParagraphContainer {...rest}>
+    <ParagraphContainer color={color} margin={margin}>
       {
-        icon && <Icon name={icon} />
+        icon && <Icon color={color} name={icon} />
       }
       <Paragraph bold={bold}>{children}</Paragraph>
     </ParagraphContainer>

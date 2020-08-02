@@ -22,7 +22,7 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
           <List loading={false} cards={[
             {
               title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
+              primaryText: 'Card title with long text for testing purposes',
               image: '',
               link: '',
               active: true,
@@ -30,7 +30,7 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
             },
             {
               title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
+              primaryText: 'Card title with long text for testing purposes',
               image: '',
               link: '',
               active: true,
@@ -38,7 +38,7 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
             },
             {
               title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
+              primaryText: 'Card title with long text for testing purposes',
               image: '',
               link: '',
               active: true,
@@ -46,7 +46,7 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
             },
             {
               title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
+              primaryText: 'Card title with long text for testing purposes',
               image: '',
               link: '',
               active: true,
@@ -54,7 +54,7 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
             },
             {
               title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
+              primaryText: 'Card title with long text for testing purposes',
               image: '',
               link: '',
               active: true,
@@ -62,7 +62,7 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
             },
             {
               title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
+              primaryText: 'Card title with long text for testing purposes',
               image: '',
               link: '',
               active: true,
@@ -70,7 +70,7 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
             },
             {
               title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
+              primaryText: 'Card title with long text for testing purposes',
               image: '',
               link: '',
               active: true,
@@ -78,7 +78,7 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
             },
             {
               title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
+              primaryText: 'Card title with long text for testing purposes',
               image: '',
               link: '',
               active: true,
@@ -86,7 +86,7 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
             },
             {
               title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
+              primaryText: 'Card title with long text for testing purposes',
               image: '',
               link: '',
               active: true,
@@ -94,7 +94,7 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
             },
             {
               title: 'Card title with long text for testing purposes',
-              text: 'Card title with long text for testing purposes',
+              primaryText: 'Card title with long text for testing purposes',
               image: '',
               link: '',
               active: true,

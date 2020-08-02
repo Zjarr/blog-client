@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useNavigateTo } from '../../../utils/hooks';
-import { BORDER_RADIUS_SMALL, COLOR_BLACK_0, COLOR_GRAY_DARK, COLOR_WHITE } from '../../../utils/values';
+import { BORDER_RADIUS_SMALL, COLOR_BLACK_0, COLOR_GRAY_DARK, COLOR_GRAY_MEDIUM, COLOR_WHITE } from '../../../utils/values';
 
 import { SimpleButton, TextButton } from '../../button';
 import { Icon } from '../../icon';
@@ -20,7 +20,21 @@ import {
   URLContainer
 } from './image.style';
 
-export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image, link, loading, padding, secondaryText, text, title, width }) => {
+export const ImageCard: React.FC<IImageCard> = ({
+  active,
+  clipboard,
+  icon,
+  image,
+  link,
+  loading,
+  padding,
+  primaryText,
+  primaryTextIcon,
+  secondaryText,
+  secondaryTextIcon,
+  title,
+  width
+}) => {
   const [clipboardIcon, setClipBoardIcon] = React.useState<string>('file_copy');
 
   const navigateTo = useNavigateTo();
@@ -87,10 +101,10 @@ export const ImageCard: React.FC<IImageCard> = ({ active, clipboard, icon, image
         }
         <ImageSecondaryTextContainer>
           {
-            text && <ParagraphText>{text}</ParagraphText>
+            primaryText && <ParagraphText color={COLOR_GRAY_MEDIUM} icon={primaryTextIcon}>{primaryText}</ParagraphText>
           }
           {
-            secondaryText && <ParagraphText>{secondaryText}</ParagraphText>
+            secondaryText && <ParagraphText color={COLOR_GRAY_MEDIUM} icon={secondaryTextIcon}>{secondaryText}</ParagraphText>
           }
         </ImageSecondaryTextContainer>
       </ImageMiddleContainer>
@@ -125,8 +139,10 @@ export interface IImageCard {
   link?: string;
   loading?: boolean;
   padding?: string;
+  primaryText?: string;
+  primaryTextIcon?: string;
   secondaryText?: string;
-  text?: string;
+  secondaryTextIcon?: string;
   title?: string;
   width?: string;
 }

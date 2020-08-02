@@ -282,7 +282,7 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
       <p></p>
       <ImageCard
         title={'Card title with long text for testing purposes'}
-        text={'Card title with long text for testing purposes'}
+        primaryText={'Card title with long text for testing purposes'}
         secondaryText={'Card title with long text for testing purposes'}
         image={''}
         active
@@ -290,14 +290,14 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
       <p></p>
       <ImageCard
         title={'Card title with long text for testing purposes'}
-        text={'Card title with long text for testing purposes'}
+        primaryText={'Card title with long text for testing purposes'}
         secondaryText={'Card title with long text for testing purposes'}
         icon={'group'}
       />
       <p></p>
       <ImageCard
         title={'Card title with long text for testing purposes'}
-        text={'Card title with long text for testing purposes'}
+        primaryText={'Card title with long text for testing purposes'}
       />
       <p></p>
       <ImageCard loading />
@@ -311,7 +311,7 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
       <List loading={false} cards={[
         {
           title: 'Card title with long text for testing purposes',
-          text: 'Card title with long text for testing purposes',
+          primaryText: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
           image: '',
           link: '',
@@ -319,49 +319,49 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
         },
         {
           title: 'Card title with long text for testing purposes',
-          text: 'Card title with long text for testing purposes',
+          primaryText: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
           image: '',
           active: true
         },
         {
           title: 'Card title with long text for testing purposes',
-          text: 'Card title with long text for testing purposes',
+          primaryText: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
           image: '',
           active: true
         },
         {
           title: 'Card title with long text for testing purposes',
-          text: 'Card title with long text for testing purposes',
+          primaryText: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
           image: '',
           active: true
         },
         {
           title: 'Card title with long text for testing purposes',
-          text: 'Card title with long text for testing purposes',
+          primaryText: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
           image: '',
           active: true
         },
         {
           title: 'Card title with long text for testing purposes',
-          text: 'Card title with long text for testing purposes',
+          primaryText: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
           image: '',
           active: true
         },
         {
           title: 'Card title with long text for testing purposes',
-          text: 'Card title with long text for testing purposes',
+          primaryText: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
           image: '',
           active: true
         },
         {
           title: 'Card title with long text for testing purposes',
-          text: 'Card title with long text for testing purposes',
+          primaryText: 'Card title with long text for testing purposes',
           secondaryText: 'Card title with long text for testing purposes',
           image: '',
           active: true

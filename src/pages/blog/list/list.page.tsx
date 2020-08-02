@@ -26,7 +26,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
           <List loading={true} cards={[
             {
               title: 'Some airplane blog title',
-              text: 'Planes | Travel | Experience',
+              primaryText: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: '',
               link: '/admin/blogs/view/123456',
@@ -34,7 +34,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'Planes | Travel | Experience',
+              primaryText: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: '',
               link: '/admin/blogs/view/123456',
@@ -42,7 +42,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'Planes | Travel | Experience',
+              primaryText: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: '',
               link: '/admin/blogs/view/123456',
@@ -50,7 +50,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'Planes | Travel | Experience',
+              primaryText: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: '',
               link: '/admin/blogs/view/123456',
@@ -58,7 +58,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'Planes | Travel | Experience',
+              primaryText: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: '',
               link: '/admin/blogs/view/123456',
@@ -66,7 +66,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'Planes | Travel | Experience',
+              primaryText: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: '',
               link: '/admin/blogs/view/123456',
@@ -74,7 +74,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'Planes | Travel | Experience',
+              primaryText: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: '',
               link: '/admin/blogs/view/123456',
@@ -82,7 +82,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'Planes | Travel | Experience',
+              primaryText: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: '',
               link: '/admin/blogs/view/123456',
@@ -90,7 +90,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'Planes | Travel | Experience',
+              primaryText: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: '',
               link: '/admin/blogs/view/123456',
@@ -98,7 +98,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'Planes | Travel | Experience',
+              primaryText: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: '',
               link: '/admin/blogs/view/123456',
@@ -106,7 +106,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'Planes | Travel | Experience',
+              primaryText: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: '',
               link: '/admin/blogs/view/123456',
@@ -114,7 +114,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             },
             {
               title: 'Some airplane blog title',
-              text: 'Planes | Travel | Experience',
+              primaryText: 'Planes | Travel | Experience',
               secondaryText: 'June 28th, 2020',
               image: '',
               link: '/admin/blogs/view/123456',

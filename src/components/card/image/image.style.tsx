@@ -4,10 +4,8 @@ import {
   BORDER_RADIUS_FULL,
   BORDER_RADIUS_MEDIUM,
   BORDER_RADIUS_SMALL,
-  COLOR_BLACK,
   COLOR_BLACK_8,
   COLOR_GRAY_LIGHT,
-  COLOR_GRAY_MEDIUM,
   COLOR_GREEN,
   COLOR_RED,
   COLOR_WHITE,
@@ -105,8 +103,6 @@ export const ImageMiddleContainer = Styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-
-    color: ${COLOR_BLACK};
   }
 
   ${MEDIA_SM} {
@@ -118,13 +114,7 @@ export const ImageMiddleContainer = Styled.div`
   }
 `;
 
-export const ImageSecondaryTextContainer = Styled.div`
-  p {
-    margin-bottom: 0;
-
-    color: ${COLOR_GRAY_MEDIUM};
-  }
-`;
+export const ImageSecondaryTextContainer = Styled.div``;
 
 export const ImageFinalContainer = Styled.div`
   align-items: flex-end;

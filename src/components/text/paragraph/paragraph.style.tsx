@@ -19,7 +19,7 @@ export const ParagraphContainer = Styled.div<{ color?: string, margin?: string }
   margin: ${({ margin }): string => getTextMargin(margin)};
 
   i {
-    margin: 0px 16px;
+    margin: 0px 8px 0px 0px;
     font-size: 16px;
   }
 `;
