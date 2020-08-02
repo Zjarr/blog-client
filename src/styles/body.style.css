@@ -3,7 +3,10 @@
 html,
 body {
   background-color: rgba(0, 0, 0, 1);
+  height: 100%;
   overflow: hidden;
+  position: relative;
+  width: 100%;
 }
 
 body * {
