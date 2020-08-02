@@ -3,25 +3,26 @@ import React from 'react';
 import { SimpleButton } from '../../components/button';
 import { FormField } from '../../components/form-field';
 import { Input } from '../../components/input';
-
 import { COLOR_PURPLE } from '../../utils/values';
 
-import { ButtonsContainer, LoginContainer } from './login.style';
+import { ButtonsContainer, FormContainer, LoginContainer } from './login.style';
 
 export const LoginPage: React.FC<{}> = () => {
   return (
     <LoginContainer>
-      <FormField label={'Email'}>
-        <Input icon={'email'} type={'email'} placeholder={'email@provider.com'} />
-      </FormField>
+      <FormContainer>
+        <FormField label={'Email'}>
+          <Input icon={'email'} type={'email'} placeholder={'email@provider.com'} />
+        </FormField>
 
-      <FormField label={'Password'}>
-        <Input type={'password'} icon={'lock'} placeholder={'Your password'} />
-      </FormField>
+        <FormField label={'Password'}>
+          <Input type={'password'} icon={'lock'} placeholder={'Your password'} />
+        </FormField>
 
-      <ButtonsContainer>
-        <SimpleButton color={COLOR_PURPLE} width={'auto'}>Login</SimpleButton>
-      </ButtonsContainer>
+        <ButtonsContainer>
+          <SimpleButton color={COLOR_PURPLE} width={'auto'}>Login</SimpleButton>
+        </ButtonsContainer>
+      </FormContainer>
     </LoginContainer>
   );
 };
