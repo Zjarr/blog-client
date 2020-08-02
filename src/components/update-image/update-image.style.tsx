@@ -76,6 +76,7 @@ export const ImageResult = Styled(Image)`
 `;
 
 export const ImageText = Styled(SubtitleText)`
+  margin-bottom: 0px;
   pointer-events: none;
   position: absolute;
   text-align: center;

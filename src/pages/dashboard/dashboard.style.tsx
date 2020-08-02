@@ -106,7 +106,7 @@ export const MobileMenuButtonContainer = Styled.div`
   display: block;
   left: 16px;
   position: absolute;
-  top: 60px;
+  top: 56px;
   z-index: 1;
 
   ${MEDIA_SM} {
