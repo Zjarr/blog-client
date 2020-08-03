@@ -78,6 +78,10 @@ export const DropdownTrigger = Styled.button<{ disabled: boolean, error?: string
   :disabled {
     cursor: default;
   }
+
+  :focus {
+    outline: none;
+  }
 `;
 
 export const DropdownTriggerCaret = Styled.div<{ disabled: boolean, open: boolean }>`
