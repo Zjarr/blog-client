@@ -10,6 +10,7 @@ import {
   COLOR_RED,
   COLOR_WHITE,
   MEDIA_SM,
+  MEDIA_XL,
   TEXT_NORMAL
 } from '../../../utils/values';
 
@@ -62,7 +63,7 @@ export const ImageCardContainer = Styled.div<{ padding?: string, width?: string 
     visibility: visible;
   }
 
-  ${MEDIA_SM} {
+  ${MEDIA_XL} {
     height: 112px;
     
     padding: ${({ padding }): string => getContainerPadding(padding)};

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { SimpleButton } from '../../../components/button';
-import { Column } from '../../../components/column';
 import { Dropdown } from '../../../components/dropdown';
 import { Footer } from '../../../components/footer';
 import { FormField } from '../../../components/form-field';
@@ -13,7 +12,7 @@ import { Toggle } from '../../../components/toggle';
 import { useNavigateTo } from '../../../utils/hooks';
 import { COLOR_PURPLE } from '../../../utils/values';
 
-import { BlogListContainer, FilterContainer, ListContainer } from './list.style';
+import { BlogListContainer, BodyContainer, FilterContainer, ListContainer } from './list.style';
 
 export const ListBlogPage: React.FC<IListBlogPage> = () => {
   const navigateTo = useNavigateTo();
@@ -22,8 +21,8 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
     <BlogListContainer>
       <Header title={'Blogs'} />
 
-      <ListContainer>
-        <Column xl={9} position={'left'}>
+      <BodyContainer>
+        <ListContainer xl={9} position={'left'}>
           <List loading={true} cards={[
             {
               title: 'Some airplane blog title',
@@ -122,7 +121,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
               active: true
             }
           ]} />
-        </Column>
+        </ListContainer>
 
         <FilterContainer xl={3} position={'right'}>
           <SubtitleText icon={'filter_list'}>Filter</SubtitleText>
@@ -139,7 +138,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
             <Toggle />
           </FormField>
         </FilterContainer>
-      </ListContainer>
+      </BodyContainer>
 
       <Footer>
         <SimpleButton color={COLOR_PURPLE} icon={'add'} onClick={(): void => navigateTo('/admin/blogs/add')} />

@@ -1,4 +1,4 @@
-import Row from 'react-bootstrap/Row';
+import Row from 'react-bootstrap/esm/Row';
 import Styled from 'styled-components';
 
 import { Column } from '../../../components/column';
@@ -18,14 +18,18 @@ export const BlogListContainer = Styled.div`
   }
 `;
 
-export const FilterContainer = Styled(Column)`
-  display: none;
+export const BodyContainer = Styled(Row)`
+  min-height: calc(100% - 112px);
+`;
+
+export const ListContainer = Styled(Column)`
+  order: 1;
 
   ${MEDIA_XL} {
-    display: block;
+    order: 0;
   }
 `;
 
-export const ListContainer = Styled(Row)`
-  min-height: calc(100% - 112px);
+export const FilterContainer = Styled(Column)`
+  order: 0;
 `;
