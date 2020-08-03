@@ -2,10 +2,9 @@ import React from 'react';
 
 import BlackWave from '../../assets/images/black-wave.png';
 import PurpleWave from '../../assets/images/purple-wave.png';
-
 import { SimpleButton } from '../../components/button';
 import { ParagraphText, TitleText } from '../../components/text';
-import { useMousePosition, useWindowSize } from '../../utils/hooks';
+import { usePointerPosition, useWindowSize } from '../../utils/hooks';
 import { COLOR_GRAY_DARK, COLOR_PURPLE } from '../../utils/values';
 
 import {
@@ -20,14 +19,14 @@ import {
 
 export const NotFoundPage: React.FC<INotFoundPage> = () => {
   const { windowHeight, windowWidth } = useWindowSize();
-  const { mouseX, mouseY } = useMousePosition();
+  const { pointerX, pointerY } = usePointerPosition();
 
   const [right, setRight] = React.useState<number>(0);
   const [top, setTop] = React.useState<number>(0);
 
-  const calcDistancePercentage = React.useCallback((mouseX: number, mouseY: number, heightCenter: number, widthCenter: number): void => {
-    const percentFromCenterX = (mouseX - widthCenter) / widthCenter;
-    const percentFromCenterY = -(mouseY - heightCenter) / heightCenter;
+  const calcDistancePercentage = React.useCallback((pointerX: number, pointerY: number, heightCenter: number, widthCenter: number): void => {
+    const percentFromCenterX = (pointerX - widthCenter) / widthCenter;
+    const percentFromCenterY = -(pointerY - heightCenter) / heightCenter;
 
     setRight(percentFromCenterX);
     setTop(percentFromCenterY);
@@ -37,8 +36,8 @@ export const NotFoundPage: React.FC<INotFoundPage> = () => {
     const heightCenter = windowHeight / 2;
     const widthCenter = windowWidth / 2;
 
-    return calcDistancePercentage(mouseX, mouseY, heightCenter, widthCenter);
-  }, [calcDistancePercentage, mouseX, mouseY, windowHeight, windowWidth]);
+    return calcDistancePercentage(pointerX, pointerY, heightCenter, widthCenter);
+  }, [calcDistancePercentage, pointerX, pointerY, windowHeight, windowWidth]);
 
   return (
     <NotFoundContainer>
