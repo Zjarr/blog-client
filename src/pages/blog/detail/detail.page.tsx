@@ -15,9 +15,9 @@ import { LabelText, ParagraphText } from '../../../components/text';
 import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
 import { UpdateImage } from '../../../components/update-image';
-import { useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
-import { ICategory, IDropdownValue, IImageResult, ISource } from '../../../utils/interfaces';
-import { COLOR_PURPLE, COLOR_GRAY_MEDIUM } from '../../../utils/values';
+import { useInput, useNavigateTo, useTextArea, useDropdown } from '../../../utils/hooks';
+import { ICategory, IImageResult, ISource } from '../../../utils/interfaces';
+import { COLOR_GRAY_MEDIUM, COLOR_PURPLE } from '../../../utils/values';
 
 import { BodyContainer, DetailContainer, EditorButtonsContainer, EmptyListContainer, SimpleListContainer } from './detail.style';
 
@@ -29,15 +29,14 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
   const [image, setImage] = React.useState<string>('');
 
-  const [dropdownCategory, setDropdownCategory] = React.useState<ICategory | null>();
   const [categories, setCategories] = React.useState<ICategory[]>([]);
-
   const [sources, setSources] = React.useState<ISource[]>([]);
 
   const navigateTo = useNavigateTo();
-  const blogBodyTextArea = useTextArea();
-  const sourceNameInput = useInput();
-  const sourceUrlInput = useInput();
+  const category = useDropdown([]);
+  const blogBody = useTextArea();
+  const sourceName = useInput();
+  const sourceURL = useInput();
 
   const handleCancelClick = (): void => {
     if (action === 'add') return navigateTo('/admin/blogs');
@@ -58,19 +57,23 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   };
 
   const addCategory = (): void => {
-    if (!dropdownCategory) {
-      return;
+    if (!category.value?.id) {
+      category.setError('This field is required.');
     }
 
-    const isCategoryAlreadyAdded = !!categories.find((category: ICategory) => category.id === dropdownCategory.id);
+    const isCategoryAlreadyAdded = !!categories.find((listCategory: ICategory) => listCategory.id === category.value?.id);
 
     if (isCategoryAlreadyAdded) {
+      category.setError('This category is already added.');
+    }
+
+    if (!category.value?.id || isCategoryAlreadyAdded) {
       return;
     }
 
-    setCategories([...categories, { ...dropdownCategory }]);
+    setCategories([...categories, { ...category.value as ICategory }]);
 
-    return setDropdownCategory(null);
+    return category.setValue(null);
   };
 
   const removeCategory = (index: number): void => {
@@ -80,13 +83,25 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   };
 
   const addSource = (): void => {
+    if (!sourceName.value) {
+      sourceName.setError('This field is required.');
+    }
+
+    if (!sourceURL.value) {
+      sourceURL.setError('This field is required.');
+    }
+
+    if (!sourceName.value || !sourceURL.value) {
+      return;
+    }
+
     const source: ISource = {
-      name: sourceNameInput.value,
-      url: sourceUrlInput.value
+      name: sourceName.value,
+      url: sourceURL.value
     };
 
-    sourceNameInput.setValue('');
-    sourceUrlInput.setValue('');
+    sourceName.setValue('');
+    sourceURL.setValue('');
 
     return setSources([...sources, { ...source }]);
   };
@@ -116,11 +131,11 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
           {
             action === 'view' || previewBlog ?
               <FormField label={'Result:'} minHeight={'calc(100vh - 232px)'}>
-                <Renderer source={blogBodyTextArea.value} />
+                <Renderer source={blogBody.value} />
               </FormField>
               :
               <FormField label={'Body:'} height={'calc(100vh - 232px)'}>
-                <TextArea disabled={action === 'view'} {...blogBodyTextArea} />
+                <TextArea disabled={action === 'view'} {...blogBody} />
               </FormField>
           }
 
@@ -172,11 +187,10 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
             action !== 'view' &&
             <FormField label={'Categories:'}>
               <Dropdown
-                onChange={(category: IDropdownValue): void => setDropdownCategory(category as ICategory)}
-                name={dropdownCategory?.name || 'Select one'}
+                name={category.value?.name || 'Select one'}
                 width={'calc(100% - 64px)'}
-                values={[]}
-                icon={'category'} />
+                icon={'category'}
+                {...category} />
               <SimpleButton icon={'add'} onClick={addCategory} />
             </FormField>
           }
@@ -203,8 +217,8 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
           {
             action !== 'view' &&
             <FormField label={'Sources:'}>
-              <Input icon={'public'} placeholder={'Source name'} width={'calc(50% - 40px)'} {...sourceNameInput} />
-              <Input icon={'link'} placeholder={'Source url'} width={'calc(50% - 40px)'} {...sourceUrlInput} />
+              <Input icon={'public'} placeholder={'Source name'} width={'calc(50% - 40px)'} {...sourceName} />
+              <Input icon={'link'} placeholder={'Source url'} width={'calc(50% - 40px)'} {...sourceURL} />
               <SimpleButton icon={'add'} onClick={addSource} />
             </FormField>
           }
