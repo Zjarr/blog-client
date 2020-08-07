@@ -1,3 +1,4 @@
+import { useQuery } from '@apollo/client';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -8,6 +9,7 @@ import { Image } from '../../components/image';
 import { LabelText } from '../../components/text';
 import { useNavigateTo } from '../../utils/hooks';
 
+import { ISystemVersionData, SYSTEM_VERSION_QUERY } from './dashboard.graphql';
 import {
   BodyContainer,
   BottomContainer,
@@ -24,6 +26,8 @@ import {
 import { DashboardSwitch } from './dashboard.switch';
 
 export const DashboardPage: React.FC<IDashboardPage> = () => {
+  const { loading, data } = useQuery<ISystemVersionData>(SYSTEM_VERSION_QUERY);
+
   const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
 
   const { action, param, section } = useParams();
@@ -86,7 +90,7 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
 
           <InfoContainer>
             <Info>Admin Panel</Info>
-            <Info>v.1.3.3</Info>
+            <Info>v{loading ? '-.-.-' : data?.system.version}</Info>
           </InfoContainer>
         </BottomContainer>
       </SidebarContainer>
