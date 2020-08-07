@@ -26,7 +26,11 @@ import {
 import { DashboardSwitch } from './dashboard.switch';
 
 export const DashboardPage: React.FC<IDashboardPage> = () => {
-  const { loading, data } = useQuery<ISystemVersionData>(SYSTEM_VERSION_QUERY);
+  const {
+    loading: systemQueryLoading,
+    error: systemQueryError,
+    data: systemQueryData
+  } = useQuery<ISystemVersionData>(SYSTEM_VERSION_QUERY);
 
   const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
 
@@ -90,7 +94,11 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
 
           <InfoContainer>
             <Info>Admin Panel</Info>
-            <Info>v{loading ? '-.-.-' : data?.system.version}</Info>
+            {
+              systemQueryError ?
+                <Info>:(</Info> :
+                <Info>v{systemQueryLoading ? '-.-.-' : systemQueryData?.system.version}</Info>
+            }
           </InfoContainer>
         </BottomContainer>
       </SidebarContainer>
