@@ -1,5 +1,6 @@
-import { ApolloClient, ApolloLink, ApolloProvider, createHttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
+import { ApolloClient, ApolloLink, createHttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
+import { ApolloProvider } from '@apollo/client/react/context/ApolloProvider';
 
 import React from 'react';
 import { useCookies } from 'react-cookie';
