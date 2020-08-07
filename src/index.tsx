@@ -1,9 +1,10 @@
+import { ApolloProvider } from '@apollo/client/react/context/ApolloProvider';
 import React from 'react';
 import { CookiesProvider } from 'react-cookie';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import { GraphqlClient } from './graphql';
+import { client } from './graphql';
 import { Pages } from './pages';
 import { unregister } from './serviceWorker';
 
@@ -19,11 +20,11 @@ import './styles/input.style.css';
 ReactDOM.render(
   <React.StrictMode>
     <CookiesProvider>
-      <GraphqlClient>
+      <ApolloProvider client={client}>
         <BrowserRouter>
           <Pages />
         </BrowserRouter>
-      </GraphqlClient>
+      </ApolloProvider>
     </CookiesProvider>
   </React.StrictMode>,
   document.getElementById('root')
