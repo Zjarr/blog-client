@@ -1,7 +1,9 @@
 import React from 'react';
+import { CookiesProvider } from 'react-cookie';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
+import { GraphqlClient } from './graphql';
 import { Pages } from './pages';
 import { unregister } from './serviceWorker';
 
@@ -16,9 +18,13 @@ import './styles/input.style.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Pages />
-    </BrowserRouter>
+    <CookiesProvider>
+      <GraphqlClient>
+        <BrowserRouter>
+          <Pages />
+        </BrowserRouter>
+      </GraphqlClient>
+    </CookiesProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
