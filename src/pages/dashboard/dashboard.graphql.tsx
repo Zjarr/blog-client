@@ -1,6 +1,6 @@
-import { gql, DocumentNode } from '@apollo/client';
+import { DocumentNode, gql } from '@apollo/client/core';
 
-export const SYSTEM_VERSION_QUERY: DocumentNode = gql`
+export const SYSTEM_QUERY: DocumentNode = gql`
   query System {
     system {
       version
@@ -8,8 +8,10 @@ export const SYSTEM_VERSION_QUERY: DocumentNode = gql`
   }
 `;
 
-export interface ISystemVersionData {
-  system: {
-    version: string;
-  }
+interface ISystem {
+  version: string;
+}
+
+export interface ISystemQuery {
+  system: ISystem;
 }

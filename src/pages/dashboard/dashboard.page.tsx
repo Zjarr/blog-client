@@ -9,7 +9,7 @@ import { Image } from '../../components/image';
 import { LabelText } from '../../components/text';
 import { useNavigateTo } from '../../utils/hooks';
 
-import { ISystemVersionData, SYSTEM_VERSION_QUERY } from './dashboard.graphql';
+import { ISystemQuery, SYSTEM_QUERY } from './dashboard.graphql';
 import {
   BodyContainer,
   BottomContainer,
@@ -30,7 +30,7 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
     loading: systemQueryLoading,
     error: systemQueryError,
     data: systemQueryData
-  } = useQuery<ISystemVersionData>(SYSTEM_VERSION_QUERY);
+  } = useQuery<ISystemQuery>(SYSTEM_QUERY);
 
   const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
 
