@@ -26,7 +26,16 @@ import {
 } from './dashboard.style';
 import { DashboardSwitch } from './dashboard.switch';
 
+const {
+  REACT_APP_COOKIE_DOMAIN,
+  REACT_APP_COOKIE_PATH
+} = process.env;
+
 export const DashboardPage: React.FC<IDashboardPage> = () => {
+  const { action, param, section } = useParams();
+  const [, , removeCookie] = useCookies();
+  const navigateTo = useNavigateTo();
+
   const {
     error: systemQueryError,
     data: systemQueryData,
@@ -35,10 +44,6 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
 
   const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
 
-  const [, , removeCookie] = useCookies();
-  const navigateTo = useNavigateTo();
-  const { action, param, section } = useParams();
-
   const handleSidebarButtonClick = (route?: string): void => {
     if (route) navigateTo(route);
 
@@ -46,7 +51,13 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
   };
 
   const handleLogOutClick = (): void => {
-    removeCookie('authorization');
+    const cookieOptions = {
+      domain: REACT_APP_COOKIE_DOMAIN,
+      path: REACT_APP_COOKIE_PATH
+    };
+
+    removeCookie('authorization', cookieOptions);
+    removeCookie('user', cookieOptions);
 
     return navigateTo('/admin');
   };
