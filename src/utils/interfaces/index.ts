@@ -5,3 +5,4 @@ export * from './icon.interface';
 export * from './image-result.interface';
 export * from './social.interface';
 export * from './source.interface';
+export * from './user.interface';
