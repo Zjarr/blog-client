@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client';
 import React from 'react';
+import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router-dom';
 
 import Logo from '../../assets/images/logo-white.png';
@@ -27,20 +28,27 @@ import { DashboardSwitch } from './dashboard.switch';
 
 export const DashboardPage: React.FC<IDashboardPage> = () => {
   const {
-    loading: systemQueryLoading,
     error: systemQueryError,
-    data: systemQueryData
+    data: systemQueryData,
+    loading: systemQueryLoading
   } = useQuery<ISystemQuery>(SYSTEM_QUERY);
 
   const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
 
-  const { action, param, section } = useParams();
+  const [, , removeCookie] = useCookies();
   const navigateTo = useNavigateTo();
+  const { action, param, section } = useParams();
 
   const handleSidebarButtonClick = (route?: string): void => {
     if (route) navigateTo(route);
 
     return toggleSidebar();
+  };
+
+  const handleLogOutClick = (): void => {
+    removeCookie('authorization');
+
+    return navigateTo('/admin');
   };
 
   const toggleSidebar = (): void => {
@@ -61,6 +69,7 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
               shape={'circle'}>Profile</MenuButton>
             <MenuButton
               icon={'power_settings_new'}
+              onClick={(): void => handleLogOutClick()}
               shape={'circle'}>Log out</MenuButton>
           </TopButtonContainer>
         </TopContainer>
