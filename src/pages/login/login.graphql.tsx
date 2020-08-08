@@ -6,7 +6,10 @@ export const LOGIN_MUTATION: DocumentNode = gql`
   mutation Login ($user: LoginInput!) {
     login(user: $user) {
       ... on LoginSuccess {
-        token
+        token,
+        user {
+          email
+        }
       }
       ... on Error {
         error {
@@ -20,11 +23,18 @@ export const LOGIN_MUTATION: DocumentNode = gql`
 `;
 
 export interface ILoginMutation {
-  error?: IError;
-  token?: string;
+  login: {
+    error?: IError;
+    token?: string;
+    user?: {
+      email: string;
+    }
+  }
 }
 
 export interface ILoginInput {
-  email: string;
-  password: string;
+  user: {
+    email: string;
+    password: string;
+  }
 }

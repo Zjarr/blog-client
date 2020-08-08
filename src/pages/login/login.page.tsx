@@ -20,18 +20,18 @@ const {
 } = process.env;
 
 export const LoginPage: React.FC<ILoginPage> = () => {
+  const [, setCookie] = useCookies();
+  const navigateTo = useNavigateTo();
+  const password = useInput();
+  const email = useInput();
+
   const [login, {
     error: loginMutationError,
     data: loginMutationData,
     loading: loginMutationLoading
-  }] = useMutation<{ login: ILoginMutation, user: ILoginInput }>(LOGIN_MUTATION);
+  }] = useMutation<ILoginMutation, ILoginInput>(LOGIN_MUTATION);
 
   const [loginButtonName, setLoginButtonName] = React.useState<string>('Login');
-
-  const [, setCookie] = useCookies();
-  const email = useInput();
-  const password = useInput();
-  const navigateTo = useNavigateTo();
 
   const isValidForm = (): boolean => {
     if (!email.value) {
@@ -62,23 +62,30 @@ export const LoginPage: React.FC<ILoginPage> = () => {
     });
   };
 
-  const handleLoginMutationResponse = React.useCallback((data: ILoginMutation): void => {
-    const { error, token } = data;
-
-    setLoginButtonName('Login');
-
-    if (error) return;
-
-    setCookie('authorization', token, {
+  const setSessionCookies = React.useCallback((token: string, email: string): void => {
+    const cookieOptions = {
       domain: REACT_APP_COOKIE_DOMAIN,
       maxAge: parseInt(REACT_APP_COOKIE_MAX_AGE || '0', 10),
       path: REACT_APP_COOKIE_PATH,
       sameSite: REACT_APP_COOKIE_SAME_SITE === 'true' ? true : false,
       secure: REACT_APP_COOKIE_SECURE === 'true' ? true : false,
-    });
+    };
+
+    setCookie('authorization', token, cookieOptions);
+    setCookie('user', email, cookieOptions);
+  }, [setCookie]);
+
+  const handleLoginMutationResponse = React.useCallback((data: ILoginMutation): void => {
+    const { error, token, user } = data.login;
+
+    setLoginButtonName('Login');
+
+    if (error || !token || !user) return;
+
+    setSessionCookies(token, user.email);
 
     return navigateTo('/admin/dashboard');
-  }, [navigateTo, setCookie]);
+  }, [navigateTo, setSessionCookies]);
 
   React.useEffect(() => {
     if (loginMutationLoading) {
@@ -90,7 +97,7 @@ export const LoginPage: React.FC<ILoginPage> = () => {
     }
 
     if (loginMutationData) {
-      return handleLoginMutationResponse(loginMutationData.login);
+      return handleLoginMutationResponse(loginMutationData);
     }
   }, [loginMutationData, loginMutationError, loginMutationLoading, handleLoginMutationResponse]);
 
