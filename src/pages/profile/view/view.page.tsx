@@ -1,5 +1,7 @@
+import { useQuery } from '@apollo/client';
 import React from 'react';
 import Row from 'react-bootstrap/Row';
+import { useCookies } from 'react-cookie';
 
 import { SimpleButton } from '../../../components/button';
 import { ChangePassword } from '../../../components/change-password';
@@ -8,9 +10,10 @@ import { Header } from '../../../components/header';
 import { Image } from '../../../components/image';
 import { SubtitleText } from '../../../components/text';
 import { useNavigateTo } from '../../../utils/hooks';
-import { ISocial } from '../../../utils/interfaces';
+import { ISocial, IUser } from '../../../utils/interfaces';
 import { COLOR_PURPLE } from '../../../utils/values';
 
+import { IGetUserInput, IProfileQuery, PROFILE_QUERY } from './view.graphql';
 import {
   AdvancedInfoContainer,
   BasicInfoContainer,
@@ -23,10 +26,44 @@ import {
 } from './view.style';
 
 export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
-  const [passwordModalVisible, setPasswordModalVisible] = React.useState<boolean>(false);
-  const [socialNetworks] = React.useState<ISocial[]>([]);
-
+  const [cookies] = useCookies(['user']);
   const navigateTo = useNavigateTo();
+
+  const {
+    error: profileQueryError,
+    data: profileQueryData,
+    loading: profileQueryLoading
+  } = useQuery<IProfileQuery, IGetUserInput>(
+    PROFILE_QUERY,
+    {
+      variables: {
+        user: {
+          email: cookies.user
+        }
+      }
+    }
+  );
+
+  const [passwordModalVisible, setPasswordModalVisible] = React.useState<boolean>(false);
+  const [user, setUser] = React.useState<IUser>();
+
+  const setUserData = React.useCallback((data: IProfileQuery): void => {
+    const { error, user } = data.user;
+
+    if (error || !user) {
+      return;
+    }
+
+    return setUser(user);
+  }, []);
+
+  React.useEffect(() => {
+    if (!profileQueryData || profileQueryLoading) {
+      return;
+    }
+
+    return setUserData(profileQueryData);
+  }, [profileQueryData, profileQueryLoading, setUserData]);
 
   return (
     <ViewContainer>
@@ -37,16 +74,20 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
           <Image src={''} height={'180px'} width={'180px'} shape={'circle'} />
 
           <BasicInfoContainer>
-            <SubtitleText margin={'0px'}>Pablo Navarro</SubtitleText>
+            <SubtitleText margin={'0px'}>
+              {
+                profileQueryLoading || profileQueryError ? '...' : `${user?.name} ${user?.lastname}`
+              }
+            </SubtitleText>
           </BasicInfoContainer>
 
           {
-            socialNetworks.length > 0 &&
+            user?.social && user?.social.length > 0 &&
             <SocialContainer>
               {
-                socialNetworks.map((socialNetwork: ISocial, index: number) =>
+                user?.social.map((socialNetwork: ISocial, index: number) =>
                   <SimpleButton
-                    key={`social-network=${socialNetwork.name}-${index}`}
+                    key={`social-network=${socialNetwork._id}-${index}`}
                     icon={socialNetwork.icon}
                     shape={'circle'} />
                 )
@@ -58,20 +99,28 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
             <InfoContainer>
               <Label>About:</Label>
               <Info>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Donec dui lacus, malesuada vel odio in, lobortis interdum ante.
-                In malesuada sit amet nunc vel porta
+                {
+                  profileQueryLoading || profileQueryError ? '...' : user?.about
+                }
               </Info>
             </InfoContainer>
 
             <InfoContainer>
               <Label>Email:</Label>
-              <Info>j.pablonavarro95@outlook.com</Info>
+              <Info>
+                {
+                  profileQueryLoading || profileQueryError ? '...' : user?.email
+                }
+              </Info>
             </InfoContainer>
 
             <InfoContainer>
               <Label>Member since:</Label>
-              <Info>June 28th, 2020</Info>
+              <Info>
+                {
+                  profileQueryLoading || profileQueryError ? '...' : user?.created
+                }
+              </Info>
             </InfoContainer>
           </AdvancedInfoContainer>
         </ContentContainer>
