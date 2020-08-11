@@ -1,4 +1,3 @@
-import { useQuery } from '@apollo/client';
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 import { useCookies } from 'react-cookie';
@@ -13,7 +12,7 @@ import { useNavigateTo } from '../../../utils/hooks';
 import { ISocial, IUser } from '../../../utils/interfaces';
 import { COLOR_PURPLE } from '../../../utils/values';
 
-import { IGetUserInput, IProfileQuery, PROFILE_QUERY } from './view.graphql';
+import { IProfileQueryData, useProfileQuery } from './view.graphql';
 import {
   AdvancedInfoContainer,
   BasicInfoContainer,
@@ -33,21 +32,12 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
     error: profileQueryError,
     data: profileQueryData,
     loading: profileQueryLoading
-  } = useQuery<IProfileQuery, IGetUserInput>(
-    PROFILE_QUERY,
-    {
-      variables: {
-        user: {
-          email: cookies.user
-        }
-      }
-    }
-  );
+  } = useProfileQuery(cookies.email);
 
   const [passwordModalVisible, setPasswordModalVisible] = React.useState<boolean>(false);
   const [user, setUser] = React.useState<IUser>();
 
-  const setUserData = React.useCallback((data: IProfileQuery): void => {
+  const setUserData = React.useCallback((data: IProfileQueryData): void => {
     const { error, user } = data.user;
 
     if (error || !user) {

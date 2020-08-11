@@ -1,6 +1,8 @@
 import { DocumentNode, gql } from '@apollo/client/core';
+import { useQuery } from '@apollo/client/react/hooks/useQuery';
+import { QueryResult } from '@apollo/client/react/types/types';
 
-export const SYSTEM_QUERY: DocumentNode = gql`
+const SYSTEM_QUERY: DocumentNode = gql`
   query System {
     system {
       version
@@ -8,10 +10,12 @@ export const SYSTEM_QUERY: DocumentNode = gql`
   }
 `;
 
-interface ISystem {
-  version: string;
+export interface ISystemQueryData {
+  system: {
+    version: string;
+  }
 }
 
-export interface ISystemQuery {
-  system: ISystem;
-}
+export const useSystemQuery = (): QueryResult<ISystemQueryData> => {
+  return useQuery<ISystemQueryData>(SYSTEM_QUERY);
+};

@@ -1,8 +1,10 @@
 import { DocumentNode, gql } from '@apollo/client/core';
+import { useMutation } from '@apollo/client/react/hooks/useMutation';
+import { MutationTuple } from '@apollo/client/react/types/types';
 
 import { IError } from '../../utils/interfaces';
 
-export const LOGIN_MUTATION: DocumentNode = gql`
+const LOGIN_MUTATION: DocumentNode = gql`
   mutation Login ($user: LoginInput!) {
     login(user: $user) {
       ... on LoginSuccess {
@@ -22,7 +24,14 @@ export const LOGIN_MUTATION: DocumentNode = gql`
   }
 `;
 
-export interface ILoginMutation {
+interface ILoginMutationInput {
+  user: {
+    email: string;
+    password: string;
+  }
+}
+
+export interface ILoginMutationData {
   login: {
     error?: IError;
     token?: string;
@@ -32,9 +41,6 @@ export interface ILoginMutation {
   }
 }
 
-export interface ILoginInput {
-  user: {
-    email: string;
-    password: string;
-  }
-}
+export const useLoginMutation = (): MutationTuple<ILoginMutationData, ILoginMutationInput> => {
+  return useMutation<ILoginMutationData, ILoginMutationInput>(LOGIN_MUTATION);
+};

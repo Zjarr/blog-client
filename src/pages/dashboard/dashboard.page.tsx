@@ -1,4 +1,3 @@
-import { useQuery } from '@apollo/client';
 import React from 'react';
 import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router-dom';
@@ -10,7 +9,7 @@ import { Image } from '../../components/image';
 import { LabelText } from '../../components/text';
 import { useNavigateTo } from '../../utils/hooks';
 
-import { ISystemQuery, SYSTEM_QUERY } from './dashboard.graphql';
+import { useSystemQuery } from './dashboard.graphql';
 import {
   BodyContainer,
   BottomContainer,
@@ -40,7 +39,7 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
     error: systemQueryError,
     data: systemQueryData,
     loading: systemQueryLoading
-  } = useQuery<ISystemQuery>(SYSTEM_QUERY);
+  } = useSystemQuery();
 
   const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
 

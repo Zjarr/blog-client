@@ -1,8 +1,10 @@
 import { DocumentNode, gql } from '@apollo/client/core';
+import { useQuery } from '@apollo/client/react/hooks/useQuery';
+import { QueryResult } from '@apollo/client/react/types/types';
 
 import { IError, IUser } from '../../../utils/interfaces';
 
-export const PROFILE_QUERY: DocumentNode = gql`
+const PROFILE_QUERY: DocumentNode = gql`
   query Profile ($user: GetUserInput!) {
     user(user: $user) {
       ... on UserSuccess {
@@ -33,16 +35,29 @@ export const PROFILE_QUERY: DocumentNode = gql`
   }
 `;
 
-export interface IProfileQuery {
+interface IProfileQueryInput {
+  user: {
+    _id?: string;
+    email?: string;
+  }
+}
+
+export interface IProfileQueryData {
   user: {
     error?: IError;
     user?: IUser;
   }
 }
 
-export interface IGetUserInput {
-  user: {
-    _id?: string;
-    email?: string;
-  }
-}
+export const useProfileQuery = (email: string): QueryResult<IProfileQueryData, IProfileQueryInput> => {
+  return useQuery<IProfileQueryData, IProfileQueryInput>(
+    PROFILE_QUERY,
+    {
+      variables: {
+        user: {
+          email
+        }
+      }
+    }
+  );
+};

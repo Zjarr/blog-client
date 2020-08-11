@@ -1,4 +1,3 @@
-import { useMutation } from '@apollo/client';
 import React from 'react';
 import { useCookies } from 'react-cookie';
 
@@ -8,7 +7,7 @@ import { Input } from '../../components/input';
 import { useInput, useNavigateTo } from '../../utils/hooks';
 import { COLOR_PURPLE } from '../../utils/values';
 
-import { ILoginInput, ILoginMutation, LOGIN_MUTATION } from './login.graphql';
+import { ILoginMutationData, useLoginMutation } from './login.graphql';
 import { ButtonsContainer, FormContainer, LoginContainer } from './login.style';
 
 const {
@@ -25,11 +24,11 @@ export const LoginPage: React.FC<ILoginPage> = () => {
   const password = useInput();
   const email = useInput();
 
-  const [login, {
+  const [loginMutation, {
     error: loginMutationError,
     data: loginMutationData,
     loading: loginMutationLoading
-  }] = useMutation<ILoginMutation, ILoginInput>(LOGIN_MUTATION);
+  }] = useLoginMutation();
 
   const [loginButtonName, setLoginButtonName] = React.useState<string>('Login');
 
@@ -52,7 +51,7 @@ export const LoginPage: React.FC<ILoginPage> = () => {
   const handleLoginClick = (): void => {
     if (!isValidForm()) return;
 
-    login({
+    loginMutation({
       variables: {
         user: {
           password: password.value,
@@ -75,7 +74,7 @@ export const LoginPage: React.FC<ILoginPage> = () => {
     setCookie('user', email, cookieOptions);
   }, [setCookie]);
 
-  const handleLoginMutationResponse = React.useCallback((data: ILoginMutation): void => {
+  const handleLoginMutationResponse = React.useCallback((data: ILoginMutationData): void => {
     const { error, token, user } = data.login;
 
     setLoginButtonName('Login');
