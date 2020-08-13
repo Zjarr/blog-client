@@ -27,5 +27,6 @@ interface ITextArea {
   error?: string;
   label?: string;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  placeholder?: string;
   value?: string;
 }
