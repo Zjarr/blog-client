@@ -38,7 +38,7 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
           <Image src={''} height={'180px'} width={'180px'} shape={'circle'} />
 
           <BasicInfoContainer>
-            <SubtitleText margin={'0px'}> {`${user?.name} ${user?.lastname}`} </SubtitleText>
+            <SubtitleText margin={'0px'}> {`${user?.firstname} ${user?.lastname}`} </SubtitleText>
           </BasicInfoContainer>
 
           {
