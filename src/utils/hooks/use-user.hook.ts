@@ -11,7 +11,7 @@ export const useUser = (): IUserContext => {
   };
 
   return {
-    user,
-    updateUser
+    updateUser,
+    user
   };
 };
