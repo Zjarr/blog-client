@@ -4,9 +4,7 @@ import { useCookies } from 'react-cookie';
 import { SimpleButton } from '../../components/button';
 import { FormField } from '../../components/form-field';
 import { Input } from '../../components/input';
-import { UserContext } from '../../contexts';
 import { useInput, useNavigateTo } from '../../utils/hooks';
-import { IUser } from '../../utils/interfaces';
 import { COLOR_PURPLE } from '../../utils/values';
 
 import { ILoginMutationData, useLoginMutation } from './login.graphql';
@@ -32,7 +30,6 @@ export const LoginPage: React.FC<ILoginPage> = () => {
     loading: loginMutationLoading
   }] = useLoginMutation();
 
-  const { updateUser } = React.useContext(UserContext);
   const [loginButtonName, setLoginButtonName] = React.useState<string>('Login');
 
   const isValidForm = (): boolean => {
@@ -64,7 +61,7 @@ export const LoginPage: React.FC<ILoginPage> = () => {
     });
   };
 
-  const setSession = React.useCallback((token: string, user: IUser): void => {
+  const setSession = React.useCallback((token: string): void => {
     const cookieOptions = {
       domain: REACT_APP_COOKIE_DOMAIN,
       maxAge: parseInt(REACT_APP_COOKIE_MAX_AGE || '0', 10),
@@ -74,17 +71,16 @@ export const LoginPage: React.FC<ILoginPage> = () => {
     };
 
     setCookie('authorization', token, cookieOptions);
-    updateUser(user);
-  }, [setCookie, updateUser]);
+  }, [setCookie]);
 
   const handleLoginMutationResponse = React.useCallback((data: ILoginMutationData): void => {
-    const { error, token, user } = data.login;
+    const { error, token } = data.login;
 
     setLoginButtonName('Login');
 
-    if (error || !token || !user) return;
+    if (error || !token) return;
 
-    setSession(token, user);
+    setSession(token);
 
     return navigateTo('/admin/dashboard');
   }, [navigateTo, setSession]);

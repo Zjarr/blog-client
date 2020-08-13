@@ -2,7 +2,7 @@ import { DocumentNode, gql } from '@apollo/client/core';
 import { useMutation } from '@apollo/client/react/hooks/useMutation';
 import { MutationTuple } from '@apollo/client/react/types/types';
 
-import { IError, IUser } from '../../utils/interfaces';
+import { IError } from '../../utils/interfaces';
 
 const LOGIN_MUTATION: DocumentNode = gql`
   mutation Login ($user: LoginInput!) {
@@ -32,7 +32,6 @@ export interface ILoginMutationData {
   login: {
     error?: IError;
     token?: string;
-    user?: IUser;
   }
 }
 
