@@ -8,7 +8,7 @@ const user: IUserContext = {
 };
 
 export interface IUserContext {
-  updateUser: (user: IUser) => void;
+  updateUser: (user: IUser | null) => void;
   user: IUser | null;
 }
 

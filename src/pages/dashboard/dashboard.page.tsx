@@ -7,6 +7,8 @@ import { MenuButton } from '../../components/button';
 import { MobileButton } from '../../components/button/mobile';
 import { Image } from '../../components/image';
 import { LabelText } from '../../components/text';
+import { UserContext } from '../../contexts';
+import { client } from '../../graphql';
 import { useNavigateTo } from '../../utils/hooks';
 
 import { useSystemQuery } from './dashboard.graphql';
@@ -42,6 +44,7 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
   } = useSystemQuery();
 
   const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
+  const { updateUser } = React.useContext(UserContext);
 
   const handleSidebarButtonClick = (route?: string): void => {
     if (route) navigateTo(route);
@@ -55,8 +58,9 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
       path: REACT_APP_COOKIE_PATH
     };
 
+    client.resetStore();
     removeCookie('authorization', cookieOptions);
-    removeCookie('user', cookieOptions);
+    updateUser(null);
 
     return navigateTo('/admin');
   };
