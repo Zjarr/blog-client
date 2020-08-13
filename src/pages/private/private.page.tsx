@@ -7,6 +7,8 @@ import { UserContext } from '../../contexts';
 import { IPayload } from '../../utils/interfaces';
 import { jwt } from '../../utils/regexs';
 
+import { LoadingContainer } from './private.style';
+
 export const PrivatePage: React.FC<RouteProps> = ({ children, ...rest }) => {
   const [cookies] = useCookies(['authorization']);
 
@@ -37,7 +39,7 @@ export const PrivatePage: React.FC<RouteProps> = ({ children, ...rest }) => {
 
   if (checkingContext) {
     return (
-      <p>Loading...</p>
+      <LoadingContainer />
     );
   }
 
