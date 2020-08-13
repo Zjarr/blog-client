@@ -7,7 +7,7 @@ import { NotFoundPage } from './not-found';
 import { PlaygroundPage } from './playground';
 import { PrivatePage } from './private';
 
-export const Pages: React.FC<{}> = () => {
+export const Pages: React.FC<IPages> = () => {
   return (
     <Switch>
       {/* ADMIN ROUTES */}
@@ -35,3 +35,5 @@ export const Pages: React.FC<{}> = () => {
     </Switch>
   );
 };
+
+interface IPages { }
