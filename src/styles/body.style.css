@@ -13,3 +13,8 @@ body * {
   box-sizing: border-box;
   font-family: 'Proxima Nova Regular';
 }
+
+#root {
+  height: 100%;
+  width: 100%;
+}
