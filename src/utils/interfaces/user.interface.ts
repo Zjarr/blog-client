@@ -5,9 +5,9 @@ export interface IUser {
   about?: string;
   created: string;
   email: string;
+  firstname: string;
   image?: string;
   lastname: string;
-  name: string;
   password: string;
   social?: ISocial[];
 }
