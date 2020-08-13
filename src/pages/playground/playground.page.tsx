@@ -11,7 +11,6 @@ import { Image } from '../../components/image';
 import { ImageList } from '../../components/image-list';
 import { Input } from '../../components/input';
 import { List } from '../../components/list';
-import { Loading } from '../../components/loading';
 import { Renderer } from '../../components/renderer';
 import { TitleText } from '../../components/text';
 import { TextArea } from '../../components/textarea';
@@ -64,7 +63,6 @@ Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
 export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
   const [changePasswordModalVisible, setChangePasswordModalVisible] = React.useState<boolean>(false);
   const [imageListModalVisible, setImageListModalVisible] = React.useState<boolean>(false);
-  const [loadingModalVisible, setLoadingModalVisible] = React.useState<boolean>(false);
   const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
   const [image, setImage] = React.useState<string>('');
 
@@ -215,15 +213,6 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
 
 
       <TitleText>Modal</TitleText>
-      <p></p>
-      <SimpleButton
-        icon={'visibility'}
-        width={'auto'}
-        onClick={(): void => setLoadingModalVisible(true)}>Show Loading Modal</SimpleButton>
-      <Loading
-        text={'Adding new user...'}
-        visible={loadingModalVisible}
-      />
       <p></p>
       <SimpleButton
         icon={'visibility'}
