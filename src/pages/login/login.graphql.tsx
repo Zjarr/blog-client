@@ -8,20 +8,7 @@ const LOGIN_MUTATION: DocumentNode = gql`
   mutation Login ($user: LoginInput!) {
     login(user: $user) {
       ... on LoginSuccess {
-        token,
-        user {
-          about
-          created
-          email
-          image
-          lastname
-          name
-          social {
-            icon
-            name
-            url
-          }
-        }
+        token
       }
       ... on Error {
         error {
