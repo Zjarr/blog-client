@@ -3,13 +3,13 @@ import React from 'react';
 import { IUser } from '../utils/interfaces';
 
 const user: IUserContext = {
-  user: null,
-  updateUser: () => { }
+  updateUser: () => { },
+  user: null
 };
 
 export interface IUserContext {
-  user: IUser | null;
   updateUser: (user: IUser) => void;
+  user: IUser | null;
 }
 
 export const UserContext = React.createContext<IUserContext>(user);
