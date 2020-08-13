@@ -13,7 +13,8 @@ import { Input } from '../../../components/input';
 import { ParagraphText, SubtitleText } from '../../../components/text';
 import { TextArea } from '../../../components/textarea';
 import { UpdateImage } from '../../../components/update-image';
-import { useDropdown, useInput, useNavigateTo } from '../../../utils/hooks';
+import { UserContext } from '../../../contexts';
+import { useDropdown, useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
 import { IImageResult, ISocial } from '../../../utils/interfaces';
 import { COLOR_GRAY_MEDIUM, COLOR_PURPLE, VALUE_SOCIAL } from '../../../utils/values';
 
@@ -28,12 +29,19 @@ import {
 } from './edit.style';
 
 export const EditProfilePage: React.FC<IEditProfilePage> = () => {
-  const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
-  const [image, setImage] = React.useState<string>('');
+  const { user } = React.useContext(UserContext);
 
-  const [socialNetworks, setSocialNetworks] = React.useState<ISocial[]>([]);
+  const [socialNetworks, setSocialNetworks] = React.useState<ISocial[]>(user?.social || []);
+  const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
+  const [image, setImage] = React.useState<string>(user?.image || '');
 
   const navigateTo = useNavigateTo();
+
+  const userFirstName = useInput(user?.firstname);
+  const userLastName = useInput(user?.lastname);
+  const userAbout = useTextArea(user?.about);
+  const userEmail = useInput(user?.email);
+
   const socialIcon = useDropdown(VALUE_SOCIAL);
   const socialName = useInput();
   const socialURL = useInput();
@@ -108,22 +116,22 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
           </ImageColumn>
 
           <Column xl={4} position={'center'}>
-            <FormField label={'Name:'}>
-              <Input icon={'person'} placeholder={'John'} />
+            <FormField label={'First Name:'}>
+              <Input icon={'person'} placeholder={'John'} {...userFirstName} />
             </FormField>
 
-            <FormField label={'Lastname:'}>
-              <Input icon={'person'} placeholder={'Doe'} />
+            <FormField label={'Last Name:'}>
+              <Input icon={'person'} placeholder={'Doe'} {...userLastName} />
             </FormField>
 
             <FormField label={'Email:'}>
-              <Input icon={'mail'} placeholder={'john.doe@email.com'} />
+              <Input icon={'mail'} placeholder={'john.doe@email.com'} {...userEmail} />
             </FormField>
           </Column>
 
           <Column xl={4} position={'right'}>
             <FormField label={'About:'} height={'176px'}>
-              <TextArea />
+              <TextArea placeholder={`I'm awesome!`} {...userAbout} />
             </FormField>
           </Column>
         </Row>
