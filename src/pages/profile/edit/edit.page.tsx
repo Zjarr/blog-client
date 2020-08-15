@@ -18,6 +18,7 @@ import { useDropdown, useInput, useNavigateTo, useTextArea } from '../../../util
 import { IImageResult, ISocial } from '../../../utils/interfaces';
 import { COLOR_GRAY_MEDIUM, COLOR_PURPLE, VALUE_SOCIAL } from '../../../utils/values';
 
+import { IUpdateUserMutationInput, IUserImageInput, useUpdateUserMutation } from './edit.graphql';
 import {
   AddButtonContainer,
   BodyContainer,
@@ -31,24 +32,33 @@ import {
 export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   const { user } = React.useContext(UserContext);
 
-  const [socialNetworks, setSocialNetworks] = React.useState<ISocial[]>(user?.social || []);
+  const [socialNetworks, setSocialNetworks] = React.useState<ISocial[]>(user!.social || []);
   const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
-  const [image, setImage] = React.useState<string>(user?.image || '');
+  const [imageFile, setImageFile] = React.useState<IUserImageInput | null>(null);
+  const [image, setImage] = React.useState<string>(user!.image || '');
+
+  const [updateUserMutation, {
+    error,
+    data,
+    loading
+  }] = useUpdateUserMutation();
 
   const navigateTo = useNavigateTo();
 
-  const userFirstName = useInput(user?.firstname);
-  const userLastName = useInput(user?.lastname);
-  const userAbout = useTextArea(user?.about);
-  const userEmail = useInput(user?.email);
+  const userFirstName = useInput(user!.firstname);
+  const userLastName = useInput(user!.lastname);
+  const userAbout = useTextArea(user!.about);
+  const userEmail = useInput(user!.email);
 
   const socialIcon = useDropdown(VALUE_SOCIAL);
   const socialName = useInput();
   const socialURL = useInput();
 
   const handleImageUpdateModalClose = (result: IImageResult | null): void => {
+    setImageFile({ file: result?.file, remove: result?.remove || false });
     setImage(result ? result.base64 : image);
-    setImageModalVisible(false);
+
+    return setImageModalVisible(false);
   };
 
   const getSocialColumnPosition = (index: number): string => {
@@ -95,6 +105,74 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
 
     return setSocialNetworks([...socialNetworks]);
   };
+
+  const isValidForm = (): boolean => {
+    if (!userFirstName.value) {
+      userFirstName.setError('This field is required.');
+    }
+
+    if (!userLastName.value) {
+      userLastName.setError('This field is required.');
+    }
+
+    if (!userAbout.value) {
+      userAbout.setError('This field is required.');
+    }
+
+    if (!userEmail.value) {
+      userEmail.setError('This field is required.');
+    }
+
+    if (
+      !userAbout.value ||
+      !userEmail.value ||
+      !userFirstName.value ||
+      !userLastName.value
+    ) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const buildUserObject = (): void => {
+    const social: ISocial[] = socialNetworks.map(
+      ({ _id, ...rest }) => rest
+    );
+
+    const newUserData: IUpdateUserMutationInput = {
+      user: {
+        _id: user!._id!,
+        about: userAbout.value,
+        email: userEmail.value,
+        firstname: userFirstName.value,
+        lastname: userLastName.value,
+        social
+      }
+    };
+
+    if (imageFile) {
+      newUserData.user.image = imageFile;
+    }
+
+    updateUserMutation({
+      variables: {
+        ...newUserData
+      }
+    });
+  };
+
+  const handleUserUpdate = (): void => {
+    if (!isValidForm()) return;
+
+    return buildUserObject();
+  };
+
+  React.useEffect(() => {
+    // console.log('Error: ', error);
+    // console.log('Data: ', data);
+    // console.log('Loading: ', loading);
+  }, [error, data, loading]);
 
   return (
     <EditContainer>
@@ -195,7 +273,7 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
 
       <Footer>
         <SimpleButton icon={'clear'} onClick={(): void => navigateTo('/admin/profile')} />
-        <SimpleButton color={COLOR_PURPLE} icon={'done'} />
+        <SimpleButton color={COLOR_PURPLE} icon={'done'} onClick={handleUserUpdate} />
       </Footer>
 
       <UpdateImage
