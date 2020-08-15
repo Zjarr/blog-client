@@ -15,7 +15,7 @@ import { LabelText, ParagraphText } from '../../../components/text';
 import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
 import { UpdateImage } from '../../../components/update-image';
-import { useInput, useNavigateTo, useTextArea, useDropdown } from '../../../utils/hooks';
+import { useDropdown, useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
 import { ICategory, IImageResult, ISource } from '../../../utils/interfaces';
 import { COLOR_GRAY_MEDIUM, COLOR_PURPLE } from '../../../utils/values';
 
@@ -53,7 +53,8 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
 
   const handleImageUpdateModalClose = (result: IImageResult | null): void => {
     setImage(result ? result.base64 : image);
-    setImageModalVisible(false);
+
+    return setImageModalVisible(false);
   };
 
   const addCategory = (): void => {

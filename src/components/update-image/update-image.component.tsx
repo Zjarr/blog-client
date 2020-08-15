@@ -20,8 +20,8 @@ import {
 } from './update-image.style';
 
 export const UpdateImage: React.FC<IUpdateImage> = ({ src, onClose, visible }) => {
-  const [imageSrc, setImageSrc] = React.useState<string>(src);
   const [uploadedImageResult, setUploadedImageResult] = React.useState<IImageResult | null>(null);
+  const [imageSrc, setImageSrc] = React.useState<string>(src);
   const imageRef = React.useRef<HTMLInputElement>(null);
 
   const handleOnCloseRequest = (update: boolean): void => {
@@ -44,6 +44,7 @@ export const UpdateImage: React.FC<IUpdateImage> = ({ src, onClose, visible }) =
 
       setUploadedImageResult({
         base64: imageResult,
+        remove: false,
         file: image
       });
 
@@ -58,7 +59,7 @@ export const UpdateImage: React.FC<IUpdateImage> = ({ src, onClose, visible }) =
   const handleImageDelete = (): void => {
     setUploadedImageResult({
       base64: '',
-      file: null
+      remove: true
     });
 
     return setImageSrc('');

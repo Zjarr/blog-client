@@ -150,7 +150,8 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
         visible={updateImageModalVisible}
         onClose={(result: IImageResult | null): void => {
           setImage(result ? result.base64 : image);
-          setUpdateImageModalVisible(false);
+
+          return setUpdateImageModalVisible(false);
         }}
         src={image} />
       <br />

@@ -1,4 +1,5 @@
 export interface IImageResult {
-  file: File | null;
-  base64: string
+  base64: string;
+  file?: File;
+  remove: boolean;
 }

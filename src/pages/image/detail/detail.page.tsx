@@ -34,7 +34,8 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
 
   const handleImageUpdateModalClose = (result: IImageResult | null): void => {
     setImage(result ? result.base64 : image);
-    setImageModalVisible(false);
+
+    return setImageModalVisible(false);
   };
 
   const initPageProperties = React.useCallback((action): void => {
