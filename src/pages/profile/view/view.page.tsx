@@ -35,7 +35,7 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
 
       <Row>
         <ContentContainer md={{ span: 6, offset: 3 }}>
-          <Image src={''} height={'180px'} width={'180px'} shape={'circle'} />
+          <Image src={user!.image || ''} height={'180px'} width={'180px'} shape={'circle'} />
 
           <BasicInfoContainer>
             <SubtitleText margin={'0px'}> {`${user?.firstname} ${user?.lastname}`} </SubtitleText>
