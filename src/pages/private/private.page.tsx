@@ -18,11 +18,11 @@ export const PrivatePage: React.FC<RouteProps> = ({ children, ...rest }) => {
   const checkUserContext = React.useCallback((token: string) => {
     const payload: IPayload = JwtDecode(token);
 
-    if (!payload.user) {
+    if (!payload._id) {
       return setCheckingContext(false);
     }
 
-    updateUser(payload.user);
+    updateUser(payload._id);
 
     return setCheckingContext(false);
   }, [updateUser]);

@@ -1,7 +1,5 @@
-import { IUser } from './user.interface';
-
 export interface IPayload {
+  _id: string;
   exp: number;
   iat: number;
-  user: IUser;
 }

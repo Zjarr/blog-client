@@ -7,7 +7,6 @@ import { Footer } from '../../../components/footer';
 import { Header } from '../../../components/header';
 import { Image } from '../../../components/image';
 import { SubtitleText } from '../../../components/text';
-import { UserContext } from '../../../contexts';
 import { useNavigateTo } from '../../../utils/hooks';
 import { ISocial } from '../../../utils/interfaces';
 import { COLOR_PURPLE } from '../../../utils/values';
@@ -26,7 +25,6 @@ import {
 export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
   const navigateTo = useNavigateTo();
 
-  const { user } = React.useContext(UserContext);
   const [passwordModalVisible, setPasswordModalVisible] = React.useState<boolean>(false);
 
   return (
@@ -35,17 +33,17 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
 
       <Row>
         <ContentContainer md={{ span: 6, offset: 3 }}>
-          <Image src={user!.image || ''} height={'180px'} width={'180px'} shape={'circle'} />
+          <Image src={''} height={'180px'} width={'180px'} shape={'circle'} />
 
           <BasicInfoContainer>
-            <SubtitleText margin={'0px'}> {`${user?.firstname} ${user?.lastname}`} </SubtitleText>
+            <SubtitleText margin={'0px'}> Pablo Navarro </SubtitleText>
           </BasicInfoContainer>
 
           {
-            user?.social && user?.social.length > 0 &&
+            [] &&
             <SocialContainer>
               {
-                user?.social.map((socialNetwork: ISocial, index: number) =>
+                [].map((socialNetwork: ISocial, index: number) =>
                   <SimpleButton
                     key={`social-network=${socialNetwork._id}-${index}`}
                     icon={socialNetwork.icon}
@@ -58,17 +56,17 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
           <AdvancedInfoContainer>
             <InfoContainer>
               <Label>About:</Label>
-              <Info>{user?.about}</Info>
+              <Info>About dummy</Info>
             </InfoContainer>
 
             <InfoContainer>
               <Label>Email:</Label>
-              <Info>{user?.email}</Info>
+              <Info>a@a.com</Info>
             </InfoContainer>
 
             <InfoContainer>
               <Label>Member since:</Label>
-              <Info>{user?.created}</Info>
+              <Info>April 12th, 1995</Info>
             </InfoContainer>
           </AdvancedInfoContainer>
         </ContentContainer>

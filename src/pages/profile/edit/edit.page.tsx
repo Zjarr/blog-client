@@ -32,10 +32,10 @@ import {
 export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   const { user } = React.useContext(UserContext);
 
-  const [socialNetworks, setSocialNetworks] = React.useState<ISocial[]>(user!.social || []);
+  const [socialNetworks, setSocialNetworks] = React.useState<ISocial[]>([]);
   const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
   const [imageFile, setImageFile] = React.useState<IUserImageInput | null>(null);
-  const [image, setImage] = React.useState<string>(user!.image || '');
+  const [image, setImage] = React.useState<string>('');
 
   const [updateUserMutation, {
     error,
@@ -45,10 +45,10 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
 
   const navigateTo = useNavigateTo();
 
-  const userFirstName = useInput(user!.firstname);
-  const userLastName = useInput(user!.lastname);
-  const userAbout = useTextArea(user!.about);
-  const userEmail = useInput(user!.email);
+  const userFirstName = useInput();
+  const userLastName = useInput();
+  const userAbout = useTextArea();
+  const userEmail = useInput();
 
   const socialIcon = useDropdown(VALUE_SOCIAL);
   const socialName = useInput();
@@ -142,7 +142,7 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
 
     const newUserData: IUpdateUserMutationInput = {
       user: {
-        _id: user!._id!,
+        _id: user!,
         about: userAbout.value,
         email: userEmail.value,
         firstname: userFirstName.value,
