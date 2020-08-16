@@ -10,7 +10,7 @@ import { LabelText } from '../../components/text';
 import { UserContext } from '../../contexts';
 import { useNavigateTo } from '../../utils/hooks';
 
-import { useSystemQuery } from './dashboard.graphql';
+import { useSystemQuery, useUserQuery } from './dashboard.graphql';
 import {
   BodyContainer,
   BottomContainer,
@@ -36,14 +36,23 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
   const [, , removeCookie] = useCookies();
   const navigateTo = useNavigateTo();
 
+  const { user, updateUser } = React.useContext(UserContext);
+
   const {
     error: systemQueryError,
     data: systemQueryData,
     loading: systemQueryLoading
   } = useSystemQuery();
 
+  const {
+    error: userQueryError,
+    data: userQueryData,
+    loading: userQueryLoading
+  } = useUserQuery(user!);
+
   const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
-  const { updateUser } = React.useContext(UserContext);
+  const [system, setSystem] = React.useState<string>('');
+  const [image, setImage] = React.useState<string>('');
 
   const handleSidebarButtonClick = (route?: string): void => {
     if (route) navigateTo(route);
@@ -67,11 +76,35 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
     return setMenuOpen(!menuOpen);
   };
 
+  React.useEffect(() => {
+    if (systemQueryError) {
+      return setSystem(':(');
+    }
+
+    if (systemQueryLoading) {
+      return setSystem('v-.-.-');
+    }
+
+    if (systemQueryData) {
+      return setSystem(systemQueryData.system.version);
+    }
+  }, [systemQueryData, systemQueryLoading, systemQueryError]);
+
+  React.useEffect(() => {
+    if (userQueryError || userQueryLoading) {
+      return setImage('');
+    }
+
+    if (userQueryData) {
+      return setImage(userQueryData.user.user?.image!);
+    }
+  }, [userQueryData, userQueryLoading, userQueryError]);
+
   return (
     <DashboardContainer>
       <SidebarContainer>
         <TopContainer menuOpen={menuOpen}>
-          <Image shape={'circle'} height={'140px'} width={'140px'} src={''} />
+          <Image shape={'circle'} height={'140px'} width={'140px'} src={image} />
 
           <TopButtonContainer>
             <MenuButton
@@ -115,11 +148,7 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
 
           <InfoContainer>
             <Info>Admin Panel</Info>
-            {
-              systemQueryLoading ?
-                <Info>v-.-.-</Info> :
-                <Info>v{systemQueryError ? ':(' : systemQueryData?.system.version}</Info>
-            }
+            <Info>{system}</Info>
           </InfoContainer>
         </BottomContainer>
       </SidebarContainer>

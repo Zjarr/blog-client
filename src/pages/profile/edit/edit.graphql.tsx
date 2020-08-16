@@ -6,7 +6,7 @@ import { DocumentNode } from 'graphql';
 import { IError, ISocial, IUser } from '../../../utils/interfaces';
 
 const UPDATE_USER_MUTATION: DocumentNode = gql`
-  mutation UpdateUser ($user: UserInput!) {
+  mutation UpdateUser($user: UserInput!) {
     user(user: $user) {
       ... on UserSuccess {
         user {
@@ -53,7 +53,7 @@ export interface IUpdateUserMutationInput {
 export interface IUpdateUserMutationData {
   user: {
     error?: IError;
-    user: IUser;
+    user?: IUser;
   }
 }
 

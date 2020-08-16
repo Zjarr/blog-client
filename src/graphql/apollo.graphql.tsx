@@ -19,7 +19,5 @@ const authLink: ApolloLink = setContext((_, { headers }) => {
 
 export const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache({
-    addTypename: false
-  })
+  cache: new InMemoryCache()
 });
