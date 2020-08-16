@@ -28,15 +28,21 @@ export const ContentContainer = Styled(Column)`
 
 export const BasicInfoContainer = Styled.div`
   margin-top: 32px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 `;
 
 export const SocialContainer = Styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 32px;
 
-  button {
-    margin: 16px 16px 0px;
+  button,
+  div {
+    margin: 0px 16px;
   }
 `;
 
