@@ -1,15 +1,30 @@
 import { ApolloClient, ApolloLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
 import { createUploadLink } from 'apollo-upload-client';
+import { getMainDefinition } from 'apollo-utilities';
+import { OperationDefinitionNode } from 'graphql';
+import OmitDeep from 'omit-deep-lodash';
 
 const { REACT_APP_SERVER } = process.env;
 
-const httpLink: ApolloLink = createUploadLink({
+const ClearLink: ApolloLink = new ApolloLink((operation, forward) => {
+  const keysToOmit = '__typename';
+
+  const def = getMainDefinition(operation.query) as OperationDefinitionNode;
+
+  if (def && def.operation === 'mutation') {
+    operation.variables = OmitDeep(operation.variables, keysToOmit);
+  }
+
+  return forward ? forward(operation) : null;
+});
+
+const HttpLink: ApolloLink = createUploadLink({
   credentials: 'include',
   uri: REACT_APP_SERVER
 }) as unknown as ApolloLink;
 
-const authLink: ApolloLink = setContext((_, { headers }) => {
+const AuthLink: ApolloLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers
@@ -17,7 +32,13 @@ const authLink: ApolloLink = setContext((_, { headers }) => {
   };
 });
 
+const link = ApolloLink.from([
+  AuthLink,
+  ClearLink,
+  HttpLink
+]);
+
 export const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  link
 });
