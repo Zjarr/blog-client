@@ -44,7 +44,6 @@ export const UpdateImage: React.FC<IUpdateImage> = ({ src, onClose, visible }) =
 
       setUploadedImageResult({
         base64: imageResult,
-        remove: false,
         file: image
       });
 
@@ -59,7 +58,7 @@ export const UpdateImage: React.FC<IUpdateImage> = ({ src, onClose, visible }) =
   const handleImageDelete = (): void => {
     setUploadedImageResult({
       base64: '',
-      remove: true
+      file: null
     });
 
     return setImageSrc('');

@@ -18,7 +18,7 @@ import { useDropdown, useInput, useNavigateTo, useTextArea } from '../../../util
 import { IImageResult, ISocial } from '../../../utils/interfaces';
 import { COLOR_GRAY_MEDIUM, COLOR_PURPLE, VALUE_SOCIAL } from '../../../utils/values';
 
-import { IUpdateUserMutationInput, IUserImageInput, useUpdateUserMutation } from './edit.graphql';
+import { IUpdateUserMutationInput, useUpdateUserMutation } from './edit.graphql';
 import {
   AddButtonContainer,
   BodyContainer,
@@ -34,7 +34,7 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
 
   const [socialNetworks, setSocialNetworks] = React.useState<ISocial[]>([]);
   const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
-  const [imageFile, setImageFile] = React.useState<IUserImageInput | null>(null);
+  const [imageFile, setImageFile] = React.useState<File | null>(null);
   const [image, setImage] = React.useState<string>('');
 
   const [updateUserMutation, {
@@ -45,17 +45,17 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
 
   const navigateTo = useNavigateTo();
 
-  const userFirstName = useInput();
-  const userLastName = useInput();
-  const userAbout = useTextArea();
-  const userEmail = useInput();
+  const userFirstName = useInput('Pablo');
+  const userLastName = useInput('Navarro');
+  const userAbout = useTextArea('Lorem ipsum');
+  const userEmail = useInput('a@a.com');
 
   const socialIcon = useDropdown(VALUE_SOCIAL);
   const socialName = useInput();
   const socialURL = useInput();
 
   const handleImageUpdateModalClose = (result: IImageResult | null): void => {
-    setImageFile({ file: result?.file, remove: result?.remove || false });
+    setImageFile(result ? result.file : null);
     setImage(result ? result.base64 : image);
 
     return setImageModalVisible(false);
@@ -152,7 +152,9 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
     };
 
     if (imageFile) {
-      newUserData.user.image = imageFile;
+      newUserData.user.file = imageFile;
+    } else {
+      newUserData.user.image = image;
     }
 
     updateUserMutation({

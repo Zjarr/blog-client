@@ -36,18 +36,14 @@ const UPDATE_USER_MUTATION: DocumentNode = gql`
   }
 `;
 
-export interface IUserImageInput {
-  file?: File;
-  remove: boolean;
-}
-
 export interface IUpdateUserMutationInput {
   user: {
-    _id: string;
+    _id?: string;
     about?: string;
     email: string;
-    image?: IUserImageInput;
+    file?: File;
     firstname: string;
+    image?: string;
     lastname: string;
     password?: string;
     social?: ISocial[];
