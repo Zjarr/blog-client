@@ -127,15 +127,15 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
           <SubtitleText icon={'filter_list'}>Filter</SubtitleText>
 
           <FormField label={'Search:'}>
-            <Input icon={'search'} placeholder={'Blog name'} />
+            <Input icon={'search'} placeholder={'Blog name'} loading />
           </FormField>
 
           <FormField label={'Category:'}>
-            <Dropdown icon={'category'} name={'Any'} values={[]} onChange={(): void => { }} />
+            <Dropdown icon={'category'} name={'Any'} values={[]} onChange={(): void => { }} loading />
           </FormField>
 
           <FormField label={'Published:'}>
-            <Toggle />
+            <Toggle loading />
           </FormField>
         </FilterContainer>
       </BodyContainer>

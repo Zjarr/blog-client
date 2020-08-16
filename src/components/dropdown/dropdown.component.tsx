@@ -1,11 +1,13 @@
 import React from 'react';
 
 import { IDropdownValue } from '../../utils/interfaces';
+import { BORDER_RADIUS_SMALL } from '../../utils/values';
 
 import { TextButton } from '../button';
 import { Error } from '../error';
 import { Icon } from '../icon';
 import { OutsideClick } from '../outside-click';
+import { Skeleton } from '../skeleton';
 import { ParagraphText } from '../text';
 
 import {
@@ -17,7 +19,7 @@ import {
   DropdownValueContainer
 } from './dropdown.style';
 
-export const Dropdown: React.FC<IDropdown> = ({ disabled = false, error, field, icon, values, name, onChange, width }) => {
+export const Dropdown: React.FC<IDropdown> = ({ disabled = false, error, field, icon, loading, name, onChange, values, width }) => {
   const [open, setOpen] = React.useState<boolean>(false);
 
   const toggleDropdownValueContainer = (): void => {
@@ -42,15 +44,22 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, error, field, 
     <OutsideClick onPlaceChange={(outside: boolean): void => handleOutsideClick(outside)} width={width}>
       <DropdownContainer>
         <DropdownTriggerContainer>
-          <DropdownTrigger disabled={disabled} error={error} icon={icon} open={open} onClick={(): void => toggleDropdownValueContainer()} >
-            {name}
-          </DropdownTrigger>
           {
-            icon && <Icon name={icon} />
+            loading ?
+              <Skeleton border={BORDER_RADIUS_SMALL} /> :
+              <>
+                <DropdownTrigger disabled={disabled} error={error} icon={icon} open={open} onClick={(): void => toggleDropdownValueContainer()} >
+                  {name}
+                </DropdownTrigger>
+                {
+                  icon && <Icon name={icon} />
+                }
+                <DropdownTriggerCaret disabled={disabled} open={open}>
+                  <Icon name={'keyboard_arrow_down'} size={'24px'} />
+                </DropdownTriggerCaret>
+              </>
           }
-          <DropdownTriggerCaret disabled={disabled} open={open}>
-            <Icon name={'keyboard_arrow_down'} size={'24px'} />
-          </DropdownTriggerCaret>
+
           {
             error && <Error>{error}</Error>
           }
@@ -80,6 +89,7 @@ interface IDropdown {
   error?: string;
   field?: keyof IDropdownValue;
   icon?: string;
+  loading?: boolean;
   name: string;
   onChange: (value: IDropdownValue) => void;
   values: IDropdownValue[];

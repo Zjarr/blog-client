@@ -1,11 +1,14 @@
 import React from 'react';
 
+import { BORDER_RADIUS_SMALL } from '../../utils/values';
+
 import { Error } from '../error';
+import { Skeleton } from '../skeleton';
 import { LabelText } from '../text';
 
 import { TextAreaContainer, TextAreaField } from './textarea.style';
 
-export const TextArea: React.FC<ITextArea> = ({ error, label, ...rest }) => {
+export const TextArea: React.FC<ITextArea> = ({ error, label, loading, ...rest }) => {
   return (
     <TextAreaContainer>
       {
@@ -13,7 +16,11 @@ export const TextArea: React.FC<ITextArea> = ({ error, label, ...rest }) => {
         <LabelText>{label}</LabelText>
       }
 
-      <TextAreaField error={error} {...rest} />
+      {
+        loading ?
+          <Skeleton border={BORDER_RADIUS_SMALL} /> :
+          <TextAreaField error={error} {...rest} />
+      }
 
       {
         error && <Error>{error}</Error>
@@ -26,6 +33,7 @@ interface ITextArea {
   disabled?: boolean;
   error?: string;
   label?: string;
+  loading?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   placeholder?: string;
   value?: string;

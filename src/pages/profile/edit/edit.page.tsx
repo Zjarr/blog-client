@@ -192,26 +192,26 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
               height={'180px'}
               width={'180px'}
               src={image}
-              updatable />
+              updatable={!true} />
           </ImageColumn>
 
           <Column xl={4} position={'center'}>
             <FormField label={'First Name:'}>
-              <Input icon={'person'} placeholder={'John'} {...userFirstName} />
+              <Input icon={'person'} placeholder={'John'} {...userFirstName} loading />
             </FormField>
 
             <FormField label={'Last Name:'}>
-              <Input icon={'person'} placeholder={'Doe'} {...userLastName} />
+              <Input icon={'person'} placeholder={'Doe'} {...userLastName} loading />
             </FormField>
 
             <FormField label={'Email:'}>
-              <Input icon={'mail'} placeholder={'john.doe@email.com'} {...userEmail} />
+              <Input icon={'mail'} placeholder={'john.doe@email.com'} {...userEmail} loading />
             </FormField>
           </Column>
 
           <Column xl={4} position={'right'}>
             <FormField label={'About:'} height={'176px'}>
-              <TextArea placeholder={`I'm awesome!`} {...userAbout} />
+              <TextArea placeholder={`I'm awesome!`} {...userAbout} loading />
             </FormField>
           </Column>
         </Row>
@@ -221,7 +221,7 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
           <Row>
             <Column xl={4} position={'left'}>
               <FormField label={'Name:'}>
-                <Input icon={'web'} placeholder={'Facebook'} {...socialName} />
+                <Input icon={'web'} placeholder={'Facebook'} {...socialName} loading />
               </FormField>
             </Column>
 
@@ -230,19 +230,25 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
                 <Dropdown
                   name={socialIcon?.value?.name || 'Select one'}
                   icon={'public'}
-                  {...socialIcon} />
+                  {...socialIcon}
+                  loading />
               </FormField>
             </Column>
 
             <Column xl={4} position={'right'}>
               <FormField label={'URL:'}>
-                <Input icon={'link'} placeholder={'facebook.com/john.doe'} {...socialURL} />
+                <Input icon={'link'} placeholder={'facebook.com/john.doe'} {...socialURL} loading />
               </FormField>
             </Column>
           </Row>
 
           <AddButtonContainer>
-            <SimpleButton icon={'add'} color={COLOR_PURPLE} width={'auto'} onClick={addSocialNetwork}>Add social network</SimpleButton>
+            <SimpleButton
+              color={COLOR_PURPLE}
+              disabled={true}
+              onClick={addSocialNetwork}
+              icon={'add'}
+              width={'auto'}>Add social network</SimpleButton>
           </AddButtonContainer>
         </SocialNetworksContainer>
 
@@ -274,8 +280,16 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
       </BodyContainer>
 
       <Footer>
-        <SimpleButton icon={'clear'} onClick={(): void => navigateTo('/admin/profile')} />
-        <SimpleButton color={COLOR_PURPLE} icon={'done'} onClick={handleUserUpdate} />
+        <SimpleButton
+          disabled={true}
+          icon={'clear'}
+          onClick={(): void => navigateTo('/admin/profile')} />
+
+        <SimpleButton
+          disabled={true}
+          color={COLOR_PURPLE}
+          icon={true ? 'more_horiz' : 'done'}
+          onClick={handleUserUpdate} />
       </Footer>
 
       <UpdateImage
