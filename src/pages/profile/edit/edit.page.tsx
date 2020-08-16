@@ -196,10 +196,10 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   }, [userQueryError, userQueryData, handleUserQueryResponse]);
 
   React.useEffect(() => {
-    // console.log('Error: ', userMutationError);
+    if (userMutationError) return showBannerMessage(STRING_SERVER_ERROR);
+
     // console.log('Data: ', userMutationData);
-    // console.log('Loading: ', userMutationLoading);
-  }, [userMutationError, userMutationData, userMutationLoading]);
+  }, [userMutationError, userMutationData]);
 
   return (
     <EditContainer>
@@ -217,7 +217,7 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
               height={'180px'}
               width={'180px'}
               src={image}
-              updatable={!true} />
+              updatable={!(userQueryLoading || userMutationLoading)} />
           </ImageColumn>
 
           <Column xl={4} position={'center'}>
