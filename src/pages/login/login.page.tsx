@@ -31,7 +31,6 @@ export const LoginPage: React.FC<ILoginPage> = () => {
     loading: loginMutationLoading
   }] = useLoginMutation();
 
-  const [loginButtonName, setLoginButtonName] = React.useState<string>('Login');
   const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
   const [bannerMessage, setBannerMessage] = React.useState<string>('');
 
@@ -40,24 +39,16 @@ export const LoginPage: React.FC<ILoginPage> = () => {
   };
 
   const showBannerMessageShow = (message: string): void => {
-    setLoginButtonName('Login');
     setBannerMessage(message);
 
     return setBannerVisible(true);
   };
 
   const isValidForm = (): boolean => {
-    if (!email.value) {
-      email.setError('This field is required.');
-    }
+    if (!email.value) email.setError('This field is required.');
+    if (!password.value) password.setError('This field is required.');
 
-    if (!password.value) {
-      password.setError('This field is required.');
-    }
-
-    if (!email.value || !password.value) {
-      return false;
-    }
+    if (!email.value || !password.value) return false;
 
     return true;
   };
@@ -90,13 +81,8 @@ export const LoginPage: React.FC<ILoginPage> = () => {
   const handleLoginMutationResponse = React.useCallback((data: ILoginMutationData): void => {
     const { error, token } = data.login;
 
-    if (error) {
-      return showBannerMessageShow(error.message);
-    };
-
-    if (!token) {
-      return;
-    }
+    if (error) return showBannerMessageShow(error.message);
+    if (!token) return;
 
     setSession(token);
 
@@ -104,17 +90,8 @@ export const LoginPage: React.FC<ILoginPage> = () => {
   }, [navigateTo, setSession]);
 
   React.useEffect(() => {
-    if (loginMutationLoading) {
-      return setLoginButtonName('Loading...');
-    }
-
-    if (loginMutationError) {
-      return showBannerMessageShow(STRING_SERVER_ERROR);
-    }
-
-    if (loginMutationData) {
-      return handleLoginMutationResponse(loginMutationData);
-    }
+    if (loginMutationError) return showBannerMessageShow(STRING_SERVER_ERROR);
+    if (loginMutationData) return handleLoginMutationResponse(loginMutationData);
   }, [loginMutationData, loginMutationError, loginMutationLoading, handleLoginMutationResponse]);
 
   return (
@@ -141,7 +118,7 @@ export const LoginPage: React.FC<ILoginPage> = () => {
             color={COLOR_PURPLE}
             disabled={loginMutationLoading}
             onClick={handleLoginClick}
-            width={'auto'}>{loginButtonName}</SimpleButton>
+            width={'auto'}>{loginMutationLoading ? 'Loading...' : 'Login'}</SimpleButton>
         </ButtonsContainer>
       </FormContainer>
 
