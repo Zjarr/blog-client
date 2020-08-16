@@ -1,11 +1,42 @@
 import { gql } from '@apollo/client/core';
 import { useMutation } from '@apollo/client/react/hooks/useMutation';
-import { MutationTuple } from '@apollo/client/react/types/types';
+import { useQuery } from '@apollo/client/react/hooks/useQuery';
+import { MutationTuple, QueryResult } from '@apollo/client/react/types/types';
 import { DocumentNode } from 'graphql';
 
 import { IError, ISocial, IUser } from '../../../utils/interfaces';
 
-const UPDATE_USER_MUTATION: DocumentNode = gql`
+const USER_QUERY: DocumentNode = gql`
+  query GetUser($user: GetUserInput!) {
+    user(user: $user) {
+      ... on UserSuccess {
+        user {
+          _id
+          about
+          created
+          email
+          firstname
+          image
+          lastname
+          social {
+            icon
+            name
+            url
+          }
+        }
+      }
+      ... on Error {
+        error {
+          code
+          message
+          status
+        }
+      }
+    }
+  }
+`;
+
+const USER_MUTATION: DocumentNode = gql`
   mutation UpdateUser($user: UserInput!) {
     user(user: $user) {
       ... on UserSuccess {
@@ -36,7 +67,7 @@ const UPDATE_USER_MUTATION: DocumentNode = gql`
   }
 `;
 
-export interface IUpdateUserMutationInput {
+export interface IUserMutationInput {
   user: {
     _id?: string;
     about?: string;
@@ -50,13 +81,29 @@ export interface IUpdateUserMutationInput {
   };
 }
 
-export interface IUpdateUserMutationData {
+export interface IUserData {
   user: {
     error?: IError;
     user?: IUser;
   }
 }
 
-export const useUpdateUserMutation = (): MutationTuple<IUpdateUserMutationData, IUpdateUserMutationInput> => {
-  return useMutation<IUpdateUserMutationData, IUpdateUserMutationInput>(UPDATE_USER_MUTATION);
+export interface IUserQueryInput {
+  user: {
+    _id: string;
+  }
+}
+
+export const useUserQuery = (_id: string): QueryResult<IUserData, IUserQueryInput> => {
+  return useQuery<IUserData, IUserQueryInput>(USER_QUERY, {
+    variables: {
+      user: {
+        _id
+      }
+    }
+  });
+};
+
+export const useUserMutation = (): MutationTuple<IUserData, IUserMutationInput> => {
+  return useMutation<IUserData, IUserMutationInput>(USER_MUTATION);
 };

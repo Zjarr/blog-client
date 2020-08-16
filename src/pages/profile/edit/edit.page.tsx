@@ -1,6 +1,7 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 
+import { Banner } from '../../../components/banner';
 import { SimpleButton } from '../../../components/button';
 import { IconCard } from '../../../components/card';
 import { Column } from '../../../components/column';
@@ -15,10 +16,10 @@ import { TextArea } from '../../../components/textarea';
 import { UpdateImage } from '../../../components/update-image';
 import { UserContext } from '../../../contexts';
 import { useDropdown, useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
-import { IImageResult, ISocial } from '../../../utils/interfaces';
-import { COLOR_GRAY_MEDIUM, COLOR_PURPLE, VALUE_SOCIAL } from '../../../utils/values';
+import { IImageResult, ISocial, IUser } from '../../../utils/interfaces';
+import { COLOR_GRAY_MEDIUM, COLOR_PURPLE, COLOR_RED, STRING_SERVER_ERROR, VALUE_SOCIAL } from '../../../utils/values';
 
-import { IUpdateUserMutationInput, useUpdateUserMutation } from './edit.graphql';
+import { IUserData, IUserMutationInput, useUserMutation, useUserQuery } from './edit.graphql';
 import {
   AddButtonContainer,
   BodyContainer,
@@ -32,27 +33,46 @@ import {
 export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   const { user } = React.useContext(UserContext);
 
-  const [socialNetworks, setSocialNetworks] = React.useState<ISocial[]>([]);
   const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
+  const [socialNetworks, setSocialNetworks] = React.useState<ISocial[]>([]);
+  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
+  const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [imageFile, setImageFile] = React.useState<File | null>(null);
+  const [fields, setFields] = React.useState<boolean>(false);
   const [image, setImage] = React.useState<string>('');
 
   const [updateUserMutation, {
-    error,
-    data,
-    loading
-  }] = useUpdateUserMutation();
+    error: userMutationError,
+    data: userMutationData,
+    loading: userMutationLoading
+  }] = useUserMutation();
+
+  const {
+    error: userQueryError,
+    data: userQueryData,
+    loading: userQueryLoading
+  } = useUserQuery(user!);
 
   const navigateTo = useNavigateTo();
 
-  const userFirstName = useInput('Pablo');
-  const userLastName = useInput('Navarro');
-  const userAbout = useTextArea('Lorem ipsum');
-  const userEmail = useInput('a@a.com');
+  const userFirstName = useInput();
+  const userLastName = useInput();
+  const userAbout = useTextArea();
+  const userEmail = useInput();
 
   const socialIcon = useDropdown(VALUE_SOCIAL);
   const socialName = useInput();
   const socialURL = useInput();
+
+  const handleBannerMessageHide = (): void => {
+    return setBannerVisible(false);
+  };
+
+  const showBannerMessage = (message: string): void => {
+    setBannerMessage(message);
+
+    return setBannerVisible(true);
+  };
 
   const handleImageUpdateModalClose = (result: IImageResult | null): void => {
     setImageFile(result ? result.file : null);
@@ -71,21 +91,11 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   };
 
   const addSocialNetwork = (): void => {
-    if (!socialName.value) {
-      socialName.setError('This field is required.');
-    }
+    if (!socialName.value) socialName.setError('This field is required.');
+    if (!socialIcon?.value?.icon) socialIcon.setError('This field is required.');
+    if (!socialURL.value) socialURL.setError('This field is required.');
 
-    if (!socialIcon?.value?.icon) {
-      socialIcon.setError('This field is required.');
-    }
-
-    if (!socialURL.value) {
-      socialURL.setError('This field is required.');
-    }
-
-    if (!socialName.value || !socialIcon?.value?.icon || !socialURL.value) {
-      return;
-    }
+    if (!socialName.value || !socialIcon?.value?.icon || !socialURL.value) return;
 
     const socialNetwork: ISocial = {
       name: socialName.value,
@@ -107,30 +117,17 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   };
 
   const isValidForm = (): boolean => {
-    if (!userFirstName.value) {
-      userFirstName.setError('This field is required.');
-    }
-
-    if (!userLastName.value) {
-      userLastName.setError('This field is required.');
-    }
-
-    if (!userAbout.value) {
-      userAbout.setError('This field is required.');
-    }
-
-    if (!userEmail.value) {
-      userEmail.setError('This field is required.');
-    }
+    if (!userFirstName.value) userFirstName.setError('This field is required.');
+    if (!userLastName.value) userLastName.setError('This field is required.');
+    if (!userAbout.value) userAbout.setError('This field is required.');
+    if (!userEmail.value) userEmail.setError('This field is required.');
 
     if (
       !userAbout.value ||
       !userEmail.value ||
       !userFirstName.value ||
       !userLastName.value
-    ) {
-      return false;
-    }
+    ) return false;
 
     return true;
   };
@@ -140,7 +137,7 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
       ({ _id, ...rest }) => rest
     );
 
-    const newUserData: IUpdateUserMutationInput = {
+    const newUserData: IUserMutationInput = {
       user: {
         _id: user!,
         about: userAbout.value,
@@ -170,11 +167,39 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
     return buildUserObject();
   };
 
+  const setUserData = React.useCallback((user: IUser): void => {
+    if (fields) return;
+
+    userFirstName.setValue(user.firstname);
+    userLastName.setValue(user.lastname);
+    userAbout.setValue(user.about || '');
+    userEmail.setValue(user.email);
+
+    setSocialNetworks(user.social || []);
+    setImage(user.image || '');
+
+    return setFields(true);
+  }, [fields, userAbout, userEmail, userFirstName, userLastName]);
+
+  const handleUserQueryResponse = React.useCallback((data: IUserData): void => {
+    const { error, user } = data.user;
+
+    if (error) return showBannerMessage(error.message);
+    if (!user) return;
+
+    return setUserData(user);
+  }, [setUserData]);
+
   React.useEffect(() => {
-    // console.log('Error: ', error);
-    // console.log('Data: ', data);
-    // console.log('Loading: ', loading);
-  }, [error, data, loading]);
+    if (userQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+    if (userQueryData) return handleUserQueryResponse(userQueryData);
+  }, [userQueryError, userQueryData, handleUserQueryResponse]);
+
+  React.useEffect(() => {
+    // console.log('Error: ', userMutationError);
+    // console.log('Data: ', userMutationData);
+    // console.log('Loading: ', userMutationLoading);
+  }, [userMutationError, userMutationData, userMutationLoading]);
 
   return (
     <EditContainer>
@@ -197,21 +222,36 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
 
           <Column xl={4} position={'center'}>
             <FormField label={'First Name:'}>
-              <Input icon={'person'} placeholder={'John'} {...userFirstName} loading />
+              <Input
+                icon={'person'}
+                loading={userQueryLoading || userMutationLoading}
+                placeholder={'John'}
+                {...userFirstName} />
             </FormField>
 
             <FormField label={'Last Name:'}>
-              <Input icon={'person'} placeholder={'Doe'} {...userLastName} loading />
+              <Input
+                icon={'person'}
+                loading={userQueryLoading || userMutationLoading}
+                placeholder={'Doe'}
+                {...userLastName} />
             </FormField>
 
             <FormField label={'Email:'}>
-              <Input icon={'mail'} placeholder={'john.doe@email.com'} {...userEmail} loading />
+              <Input
+                icon={'mail'}
+                loading={userQueryLoading || userMutationLoading}
+                placeholder={'john.doe@email.com'}
+                {...userEmail} />
             </FormField>
           </Column>
 
           <Column xl={4} position={'right'}>
             <FormField label={'About:'} height={'176px'}>
-              <TextArea placeholder={`I'm awesome!`} {...userAbout} loading />
+              <TextArea
+                loading={userQueryLoading || userMutationLoading}
+                placeholder={`I'm awesome!`}
+                {...userAbout} />
             </FormField>
           </Column>
         </Row>
@@ -221,7 +261,11 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
           <Row>
             <Column xl={4} position={'left'}>
               <FormField label={'Name:'}>
-                <Input icon={'web'} placeholder={'Facebook'} {...socialName} loading />
+                <Input
+                  icon={'web'}
+                  loading={userQueryLoading || userMutationLoading}
+                  placeholder={'Facebook'}
+                  {...socialName} />
               </FormField>
             </Column>
 
@@ -231,13 +275,17 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
                   name={socialIcon?.value?.name || 'Select one'}
                   icon={'public'}
                   {...socialIcon}
-                  loading />
+                  loading={userQueryLoading || userMutationLoading} />
               </FormField>
             </Column>
 
             <Column xl={4} position={'right'}>
               <FormField label={'URL:'}>
-                <Input icon={'link'} placeholder={'facebook.com/john.doe'} {...socialURL} loading />
+                <Input
+                  icon={'link'}
+                  loading={userQueryLoading || userMutationLoading}
+                  placeholder={'facebook.com/john.doe'}
+                  {...socialURL} />
               </FormField>
             </Column>
           </Row>
@@ -245,7 +293,7 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
           <AddButtonContainer>
             <SimpleButton
               color={COLOR_PURPLE}
-              disabled={true}
+              disabled={userQueryLoading || userMutationLoading}
               onClick={addSocialNetwork}
               icon={'add'}
               width={'auto'}>Add social network</SimpleButton>
@@ -281,14 +329,14 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
 
       <Footer>
         <SimpleButton
-          disabled={true}
+          disabled={userQueryLoading || userMutationLoading}
           icon={'clear'}
           onClick={(): void => navigateTo('/admin/profile')} />
 
         <SimpleButton
-          disabled={true}
+          disabled={userQueryLoading || userMutationLoading}
           color={COLOR_PURPLE}
-          icon={true ? 'more_horiz' : 'done'}
+          icon={userQueryLoading || userMutationLoading ? 'more_horiz' : 'done'}
           onClick={handleUserUpdate} />
       </Footer>
 
@@ -296,6 +344,13 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
         onClose={handleImageUpdateModalClose}
         visible={imageModalVisible}
         src={image} />
+
+      <Banner
+        color={COLOR_RED}
+        icon={'clear'}
+        onHide={handleBannerMessageHide}
+        text={bannerMessage}
+        visible={bannerVisible} />
     </EditContainer>
   );
 };
