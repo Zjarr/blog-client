@@ -11,14 +11,17 @@ const DEFAULT_TIME = 5000;
 
 export const Banner: React.FC<IBanner> = ({ icon, text, visible, color, onHide, time = DEFAULT_TIME }) => {
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
+  const [mounted, setMounted] = React.useState<boolean>(true);
 
   const initVisibilityTimeout = React.useCallback((): void => {
     setTimeout(() => {
-      setIsVisible(false);
+      if (mounted) {
+        setIsVisible(false);
 
-      return onHide && onHide();
+        return onHide && onHide();
+      }
     }, time);
-  }, [onHide, time]);
+  }, [mounted, time, onHide]);
 
   React.useEffect(() => {
     if (visible) {
@@ -26,7 +29,11 @@ export const Banner: React.FC<IBanner> = ({ icon, text, visible, color, onHide, 
 
       return initVisibilityTimeout();
     }
-  }, [visible, initVisibilityTimeout]);
+
+    return (): void => {
+      setMounted(false);
+    };
+  }, [mounted, visible, initVisibilityTimeout]);
 
   return (
     <BannerContainer isVisible={isVisible}>
