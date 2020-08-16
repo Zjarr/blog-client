@@ -6,7 +6,7 @@ import { SimpleButton } from '../../components/button';
 import { FormField } from '../../components/form-field';
 import { Input } from '../../components/input';
 import { useInput, useNavigateTo } from '../../utils/hooks';
-import { COLOR_PURPLE, COLOR_RED } from '../../utils/values';
+import { COLOR_PURPLE, COLOR_RED, STRING_SERVER_ERROR } from '../../utils/values';
 
 import { ILoginMutationData, useLoginMutation } from './login.graphql';
 import { ButtonsContainer, FormContainer, LoginContainer } from './login.style';
@@ -32,6 +32,19 @@ export const LoginPage: React.FC<ILoginPage> = () => {
   }] = useLoginMutation();
 
   const [loginButtonName, setLoginButtonName] = React.useState<string>('Login');
+  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
+  const [bannerMessage, setBannerMessage] = React.useState<string>('');
+
+  const handleBannerMessageHide = (): void => {
+    return setBannerVisible(false);
+  };
+
+  const showBannerMessageShow = (message: string): void => {
+    setLoginButtonName('Login');
+    setBannerMessage(message);
+
+    return setBannerVisible(true);
+  };
 
   const isValidForm = (): boolean => {
     if (!email.value) {
@@ -77,9 +90,13 @@ export const LoginPage: React.FC<ILoginPage> = () => {
   const handleLoginMutationResponse = React.useCallback((data: ILoginMutationData): void => {
     const { error, token } = data.login;
 
-    setLoginButtonName('Login');
+    if (error) {
+      return showBannerMessageShow(error.message);
+    };
 
-    if (error || !token) return;
+    if (!token) {
+      return;
+    }
 
     setSession(token);
 
@@ -92,7 +109,7 @@ export const LoginPage: React.FC<ILoginPage> = () => {
     }
 
     if (loginMutationError) {
-      return;
+      return showBannerMessageShow(STRING_SERVER_ERROR);
     }
 
     if (loginMutationData) {
@@ -128,7 +145,12 @@ export const LoginPage: React.FC<ILoginPage> = () => {
         </ButtonsContainer>
       </FormContainer>
 
-      <Banner text={'Already exists an user with the provided email'} icon={'clear'} color={COLOR_RED} visible />
+      <Banner
+        color={COLOR_RED}
+        icon={'clear'}
+        onHide={handleBannerMessageHide}
+        text={bannerMessage}
+        visible={bannerVisible} />
     </LoginContainer>
   );
 };
