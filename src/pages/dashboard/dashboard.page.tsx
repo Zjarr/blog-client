@@ -116,9 +116,9 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
           <InfoContainer>
             <Info>Admin Panel</Info>
             {
-              systemQueryError ?
-                <Info>:(</Info> :
-                <Info>v{systemQueryLoading ? '-.-.-' : systemQueryData?.system.version}</Info>
+              systemQueryLoading ?
+                <Info>v-.-.-</Info> :
+                <Info>v{systemQueryError ? ':(' : systemQueryData?.system.version}</Info>
             }
           </InfoContainer>
         </BottomContainer>
