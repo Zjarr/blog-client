@@ -17,6 +17,7 @@ const USER_QUERY: DocumentNode = gql`
     user(user: $user) {
       ... on UserSuccess {
         user {
+          _id
           image
         }
       }
