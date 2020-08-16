@@ -27,6 +27,7 @@ export const SkeletonContainer = Styled.div<{ border?: string, height?: string, 
     animation: skeleton-load 2s infinite;
     content: '';
     height: 100%;
+    left: 0;
     position: absolute;
     width: 100%;
 
