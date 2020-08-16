@@ -1,11 +1,12 @@
 import React from 'react';
 import { useCookies } from 'react-cookie';
 
+import { Banner } from '../../components/banner';
 import { SimpleButton } from '../../components/button';
 import { FormField } from '../../components/form-field';
 import { Input } from '../../components/input';
 import { useInput, useNavigateTo } from '../../utils/hooks';
-import { COLOR_PURPLE } from '../../utils/values';
+import { COLOR_PURPLE, COLOR_RED } from '../../utils/values';
 
 import { ILoginMutationData, useLoginMutation } from './login.graphql';
 import { ButtonsContainer, FormContainer, LoginContainer } from './login.style';
@@ -126,6 +127,8 @@ export const LoginPage: React.FC<ILoginPage> = () => {
             width={'auto'}>{loginButtonName}</SimpleButton>
         </ButtonsContainer>
       </FormContainer>
+
+      <Banner text={'Already exists an user with the provided email'} icon={'clear'} color={COLOR_RED} visible />
     </LoginContainer>
   );
 };

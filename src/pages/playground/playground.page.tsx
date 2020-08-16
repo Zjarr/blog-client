@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Banner } from '../../components/banner';
 import { MenuButton, SimpleButton, TextButton } from '../../components/button';
 import { MobileButton } from '../../components/button/mobile';
 import { IconCard, ImageCard } from '../../components/card';
@@ -17,7 +18,7 @@ import { TextArea } from '../../components/textarea';
 import { Toggle } from '../../components/toggle';
 import { UpdateImage } from '../../components/update-image';
 import { IImageResult } from '../../utils/interfaces';
-import { COLOR_PURPLE } from '../../utils/values';
+import { COLOR_GREEN, COLOR_PURPLE } from '../../utils/values';
 
 const string = `
 # Lorem ipsum
@@ -407,6 +408,8 @@ export const PlaygroundPage: React.FC<IPlaygroundPage> = () => {
       <br />
       <br />
       <br />
+
+      <Banner text={'Already exists an user with the provided email'} icon={'check'} color={COLOR_GREEN} visible />
     </>
   );
 };
