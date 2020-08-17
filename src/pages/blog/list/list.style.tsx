@@ -19,7 +19,11 @@ export const BlogListContainer = Styled.div`
 `;
 
 export const BodyContainer = Styled(Row)`
-  min-height: calc(100% - 112px);
+  min-height: 0;
+
+  ${MEDIA_XL} {
+    min-height: calc(100% - 112px);
+  }
 `;
 
 export const ListContainer = Styled(Column)`
