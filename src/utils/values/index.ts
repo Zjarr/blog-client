@@ -3,6 +3,7 @@ export * from './box-shadow.value';
 export * from './categories.value';
 export * from './colors.value';
 export * from './media-queries.value';
+export * from './pagination.value';
 export * from './social.value';
 export * from './string.value';
 export * from './text-size.value';
