@@ -20,15 +20,7 @@ export const CategoryListContainer = Styled.div`
 
 export const BodyContainer = Styled(Row)`
   align-content: flex-start;
-  min-height: calc(100% - 80px);
-
-  ${MEDIA_SM} {
-    min-height: calc(100% - 96px);
-  }
-
-  ${MEDIA_XL} {
-    min-height: calc(100% - 112px);
-  }
+  min-height: calc(100% - 112px);
 `;
 
 export const ListContainer = Styled(Column)`
