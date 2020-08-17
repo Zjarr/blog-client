@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Broken from '../../assets/images/broken.png';
 import Rocket from '../../assets/images/rocket.png';
 import { COLOR_GRAY_MEDIUM } from '../../utils/values';
 
@@ -17,7 +18,7 @@ import {
 
 const skeletonCards = 12;
 
-export const List: React.FC<IList> = ({ cards, loading }) => {
+export const List: React.FC<IList> = ({ cards, error, loading }) => {
   const getCardPadding = (index: number): string => {
     const position: number = index + 1;
 
@@ -46,12 +47,16 @@ export const List: React.FC<IList> = ({ cards, loading }) => {
         !loading && !cards.length &&
         <EmptyListContainer>
           <ImageContainer>
-            <RocketImage src={Rocket} />
+            <RocketImage src={error ? Broken : Rocket} />
           </ImageContainer>
 
           <TextContainer>
             <ParagraphText color={COLOR_GRAY_MEDIUM}>Oops!</ParagraphText>
-            <ParagraphText color={COLOR_GRAY_MEDIUM}>This looks empty. Did you add some fuel?</ParagraphText>
+            <ParagraphText color={COLOR_GRAY_MEDIUM}>
+              {
+                error ? 'We ran into an error. Please try again.' : 'This looks empty. Did you add some fuel?'
+              }
+            </ParagraphText>
           </TextContainer>
         </EmptyListContainer>
       }
@@ -61,5 +66,6 @@ export const List: React.FC<IList> = ({ cards, loading }) => {
 
 interface IList {
   cards: IImageCard[];
+  error?: boolean;
   loading: boolean;
 };
