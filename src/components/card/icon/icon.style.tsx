@@ -4,27 +4,22 @@ import { BORDER_RADIUS_FULL, COLOR_BLACK, COLOR_GRAY_LIGHT, COLOR_GRAY_MEDIUM } 
 
 const DEFAULT_CONTAINER_WIDTH = '100%';
 
-const DEFAULT_TEXT_CONTAINER_HEIGHT = '32px';
-const DEFAULT_TEXT_CONTAINER_MARGIN_RIGHT = '64px';
+const DEFAULT_TEXT_CONTAINER_WIDTH = 'calc(100% - 56px)';
 
-const ICON_TITLE_TEXT_CONTAINER_HEIGHT = '56px';
-const DISABLED_TEXT_CONTAINER_MARGIN_RIGHT = '0px';
+const ICON_TITLE_TEXT_CONTAINER_WIDTH = 'calc(100% - 136px)';
 
 const getContainerWidth = (width?: string): string => width ? width : DEFAULT_CONTAINER_WIDTH;
 
-const getTextContainerHeight = (icon?: string, title?: string): string =>
-  icon || title ? ICON_TITLE_TEXT_CONTAINER_HEIGHT : DEFAULT_TEXT_CONTAINER_HEIGHT;
-
-const getTextContainerMarginRight = (disabled?: boolean): string =>
-  disabled ? DISABLED_TEXT_CONTAINER_MARGIN_RIGHT : DEFAULT_TEXT_CONTAINER_MARGIN_RIGHT;
+const getTextContainerWidth = (icon?: string): string => icon ? ICON_TITLE_TEXT_CONTAINER_WIDTH : DEFAULT_TEXT_CONTAINER_WIDTH;
 
 export const IconCardContainer = Styled.div<{ width?: string }>`
   align-items: center;
   display: flex;
-  min-height: 64px;
+  height: 72px;
   overflow: hidden;
   padding: 8px 4px;
   position: relative;
+  width: 100%;
 
   width: ${({ width }): string => getContainerWidth(width)};
 `;
@@ -42,15 +37,14 @@ export const IconContainer = Styled.div`
   border-radius: ${BORDER_RADIUS_FULL};
 `;
 
-export const IconTextContainer = Styled.div<{ disabled?: boolean, icon?: string }>`
-  justify-content: space-around;
+export const IconTextContainer = Styled.div<{ icon?: string }>`
   display: flex;
   flex-direction: column;
-  height: 100%;
-  min-width: 0;
+  height: 56px;
+  justify-content: space-around;
+  margin-right: 16px;
 
-  height: ${({ icon, title }): string => getTextContainerHeight(icon, title)};
-  margin-right: ${({ disabled }): string => getTextContainerMarginRight(disabled)};
+  width: ${({ icon }): string => getTextContainerWidth(icon)};
 
   div:first-child {
     p {
@@ -69,6 +63,8 @@ export const IconTextContainer = Styled.div<{ disabled?: boolean, icon?: string 
 `;
 
 export const IconButtonContainer = Styled.div`
-  position: absolute;
-  right: 0px;
+  align-items: center;
+  display: flex;
+  height: 56px;
+  width: 48px;
 `;

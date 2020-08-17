@@ -25,8 +25,12 @@ export const ImageColumn = Styled(Column)`
   justify-content: center;
 `;
 
-export const SocialNetworksContainer = Styled.div`
+export const SocialContainer = Styled.div`
   margin-top: 48px;
+`;
+
+export const SocialCardContainer = Styled(Column)`
+  margin-bottom: 16px;
 `;
 
 export const AddButtonContainer = Styled.div`

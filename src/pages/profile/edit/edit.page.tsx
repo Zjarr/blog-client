@@ -27,7 +27,8 @@ import {
   EditContainer,
   EmptyListContainer,
   ImageColumn,
-  SocialNetworksContainer
+  SocialCardContainer,
+  SocialContainer
 } from './edit.style';
 
 export const EditProfilePage: React.FC<IEditProfilePage> = () => {
@@ -190,6 +191,15 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
     return setUserData(user);
   }, [setUserData]);
 
+  const handleUserMutationResponse = React.useCallback((data: IUserData): void => {
+    const { error, user } = data.user;
+
+    if (error) return showBannerMessage(error.message);
+    if (!user) return;
+
+    return navigateTo('/admin/profile');
+  }, [navigateTo]);
+
   React.useEffect(() => {
     if (userQueryError) return showBannerMessage(STRING_SERVER_ERROR);
     if (userQueryData) return handleUserQueryResponse(userQueryData);
@@ -197,9 +207,8 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
 
   React.useEffect(() => {
     if (userMutationError) return showBannerMessage(STRING_SERVER_ERROR);
-
-    // console.log('Data: ', userMutationData);
-  }, [userMutationError, userMutationData]);
+    if (userMutationData) return handleUserMutationResponse(userMutationData);
+  }, [userMutationError, userMutationData, handleUserMutationResponse]);
 
   return (
     <EditContainer>
@@ -223,24 +232,27 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
           <Column xl={4} position={'center'}>
             <FormField label={'First Name:'}>
               <Input
+                disabled={userQueryLoading || userMutationLoading}
                 icon={'person'}
-                loading={userQueryLoading || userMutationLoading}
+                loading={userQueryLoading}
                 placeholder={'John'}
                 {...userFirstName} />
             </FormField>
 
             <FormField label={'Last Name:'}>
               <Input
+                disabled={userQueryLoading || userMutationLoading}
                 icon={'person'}
-                loading={userQueryLoading || userMutationLoading}
+                loading={userQueryLoading}
                 placeholder={'Doe'}
                 {...userLastName} />
             </FormField>
 
             <FormField label={'Email:'}>
               <Input
+                disabled={userQueryLoading || userMutationLoading}
                 icon={'mail'}
-                loading={userQueryLoading || userMutationLoading}
+                loading={userQueryLoading}
                 placeholder={'john.doe@email.com'}
                 {...userEmail} />
             </FormField>
@@ -249,21 +261,23 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
           <Column xl={4} position={'right'}>
             <FormField label={'About:'} height={'176px'}>
               <TextArea
-                loading={userQueryLoading || userMutationLoading}
+                disabled={userQueryLoading || userMutationLoading}
+                loading={userQueryLoading}
                 placeholder={`I'm awesome!`}
                 {...userAbout} />
             </FormField>
           </Column>
         </Row>
 
-        <SocialNetworksContainer>
+        <SocialContainer>
           <SubtitleText>Social networks</SubtitleText>
           <Row>
             <Column xl={4} position={'left'}>
               <FormField label={'Name:'}>
                 <Input
+                  disabled={userQueryLoading || userMutationLoading}
                   icon={'web'}
-                  loading={userQueryLoading || userMutationLoading}
+                  loading={userQueryLoading}
                   placeholder={'Facebook'}
                   {...socialName} />
               </FormField>
@@ -272,18 +286,20 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
             <Column xl={4} position={'center'}>
               <FormField label={'Icon:'}>
                 <Dropdown
-                  name={socialIcon?.value?.name || 'Select one'}
+                  disabled={userQueryLoading || userMutationLoading}
                   icon={'public'}
-                  {...socialIcon}
-                  loading={userQueryLoading || userMutationLoading} />
+                  loading={userQueryLoading}
+                  name={socialIcon?.value?.name || 'Select one'}
+                  {...socialIcon} />
               </FormField>
             </Column>
 
             <Column xl={4} position={'right'}>
               <FormField label={'URL:'}>
                 <Input
+                  disabled={userQueryLoading || userMutationLoading}
                   icon={'link'}
-                  loading={userQueryLoading || userMutationLoading}
+                  loading={userQueryLoading}
                   placeholder={'facebook.com/john.doe'}
                   {...socialURL} />
               </FormField>
@@ -298,31 +314,29 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
               icon={'add'}
               width={'auto'}>Add social network</SimpleButton>
           </AddButtonContainer>
-        </SocialNetworksContainer>
+        </SocialContainer>
 
         <CurrentContainer>
           <SubtitleText>Current</SubtitleText>
           {
-            socialNetworks.length > 0 &&
-            <Row>
-              {
-                socialNetworks.map((socialNetwork: ISocial, index: number) =>
-                  <Column xl={4} position={getSocialColumnPosition(index)} key={`social-${socialNetwork.name}-${index}`}>
-                    <IconCard
-                      onClick={(): void => removeSocialNetwork(index)}
-                      title={socialNetwork.name}
-                      icon={socialNetwork.icon}
-                      text={socialNetwork.url} />
-                  </Column>
-                )
-              }
-            </Row>
-          }
-          {
-            socialNetworks.length === 0 &&
-            <EmptyListContainer>
-              <ParagraphText color={COLOR_GRAY_MEDIUM}>Oops! There are no categories.</ParagraphText>
-            </EmptyListContainer>
+            socialNetworks.length > 0 ?
+              <Row>
+                {
+                  socialNetworks.map((socialNetwork: ISocial, index: number) =>
+                    <SocialCardContainer xl={4} position={getSocialColumnPosition(index)} key={`social-${socialNetwork.name}-${index}`}>
+                      <IconCard
+                        disabled={userQueryLoading || userMutationLoading}
+                        icon={socialNetwork.icon}
+                        onClick={(): void => removeSocialNetwork(index)}
+                        text={socialNetwork.url}
+                        title={socialNetwork.name} />
+                    </SocialCardContainer>
+                  )
+                }
+              </Row> :
+              <EmptyListContainer>
+                <ParagraphText color={COLOR_GRAY_MEDIUM}>Oops! There are no categories.</ParagraphText>
+              </EmptyListContainer>
           }
         </CurrentContainer>
       </BodyContainer>
