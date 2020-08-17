@@ -1,1 +1,1 @@
-export const STRING_SERVER_ERROR = 'There was an error with this request. Please try again later.';
+export const STRING_SERVER_ERROR = 'There had an error. Please try again later.';
