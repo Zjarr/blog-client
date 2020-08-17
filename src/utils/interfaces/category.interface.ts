@@ -1,7 +1,7 @@
 export interface ICategory {
+  _id?: string;
   active: boolean;
   description?: string;
   icon: string;
-  id?: string;
   name: string;
 }
