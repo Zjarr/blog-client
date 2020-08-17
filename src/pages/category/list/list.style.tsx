@@ -19,7 +19,12 @@ export const CategoryListContainer = Styled.div`
 `;
 
 export const BodyContainer = Styled(Row)`
-  min-height: 0;
+  align-content: flex-start;
+  min-height: calc(100% - 80px);
+
+  ${MEDIA_SM} {
+    min-height: calc(100% - 96px);
+  }
 
   ${MEDIA_XL} {
     min-height: calc(100% - 112px);
