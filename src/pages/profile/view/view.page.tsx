@@ -92,8 +92,9 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
                   [1, 2, 3].map((index) => <Skeleton key={`social-skeleton-${index}`} height={'48px'} width={'48px'} />) :
                   userData?.social?.map((socialNetwork: ISocial, index: number) =>
                     <SimpleButton
-                      key={`social-network=${socialNetwork._id}-${index}`}
                       icon={socialNetwork.icon}
+                      key={`social-network=${socialNetwork._id}-${index}`}
+                      onClick={(): Window | null => window.open(`https://${socialNetwork.url}`, '_blank')}
                       shape={'circle'} />
                   )
               }
