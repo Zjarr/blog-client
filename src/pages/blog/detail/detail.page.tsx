@@ -58,19 +58,13 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   };
 
   const addCategory = (): void => {
-    if (!category.value?.id) {
-      category.setError('This field is required.');
-    }
+    if (!category.value?._id) category.setError('This field is required.');
 
-    const isCategoryAlreadyAdded = !!categories.find((listCategory: ICategory) => listCategory.id === category.value?.id);
+    const isCategoryAlreadyAdded = !!categories.find((listCategory: ICategory) => listCategory._id === category.value?._id);
 
-    if (isCategoryAlreadyAdded) {
-      category.setError('This category is already added.');
-    }
+    if (isCategoryAlreadyAdded) category.setError('This category is already added.');
 
-    if (!category.value?.id || isCategoryAlreadyAdded) {
-      return;
-    }
+    if (!category.value?._id || isCategoryAlreadyAdded) return;
 
     setCategories([...categories, { ...category.value as ICategory }]);
 
@@ -84,17 +78,10 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   };
 
   const addSource = (): void => {
-    if (!sourceName.value) {
-      sourceName.setError('This field is required.');
-    }
+    if (!sourceName.value) sourceName.setError('This field is required.');
+    if (!sourceURL.value) sourceURL.setError('This field is required.');
 
-    if (!sourceURL.value) {
-      sourceURL.setError('This field is required.');
-    }
-
-    if (!sourceName.value || !sourceURL.value) {
-      return;
-    }
+    if (!sourceName.value || !sourceURL.value) return;
 
     const source: ISource = {
       name: sourceName.value,
