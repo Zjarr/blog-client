@@ -67,6 +67,12 @@ const USER_MUTATION: DocumentNode = gql`
   }
 `;
 
+interface IUserQueryInput {
+  user: {
+    _id: string;
+  }
+}
+
 export interface IUserMutationInput {
   user: {
     _id?: string;
@@ -85,12 +91,6 @@ export interface IUserData {
   user: {
     error?: IError;
     user?: IUser;
-  }
-}
-
-export interface IUserQueryInput {
-  user: {
-    _id: string;
   }
 }
 
