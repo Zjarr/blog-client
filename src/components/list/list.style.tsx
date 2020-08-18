@@ -4,6 +4,7 @@ import Styled from 'styled-components';
 import { Column } from '../column';
 
 export const ListContainer = Styled(Row)`
+  align-content: flex-start;
   position: relative;
   height: 100%;
 `;
