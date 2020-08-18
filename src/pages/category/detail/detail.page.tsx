@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Banner } from '../../../components/banner';
 import { SimpleButton } from '../../../components/button';
 import { Column } from '../../../components/column';
 import { Dropdown } from '../../../components/dropdown';
@@ -9,16 +10,64 @@ import { Header } from '../../../components/header';
 import { Input } from '../../../components/input';
 import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
-import { useDropdown, useNavigateTo } from '../../../utils/hooks';
-import { COLOR_PURPLE, VALUE_CATEGORIES } from '../../../utils/values';
+import { useDropdown, useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
+import { ICategory } from '../../../utils/interfaces';
+import { COLOR_PURPLE, COLOR_RED, STRING_SERVER_ERROR, VALUE_CATEGORIES } from '../../../utils/values';
 
+import { ICategoryData, ICategoryMutationInput, useCategoryMutation, useCategoryQuery } from './detail.graphql';
 import { BodyContainer, DetailContainer } from './detail.style';
 
 export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param }) => {
+  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
+  const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [headerTitle, setHeaderTitle] = React.useState<string>('');
+  const [fields, setFields] = React.useState<boolean>(false);
+
+  const [categoryQuery, {
+    error: categoryQueryError,
+    data: categoryQueryData,
+    loading: categoryQueryLoading
+  }] = useCategoryQuery();
+
+  const [categoryMutation, {
+    error: categoryMutationError,
+    data: categoryMutationData,
+    loading: categoryMutationLoading
+  }] = useCategoryMutation();
+
+  const navigateTo = useNavigateTo();
 
   const categoriesDropdown = useDropdown(VALUE_CATEGORIES);
-  const navigateTo = useNavigateTo();
+  const categoryDescription = useTextArea();
+  const categoryActive = useInput();
+  const categoryName = useInput();
+
+  const handleBannerMessageHide = (): void => {
+    return setBannerVisible(false);
+  };
+
+  const showBannerMessage = (message: string): void => {
+    setBannerMessage(message);
+
+    return setBannerVisible(true);
+  };
+
+  const buildCategoryObject = (): void => {
+    const categoryMutationData: ICategoryMutationInput = {
+      category: {
+        active: categoryActive.checked,
+        description: categoryDescription.value,
+        icon: categoriesDropdown.value?.icon!,
+        name: categoryName.value
+      }
+    };
+
+    if (param) categoryMutationData.category._id = param;
+
+    categoryMutation({
+      variables: { ...categoryMutationData }
+    });
+  };
 
   const handleCancelClick = (): void => {
     if (action === 'add') return navigateTo('/admin/categories');
@@ -27,17 +76,64 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
 
   const handleDoneClick = (): void => {
     if (action === 'view') return navigateTo(`/admin/categories/edit/${param}`);
+    if (action === 'edit' || action === 'add') return buildCategoryObject();
   };
+  const setCategoryData = React.useCallback((category: ICategory): void => {
+    if (fields) return;
 
-  const initPageProperties = React.useCallback((action): void => {
+    categoryDescription.setValue(category.description || '');
+    categoryName.setValue(category.name);
+    categoryActive.setChecked(category.active);
+    categoriesDropdown.setValue(category);
+
+    return setFields(true);
+  }, [categoriesDropdown, categoryActive, categoryDescription, categoryName, fields]);
+
+  const handleCategoryMutationResponse = React.useCallback((data: ICategoryData): void => {
+    const { error, category } = data.category;
+
+    if (error) return showBannerMessage(error.message);
+    if (!category) return;
+
+    return navigateTo(`/admin/categories/view/${category._id}`);
+  }, [navigateTo]);
+
+  const handleCategoryQueryResponse = React.useCallback((data: ICategoryData): void => {
+    const { error, category } = data.category;
+
+    if (error) return showBannerMessage(error.message);
+    if (!category) return;
+
+    return setCategoryData(category);
+  }, [setCategoryData]);
+
+  React.useEffect(() => {
+    if (categoryMutationError) return showBannerMessage(STRING_SERVER_ERROR);
+    if (categoryMutationData) return handleCategoryMutationResponse(categoryMutationData);
+  }, [categoryMutationError, categoryMutationData, handleCategoryMutationResponse]);
+
+  React.useEffect(() => {
+    if (categoryQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+    if (categoryQueryData) return handleCategoryQueryResponse(categoryQueryData);
+  }, [categoryQueryError, categoryQueryData, handleCategoryQueryResponse]);
+
+  React.useEffect(() => {
     if (action === 'add') setHeaderTitle('Add category');
     if (action === 'edit') setHeaderTitle('Edit category');
     if (action === 'view') setHeaderTitle('Category details');
-  }, []);
+  }, [action]);
 
   React.useEffect(() => {
-    initPageProperties(action);
-  }, [action, initPageProperties]);
+    if (!param) return;
+
+    return categoryQuery({
+      variables: {
+        category: {
+          _id: param
+        }
+      }
+    });
+  }, [param, categoryQuery]);
 
   return (
     <DetailContainer>
@@ -46,37 +142,64 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
       <BodyContainer>
         <Column xl={4} position={'left'}>
           <FormField label={'Name:'}>
-            <Input icon={'category'} placeholder={'Awesome category'} disabled={action === 'view'} />
+            <Input
+              disabled={action === 'view' || categoryMutationLoading}
+              icon={'category'}
+              loading={categoryQueryLoading}
+              placeholder={'Awesome category'}
+              {...categoryName} />
           </FormField>
 
           <FormField label={'Icon:'}>
             <Dropdown
+              disabled={action === 'view' || categoryMutationLoading}
               name={categoriesDropdown?.value?.name || 'Select one'}
-              disabled={action === 'view'}
-              {...categoriesDropdown}
-              icon={'category'} />
+              icon={'category'}
+              loading={categoryQueryLoading}
+              {...categoriesDropdown} />
           </FormField>
         </Column>
 
         <Column xl={4} position={'center'}>
           <FormField label={'Description:'} height={'176px'}>
-            <TextArea disabled={action === 'view'} />
+            <TextArea
+              disabled={action === 'view' || categoryMutationLoading}
+              loading={categoryQueryLoading}
+              {...categoryDescription} />
           </FormField>
         </Column>
 
         <Column xl={4} position={'right'}>
           <FormField label={'Active:'}>
-            <Toggle disabled={action === 'view'} />
+            <Toggle
+              disabled={action === 'view' || categoryMutationLoading}
+              loading={categoryQueryLoading}
+              {...categoryActive} />
           </FormField>
         </Column>
       </BodyContainer>
 
       <Footer>
         {
-          (action === 'add' || action === 'edit') && <SimpleButton icon={'clear'} onClick={handleCancelClick} />
+          (action === 'add' || action === 'edit') &&
+          <SimpleButton
+            disabled={categoryMutationLoading}
+            icon={categoryMutationLoading ? 'more_horiz' : 'clear'}
+            onClick={handleCancelClick} />
         }
-        <SimpleButton color={COLOR_PURPLE} icon={action === 'view' ? 'edit' : 'done'} onClick={handleDoneClick} />
+        <SimpleButton
+          color={COLOR_PURPLE}
+          disabled={categoryQueryLoading || categoryMutationLoading}
+          icon={categoryQueryLoading || categoryMutationLoading ? 'more_horiz' : action === 'view' ? 'edit' : 'done'}
+          onClick={handleDoneClick} />
       </Footer>
+
+      <Banner
+        color={COLOR_RED}
+        icon={'clear'}
+        onHide={handleBannerMessageHide}
+        text={bannerMessage}
+        visible={bannerVisible} />
     </DetailContainer>
   );
 };
