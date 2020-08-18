@@ -37,7 +37,7 @@ const CATEGORY_QUERY: DocumentNode = gql`
           _id
           active
           description
-          icons
+          icon
           name
         }
       }
