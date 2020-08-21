@@ -34,7 +34,7 @@ const {
 } = process.env;
 
 export const DashboardPage: React.FC<IDashboardPage> = () => {
-  const { action, param, section } = useParams();
+  const { action, param, section } = useParams<{ action: string, param: string, section: string }>();
   const [, , removeCookie] = useCookies();
   const navigateTo = useNavigateTo();
 
