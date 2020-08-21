@@ -63,9 +63,12 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
   }, []);
 
   React.useEffect(() => {
-    if (userQueryError) return showBannerMessage(STRING_SERVER_ERROR);
     if (userQueryData) return handleUserQueryResponse(userQueryData);
-  }, [userQueryError, userQueryData, handleUserQueryResponse]);
+  }, [userQueryData, handleUserQueryResponse]);
+
+  React.useEffect(() => {
+    if (userQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+  }, [userQueryError]);
 
   return (
     <ViewContainer>

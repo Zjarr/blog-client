@@ -89,22 +89,23 @@ export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
   }, [buildCategoriesObject]);
 
   React.useEffect(() => {
-    if (categoriesQueryLoading || categoriesQueryError) return;
-
     return getCategories(filterActive.checked, filterSearch.value);
-  }, [categoriesQueryError, categoriesQueryLoading, filterActive.checked, filterSearch.value, getCategories]);
+  }, [filterActive.checked, filterSearch.value, getCategories]);
+
+  React.useEffect(() => {
+    if (categoriesQueryData) return handleCategoriesQueryResponse(categoriesQueryData);
+  }, [categoriesQueryData, handleCategoriesQueryResponse]);
 
   React.useEffect(() => {
     if (categoriesQueryError) return showBannerMessage(STRING_SERVER_ERROR);
-    if (categoriesQueryData) return handleCategoriesQueryResponse(categoriesQueryData);
-  }, [categoriesQueryData, categoriesQueryError, handleCategoriesQueryResponse]);
+  }, [categoriesQueryError]);
 
   return (
     <CategoryListContainer>
       <Header title={'Categories'} />
 
       <BodyContainer>
-        <ListContainer xl={9} position={'left'}>
+        <ListContainer xl={9} position={'left'} empty={categories.length ? 1 : 0}>
           <List loading={categoriesQueryLoading || loading} cards={categories} error={!!categoriesQueryError} />
         </ListContainer>
 

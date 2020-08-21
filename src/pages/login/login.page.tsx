@@ -90,9 +90,12 @@ export const LoginPage: React.FC<ILoginPage> = () => {
   }, [navigateTo, setSession]);
 
   React.useEffect(() => {
-    if (loginMutationError) return showBannerMessageShow(STRING_SERVER_ERROR);
     if (loginMutationData) return handleLoginMutationResponse(loginMutationData);
-  }, [loginMutationData, loginMutationError, loginMutationLoading, handleLoginMutationResponse]);
+  }, [loginMutationData, handleLoginMutationResponse]);
+
+  React.useEffect(() => {
+    if (loginMutationError) return showBannerMessageShow(STRING_SERVER_ERROR);
+  }, [loginMutationError]);
 
   return (
     <LoginContainer>

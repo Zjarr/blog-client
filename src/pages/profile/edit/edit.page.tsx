@@ -201,14 +201,16 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   }, [navigateTo]);
 
   React.useEffect(() => {
-    if (userQueryError) return showBannerMessage(STRING_SERVER_ERROR);
     if (userQueryData) return handleUserQueryResponse(userQueryData);
-  }, [userQueryError, userQueryData, handleUserQueryResponse]);
+  }, [userQueryData, handleUserQueryResponse]);
 
   React.useEffect(() => {
-    if (userMutationError) return showBannerMessage(STRING_SERVER_ERROR);
     if (userMutationData) return handleUserMutationResponse(userMutationData);
-  }, [userMutationError, userMutationData, handleUserMutationResponse]);
+  }, [userMutationData, handleUserMutationResponse]);
+
+  React.useEffect(() => {
+    if (userMutationError || userQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+  }, [userMutationError, userQueryError]);
 
   return (
     <EditContainer>
