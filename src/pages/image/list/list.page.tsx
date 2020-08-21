@@ -21,7 +21,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
       <Header title={'Images'} />
 
       <BodyContainer>
-        <ListContainer xl={9} position={'left'}>
+        <ListContainer xl={9} position={'left'} empty={0}>
           <List loading={false} cards={[
             {
               title: 'Some title for the image',

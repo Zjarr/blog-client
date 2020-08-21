@@ -22,7 +22,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
       <Header title={'Blogs'} />
 
       <BodyContainer>
-        <ListContainer xl={9} position={'left'}>
+        <ListContainer xl={9} position={'left'} empty={0}>
           <List loading={true} cards={[
             {
               title: 'Some airplane blog title',

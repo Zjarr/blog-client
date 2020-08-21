@@ -1,8 +1,13 @@
-import Row from 'react-bootstrap/Row';
 import Styled from 'styled-components';
 
 import { Column } from '../../../components/column';
 import { MEDIA_SM, MEDIA_XL } from '../../../utils/values';
+
+const CENTER_ITEMS_ALIGNMENT = 'flex-start';
+
+const DEFAULT_ITEMS_ALIGNMENT = 'center';
+
+const getItemsAlignment = (empty?: boolean): string => empty ? CENTER_ITEMS_ALIGNMENT : DEFAULT_ITEMS_ALIGNMENT;
 
 export const ImageListContainer = Styled.div`
   height: 100%;
@@ -18,13 +23,23 @@ export const ImageListContainer = Styled.div`
   }
 `;
 
-export const BodyContainer = Styled(Row)`
-  align-content: flex-start;
+export const BodyContainer = Styled.div`
+  display: flex;
+  flex-direction: column;
   min-height: calc(100% - 112px);
+
+  ${MEDIA_XL} {
+    flex-direction: row;
+  }
 `;
 
-export const ListContainer = Styled(Column)`
+export const ListContainer = Styled(Column) <{ empty?: boolean }>`
+  display: flex;
+  flex: 1;
+  justify-content: center;
   order: 1;
+
+  align-items: ${({ empty }): string => getItemsAlignment(empty)};
 
   ${MEDIA_XL} {
     order: 0;
