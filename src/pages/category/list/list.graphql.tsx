@@ -50,5 +50,5 @@ export interface ICategoriesQueryInput {
 }
 
 export const useCategoriesQuery = (): QueryTuple<ICategoriesQueryData, ICategoriesQueryInput> => {
-  return useLazyQuery<ICategoriesQueryData, ICategoriesQueryInput>(CATEGORIES_QUERY);
+  return useLazyQuery<ICategoriesQueryData, ICategoriesQueryInput>(CATEGORIES_QUERY, { fetchPolicy: 'cache-and-network' });
 };
