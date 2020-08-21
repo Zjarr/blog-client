@@ -5,8 +5,9 @@ import { Column } from '../column';
 
 export const ListContainer = Styled(Row)`
   align-content: flex-start;
-  position: relative;
   height: 100%;
+  position: relative;
+  width: 100%;
 `;
 
 export const CardContainer = Styled(Column)`
