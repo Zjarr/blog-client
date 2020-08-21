@@ -79,7 +79,9 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
 
         <Column xl={4} position={'right'}>
           <FormField height={'176px'} label={'Description:'}>
-            <TextArea disabled={action === 'view'} />
+            <TextArea
+              disabled={action === 'view'}
+              placeholder={'Your awesome image description'} />
           </FormField>
         </Column>
       </BodyContainer>

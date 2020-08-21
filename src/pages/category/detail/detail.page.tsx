@@ -108,16 +108,6 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
   }, [setCategoryData]);
 
   React.useEffect(() => {
-    if (categoryMutationError) return showBannerMessage(STRING_SERVER_ERROR);
-    if (categoryMutationData) return handleCategoryMutationResponse(categoryMutationData);
-  }, [categoryMutationError, categoryMutationData, handleCategoryMutationResponse]);
-
-  React.useEffect(() => {
-    if (categoryQueryError) return showBannerMessage(STRING_SERVER_ERROR);
-    if (categoryQueryData) return handleCategoryQueryResponse(categoryQueryData);
-  }, [categoryQueryError, categoryQueryData, handleCategoryQueryResponse]);
-
-  React.useEffect(() => {
     if (action === 'add') setHeaderTitle('Add category');
     if (action === 'edit') setHeaderTitle('Edit category');
     if (action === 'view') setHeaderTitle('Category details');
@@ -134,6 +124,18 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
       }
     });
   }, [param, categoryQuery]);
+
+  React.useEffect(() => {
+    if (categoryMutationData) return handleCategoryMutationResponse(categoryMutationData);
+  }, [categoryMutationData, handleCategoryMutationResponse]);
+
+  React.useEffect(() => {
+    if (categoryQueryData) return handleCategoryQueryResponse(categoryQueryData);
+  }, [categoryQueryData, handleCategoryQueryResponse]);
+
+  React.useEffect(() => {
+    if (categoryMutationError || categoryQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+  }, [categoryMutationError, categoryQueryError]);
 
   return (
     <DetailContainer>
@@ -165,6 +167,7 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
             <TextArea
               disabled={action === 'view' || categoryMutationLoading}
               loading={categoryQueryLoading}
+              placeholder={'Your awesome category description'}
               {...categoryDescription} />
           </FormField>
         </Column>

@@ -123,7 +123,10 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
               </FormField>
               :
               <FormField label={'Body:'} height={'calc(100vh - 232px)'}>
-                <TextArea disabled={action === 'view'} {...blogBody} />
+                <TextArea
+                  disabled={action === 'view'}
+                  placeholder={'Once upon a time...'}
+                  {...blogBody} />
               </FormField>
           }
 
@@ -164,7 +167,9 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
           </FormField>
 
           <FormField label={'Description:'} height={'176px'}>
-            <TextArea disabled={action === 'view'} />
+            <TextArea
+              placeholder={'Your brand new blog description'}
+              disabled={action === 'view'} />
           </FormField>
 
           <FormField label={'Active:'}>
