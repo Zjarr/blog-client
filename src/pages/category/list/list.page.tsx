@@ -48,7 +48,7 @@ export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
     const categoryCards: IImageCard[] = [];
 
     categories.forEach(category => {
-      const newCategoryCard: IImageCard = {
+      categoryCards.push({
         active: category.active,
         icon: category.icon,
         link: `/admin/categories/view/${category._id}`,
@@ -57,9 +57,7 @@ export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
         secondaryText: category.icon,
         secondaryTextIcon: 'category',
         title: category.name
-      };
-
-      categoryCards.push(newCategoryCard);
+      });
     });
 
     setLoading(false);
@@ -97,7 +95,11 @@ export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
   }, [categoriesQueryData, handleCategoriesQueryResponse]);
 
   React.useEffect(() => {
-    if (categoriesQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+    if (!categoriesQueryError) return;
+
+    setLoading(false);
+
+    return showBannerMessage(STRING_SERVER_ERROR);
   }, [categoriesQueryError]);
 
   return (
