@@ -186,7 +186,7 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
           <FormField label={'Icon:'}>
             <Dropdown
               disabled={action === 'view' || categoryMutationLoading}
-              name={categoriesDropdown?.value?.name || 'Select one'}
+              name={categoriesDropdown?.value?.icon || 'Select one'}
               icon={'category'}
               loading={categoryQueryLoading}
               {...categoriesDropdown} />
