@@ -157,6 +157,13 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
         <BodyContainer empty={1}>
           <Empty />
         </BodyContainer>
+
+        <Banner
+          color={COLOR_RED}
+          icon={'clear'}
+          onHide={handleBannerMessageHide}
+          text={bannerMessage}
+          visible={bannerVisible} />
       </DetailContainer>
     );
   }
