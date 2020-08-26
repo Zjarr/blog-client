@@ -21,6 +21,7 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
   const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
   const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [headerTitle, setHeaderTitle] = React.useState<string>('');
+  const [category, setCategory] = React.useState<ICategory>();
   const [fields, setFields] = React.useState<boolean>(false);
 
   const [categoryQuery, {
@@ -42,16 +43,6 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
   const categoryActive = useCheckbox();
   const categoryName = useInput();
 
-  const handleBannerMessageHide = (): void => {
-    return setBannerVisible(false);
-  };
-
-  const showBannerMessage = (message: string): void => {
-    setBannerMessage(message);
-
-    return setBannerVisible(true);
-  };
-
   const buildCategoryObject = (): void => {
     const categoryMutationData: ICategoryMutationInput = {
       category: {
@@ -69,6 +60,16 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
     });
   };
 
+  const handleBannerMessageHide = (): void => {
+    return setBannerVisible(false);
+  };
+
+  const showBannerMessage = (message: string): void => {
+    setBannerMessage(message);
+
+    return setBannerVisible(true);
+  };
+
   const handleCancelClick = (): void => {
     if (action === 'add') return navigateTo('/admin/categories');
     if (action === 'edit') return navigateTo(`/admin/categories/view/${param}`);
@@ -78,6 +79,27 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
     if (action === 'view') return navigateTo(`/admin/categories/edit/${param}`);
     if (action === 'edit' || action === 'add') return buildCategoryObject();
   };
+
+  const handleCategoryMutationResponse = React.useCallback((data: ICategoryData): void => {
+    const { error, category } = data.category;
+
+    if (error) return showBannerMessage(error.message);
+    if (param && !category) return showBannerMessage('We could not find this category.');
+    if (!category) return;
+
+    return navigateTo(`/admin/categories/view/${category._id}`);
+  }, [param, navigateTo]);
+
+  const handleCategoryQueryResponse = React.useCallback((data: ICategoryData): void => {
+    const { error, category } = data.category;
+
+    if (error) return showBannerMessage(error.message);
+    if (param && !category) return showBannerMessage('We could not find this category.');
+    if (!category) return;
+
+    return setCategory(category);
+  }, [param]);
+
   const setCategoryData = React.useCallback((category: ICategory): void => {
     if (fields) return;
 
@@ -88,30 +110,6 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
 
     return setFields(true);
   }, [categoriesDropdown, categoryActive, categoryDescription, categoryName, fields]);
-
-  const handleCategoryMutationResponse = React.useCallback((data: ICategoryData): void => {
-    const { error, category } = data.category;
-
-    if (error) return showBannerMessage(error.message);
-    if (!category) return;
-
-    return navigateTo(`/admin/categories/view/${category._id}`);
-  }, [navigateTo]);
-
-  const handleCategoryQueryResponse = React.useCallback((data: ICategoryData): void => {
-    const { error, category } = data.category;
-
-    if (error) return showBannerMessage(error.message);
-    if (!category) return;
-
-    return setCategoryData(category);
-  }, [setCategoryData]);
-
-  React.useEffect(() => {
-    if (action === 'add') setHeaderTitle('Add category');
-    if (action === 'edit') setHeaderTitle('Edit category');
-    if (action === 'view') setHeaderTitle('Category details');
-  }, [action]);
 
   React.useEffect(() => {
     if (!param) return;
@@ -124,6 +122,18 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
       }
     });
   }, [param, categoryQuery]);
+
+  React.useEffect(() => {
+    if (action === 'add') setHeaderTitle('Add category');
+    if (action === 'edit') setHeaderTitle('Edit category');
+    if (action === 'view') setHeaderTitle('Category details');
+  }, [action]);
+
+  React.useEffect(() => {
+    if (!category) return;
+
+    return setCategoryData(category);
+  }, [category, setCategoryData]);
 
   React.useEffect(() => {
     if (categoryMutationData) return handleCategoryMutationResponse(categoryMutationData);
