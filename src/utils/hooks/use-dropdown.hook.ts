@@ -12,7 +12,7 @@ export const useDropdown = (initialValues?: IDropdownValue[]): IDropdownHook => 
       setError('');
     }
 
-    setValue(value);
+    return setValue(value);
   };
 
   return {

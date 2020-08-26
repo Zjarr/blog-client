@@ -9,7 +9,7 @@ export const useTextArea = (initialValue?: string): ITextAreaHook => {
       setError('');
     }
 
-    setValue(e.target.value);
+    return setValue(e.target.value);
   };
 
   return {
