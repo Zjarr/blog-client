@@ -4,6 +4,7 @@ import { Banner } from '../../../components/banner';
 import { SimpleButton } from '../../../components/button';
 import { Column } from '../../../components/column';
 import { Dropdown } from '../../../components/dropdown';
+import { Empty } from '../../../components/empty';
 import { Footer } from '../../../components/footer';
 import { FormField } from '../../../components/form-field';
 import { Header } from '../../../components/header';
@@ -21,6 +22,7 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
   const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
   const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [headerTitle, setHeaderTitle] = React.useState<string>('');
+  const [notFound, setNotFound] = React.useState<boolean>(false);
   const [category, setCategory] = React.useState<ICategory>();
   const [fields, setFields] = React.useState<boolean>(false);
 
@@ -80,25 +82,25 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
     if (action === 'edit' || action === 'add') return buildCategoryObject();
   };
 
-  const handleCategoryMutationResponse = React.useCallback((data: ICategoryData): void => {
+  const handleCategoryResponse = React.useCallback((data: ICategoryData, type: string): void => {
     const { error, category } = data.category;
 
     if (error) return showBannerMessage(error.message);
-    if (param && !category) return showBannerMessage('We could not find this category.');
+
+    if (param && !category) {
+      setNotFound(true);
+
+      return showBannerMessage('We could not find this category.');
+    }
+
     if (!category) return;
 
-    return navigateTo(`/admin/categories/view/${category._id}`);
-  }, [param, navigateTo]);
-
-  const handleCategoryQueryResponse = React.useCallback((data: ICategoryData): void => {
-    const { error, category } = data.category;
-
-    if (error) return showBannerMessage(error.message);
-    if (param && !category) return showBannerMessage('We could not find this category.');
-    if (!category) return;
+    if (type === 'mutation') {
+      return navigateTo(`/admin/categories/view/${category._id}`);
+    }
 
     return setCategory(category);
-  }, [param]);
+  }, [param, navigateTo]);
 
   const setCategoryData = React.useCallback((category: ICategory): void => {
     if (fields) return;
@@ -136,16 +138,28 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
   }, [category, setCategoryData]);
 
   React.useEffect(() => {
-    if (categoryMutationData) return handleCategoryMutationResponse(categoryMutationData);
-  }, [categoryMutationData, handleCategoryMutationResponse]);
+    if (categoryMutationData) return handleCategoryResponse(categoryMutationData, 'mutation');
+  }, [categoryMutationData, handleCategoryResponse]);
 
   React.useEffect(() => {
-    if (categoryQueryData) return handleCategoryQueryResponse(categoryQueryData);
-  }, [categoryQueryData, handleCategoryQueryResponse]);
+    if (categoryQueryData) return handleCategoryResponse(categoryQueryData, 'query');
+  }, [categoryQueryData, handleCategoryResponse]);
 
   React.useEffect(() => {
     if (categoryMutationError || categoryQueryError) return showBannerMessage(STRING_SERVER_ERROR);
   }, [categoryMutationError, categoryQueryError]);
+
+  if (notFound) {
+    return (
+      <DetailContainer>
+        <Header title={headerTitle} backButtonText={'Categories'} backButtonLink={'/admin/categories'} />
+
+        <BodyContainer empty={1}>
+          <Empty />
+        </BodyContainer>
+      </DetailContainer>
+    );
+  }
 
   return (
     <DetailContainer>
@@ -200,6 +214,7 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
             icon={categoryMutationLoading ? 'more_horiz' : 'clear'}
             onClick={handleCancelClick} />
         }
+
         <SimpleButton
           color={COLOR_PURPLE}
           disabled={categoryQueryLoading || categoryMutationLoading}
