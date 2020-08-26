@@ -1,20 +1,9 @@
 import React from 'react';
 
-import Broken from '../../assets/images/broken.png';
-import Rocket from '../../assets/images/rocket.png';
-import { COLOR_GRAY_MEDIUM } from '../../utils/values';
-
 import { IImageCard, ImageCard } from '../card';
-import { ParagraphText } from '../text';
+import { Empty } from '../empty';
 
-import {
-  CardContainer,
-  EmptyListContainer,
-  ImageContainer,
-  ListContainer,
-  RocketImage,
-  TextContainer
-} from './list.style';
+import { CardContainer, ListContainer } from './list.style';
 
 const skeletonCards = 12;
 
@@ -45,20 +34,7 @@ export const List: React.FC<IList> = ({ cards, error, loading }) => {
       }
       {
         !loading && !cards.length &&
-        <EmptyListContainer>
-          <ImageContainer>
-            <RocketImage src={error ? Broken : Rocket} />
-          </ImageContainer>
-
-          <TextContainer>
-            <ParagraphText color={COLOR_GRAY_MEDIUM}>Oops!</ParagraphText>
-            <ParagraphText color={COLOR_GRAY_MEDIUM}>
-              {
-                error ? 'We ran into an error. Please try again.' : 'This looks empty. Did you add some fuel?'
-              }
-            </ParagraphText>
-          </TextContainer>
-        </EmptyListContainer>
+        <Empty error={error} />
       }
     </ListContainer>
   );
