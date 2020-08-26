@@ -10,7 +10,7 @@ import { Header } from '../../../components/header';
 import { Input } from '../../../components/input';
 import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
-import { useDropdown, useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
+import { useCheckbox, useDropdown, useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
 import { ICategory } from '../../../utils/interfaces';
 import { COLOR_PURPLE, COLOR_RED, STRING_SERVER_ERROR, VALUE_CATEGORIES } from '../../../utils/values';
 
@@ -39,7 +39,7 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
 
   const categoriesDropdown = useDropdown(VALUE_CATEGORIES);
   const categoryDescription = useTextArea();
-  const categoryActive = useInput();
+  const categoryActive = useCheckbox();
   const categoryName = useInput();
 
   const handleBannerMessageHide = (): void => {

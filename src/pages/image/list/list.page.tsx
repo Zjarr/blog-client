@@ -10,9 +10,8 @@ import { Input } from '../../../components/input';
 import { List } from '../../../components/list';
 import { SubtitleText } from '../../../components/text';
 import { Toggle } from '../../../components/toggle';
-import { useInput, useNavigateTo } from '../../../utils/hooks';
+import { useCheckbox, useInput, useNavigateTo } from '../../../utils/hooks';
 import { IImage } from '../../../utils/interfaces';
-
 import { COLOR_PURPLE, COLOR_RED, PAGINATION_DEFAULT, STRING_SERVER_ERROR } from '../../../utils/values';
 
 import { IImagesQueryData, useImagesQuery } from './list.graphql';
@@ -32,7 +31,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
   const [images, setImages] = React.useState<IImageCard[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
 
-  const filterActive = useInput('', true);
+  const filterActive = useCheckbox(true);
   const filterSearch = useInput('');
 
   const handleBannerMessageHide = (): void => {
