@@ -126,6 +126,7 @@ export const LoginPage: React.FC<ILoginPage> = () => {
       </FormContainer>
 
       <Banner
+        center
         color={COLOR_RED}
         icon={'clear'}
         onHide={handleBannerMessageHide}

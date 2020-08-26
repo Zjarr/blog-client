@@ -9,7 +9,7 @@ import { BannerContainer, IconContainer, TextContainer } from './banner.style';
 
 const DEFAULT_TIME = 5000;
 
-export const Banner: React.FC<IBanner> = ({ icon, text, visible, color, onHide, time = DEFAULT_TIME }) => {
+export const Banner: React.FC<IBanner> = ({ center, color, icon, onHide, text, time = DEFAULT_TIME, visible }) => {
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
 
   const initVisibilityTimeout = React.useCallback((): () => void => {
@@ -33,7 +33,7 @@ export const Banner: React.FC<IBanner> = ({ icon, text, visible, color, onHide, 
   }, [visible, initVisibilityTimeout]);
 
   return (
-    <BannerContainer isVisible={isVisible}>
+    <BannerContainer isVisible={isVisible} center={center}>
       <IconContainer>
         <Icon name={icon} size={'24px'} color={color || COLOR_GRAY_MEDIUM} />
       </IconContainer>
@@ -46,6 +46,7 @@ export const Banner: React.FC<IBanner> = ({ icon, text, visible, color, onHide, 
 };
 
 interface IBanner {
+  center?: boolean;
   color?: string;
   icon: string;
   onHide?: () => void;

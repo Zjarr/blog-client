@@ -1,15 +1,19 @@
 import Styled from 'styled-components';
 
-import { BORDER_RADIUS_FULL, BORDER_RADIUS_SMALL, BOX_SHADOW_OVERLAY, COLOR_BLACK, COLOR_WHITE, MEDIA_SM } from '../../utils/values';
+import { BORDER_RADIUS_FULL, BORDER_RADIUS_SMALL, BOX_SHADOW_OVERLAY, COLOR_BLACK, COLOR_WHITE, MEDIA_SM, MEDIA_XL } from '../../utils/values';
 
+const DEFAULT_BANNER_LEFT = '208px';
 const DEFAULT_BANNER_OPACITY = '0';
 const DEFAULT_BANNER_TRANSFORM = 'translateY(0)';
 
+const CENTER_BANNER_LEFT = '16px';
 const VISIBLE_BANNER_OPACITY = '1';
 const VISIBLE_BANNER_TRANSFORM_BIG = 'translateY(-96px)';
-const VISIBLE_BANNER_TRANSFORM_SMALL = 'translateY(-64px)';
+const VISIBLE_BANNER_TRANSFORM_SMALL = 'translateY(-80px)';
 
+const getBannerLeft = (center?: boolean): string => center ? CENTER_BANNER_LEFT : DEFAULT_BANNER_LEFT;
 const getBannerOpacity = (isVisible?: boolean): string => isVisible ? VISIBLE_BANNER_OPACITY : DEFAULT_BANNER_OPACITY;
+
 const getBannerTransform = (isVisible?: boolean, mobile?: boolean): string => {
   if (!isVisible) {
     return DEFAULT_BANNER_TRANSFORM;
@@ -18,7 +22,7 @@ const getBannerTransform = (isVisible?: boolean, mobile?: boolean): string => {
   return mobile ? VISIBLE_BANNER_TRANSFORM_SMALL : VISIBLE_BANNER_TRANSFORM_BIG;
 };
 
-export const BannerContainer = Styled.div<{ isVisible: boolean }>`
+export const BannerContainer = Styled.div<{ isVisible: boolean, center?: boolean }>`
   align-items: center;
   bottom: -64px;
   display: flex;
@@ -35,7 +39,7 @@ export const BannerContainer = Styled.div<{ isVisible: boolean }>`
   z-index: 2;
 
   background-color: ${COLOR_BLACK};
-  border-radius: ${BORDER_RADIUS_SMALL} ${BORDER_RADIUS_SMALL} 0 0;
+  border-radius: ${BORDER_RADIUS_SMALL};
   box-shadow: ${BOX_SHADOW_OVERLAY};
   color: ${COLOR_WHITE};
 
@@ -43,12 +47,11 @@ export const BannerContainer = Styled.div<{ isVisible: boolean }>`
   transform: ${({ isVisible }): string => getBannerTransform(isVisible, true)};
 
   ${MEDIA_SM} {
-    left: 0px;
-    right: 0px;
-
-    border-radius: ${BORDER_RADIUS_SMALL};
-
     transform: ${({ isVisible }): string => getBannerTransform(isVisible, false)};
+  }
+
+  ${MEDIA_XL} {
+    left: ${({ center }): string => getBannerLeft(center)};
   }
 `;
 
