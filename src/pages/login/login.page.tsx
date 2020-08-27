@@ -6,7 +6,7 @@ import { SimpleButton } from '../../components/button';
 import { FormField } from '../../components/form-field';
 import { Input } from '../../components/input';
 import { useInput, useNavigateTo } from '../../utils/hooks';
-import { COLOR_PURPLE, COLOR_RED, STRING_SERVER_ERROR } from '../../utils/values';
+import { COLOR_PURPLE, COLOR_RED, STRING_FIELD_REQUIRED, STRING_SERVER_ERROR } from '../../utils/values';
 
 import { ILoginMutationData, useLoginMutation } from './login.graphql';
 import { ButtonsContainer, FormContainer, LoginContainer } from './login.style';
@@ -45,8 +45,8 @@ export const LoginPage: React.FC<ILoginPage> = () => {
   };
 
   const isValidForm = (): boolean => {
-    if (!email.value) email.setError('This field is required.');
-    if (!password.value) password.setError('This field is required.');
+    if (!email.value) email.setError(STRING_FIELD_REQUIRED);
+    if (!password.value) password.setError(STRING_FIELD_REQUIRED);
 
     if (!email.value || !password.value) return false;
 
