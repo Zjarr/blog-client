@@ -40,6 +40,7 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [imageFile, setImageFile] = React.useState<File | null>(null);
   const [fields, setFields] = React.useState<boolean>(false);
+  const [profile, setProfile] = React.useState<IUser>();
   const [image, setImage] = React.useState<string>('');
 
   const [updateUserMutation, {
@@ -182,31 +183,32 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
     return setFields(true);
   }, [fields, userAbout, userEmail, userFirstName, userLastName]);
 
-  const handleUserQueryResponse = React.useCallback((data: IUserData): void => {
+  const handleUserResponse = React.useCallback((data: IUserData, type: string): void => {
     const { error, user } = data.user;
 
     if (error) return showBannerMessage(error.message);
     if (!user) return;
 
-    return setUserData(user);
-  }, [setUserData]);
+    if (type === 'mutation') {
+      return navigateTo('/admin/profile');
+    }
 
-  const handleUserMutationResponse = React.useCallback((data: IUserData): void => {
-    const { error, user } = data.user;
-
-    if (error) return showBannerMessage(error.message);
-    if (!user) return;
-
-    return navigateTo('/admin/profile');
+    return setProfile(user);
   }, [navigateTo]);
 
   React.useEffect(() => {
-    if (userQueryData) return handleUserQueryResponse(userQueryData);
-  }, [userQueryData, handleUserQueryResponse]);
+    if (!profile) return;
+
+    return setUserData(profile);
+  }, [profile, setUserData]);
 
   React.useEffect(() => {
-    if (userMutationData) return handleUserMutationResponse(userMutationData);
-  }, [userMutationData, handleUserMutationResponse]);
+    if (userQueryData) return handleUserResponse(userQueryData, 'query');
+  }, [userQueryData, handleUserResponse]);
+
+  React.useEffect(() => {
+    if (userMutationData) return handleUserResponse(userMutationData, 'mutation');
+  }, [userMutationData, handleUserResponse]);
 
   React.useEffect(() => {
     if (userMutationError || userQueryError) return showBannerMessage(STRING_SERVER_ERROR);
