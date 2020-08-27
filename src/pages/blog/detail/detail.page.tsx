@@ -17,7 +17,7 @@ import { Toggle } from '../../../components/toggle';
 import { UpdateImage } from '../../../components/update-image';
 import { useDropdown, useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
 import { ICategory, IImageResult, ISource } from '../../../utils/interfaces';
-import { COLOR_GRAY_MEDIUM, COLOR_PURPLE } from '../../../utils/values';
+import { COLOR_GRAY_MEDIUM, COLOR_PURPLE, STRING_FIELD_REQUIRED } from '../../../utils/values';
 
 import { BodyContainer, DetailContainer, EditorButtonsContainer, EmptyListContainer, SimpleListContainer } from './detail.style';
 
@@ -58,7 +58,7 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   };
 
   const addCategory = (): void => {
-    if (!category.value?._id) category.setError('This field is required.');
+    if (!category.value?._id) category.setError(STRING_FIELD_REQUIRED);
 
     const isCategoryAlreadyAdded = !!categories.find((listCategory: ICategory) => listCategory._id === category.value?._id);
 
@@ -78,8 +78,8 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   };
 
   const addSource = (): void => {
-    if (!sourceName.value) sourceName.setError('This field is required.');
-    if (!sourceURL.value) sourceURL.setError('This field is required.');
+    if (!sourceName.value) sourceName.setError(STRING_FIELD_REQUIRED);
+    if (!sourceURL.value) sourceURL.setError(STRING_FIELD_REQUIRED);
 
     if (!sourceName.value || !sourceURL.value) return;
 

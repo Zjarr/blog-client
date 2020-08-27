@@ -17,7 +17,7 @@ import { UpdateImage } from '../../../components/update-image';
 import { UserContext } from '../../../contexts';
 import { useDropdown, useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
 import { IImageResult, ISocial, IUser } from '../../../utils/interfaces';
-import { COLOR_GRAY_MEDIUM, COLOR_PURPLE, COLOR_RED, STRING_SERVER_ERROR, VALUE_SOCIAL } from '../../../utils/values';
+import { COLOR_GRAY_MEDIUM, COLOR_PURPLE, COLOR_RED, STRING_FIELD_REQUIRED, STRING_SERVER_ERROR, VALUE_SOCIAL } from '../../../utils/values';
 
 import { IUserData, IUserMutationInput, useUserMutation, useUserQuery } from './edit.graphql';
 import {
@@ -93,9 +93,9 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   };
 
   const addSocialNetwork = (): void => {
-    if (!socialName.value) socialName.setError('This field is required.');
-    if (!socialIcon?.value?.icon) socialIcon.setError('This field is required.');
-    if (!socialURL.value) socialURL.setError('This field is required.');
+    if (!socialName.value) socialName.setError(STRING_FIELD_REQUIRED);
+    if (!socialIcon?.value?.icon) socialIcon.setError(STRING_FIELD_REQUIRED);
+    if (!socialURL.value) socialURL.setError(STRING_FIELD_REQUIRED);
 
     if (!socialName.value || !socialIcon?.value?.icon || !socialURL.value) return;
 
@@ -119,10 +119,10 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   };
 
   const isValidForm = (): boolean => {
-    if (!userFirstName.value) userFirstName.setError('This field is required.');
-    if (!userLastName.value) userLastName.setError('This field is required.');
-    if (!userAbout.value) userAbout.setError('This field is required.');
-    if (!userEmail.value) userEmail.setError('This field is required.');
+    if (!userFirstName.value) userFirstName.setError(STRING_FIELD_REQUIRED);
+    if (!userLastName.value) userLastName.setError(STRING_FIELD_REQUIRED);
+    if (!userAbout.value) userAbout.setError(STRING_FIELD_REQUIRED);
+    if (!userEmail.value) userEmail.setError(STRING_FIELD_REQUIRED);
 
     if (
       !userAbout.value ||
@@ -139,7 +139,7 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
       ({ _id, ...rest }) => rest
     );
 
-    const newUserData: IUserMutationInput = {
+    const userMutationData: IUserMutationInput = {
       user: {
         _id: user!,
         about: userAbout.value,
@@ -151,15 +151,13 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
     };
 
     if (imageFile) {
-      newUserData.user.file = imageFile;
+      userMutationData.user.file = imageFile;
     } else {
-      newUserData.user.image = image;
+      userMutationData.user.image = image;
     }
 
     updateUserMutation({
-      variables: {
-        ...newUserData
-      }
+      variables: { ...userMutationData }
     });
   };
 
