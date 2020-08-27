@@ -13,7 +13,7 @@ import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
 import { useCheckbox, useDropdown, useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
 import { ICategory } from '../../../utils/interfaces';
-import { COLOR_PURPLE, COLOR_RED, STRING_SERVER_ERROR, VALUE_CATEGORIES } from '../../../utils/values';
+import { COLOR_PURPLE, COLOR_RED, STRING_FIELD_REQUIRED, STRING_SERVER_ERROR, VALUE_CATEGORIES } from '../../../utils/values';
 
 import { ICategoryData, ICategoryMutationInput, useCategoryMutation, useCategoryQuery } from './detail.graphql';
 import { BodyContainer, DetailContainer } from './detail.style';
@@ -21,9 +21,9 @@ import { BodyContainer, DetailContainer } from './detail.style';
 export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param }) => {
   const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
   const [bannerMessage, setBannerMessage] = React.useState<string>('');
+  const [categoryData, setCategoryData] = React.useState<ICategory>();
   const [headerTitle, setHeaderTitle] = React.useState<string>('');
   const [notFound, setNotFound] = React.useState<boolean>(false);
-  const [category, setCategory] = React.useState<ICategory>();
   const [fields, setFields] = React.useState<boolean>(false);
 
   const [categoryQuery, {
@@ -77,9 +77,24 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
     if (action === 'edit') return navigateTo(`/admin/categories/view/${param}`);
   };
 
+  const isValidForm = (): boolean => {
+    if (!categoriesDropdown.value?.icon) categoriesDropdown.setError(STRING_FIELD_REQUIRED);
+    if (!categoryDescription.value) categoryDescription.setError(STRING_FIELD_REQUIRED);
+    if (!categoryName.value) categoryName.setError(STRING_FIELD_REQUIRED);
+
+    if (!categoriesDropdown.value?.icon || !categoryDescription.value || !categoryName.value) return false;
+
+    return true;
+  };
+
   const handleDoneClick = (): void => {
     if (action === 'view') return navigateTo(`/admin/categories/edit/${param}`);
-    if (action === 'edit' || action === 'add') return buildCategoryObject();
+
+    if (action === 'edit' || action === 'add') {
+      if (!isValidForm()) return;
+
+      return buildCategoryObject();
+    };
   };
 
   const handleCategoryResponse = React.useCallback((data: ICategoryData, type: string): void => {
@@ -99,10 +114,10 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
       return navigateTo(`/admin/categories/view/${category._id}`);
     }
 
-    return setCategory(category);
+    return setCategoryData(category);
   }, [param, navigateTo]);
 
-  const setCategoryData = React.useCallback((category: ICategory): void => {
+  const setCategoryFields = React.useCallback((category: ICategory): void => {
     if (fields) return;
 
     categoryDescription.setValue(category.description || '');
@@ -132,10 +147,10 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
   }, [action]);
 
   React.useEffect(() => {
-    if (!category) return;
+    if (!categoryData) return;
 
-    return setCategoryData(category);
-  }, [category, setCategoryData]);
+    return setCategoryFields(categoryData);
+  }, [categoryData, setCategoryFields]);
 
   React.useEffect(() => {
     if (categoryMutationData) return handleCategoryResponse(categoryMutationData, 'mutation');
