@@ -5,7 +5,7 @@ import { MutationTuple } from '@apollo/client/react/types/types';
 import { IError } from '../../utils/interfaces';
 
 const LOGIN_MUTATION: DocumentNode = gql`
-  mutation Login($user: UserLoginInput!) {
+  mutation LoginMutation($user: UserLoginInput!) {
     login(user: $user) {
       ... on LoginSuccess {
         token

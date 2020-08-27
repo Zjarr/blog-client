@@ -7,7 +7,7 @@ import { DocumentNode } from 'graphql';
 import { ICategory, IError } from '../../../utils/interfaces';
 
 const CATEGORY_MUTATION: DocumentNode = gql`
-  mutation CategoryMutation ($category: CategoryInput!) {
+  mutation CategoryMutation($category: CategoryInput!) {
     category(category: $category) {
       ... on CategorySuccess {
         category {
@@ -30,7 +30,7 @@ const CATEGORY_MUTATION: DocumentNode = gql`
 `;
 
 const CATEGORY_QUERY: DocumentNode = gql`
-  query CategoryQuery ($category: GetCategoryInput!) {
+  query CategoryQuery($category: GetCategoryInput!) {
     category(category: $category) {
       ... on CategorySuccess {
         category {
@@ -55,7 +55,6 @@ const CATEGORY_QUERY: DocumentNode = gql`
 interface ICategoryQueryInput {
   category: {
     _id?: string;
-    name?: string;
   }
 }
 

@@ -5,7 +5,7 @@ import { QueryResult } from '@apollo/client/react/types/types';
 import { IError, IUser } from '../../utils/interfaces';
 
 const SYSTEM_QUERY: DocumentNode = gql`
-  query System {
+  query SystemQuery {
     system {
       version
     }
@@ -13,7 +13,7 @@ const SYSTEM_QUERY: DocumentNode = gql`
 `;
 
 const USER_QUERY: DocumentNode = gql`
-  query GetUser($user: GetUserInput!) {
+  query UserQuery($user: GetUserInput!) {
     user(user: $user) {
       ... on UserSuccess {
         user {

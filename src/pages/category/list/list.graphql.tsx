@@ -5,7 +5,7 @@ import { QueryTuple } from '@apollo/client/react/types/types';
 import { ICategory, IError, IPagination } from '../../../utils/interfaces';
 
 const CATEGORIES_QUERY: DocumentNode = gql`
-  query Categories($categories: GetCategoriesInput!) {
+  query CategoriesQuery($categories: GetCategoriesInput!) {
     categories(categories: $categories) {
       ... on CategoriesSuccess {
         categories {

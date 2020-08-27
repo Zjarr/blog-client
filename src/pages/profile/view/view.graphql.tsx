@@ -5,7 +5,7 @@ import { QueryResult } from '@apollo/client/react/types/types';
 import { IError, IUser } from '../../../utils/interfaces';
 
 const USER_QUERY: DocumentNode = gql`
-  query GetUser($user: GetUserInput!) {
+  query UserQuery($user: GetUserInput!) {
     user(user: $user) {
       ... on UserSuccess {
         user {
