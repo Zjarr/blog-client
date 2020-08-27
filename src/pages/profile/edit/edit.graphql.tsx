@@ -7,7 +7,7 @@ import { DocumentNode } from 'graphql';
 import { IError, ISocial, IUser } from '../../../utils/interfaces';
 
 const USER_QUERY: DocumentNode = gql`
-  query GetUser($user: GetUserInput!) {
+  query UserQuery($user: GetUserInput!) {
     user(user: $user) {
       ... on UserSuccess {
         user {
@@ -37,7 +37,7 @@ const USER_QUERY: DocumentNode = gql`
 `;
 
 const USER_MUTATION: DocumentNode = gql`
-  mutation UpdateUser($user: UserInput!) {
+  mutation UserMutation($user: UserInput!) {
     user(user: $user) {
       ... on UserSuccess {
         user {
