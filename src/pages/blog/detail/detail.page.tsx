@@ -14,9 +14,8 @@ import { Renderer } from '../../../components/renderer';
 import { LabelText, ParagraphText } from '../../../components/text';
 import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
-import { UpdateImage } from '../../../components/update-image';
 import { useDropdown, useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
-import { ICategory, IImageResult, ISource } from '../../../utils/interfaces';
+import { ICategory, ISource } from '../../../utils/interfaces';
 import { COLOR_GRAY_MEDIUM, COLOR_PURPLE, STRING_FIELD_REQUIRED } from '../../../utils/values';
 
 import { BodyContainer, DetailContainer, EditorButtonsContainer, EmptyListContainer, SimpleListContainer } from './detail.style';
@@ -26,8 +25,6 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   const [headerTitle, setHeaderTitle] = React.useState<string>('');
 
   const [imagesModalVisible, setImagesModalVisible] = React.useState<boolean>(false);
-  const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
-  const [image, setImage] = React.useState<string>('');
 
   const [categories, setCategories] = React.useState<ICategory[]>([]);
   const [sources, setSources] = React.useState<ISource[]>([]);
@@ -49,12 +46,6 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
 
   const togglePreviewClick = (): void => {
     return setPreviewBlog(!previewBlog);
-  };
-
-  const handleImageUpdateModalClose = (result: IImageResult | null): void => {
-    setImage(result ? result.base64 : image);
-
-    return setImageModalVisible(false);
   };
 
   const addCategory = (): void => {
@@ -150,12 +141,14 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
         <Column xl={4} position={'right'}>
           <FormField label={'Image:'}>
             <Image
-              onUpdateClick={(): void => setImageModalVisible(true)}
-              updatable={action !== 'view'}
               height={'180px'}
               shape={'square'}
               width={'100%'}
-              src={image} />
+              src={''} />
+          </FormField>
+
+          <FormField label={'Image:'}>
+            <Input icon={'image'} placeholder={'Blog image url'} disabled={action === 'view'} />
           </FormField>
 
           <FormField label={'Title:'}>
@@ -248,11 +241,6 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
       <ImageList
         onClose={(): void => setImagesModalVisible(false)}
         visible={imagesModalVisible} />
-
-      <UpdateImage
-        onClose={handleImageUpdateModalClose}
-        visible={imageModalVisible}
-        src={image} />
     </DetailContainer>
   );
 };
