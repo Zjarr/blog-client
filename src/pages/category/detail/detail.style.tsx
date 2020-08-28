@@ -3,11 +3,14 @@ import Styled from 'styled-components';
 
 import { MEDIA_SM, MEDIA_XL } from '../../../utils/values';
 
+const DEFAULT_BODY_ALIGN = 'initial';
 const DEFAULT_BODY_HEIGHT = 'auto';
 
+const EMPTY_BODY_ALIGN = 'center';
 const EMPTY_BODY_HEIGHT = 'calc(100% - 112px)';
 
-const getBodyheight = (empty?: boolean): string => empty ? EMPTY_BODY_HEIGHT : DEFAULT_BODY_HEIGHT;
+const getBodyAlign = (empty?: boolean): string => empty ? EMPTY_BODY_ALIGN : DEFAULT_BODY_ALIGN;
+const getBodyHeight = (empty?: boolean): string => empty ? EMPTY_BODY_HEIGHT : DEFAULT_BODY_HEIGHT;
 
 export const DetailContainer = Styled.div`
   height: 100%;
@@ -24,7 +27,6 @@ export const DetailContainer = Styled.div`
 `;
 
 export const BodyContainer = Styled(Row) <{ empty: boolean }>`
-  align-items: center;
-
-  min-height: ${({ empty }): string => getBodyheight(empty)};
+  align-items: ${({ empty }): string => getBodyAlign(empty)};
+  min-height: ${({ empty }): string => getBodyHeight(empty)};
 `;
