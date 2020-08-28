@@ -8,18 +8,20 @@ const DEFAULT_BANNER_TRANSFORM = 'translateY(0)';
 
 const CENTER_BANNER_LEFT = '16px';
 const VISIBLE_BANNER_OPACITY = '1';
-const VISIBLE_BANNER_TRANSFORM_BIG = 'translateY(-96px)';
-const VISIBLE_BANNER_TRANSFORM_SMALL = 'translateY(-80px)';
+const VISIBLE_BANNER_TRANSFORM_SM = 'translateY(-88px)';
+const VISIBLE_BANNER_TRANSFORM_XL = 'translateY(-96px)';
+const VISIBLE_BANNER_TRANSFORM_XS = 'translateY(-80px)';
 
 const getBannerLeft = (center?: boolean): string => center ? CENTER_BANNER_LEFT : DEFAULT_BANNER_LEFT;
 const getBannerOpacity = (isVisible?: boolean): string => isVisible ? VISIBLE_BANNER_OPACITY : DEFAULT_BANNER_OPACITY;
 
-const getBannerTransform = (isVisible?: boolean, mobile?: boolean): string => {
-  if (!isVisible) {
-    return DEFAULT_BANNER_TRANSFORM;
-  }
+const getBannerTransform = (isVisible?: boolean, viewport?: string): string => {
+  if (!isVisible) return DEFAULT_BANNER_TRANSFORM;
 
-  return mobile ? VISIBLE_BANNER_TRANSFORM_SMALL : VISIBLE_BANNER_TRANSFORM_BIG;
+  if (viewport === 'SM') return VISIBLE_BANNER_TRANSFORM_SM;
+  if (viewport === 'XL') return VISIBLE_BANNER_TRANSFORM_XL;
+
+  return VISIBLE_BANNER_TRANSFORM_XS;
 };
 
 export const BannerContainer = Styled.div<{ isVisible: boolean, center?: boolean }>`
@@ -44,14 +46,15 @@ export const BannerContainer = Styled.div<{ isVisible: boolean, center?: boolean
   color: ${COLOR_WHITE};
 
   opacity:  ${({ isVisible }): string => getBannerOpacity(isVisible)};
-  transform: ${({ isVisible }): string => getBannerTransform(isVisible, true)};
+  transform: ${({ isVisible }): string => getBannerTransform(isVisible, 'XS')};
 
   ${MEDIA_SM} {
-    transform: ${({ isVisible }): string => getBannerTransform(isVisible, false)};
+    transform: ${({ isVisible }): string => getBannerTransform(isVisible, 'SM')};
   }
 
   ${MEDIA_XL} {
     left: ${({ center }): string => getBannerLeft(center)};
+    transform: ${({ isVisible }): string => getBannerTransform(isVisible, 'XL')};
   }
 `;
 
