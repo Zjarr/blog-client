@@ -7,7 +7,7 @@ export const useDropdown = (initialValues?: IDropdownValue[]): IDropdownHook => 
   const [value, setValue] = React.useState<IDropdownValue | null>(null);
   const [error, setError] = React.useState<string>('');
 
-  const onChange = (value: IDropdownValue): void => {
+  const onChange = (value: IDropdownValue | null): void => {
     if (error) {
       setError('');
     }
@@ -28,7 +28,7 @@ export const useDropdown = (initialValues?: IDropdownValue[]): IDropdownHook => 
 
 interface IDropdownHook {
   error: string;
-  onChange: (value: IDropdownValue) => void;
+  onChange: (value: IDropdownValue | null) => void;
   setError: (error: string) => void;
   setValue: (value: IDropdownValue | null) => void;
   setValues: (values: IDropdownValue[]) => void;
