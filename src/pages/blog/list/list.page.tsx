@@ -11,11 +11,11 @@ import { Input } from '../../../components/input';
 import { List } from '../../../components/list';
 import { SubtitleText } from '../../../components/text';
 import { Toggle } from '../../../components/toggle';
-import { useCheckbox, useInput, useNavigateTo } from '../../../utils/hooks';
+import { useCheckbox, useInput, useNavigateTo, useDropdown } from '../../../utils/hooks';
 import { IBlog } from '../../../utils/interfaces';
 import { COLOR_PURPLE, COLOR_RED, PAGINATION_DEFAULT, STRING_SERVER_ERROR } from '../../../utils/values';
 
-import { IBlogsQueryData, useBlogsQuery } from './list.graphql';
+import { IBlogsQueryData, useBlogsQuery, useCategoriesQuery, ICategoriesQueryData } from './list.graphql';
 import { BlogListContainer, BodyContainer, FilterContainer, ListContainer } from './list.style';
 
 export const ListBlogPage: React.FC<IListBlogPage> = () => {
@@ -30,8 +30,15 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
     loading: blogsQueryLoading
   }] = useBlogsQuery();
 
+  const {
+    error: categoriesQueryError,
+    data: categoriesQueryData,
+    loading: categoriesQueryLoading
+  } = useCategoriesQuery();
+
   const navigateTo = useNavigateTo();
 
+  const filterCategories = useDropdown([]);
   const filterActive = useCheckbox(true);
   const filterSearch = useInput('');
 
@@ -66,14 +73,17 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
     return setBlogs(blogsCards);
   }, []);
 
-  const getBlogs = React.useCallback((active: boolean, name: string) => {
+  const getBlogs = React.useCallback((active: boolean, category: string, name: string) => {
+    const blogs = {
+      active,
+      name,
+      category,
+      pagination: PAGINATION_DEFAULT
+    };
+
     blogsQuery({
       variables: {
-        blogs: {
-          active,
-          name,
-          pagination: PAGINATION_DEFAULT
-        }
+        blogs
       }
     });
   }, [blogsQuery]);
@@ -87,13 +97,26 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
     return buildBlogsObject(blogs);
   }, [buildBlogsObject]);
 
+  const handleCategoriesQueryResponse = React.useCallback((data: ICategoriesQueryData): void => {
+    const { error, categories } = data.categories;
+
+    if (error) return showBannerMessage(error.message);
+    if (!categories) return;
+
+    return filterCategories.setValues(categories);
+  }, [filterCategories]);
+
   React.useEffect(() => {
-    return getBlogs(filterActive.checked, filterSearch.value);
-  }, [filterActive.checked, filterSearch.value, getBlogs]);
+    return getBlogs(filterActive.checked, filterCategories.value?._id || '', filterSearch.value);
+  }, [filterActive.checked, filterCategories.value, filterSearch.value, getBlogs]);
 
   React.useEffect(() => {
     if (blogsQueryData) return handleBlogsQueryResponse(blogsQueryData);
   }, [blogsQueryData, handleBlogsQueryResponse]);
+
+  React.useEffect(() => {
+    if (categoriesQueryData) return handleCategoriesQueryResponse(categoriesQueryData);
+  }, [categoriesQueryData, handleCategoriesQueryResponse]);
 
   React.useEffect(() => {
     if (!blogsQueryError) return;
@@ -102,6 +125,12 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
 
     return showBannerMessage(STRING_SERVER_ERROR);
   }, [blogsQueryError]);
+
+  React.useEffect(() => {
+    if (!categoriesQueryError) return;
+
+    return showBannerMessage(STRING_SERVER_ERROR);
+  }, [categoriesQueryError]);
 
   return (
     <BlogListContainer>
@@ -124,10 +153,10 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
 
           <FormField label={'Category:'}>
             <Dropdown
+              defaultValue={'Any (default)'}
               icon={'category'}
-              name={'Any'}
-              onChange={(): void => { }}
-              values={[]} />
+              name={categoriesQueryLoading ? 'Reading categories list...' : filterCategories.value?.name || 'Any'}
+              {...filterCategories} />
           </FormField>
 
           <FormField label={'Published:'}>
