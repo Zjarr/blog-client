@@ -19,14 +19,14 @@ import {
   DropdownValueContainer
 } from './dropdown.style';
 
-export const Dropdown: React.FC<IDropdown> = ({ disabled = false, error, field, icon, loading, name, onChange, values, width }) => {
+export const Dropdown: React.FC<IDropdown> = ({ defaultValue, disabled = false, error, field, icon, loading, name, onChange, values, width }) => {
   const [open, setOpen] = React.useState<boolean>(false);
 
   const toggleDropdownValueContainer = (): void => {
     return setOpen(!open);
   };
 
-  const handleValueClick = (value: IDropdownValue): void => {
+  const handleValueClick = (value: IDropdownValue | null): void => {
     setOpen(false);
 
     return onChange(value);
@@ -51,9 +51,11 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, error, field, 
                 <DropdownTrigger disabled={disabled} error={error} icon={icon} open={open} onClick={(): void => toggleDropdownValueContainer()} >
                   {name}
                 </DropdownTrigger>
+
                 {
                   icon && <Icon name={icon} />
                 }
+
                 <DropdownTriggerCaret disabled={disabled} open={open}>
                   <Icon name={'keyboard_arrow_down'} size={'24px'} />
                 </DropdownTriggerCaret>
@@ -64,7 +66,19 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, error, field, 
             error && <Error>{error}</Error>
           }
         </DropdownTriggerContainer>
+
         <DropdownValueContainer open={open} error={error}>
+          {
+            defaultValue &&
+            <DropdownValue>
+              <TextButton
+                align={'space-between'}
+                icon={'apps'}
+                height={'48px'}
+                width={'100%'}
+                onClick={(): void => handleValueClick(null)}>{defaultValue}</TextButton>
+            </DropdownValue>
+          }
           {
             values.length > 0 ? values.map((value: IDropdownValue, index: number) =>
               <DropdownValue key={`dropdown-value-${field ? value[field] : value.name}-${index}`}>
@@ -73,8 +87,7 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, error, field, 
                   icon={value.icon}
                   height={'48px'}
                   width={'100%'}
-                  onClick={(): void => handleValueClick(value)}
-                >{value.name}</TextButton>
+                  onClick={(): void => handleValueClick(value)}>{value.name}</TextButton>
               </DropdownValue>
             ) : <ParagraphText>No options to choose from.</ParagraphText>
           }
@@ -85,13 +98,14 @@ export const Dropdown: React.FC<IDropdown> = ({ disabled = false, error, field, 
 };
 
 interface IDropdown {
+  defaultValue?: string;
   disabled?: boolean;
   error?: string;
   field?: keyof IDropdownValue;
   icon?: string;
   loading?: boolean;
   name: string;
-  onChange: (value: IDropdownValue) => void;
+  onChange: (value: IDropdownValue | null) => void;
   values: IDropdownValue[];
   width?: string;
 };
