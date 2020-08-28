@@ -18,7 +18,10 @@ import { ICategoriesQueryData, useCategoriesQuery } from './list.graphql';
 import { BodyContainer, CategoryListContainer, FilterContainer, ListContainer } from './list.style';
 
 export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
-  const navigateTo = useNavigateTo();
+  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
+  const [bannerMessage, setBannerMessage] = React.useState<string>('');
+  const [categories, setCategories] = React.useState<IImageCard[]>([]);
+  const [loading, setLoading] = React.useState<boolean>(true);
 
   const [categoriesQuery, {
     error: categoriesQueryError,
@@ -26,10 +29,7 @@ export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
     loading: categoriesQueryLoading
   }] = useCategoriesQuery();
 
-  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
-  const [bannerMessage, setBannerMessage] = React.useState<string>('');
-  const [categories, setCategories] = React.useState<IImageCard[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(true);
+  const navigateTo = useNavigateTo();
 
   const filterActive = useCheckbox(true);
   const filterSearch = useInput('');

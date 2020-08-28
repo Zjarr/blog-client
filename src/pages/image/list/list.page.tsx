@@ -18,7 +18,10 @@ import { IImagesQueryData, useImagesQuery } from './list.graphql';
 import { BodyContainer, FilterContainer, ImageListContainer, ListContainer } from './list.style';
 
 export const ListImagePage: React.FC<IListImagePage> = () => {
-  const navigateTo = useNavigateTo();
+  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
+  const [bannerMessage, setBannerMessage] = React.useState<string>('');
+  const [images, setImages] = React.useState<IImageCard[]>([]);
+  const [loading, setLoading] = React.useState<boolean>(true);
 
   const [imagesQuery, {
     error: imagesQueryError,
@@ -26,10 +29,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
     loading: imagesQueryLoading
   }] = useImagesQuery();
 
-  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
-  const [bannerMessage, setBannerMessage] = React.useState<string>('');
-  const [images, setImages] = React.useState<IImageCard[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(true);
+  const navigateTo = useNavigateTo();
 
   const filterActive = useCheckbox(true);
   const filterSearch = useInput('');
