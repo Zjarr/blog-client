@@ -2,6 +2,12 @@ import Styled from 'styled-components';
 
 import { BORDER_RADIUS_MEDIUM, COLOR_WHITE, MEDIA_LG } from '../../utils/values';
 
+const CENTER_ITEMS_ALIGNMENT = 'flex-start';
+
+const DEFAULT_ITEMS_ALIGNMENT = 'center';
+
+const getItemsAlignment = (empty?: boolean): string => empty ? CENTER_ITEMS_ALIGNMENT : DEFAULT_ITEMS_ALIGNMENT;
+
 export const ImageListContainer = Styled.div`
   bottom: 16px;
   left: 16px;
@@ -34,18 +40,26 @@ export const SearchContainer = Styled.div`
 
   ${MEDIA_LG} {
     > div {
-      width: 50%;
+      width: 30%;
     }
   }
 `;
 
-export const ListContainer = Styled.div`
+export const ListContainer = Styled.div<{ empty?: boolean }>`
+  display: flex;
+  height: calc(100% - 176px);
+  justify-content: center;
   padding: 16px;
+
+  align-items: ${({ empty }): string => getItemsAlignment(empty)};
+
+  ${MEDIA_LG} {
+    height: calc(100% - 190px);
+  }
 `;
 
 export const PaginatorContainer = Styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 32px;
   margin-top: -32px;
 `;
