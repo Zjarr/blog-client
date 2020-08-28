@@ -15,7 +15,7 @@ import { useNavigateTo } from '../../../utils/hooks';
 import { ISocial, IUser } from '../../../utils/interfaces';
 import { BORDER_RADIUS_SMALL, COLOR_PURPLE, COLOR_RED, STRING_SERVER_ERROR } from '../../../utils/values';
 
-import { IUserQueryData, useUserQuery } from './view.graphql';
+import { IPasswordMutationData, IUserQueryData, usePasswordMutation, useUserQuery } from './view.graphql';
 import {
   AdvancedInfoContainer,
   BasicInfoContainer,
@@ -28,9 +28,14 @@ import {
 } from './view.style';
 
 export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
-  const navigateTo = useNavigateTo();
+  const [passwordModalVisible, setPasswordModalVisible] = React.useState<boolean>(false);
+  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
+  const [bannerMessage, setBannerMessage] = React.useState<string>('');
+  const [userData, setUserData] = React.useState<IUser | null>(null);
 
   const { user } = React.useContext(UserContext);
+
+  const navigateTo = useNavigateTo();
 
   const {
     error: userQueryError,
@@ -38,10 +43,11 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
     loading: userQueryLoading
   } = useUserQuery(user!);
 
-  const [passwordModalVisible, setPasswordModalVisible] = React.useState<boolean>(false);
-  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
-  const [bannerMessage, setBannerMessage] = React.useState<string>('');
-  const [userData, setUserData] = React.useState<IUser | null>(null);
+  const [passwordMutation, {
+    error: passwordMutationError,
+    data: passwordMutationData,
+    loading: passwordMutationLoading
+  }] = usePasswordMutation();
 
   const handleBannerMessageHide = (): void => {
     return setBannerVisible(false);
@@ -53,6 +59,23 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
     return setBannerVisible(true);
   };
 
+  const handlePasswordUpdate = (password: { current: string; updated: string } | null): void => {
+    setPasswordModalVisible(false);
+
+    if (!password) return;
+    const { current, updated } = password;
+
+    passwordMutation({
+      variables: {
+        password: {
+          _id: user!,
+          current,
+          updated
+        }
+      }
+    });
+  };
+
   const handleUserQueryResponse = React.useCallback((data: IUserQueryData): void => {
     const { error, user } = data.user;
 
@@ -62,13 +85,30 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
     return setUserData(user);
   }, []);
 
+  const handlePasswordMutationResponse = React.useCallback((data: IPasswordMutationData): void => {
+    const { error, user } = data.password;
+
+    if (error) return showBannerMessage(error.message);
+    if (!user) return;
+
+    return showBannerMessage('Password was updated successfully.');
+  }, []);
+
   React.useEffect(() => {
     if (userQueryData) return handleUserQueryResponse(userQueryData);
   }, [userQueryData, handleUserQueryResponse]);
 
   React.useEffect(() => {
+    if (passwordMutationData) return handlePasswordMutationResponse(passwordMutationData);
+  }, [passwordMutationData, handlePasswordMutationResponse]);
+
+  React.useEffect(() => {
     if (userQueryError) return showBannerMessage(STRING_SERVER_ERROR);
   }, [userQueryError]);
+
+  React.useEffect(() => {
+    if (passwordMutationError) return showBannerMessage(STRING_SERVER_ERROR);
+  }, [passwordMutationError]);
 
   return (
     <ViewContainer>
@@ -136,12 +176,20 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
       </Row>
 
       <Footer>
-        <SimpleButton icon={'vpn_key'} onClick={(): void => setPasswordModalVisible(true)} />
-        <SimpleButton icon={'edit'} color={COLOR_PURPLE} onClick={(): void => navigateTo('/admin/profile/edit')} />
+        <SimpleButton
+          disabled={passwordMutationLoading}
+          icon={passwordMutationLoading ? 'more_horiz' : 'vpn_key'}
+          onClick={(): void => setPasswordModalVisible(true)} />
+
+        <SimpleButton
+          color={COLOR_PURPLE}
+          disabled={passwordMutationLoading}
+          icon={passwordMutationLoading ? 'more_horiz' : 'edit'}
+          onClick={(): void => navigateTo('/admin/profile/edit')} />
       </Footer>
 
       <ChangePassword
-        onClose={(): void => setPasswordModalVisible(false)}
+        onClose={handlePasswordUpdate}
         visible={passwordModalVisible} />
 
       <Banner
