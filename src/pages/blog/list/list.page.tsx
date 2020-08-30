@@ -12,7 +12,7 @@ import { List } from '../../../components/list';
 import { SubtitleText } from '../../../components/text';
 import { Toggle } from '../../../components/toggle';
 import { useCheckbox, useInput, useNavigateTo, useDropdown } from '../../../utils/hooks';
-import { IBlog } from '../../../utils/interfaces';
+import { IBlog, ICategory } from '../../../utils/interfaces';
 import { COLOR_PURPLE, COLOR_RED, PAGINATION_DEFAULT, STRING_SERVER_ERROR } from '../../../utils/values';
 
 import { IBlogsQueryData, useBlogsQuery, useCategoriesQuery, ICategoriesQueryData } from './list.graphql';
@@ -42,6 +42,10 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
   const filterActive = useCheckbox(true);
   const filterSearch = useInput('');
 
+  const mapCategoryObject = React.useCallback((ids: string[]): ICategory[] => {
+    return filterCategories.values.filter(category => ids.includes(category._id!)) as ICategory[];
+  }, [filterCategories.values]);
+
   const handleBannerMessageHide = (): void => {
     return setBannerVisible(false);
   };
@@ -56,14 +60,16 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
     const blogsCards: IImageCard[] = [];
 
     blogs.forEach(blog => {
+      const categoryString = mapCategoryObject(blog.categories || []).map(category => category.name).join(' | ');
+
       blogsCards.push({
         active: blog.active,
         image: blog.image,
         link: `/admin/blogs/view/${blog._id}`,
         primaryText: blog.description,
         primaryTextIcon: 'description',
-        secondaryText: blog.categories?.map(category => category).join(' | ') || 'No categories',
-        secondaryTextIcon: 'alt_route',
+        secondaryText: categoryString || 'No categories',
+        secondaryTextIcon: 'category',
         title: blog.name
       });
     });
@@ -71,7 +77,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
     setLoading(false);
 
     return setBlogs(blogsCards);
-  }, []);
+  }, [mapCategoryObject]);
 
   const getBlogs = React.useCallback((active: boolean, category: string, name: string) => {
     const blogs = {
