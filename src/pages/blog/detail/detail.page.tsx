@@ -140,7 +140,6 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
     const isCategoryAlreadyAdded = !!categories.find((listCategory: ICategory) => listCategory._id === blogCategories.value?._id);
 
     if (isCategoryAlreadyAdded) blogCategories.setError('This category is already added.');
-
     if (!blogCategories.value?._id || isCategoryAlreadyAdded) return;
 
     setCategories([...categories, { ...blogCategories.value as ICategory }]);
@@ -191,7 +190,7 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
     if (param && !blog) {
       setNotFound(true);
 
-      return showBannerMessage('We could not find this category.');
+      return showBannerMessage('We could not find this blog.');
     }
 
     if (!blog) return;
