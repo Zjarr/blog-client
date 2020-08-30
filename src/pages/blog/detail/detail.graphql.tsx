@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client/react/hooks/useQuery';
 import { MutationTuple, QueryResult, QueryTuple } from '@apollo/client/react/types/types';
 import { DocumentNode } from 'graphql';
 
-import { IBlog, ICategory, IError } from '../../../utils/interfaces';
+import { IBlog, ICategory, IError, ISource } from '../../../utils/interfaces';
 
 const BLOG_MUTATION: DocumentNode = gql`
   mutation BlogMutation($blog: BlogInput!) {
@@ -104,9 +104,13 @@ export interface IBlogMutationInput {
   blog: {
     _id?: string;
     active: boolean;
-    description?: string;
-    icon: string;
+    body: string;
+    categories?: string[];
+    description: string;
+    image: string;
     name: string;
+    slug: string;
+    sources?: ISource[];
   }
 }
 
