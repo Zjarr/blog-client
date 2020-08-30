@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Banner } from '../../../components/banner';
 import { SimpleButton } from '../../../components/button';
 import { IconCard } from '../../../components/card';
 import { Column } from '../../../components/column';
@@ -16,24 +17,41 @@ import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
 import { useDropdown, useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
 import { ICategory, ISource } from '../../../utils/interfaces';
-import { COLOR_GRAY_MEDIUM, COLOR_PURPLE, STRING_FIELD_REQUIRED } from '../../../utils/values';
+import { COLOR_GRAY_MEDIUM, COLOR_PURPLE, STRING_FIELD_REQUIRED, STRING_SERVER_ERROR, COLOR_RED } from '../../../utils/values';
 
+import { ICategoriesQueryData, useCategoriesQuery } from './detail.graphql';
 import { BodyContainer, DetailContainer, EditorButtonsContainer, EmptyListContainer, SimpleListContainer } from './detail.style';
 
 export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
-  const [previewBlog, setPreviewBlog] = React.useState<boolean>(false);
-  const [headerTitle, setHeaderTitle] = React.useState<string>('');
-
   const [imagesModalVisible, setImagesModalVisible] = React.useState<boolean>(false);
-
+  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
+  const [bannerMessage, setBannerMessage] = React.useState<string>('');
+  const [previewBlog, setPreviewBlog] = React.useState<boolean>(false);
   const [categories, setCategories] = React.useState<ICategory[]>([]);
+  const [headerTitle, setHeaderTitle] = React.useState<string>('');
   const [sources, setSources] = React.useState<ISource[]>([]);
+
+  const {
+    error: categoriesQueryError,
+    data: categoriesQueryData,
+    loading: categoriesQueryLoading
+  } = useCategoriesQuery();
 
   const navigateTo = useNavigateTo();
   const category = useDropdown([]);
   const blogBody = useTextArea();
   const sourceName = useInput();
   const sourceURL = useInput();
+
+  const handleBannerMessageHide = (): void => {
+    return setBannerVisible(false);
+  };
+
+  const showBannerMessage = (message: string): void => {
+    setBannerMessage(message);
+
+    return setBannerVisible(true);
+  };
 
   const handleCancelClick = (): void => {
     if (action === 'add') return navigateTo('/admin/blogs');
@@ -97,9 +115,28 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
     if (action === 'view') setHeaderTitle('Blog details');
   }, []);
 
+  const handleCategoriesQueryResponse = React.useCallback((data: ICategoriesQueryData): void => {
+    const { error, categories } = data.categories;
+
+    if (error) return showBannerMessage(error.message);
+    if (!categories) return;
+
+    return category.setValues(categories);
+  }, [category]);
+
   React.useEffect(() => {
     initPageProperties(action);
   }, [action, initPageProperties]);
+
+  React.useEffect(() => {
+    if (categoriesQueryData) return handleCategoriesQueryResponse(categoriesQueryData);
+  }, [categoriesQueryData, handleCategoriesQueryResponse]);
+
+  React.useEffect(() => {
+    if (!categoriesQueryError) return;
+
+    return showBannerMessage(STRING_SERVER_ERROR);
+  }, [categoriesQueryError]);
 
   return (
     <DetailContainer>
@@ -173,9 +210,9 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
             action !== 'view' &&
             <FormField label={'Categories:'}>
               <Dropdown
-                name={category.value?.name || 'Select one'}
-                width={'calc(100% - 64px)'}
                 icon={'category'}
+                name={categoriesQueryLoading ? 'Reading categories list...' : category.value?.name || 'Select one'}
+                width={'calc(100% - 64px)'}
                 {...category} />
               <SimpleButton icon={'add'} onClick={addCategory} />
             </FormField>
@@ -241,6 +278,13 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
       <ImageList
         onClose={(): void => setImagesModalVisible(false)}
         visible={imagesModalVisible} />
+
+      <Banner
+        color={COLOR_RED}
+        icon={'clear'}
+        onHide={handleBannerMessageHide}
+        text={bannerMessage}
+        visible={bannerVisible} />
     </DetailContainer>
   );
 };
