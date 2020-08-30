@@ -73,7 +73,7 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
     return blogCategories.values.filter(category => ids.includes(category._id!)) as ICategory[];
   }, [blogCategories.values]);
 
-  const buildCategoryObject = (): void => {
+  const buildBlogObject = (): void => {
     const blogMutationData: IBlogMutationInput = {
       blog: {
         active: blogActive.checked,
@@ -109,9 +109,25 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
     if (action === 'edit') return navigateTo(`/admin/blogs/view/${param}`);
   };
 
+  const isValidForm = (): boolean => {
+    if (!blogBody.value) blogBody.setError(STRING_FIELD_REQUIRED);
+    if (!blogDescription.value) blogDescription.setError(STRING_FIELD_REQUIRED);
+    if (!blogImage.value) blogImage.setError(STRING_FIELD_REQUIRED);
+    if (!blogName.value) blogName.setError(STRING_FIELD_REQUIRED);
+    if (!blogSlug.value) blogSlug.setError(STRING_FIELD_REQUIRED);
+
+    if (!blogBody.value || !blogDescription.value || !blogImage.value || !blogName.value || !blogSlug.value) return false;
+
+    return true;
+  };
+
   const handleDoneClick = (): void => {
     if (action === 'view') return navigateTo(`/admin/blogs/edit/${param}`);
-    if (action === 'edit' || action === 'add') return buildCategoryObject();
+    if (action === 'edit' || action === 'add') {
+      if (!isValidForm()) return;
+
+      return buildBlogObject();
+    };
   };
 
   const togglePreviewClick = (): void => {
