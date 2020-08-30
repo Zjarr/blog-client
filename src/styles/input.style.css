@@ -2,3 +2,9 @@ input,
 textarea {
   appearance: none;
 }
+
+input:disabled,
+textarea:disabled {
+  -webkit-text-fill-color: rgba(0, 0, 0, 1);
+  opacity: 1;
+}
