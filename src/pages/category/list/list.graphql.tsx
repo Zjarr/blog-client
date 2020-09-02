@@ -2,7 +2,7 @@ import { DocumentNode, gql } from '@apollo/client/core';
 import { useLazyQuery } from '@apollo/client/react/hooks/useLazyQuery';
 import { QueryTuple } from '@apollo/client/react/types/types';
 
-import { ICategory, IError, IPagination } from '../../../utils/interfaces';
+import { ICategory, IError, IPaginationInput } from '../../../utils/interfaces';
 
 const CATEGORIES_QUERY: DocumentNode = gql`
   query CategoriesQuery($categories: GetCategoriesInput!) {
@@ -45,7 +45,7 @@ export interface ICategoriesQueryInput {
   categories: {
     active: boolean;
     name: string;
-    pagination: IPagination;
+    pagination: IPaginationInput;
   }
 }
 
