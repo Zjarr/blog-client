@@ -2,6 +2,7 @@ export * from './border-radius.value';
 export * from './box-shadow.value';
 export * from './categories.value';
 export * from './colors.value';
+export * from './default.value';
 export * from './media-queries.value';
 export * from './pagination.value';
 export * from './social.value';
