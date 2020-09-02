@@ -34,9 +34,11 @@ const {
 } = process.env;
 
 export const DashboardPage: React.FC<IDashboardPage> = () => {
-  const { action, param, section } = useParams<{ action: string, param: string, section: string }>();
-  const [, , removeCookie] = useCookies();
-  const navigateTo = useNavigateTo();
+  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
+  const [bannerMessage, setBannerMessage] = React.useState<string>('');
+  const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
+  const [system, setSystem] = React.useState<string>('');
+  const [image, setImage] = React.useState<string>('');
 
   const { user, updateUser } = React.useContext(UserContext);
 
@@ -52,11 +54,9 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
     loading: userQueryLoading
   } = useUserQuery(user!);
 
-  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
-  const [bannerMessage, setBannerMessage] = React.useState<string>('');
-  const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
-  const [system, setSystem] = React.useState<string>('');
-  const [image, setImage] = React.useState<string>('');
+  const { action, param, section } = useParams<{ action: string, param: string, section: string }>();
+  const [, , removeCookie] = useCookies();
+  const navigateTo = useNavigateTo();
 
   const handleBannerMessageHide = (): void => {
     return setBannerVisible(false);
@@ -100,14 +100,20 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
   }, []);
 
   React.useEffect(() => {
-    if (systemQueryError) return setSystem(':(');
     if (systemQueryData) return setSystem(systemQueryData.system.version);
-  }, [systemQueryData, systemQueryError]);
+  }, [systemQueryData]);
+
+  React.useEffect(() => {
+    if (userQueryData) return handleUserQueryResponse(userQueryData);
+  }, [userQueryData, handleUserQueryResponse]);
+
+  React.useEffect(() => {
+    if (systemQueryError) return setSystem(':(');
+  }, [systemQueryError]);
 
   React.useEffect(() => {
     if (userQueryError) return showBannerMessage(STRING_SERVER_ERROR);
-    if (userQueryData) return handleUserQueryResponse(userQueryData);
-  }, [userQueryData, userQueryError, handleUserQueryResponse]);
+  }, [userQueryError]);
 
   return (
     <DashboardContainer>
