@@ -77,7 +77,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
     });
   }, [imagesQuery]);
 
-  const handleimagesQueryResponse = React.useCallback((data: IImagesQueryData): void => {
+  const handleImagesQueryResponse = React.useCallback((data: IImagesQueryData): void => {
     const { error, images } = data.images;
 
     if (error) return showBannerMessage(error.message);
@@ -91,8 +91,8 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
   }, [filterActive.checked, filterSearch.value, getImages]);
 
   React.useEffect(() => {
-    if (imagesQueryData) return handleimagesQueryResponse(imagesQueryData);
-  }, [imagesQueryData, handleimagesQueryResponse]);
+    if (imagesQueryData) return handleImagesQueryResponse(imagesQueryData);
+  }, [imagesQueryData, handleImagesQueryResponse]);
 
   React.useEffect(() => {
     if (!imagesQueryError) return;
