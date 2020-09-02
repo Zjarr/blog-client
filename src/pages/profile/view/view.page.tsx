@@ -13,7 +13,7 @@ import { SubtitleText } from '../../../components/text';
 import { UserContext } from '../../../contexts';
 import { useNavigateTo } from '../../../utils/hooks';
 import { ISocial, IUser } from '../../../utils/interfaces';
-import { BORDER_RADIUS_SMALL, COLOR_PURPLE, COLOR_RED, STRING_SERVER_ERROR } from '../../../utils/values';
+import { BORDER_RADIUS_SMALL, COLOR_PURPLE, COLOR_RED, DEFAULT_DATE_FORMAT, STRING_SERVER_ERROR } from '../../../utils/values';
 
 import { IPasswordMutationData, IUserQueryData, usePasswordMutation, useUserQuery } from './view.graphql';
 import {
@@ -168,7 +168,7 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
               {
                 userQueryLoading ?
                   <Skeleton height={'24px'} border={BORDER_RADIUS_SMALL} margin={'auto'} width={'50%'} /> :
-                  <Info>{Moment(userData?.created, 'YYYY-MM-DDTHH:mm:ss').utc().format('MMMM Do, YYYY')}</Info>
+                  <Info>{Moment(userData?.created, DEFAULT_DATE_FORMAT).utc().format('MMMM Do, YYYY')}</Info>
               }
             </InfoContainer>
           </AdvancedInfoContainer>
