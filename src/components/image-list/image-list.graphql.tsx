@@ -2,7 +2,7 @@ import { DocumentNode, gql } from '@apollo/client/core';
 import { useLazyQuery } from '@apollo/client/react/hooks/useLazyQuery';
 import { QueryTuple } from '@apollo/client/react/types/types';
 
-import { IError, IImage, IPagination } from '../../utils/interfaces';
+import { IError, IImage, IPaginationInput } from '../../utils/interfaces';
 
 const IMAGES_QUERY: DocumentNode = gql`
   query Images($images: GetImagesInput!) {
@@ -46,7 +46,7 @@ export interface IImagesQueryInput {
   images: {
     active: boolean;
     name: string;
-    pagination: IPagination;
+    pagination: IPaginationInput;
   }
 }
 

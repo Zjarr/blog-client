@@ -3,7 +3,7 @@ import { useLazyQuery } from '@apollo/client/react/hooks/useLazyQuery';
 import { useQuery } from '@apollo/client/react/hooks/useQuery';
 import { QueryResult, QueryTuple } from '@apollo/client/react/types/types';
 
-import { IBlog, ICategory, IError, IPagination } from '../../../utils/interfaces';
+import { IBlog, ICategory, IError, IPaginationInput } from '../../../utils/interfaces';
 
 const BLOGS_QUERY: DocumentNode = gql`
   query BlogsQuery($blogs: GetBlogsInput!) {
@@ -12,17 +12,9 @@ const BLOGS_QUERY: DocumentNode = gql`
         blogs {
           _id
           active
-          body
           categories
-          created
-          description
           image
           name
-          slug
-          sources {
-            name
-            url
-          }
           updated
         }
         pagination {
@@ -79,7 +71,7 @@ export interface IBlogsQueryInput {
     active: boolean;
     category: string;
     name: string;
-    pagination: IPagination;
+    pagination: IPaginationInput;
   }
 }
 

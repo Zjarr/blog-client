@@ -1,6 +1,6 @@
-import { IPagination } from '../interfaces';
+import { IPaginationInput } from '../interfaces';
 
-export const PAGINATION_DEFAULT: IPagination = {
+export const PAGINATION_DEFAULT: IPaginationInput = {
   limit: 10,
   page: 1,
   sort: {
