@@ -6,7 +6,7 @@ import { QueryResult, QueryTuple } from '@apollo/client/react/types/types';
 import { IBlog, ICategory, IError, IPagination } from '../../../utils/interfaces';
 
 const BLOGS_QUERY: DocumentNode = gql`
-  query Blogs($blogs: GetBlogsInput!) {
+  query BlogsQuery($blogs: GetBlogsInput!) {
     blogs(blogs: $blogs) {
       ... on BlogsSuccess {
         blogs {

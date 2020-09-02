@@ -5,7 +5,7 @@ import { QueryTuple } from '@apollo/client/react/types/types';
 import { IError, IImage, IPagination } from '../../../utils/interfaces';
 
 const IMAGES_QUERY: DocumentNode = gql`
-  query Images($images: GetImagesInput!) {
+  query ImagesQuery($images: GetImagesInput!) {
     images(images: $images) {
       ... on ImagesSuccess {
         images {
