@@ -35,5 +35,5 @@ interface IColorCard {
   icon: string;
   link: string;
   name: string;
-  number: number;
+  number: number | string;
 }
