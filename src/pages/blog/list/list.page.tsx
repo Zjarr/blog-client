@@ -1,3 +1,4 @@
+import Moment from 'moment';
 import React from 'react';
 
 import { Banner } from '../../../components/banner';
@@ -11,11 +12,11 @@ import { Input } from '../../../components/input';
 import { List } from '../../../components/list';
 import { SubtitleText } from '../../../components/text';
 import { Toggle } from '../../../components/toggle';
-import { useCheckbox, useInput, useNavigateTo, useDropdown } from '../../../utils/hooks';
+import { useCheckbox, useDropdown, useInput, useNavigateTo } from '../../../utils/hooks';
 import { IBlog, ICategory } from '../../../utils/interfaces';
-import { COLOR_PURPLE, COLOR_RED, PAGINATION_DEFAULT, STRING_SERVER_ERROR } from '../../../utils/values';
+import { COLOR_PURPLE, COLOR_RED, DEFAULT_DATE_FORMAT, PAGINATION_DEFAULT, STRING_SERVER_ERROR } from '../../../utils/values';
 
-import { IBlogsQueryData, useBlogsQuery, useCategoriesQuery, ICategoriesQueryData } from './list.graphql';
+import { IBlogsQueryData, ICategoriesQueryData, useBlogsQuery, useCategoriesQuery } from './list.graphql';
 import { BlogListContainer, BodyContainer, FilterContainer, ListContainer } from './list.style';
 
 export const ListBlogPage: React.FC<IListBlogPage> = () => {
@@ -66,10 +67,10 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
         active: blog.active,
         image: blog.image,
         link: `/admin/blogs/view/${blog._id}`,
-        primaryText: blog.description,
-        primaryTextIcon: 'description',
-        secondaryText: categoryString || 'No categories',
-        secondaryTextIcon: 'category',
+        primaryText: categoryString || 'No categories',
+        primaryTextIcon: 'category',
+        secondaryText: Moment(blog.updated, DEFAULT_DATE_FORMAT).utc().format('MMMM Do, YYYY'),
+        secondaryTextIcon: 'event',
         title: blog.name
       });
     });
