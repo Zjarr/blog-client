@@ -1,13 +1,16 @@
 import React from 'react';
 
-import { BarChart } from './bar';
+import { IBlogsReport } from '../../utils/interfaces';
 
+import { BarChart } from './bar';
 import { ChartContainer } from './chart.style';
 
 export const Chart: React.FC<IChart> = ({ data }) => {
   const [barHeights, setBarHeights] = React.useState<number[]>([]);
 
   const calcHeightPercent = React.useCallback((max: number, current: number): number => {
+    if (current === 0 && max === 0) return 0;
+
     return current / max;
   }, []);
 
@@ -21,18 +24,26 @@ export const Chart: React.FC<IChart> = ({ data }) => {
   }, [calcHeightPercent]);
 
   React.useEffect(() => {
-    getBarHeights(data);
+    const reportNumber = data.map(report => report.blogs);
+
+    getBarHeights(reportNumber);
   }, [data, getBarHeights]);
 
   return (
     <ChartContainer>
       {
-        data.map((number, index) => <BarChart key={`bar-chart-${number}-${index}`} day={'Mon'} number={number} height={barHeights[index]} />)
+        data.map((report, index) =>
+          <BarChart
+            day={report.day}
+            height={barHeights[index]}
+            key={`bar-chart-${report.day}-${index}`}
+            number={report.blogs} />
+        )
       }
     </ChartContainer>
   );
 };
 
 interface IChart {
-  data: number[];
+  data: IBlogsReport[];
 }

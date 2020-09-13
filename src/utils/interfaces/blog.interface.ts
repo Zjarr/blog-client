@@ -13,3 +13,8 @@ export interface IBlog {
   sources?: ISource[];
   updated: string;
 }
+
+export interface IBlogsReport {
+  day: string;
+  blogs: number;
+}
