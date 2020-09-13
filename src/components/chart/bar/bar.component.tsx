@@ -15,7 +15,7 @@ export const BarChart: React.FC<IBarChart> = ({ day, number, height }) => {
 };
 
 interface IBarChart {
-  day: 'Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri' | 'Sat' | 'Sun';
+  day: string;
   height: number;
   number: number;
 }

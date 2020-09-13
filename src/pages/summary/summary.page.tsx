@@ -8,9 +8,10 @@ import { Chart } from '../../components/chart';
 import { Column } from '../../components/column';
 import { Header } from '../../components/header';
 import { SubtitleText } from '../../components/text';
+import { IBlogsReport } from '../../utils/interfaces';
 import { COLOR_MAGENTA, COLOR_PURPLE, COLOR_RED, STRING_SERVER_ERROR } from '../../utils/values';
 
-import { IImagesQueryData, useImagesQuery, useBlogsQuery, IBlogsQueryData } from './summary.graphql';
+import { IBlogsAmountData, IBlogsWeekData, IImagesQueryData, useBlogsAmountQuery, useBlogsWeekQuery, useImagesQuery } from './summary.graphql';
 import {
   CardContainer,
   ChartContainer,
@@ -20,26 +21,40 @@ import {
   SummaryChartContainer,
   SummaryContainer
 } from './summary.style';
-import { IBlog } from '../../utils/interfaces';
+
+const LOADING_REPORT_DATA: IBlogsReport[] = [
+  { day: '...', blogs: 0 },
+  { day: '...', blogs: 0 },
+  { day: '...', blogs: 0 },
+  { day: '...', blogs: 0 },
+  { day: '...', blogs: 0 },
+  { day: '...', blogs: 0 },
+  { day: '...', blogs: 0 }
+];
 
 export const SummaryPage: React.FC<ISummaryPage> = () => {
+  const [blogsReport, setBlogsReport] = React.useState<IBlogsReport[]>(LOADING_REPORT_DATA);
   const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
   const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [imagesNumber, setImagesNumber] = React.useState<number>(0);
-  const [blogsNumber, setBlogsNumber] = React.useState<number>(0);
-  const [, setBlogsData] = React.useState<IBlog[]>([]);
+  const [blogsNumber, setBlogsAmount] = React.useState<number>(0);
+
+  const {
+    error: blogsAmountQueryError,
+    data: blogsAmountQueryData,
+    loading: blogsAmountQueryLoading
+  } = useBlogsAmountQuery();
+
+  const {
+    error: blogsWeekQueryError,
+    data: blogsWeekQueryData
+  } = useBlogsWeekQuery();
 
   const {
     error: imagesQueryError,
     data: imagesQueryData,
     loading: imagesQueryLoading
   } = useImagesQuery();
-
-  const {
-    error: blogsQueryError,
-    data: blogsQueryData,
-    loading: blogsQueryLoading
-  } = useBlogsQuery();
 
   const handleBannerMessageHide = (): void => {
     return setBannerVisible(false);
@@ -51,15 +66,24 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
     return setBannerVisible(true);
   };
 
-  const handleBlogsQueryResponse = React.useCallback((data: IBlogsQueryData): void => {
-    const { blogs, error, pagination } = data.blogs;
+  const handleBlogsAmountQueryResponse = React.useCallback((data: IBlogsAmountData): void => {
+    const { blogs, error } = data.blogsAmount;
 
     if (error) return showBannerMessage(error.message);
-    if (!pagination || !blogs) return;
+    if (!blogs) return;
 
-    setBlogsData(blogs);
+    return setBlogsAmount(blogs.count);
+  }, []);
 
-    return setBlogsNumber(pagination.total);
+  const handleBlogsWeekQueryResponse = React.useCallback((data: IBlogsWeekData): void => {
+    const { report, error } = data.blogsWeek;
+
+    if (error) return showBannerMessage(error.message);
+    if (!report) return;
+
+    setTimeout(() => {
+      setBlogsReport(report);
+    }, 50);
   }, []);
 
   const handleImagesQueryResponse = React.useCallback((data: IImagesQueryData): void => {
@@ -72,16 +96,24 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   }, []);
 
   React.useEffect(() => {
-    if (blogsQueryData) return handleBlogsQueryResponse(blogsQueryData);
-  }, [blogsQueryData, handleBlogsQueryResponse]);
+    if (blogsAmountQueryData) return handleBlogsAmountQueryResponse(blogsAmountQueryData);
+  }, [blogsAmountQueryData, handleBlogsAmountQueryResponse]);
+
+  React.useEffect(() => {
+    if (blogsWeekQueryData) return handleBlogsWeekQueryResponse(blogsWeekQueryData);
+  }, [blogsWeekQueryData, handleBlogsWeekQueryResponse]);
 
   React.useEffect(() => {
     if (imagesQueryData) return handleImagesQueryResponse(imagesQueryData);
   }, [imagesQueryData, handleImagesQueryResponse]);
 
   React.useEffect(() => {
-    if (blogsQueryError) return showBannerMessage(STRING_SERVER_ERROR);
-  }, [blogsQueryError]);
+    if (blogsAmountQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+  }, [blogsAmountQueryError]);
+
+  React.useEffect(() => {
+    if (blogsWeekQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+  }, [blogsWeekQueryError]);
 
   React.useEffect(() => {
     if (imagesQueryError) return showBannerMessage(STRING_SERVER_ERROR);
@@ -101,7 +133,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
                 icon={'book'}
                 link={'/admin/blogs'}
                 name={'Total blogs'}
-                number={blogsQueryLoading ? '...' : blogsNumber} />
+                number={blogsAmountQueryLoading ? '...' : blogsNumber} />
             </CardContainer>
             <CardContainer sm={6} position={'right'}>
               <ColorCard
@@ -117,7 +149,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
             <Column xl={12}>
               <SubtitleText icon={'book'}>Last 7 days entries</SubtitleText>
               <ChartContainer>
-                <Chart data={[0, 0, 0, 0, 0, 1, 2]} />
+                <Chart data={blogsReport} />
               </ChartContainer>
             </Column>
           </SummaryChartContainer>

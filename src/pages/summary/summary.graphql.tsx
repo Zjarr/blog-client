@@ -2,27 +2,35 @@ import { DocumentNode, gql } from '@apollo/client/core';
 import { useQuery } from '@apollo/client/react/hooks/useQuery';
 import { QueryResult } from '@apollo/client/react/types/types';
 
-import { IBlog, IError, IImage, IPagination } from '../../utils/interfaces';
+import { IError, IImage, IPagination, IBlogsReport } from '../../utils/interfaces';
 
-const BLOGS_QUERY: DocumentNode = gql`
-  query BlogsQuery($blogs: GetBlogsInput!) {
-    blogs(blogs: $blogs) {
-      ... on BlogsSuccess {
+const BLOGS_AMOUNT_QUERY: DocumentNode = gql`
+  query BlogsAmount {
+    blogsAmount {
+      ... on BlogsAmountSuccess {
         blogs {
-          _id
-          active
-          categories
-          description
-          image
-          name
-          updated
+          count
         }
-        pagination {
-          limit
-          next
-          page
-          prev
-          total
+      }
+      
+      ... on Error {
+        error {
+          code
+          message
+          status
+        }
+      }
+    }
+  }
+`;
+
+const BLOGS_WEEK_QUERY: DocumentNode = gql`
+  query BlogsWeek {
+    blogsWeek {
+      ... on BlogsWeekSuccess {
+        report {
+          day
+          blogs
         }
       }
       ... on Error {
@@ -55,16 +63,22 @@ const IMAGES_QUERY: DocumentNode = gql`
   }
 `;
 
-export interface IBlogsQueryData {
-  blogs: {
-    error?: IError;
-    blogs?: IBlog[];
-    pagination?: IPagination;
-  }
+interface IBlogsCount {
+  count: number;
 }
 
-export interface IBlogsQueryInput {
-  blogs: {}
+export interface IBlogsAmountData {
+  blogsAmount: {
+    blogs?: IBlogsCount;
+    error?: IError;
+  };
+}
+
+export interface IBlogsWeekData {
+  blogsWeek: {
+    report: IBlogsReport[];
+    error?: IError;
+  };
 }
 
 export interface IImagesQueryData {
@@ -79,13 +93,12 @@ export interface IImagesQueryInput {
   images: {}
 }
 
-export const useBlogsQuery = (): QueryResult<IBlogsQueryData, IBlogsQueryInput> => {
-  return useQuery<IBlogsQueryData, IBlogsQueryInput>(BLOGS_QUERY, {
-    fetchPolicy: 'cache-and-network',
-    variables: {
-      blogs: {}
-    }
-  });
+export const useBlogsAmountQuery = (): QueryResult<IBlogsAmountData> => {
+  return useQuery<IBlogsAmountData>(BLOGS_AMOUNT_QUERY, { fetchPolicy: 'cache-and-network' });
+};
+
+export const useBlogsWeekQuery = (): QueryResult<IBlogsWeekData> => {
+  return useQuery<IBlogsWeekData>(BLOGS_WEEK_QUERY, { fetchPolicy: 'cache-and-network' });
 };
 
 export const useImagesQuery = (): QueryResult<IImagesQueryData, IImagesQueryInput> => {
