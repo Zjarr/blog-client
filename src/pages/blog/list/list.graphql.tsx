@@ -42,9 +42,6 @@ const CATEGORIES_QUERY: DocumentNode = gql`
       ... on CategoriesSuccess {
         categories {
           _id
-          active
-          description
-          icon
           name
         }
       }
