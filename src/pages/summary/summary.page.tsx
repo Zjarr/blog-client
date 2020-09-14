@@ -1,17 +1,31 @@
+import Moment from 'moment';
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 
 import { Banner } from '../../components/banner';
-import { ImageCard } from '../../components/card';
+import { IImageCard, ImageCard } from '../../components/card';
 import { ColorCard } from '../../components/card/color';
 import { Chart } from '../../components/chart';
 import { Column } from '../../components/column';
+import { Empty } from '../../components/empty';
 import { Header } from '../../components/header';
 import { SubtitleText } from '../../components/text';
-import { IBlogsReport } from '../../utils/interfaces';
-import { COLOR_MAGENTA, COLOR_PURPLE, COLOR_RED, STRING_SERVER_ERROR } from '../../utils/values';
+import { IBlog, IBlogsReport, ICategory } from '../../utils/interfaces';
+import { COLOR_MAGENTA, COLOR_PURPLE, COLOR_RED, DEFAULT_DATE_FORMAT, STRING_SERVER_ERROR } from '../../utils/values';
 
-import { IBlogsAmountData, IBlogsWeekData, IImagesQueryData, useBlogsAmountQuery, useBlogsWeekQuery, useImagesQuery } from './summary.graphql';
+import {
+  IBlogsAmountData,
+  IBlogsLastTwoData,
+  IBlogsWeekData,
+  ICategoriesQueryData,
+  IImagesQueryData,
+  useBlogsAmountQuery,
+  useBlogsLastTwoActiveQuery,
+  useBlogsLastTwoInactiveQuery,
+  useBlogsWeekQuery,
+  useCategoriesQuery,
+  useImagesQuery
+} from './summary.graphql';
 import {
   CardContainer,
   ChartContainer,
@@ -32,10 +46,15 @@ const LOADING_REPORT_DATA: IBlogsReport[] = [
   { day: '...', blogs: 0 }
 ];
 
+const LOADING_CARDS: IImageCard[] = [{}, {}];
+
 export const SummaryPage: React.FC<ISummaryPage> = () => {
   const [blogsReport, setBlogsReport] = React.useState<IBlogsReport[]>(LOADING_REPORT_DATA);
+  const [blogsInactive, setBlogsInactive] = React.useState<IImageCard[]>(LOADING_CARDS);
+  const [blogsActive, setBlogsActive] = React.useState<IImageCard[]>(LOADING_CARDS);
   const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
   const [bannerMessage, setBannerMessage] = React.useState<string>('');
+  const [categories, setCategories] = React.useState<ICategory[]>([]);
   const [imagesNumber, setImagesNumber] = React.useState<number>(0);
   const [blogsNumber, setBlogsAmount] = React.useState<number>(0);
 
@@ -46,9 +65,27 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   } = useBlogsAmountQuery();
 
   const {
+    error: blogsLastTwoActiveQueryError,
+    data: blogsLastTwoActiveQueryData,
+    loading: blogsLastTwoActiveQueryLoading
+  } = useBlogsLastTwoActiveQuery();
+
+  const {
+    error: blogsLastTwoInactiveQueryError,
+    data: blogsLastTwoInactiveQueryData,
+    loading: blogsLastTwoInactiveQueryLoading
+  } = useBlogsLastTwoInactiveQuery();
+
+  const {
     error: blogsWeekQueryError,
     data: blogsWeekQueryData
   } = useBlogsWeekQuery();
+
+  const {
+    error: categoriesQueryError,
+    data: categoriesQueryData,
+    // loading: categoriesQueryLoading
+  } = useCategoriesQuery();
 
   const {
     error: imagesQueryError,
@@ -66,6 +103,35 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
     return setBannerVisible(true);
   };
 
+  const mapCategoryObject = React.useCallback((ids: string[]): ICategory[] => {
+    return categories.filter(category => ids.includes(category._id!)) as ICategory[];
+  }, [categories]);
+
+  const buildBlogsObject = React.useCallback((blogs: IBlog[], active: boolean) => {
+    const blogsCards: IImageCard[] = [];
+
+    blogs.forEach(blog => {
+      const categoryString = mapCategoryObject(blog.categories || []).map(category => category.name).join(' | ');
+
+      blogsCards.push({
+        active: blog.active,
+        image: blog.image,
+        link: `/admin/blogs/view/${blog._id}`,
+        primaryText: categoryString || 'No categories',
+        primaryTextIcon: 'category',
+        secondaryText: Moment(blog.updated, DEFAULT_DATE_FORMAT).utc().format('MMMM Do, YYYY'),
+        secondaryTextIcon: 'event',
+        title: blog.name
+      });
+    });
+
+    if (active) {
+      return setBlogsActive(blogsCards);
+    }
+
+    return setBlogsInactive(blogsCards);
+  }, [mapCategoryObject]);
+
   const handleBlogsAmountQueryResponse = React.useCallback((data: IBlogsAmountData): void => {
     const { blogs, error } = data.blogsAmount;
 
@@ -75,6 +141,15 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
     return setBlogsAmount(blogs.count);
   }, []);
 
+  const handleBlogsLastTwoQueryResponse = React.useCallback((data: IBlogsLastTwoData, active: boolean): void => {
+    const { blogs, error } = data.blogsLastTwo;
+
+    if (error) return showBannerMessage(error.message);
+    if (!blogs) return;
+
+    return buildBlogsObject(blogs, active);
+  }, [buildBlogsObject]);
+
   const handleBlogsWeekQueryResponse = React.useCallback((data: IBlogsWeekData): void => {
     const { report, error } = data.blogsWeek;
 
@@ -83,7 +158,16 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
 
     setTimeout(() => {
       setBlogsReport(report);
-    }, 50);
+    }, 100);
+  }, []);
+
+  const handleCategoriesQueryResponse = React.useCallback((data: ICategoriesQueryData): void => {
+    const { error, categories } = data.categories;
+
+    if (error) return showBannerMessage(error.message);
+    if (!categories) return;
+
+    return setCategories(categories);
   }, []);
 
   const handleImagesQueryResponse = React.useCallback((data: IImagesQueryData): void => {
@@ -100,8 +184,20 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   }, [blogsAmountQueryData, handleBlogsAmountQueryResponse]);
 
   React.useEffect(() => {
+    if (blogsLastTwoActiveQueryData) return handleBlogsLastTwoQueryResponse(blogsLastTwoActiveQueryData, true);
+  }, [blogsLastTwoActiveQueryData, handleBlogsLastTwoQueryResponse]);
+
+  React.useEffect(() => {
+    if (blogsLastTwoInactiveQueryData) return handleBlogsLastTwoQueryResponse(blogsLastTwoInactiveQueryData, false);
+  }, [blogsLastTwoInactiveQueryData, handleBlogsLastTwoQueryResponse]);
+
+  React.useEffect(() => {
     if (blogsWeekQueryData) return handleBlogsWeekQueryResponse(blogsWeekQueryData);
   }, [blogsWeekQueryData, handleBlogsWeekQueryResponse]);
+
+  React.useEffect(() => {
+    if (categoriesQueryData) return handleCategoriesQueryResponse(categoriesQueryData);
+  }, [categoriesQueryData, handleCategoriesQueryResponse]);
 
   React.useEffect(() => {
     if (imagesQueryData) return handleImagesQueryResponse(imagesQueryData);
@@ -112,8 +208,20 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   }, [blogsAmountQueryError]);
 
   React.useEffect(() => {
+    if (blogsLastTwoActiveQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+  }, [blogsLastTwoActiveQueryError]);
+
+  React.useEffect(() => {
+    if (blogsLastTwoInactiveQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+  }, [blogsLastTwoInactiveQueryError]);
+
+  React.useEffect(() => {
     if (blogsWeekQueryError) return showBannerMessage(STRING_SERVER_ERROR);
   }, [blogsWeekQueryError]);
+
+  React.useEffect(() => {
+    if (categoriesQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+  }, [categoriesQueryError]);
 
   React.useEffect(() => {
     if (imagesQueryError) return showBannerMessage(STRING_SERVER_ERROR);
@@ -156,55 +264,37 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
         </Column>
         <Column xl={6} position={'right'}>
           <Row>
-            <ListCardContainer lg={12}>
+            <ListCardContainer xl={12}>
               <SubtitleText icon={'book'}>Recent entries</SubtitleText>
-              <ImageCardContainer>
-                <ImageCard
-                  title={'Recent blog name'}
-                  primaryText={'Planes | Travel | Experience'}
-                  primaryTextIcon={'category'}
-                  secondaryText={'June 28th, 2020'}
-                  secondaryTextIcon={'event'}
-                  image={''}
-                  link={'/admin/blogs/view/1234'}
-                  active />
-              </ImageCardContainer>
-              <ImageCardContainer>
-                <ImageCard
-                  title={'Recent blog name'}
-                  primaryText={'Planes | Travel | Experience'}
-                  primaryTextIcon={'category'}
-                  secondaryText={'June 28th, 2020'}
-                  secondaryTextIcon={'event'}
-                  image={''}
-                  link={'/admin/blogs/view/1234'}
-                  active />
-              </ImageCardContainer>
+              {
+                blogsActive.length > 0 && blogsActive.map((card: IImageCard, index: number) =>
+                  <ImageCardContainer key={`active-blog-${index}`}>
+                    <ImageCard {...card} loading={blogsLastTwoActiveQueryLoading} />
+                  </ImageCardContainer>
+                )
+              }
+              {
+                !blogsLastTwoActiveQueryLoading &&
+                blogsActive.length === 0 &&
+                <Empty message={'There a no blogs.'} />
+              }
             </ListCardContainer>
           </Row>
           <Row>
             <ListCardContainer xl={12}>
               <SubtitleText icon={'book'}>To be released</SubtitleText>
-              <ImageCardContainer>
-                <ImageCard
-                  title={'To be released blog name'}
-                  primaryText={'Planes | Travel | Experience'}
-                  primaryTextIcon={'category'}
-                  secondaryText={'June 28th, 2020'}
-                  secondaryTextIcon={'event'}
-                  link={'/admin/blogs/view/1234'}
-                  image={''} />
-              </ImageCardContainer>
-              <ImageCardContainer>
-                <ImageCard
-                  title={'To be released blog name'}
-                  primaryText={'Planes | Travel | Experience'}
-                  primaryTextIcon={'category'}
-                  secondaryText={'June 28th, 2020'}
-                  secondaryTextIcon={'event'}
-                  link={'/admin/blogs/view/1234'}
-                  image={''} />
-              </ImageCardContainer>
+              {
+                blogsInactive.length > 0 && blogsInactive.map((card: IImageCard, index: number) =>
+                  <ImageCardContainer key={`inactive-blog-${index}`}>
+                    <ImageCard {...card} loading={blogsLastTwoInactiveQueryLoading} />
+                  </ImageCardContainer>
+                )
+              }
+              {
+                !blogsLastTwoInactiveQueryLoading &&
+                blogsInactive.length === 0 &&
+                <Empty message={'There are no drafts.'} />
+              }
             </ListCardContainer>
           </Row>
         </Column>
