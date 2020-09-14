@@ -5,7 +5,7 @@ import { Empty } from '../empty';
 
 import { CardContainer, ListContainer } from './list.style';
 
-const skeletonCards = 12;
+const DEFAULT_SKELETON_CARDS = 12;
 
 export const List: React.FC<IList> = ({ cards, error, loading }) => {
   const getCardPadding = (index: number): string => {
@@ -19,7 +19,7 @@ export const List: React.FC<IList> = ({ cards, error, loading }) => {
   return (
     <ListContainer>
       {
-        loading && [...Array(skeletonCards)].map((_, index) =>
+        loading && [...Array(DEFAULT_SKELETON_CARDS)].map((_, index) =>
           <CardContainer lg={6} key={`card-${index}`}>
             <ImageCard padding={getCardPadding(index)} loading />
           </CardContainer>
