@@ -151,7 +151,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   }, [buildBlogsObject]);
 
   const handleBlogsWeekQueryResponse = React.useCallback((data: IBlogsWeekData): void => {
-    const { report, error } = data.blogsWeek;
+    const { error, report } = data.blogsWeek;
 
     if (error) return showBannerMessage(error.message);
     if (!report) return;
@@ -162,7 +162,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   }, []);
 
   const handleCategoriesQueryResponse = React.useCallback((data: ICategoriesQueryData): void => {
-    const { error, categories } = data.categories;
+    const { categories, error } = data.categories;
 
     if (error) return showBannerMessage(error.message);
     if (!categories) return;
