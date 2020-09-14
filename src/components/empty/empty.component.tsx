@@ -14,7 +14,7 @@ import {
   TextContainer
 } from './empty.style';
 
-export const Empty: React.FC<IEmpty> = ({ error }) => {
+export const Empty: React.FC<IEmpty> = ({ error, message }) => {
   return (
     <EmptyContainer>
       <ImageContainer>
@@ -25,7 +25,11 @@ export const Empty: React.FC<IEmpty> = ({ error }) => {
         <ParagraphText color={COLOR_GRAY_MEDIUM}>Oops!</ParagraphText>
         <ParagraphText color={COLOR_GRAY_MEDIUM}>
           {
-            error ? 'We ran into an error. Please try again.' : 'This looks empty. Did you add some fuel?'
+            message ?
+              message :
+              error ?
+                'We ran into an error. Please try again.' :
+                'This looks empty. Did you add some fuel?'
           }
         </ParagraphText>
       </TextContainer>
@@ -35,4 +39,5 @@ export const Empty: React.FC<IEmpty> = ({ error }) => {
 
 interface IEmpty {
   error?: boolean;
+  message?: string;
 }
