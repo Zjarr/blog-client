@@ -51,5 +51,5 @@ export interface IImagesQueryInput {
 }
 
 export const useImagesQuery = (): QueryTuple<IImagesQueryData, IImagesQueryInput> => {
-  return useLazyQuery<IImagesQueryData, IImagesQueryInput>(IMAGES_QUERY, { fetchPolicy: 'cache-and-network' });
+  return useLazyQuery<IImagesQueryData, IImagesQueryInput>(IMAGES_QUERY);
 };

@@ -86,7 +86,7 @@ export interface ICategoriesQueryInput {
 }
 
 export const useBlogsQuery = (): QueryTuple<IBlogsQueryData, IBlogsQueryInput> => {
-  return useLazyQuery<IBlogsQueryData, IBlogsQueryInput>(BLOGS_QUERY, { fetchPolicy: 'cache-and-network' });
+  return useLazyQuery<IBlogsQueryData, IBlogsQueryInput>(BLOGS_QUERY);
 };
 
 export const useCategoriesQuery = (): QueryResult<ICategoriesQueryData, ICategoriesQueryInput> => {
