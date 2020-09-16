@@ -2,7 +2,7 @@ import { DocumentNode, gql } from '@apollo/client/core';
 import { useQuery } from '@apollo/client/react/hooks/useQuery';
 import { QueryResult } from '@apollo/client/react/types/types';
 
-import { IBlog, IBlogsReport, ICategory, IError, IImage, IPagination } from '../../utils/interfaces';
+import { IBlog, IBlogsReport, ICategory, IError } from '../../utils/interfaces';
 
 const BLOGS_AMOUNT_QUERY: DocumentNode = gql`
   query BlogsAmountQuery {
@@ -12,7 +12,6 @@ const BLOGS_AMOUNT_QUERY: DocumentNode = gql`
           count
         }
       }
-      
       ... on Error {
         error {
           code
@@ -88,12 +87,12 @@ const CATEGORIES_QUERY: DocumentNode = gql`
   }
 `;
 
-const IMAGES_QUERY: DocumentNode = gql`
-  query ImagesQuery($images: GetImagesInput!) {
-    images(images: $images) {
-      ... on ImagesSuccess {
-        pagination {
-          total
+const IMAGES_AMOUNT_QUERY: DocumentNode = gql`
+  query ImagesAmountQuery {
+    imagesAmount {
+      ... on ImagesAmountSuccess {
+        images {
+          count
         }
       }
       ... on Error {
@@ -108,6 +107,10 @@ const IMAGES_QUERY: DocumentNode = gql`
 `;
 
 interface IBlogsCount {
+  count: number;
+}
+
+interface IImagesCount {
   count: number;
 }
 
@@ -127,8 +130,8 @@ export interface IBlogsLastTwoData {
 
 export interface IBlogsWeekData {
   blogsWeek: {
-    report: IBlogsReport[];
     error?: IError;
+    report: IBlogsReport[];
   };
 }
 
@@ -140,8 +143,8 @@ export interface IBlogsLastTwoQueryInput {
 
 export interface ICategoriesQueryData {
   categories: {
-    error?: IError;
     categories?: ICategory[];
+    error?: IError;
   }
 }
 
@@ -152,16 +155,11 @@ export interface ICategoriesQueryInput {
 }
 
 
-export interface IImagesQueryData {
-  images: {
+export interface IImagesAmountQueryData {
+  imagesAmount: {
     error?: IError;
-    images?: IImage[];
-    pagination?: IPagination;
+    images?: IImagesCount;
   }
-}
-
-export interface IImagesQueryInput {
-  images: {}
 }
 
 export const useBlogsAmountQuery = (): QueryResult<IBlogsAmountData> => {
@@ -198,15 +196,6 @@ export const useBlogsWeekQuery = (): QueryResult<IBlogsWeekData> => {
   });
 };
 
-export const useImagesQuery = (): QueryResult<IImagesQueryData, IImagesQueryInput> => {
-  return useQuery<IImagesQueryData, IImagesQueryInput>(IMAGES_QUERY, {
-    fetchPolicy: 'cache-and-network',
-    variables: {
-      images: {}
-    }
-  });
-};
-
 export const useCategoriesQuery = (): QueryResult<ICategoriesQueryData, ICategoriesQueryInput> => {
   return useQuery<ICategoriesQueryData, ICategoriesQueryInput>(CATEGORIES_QUERY, {
     fetchPolicy: 'cache-and-network',
@@ -215,5 +204,11 @@ export const useCategoriesQuery = (): QueryResult<ICategoriesQueryData, ICategor
         active: true
       }
     }
+  });
+};
+
+export const useImagesAmountQuery = (): QueryResult<IImagesAmountQueryData> => {
+  return useQuery<IImagesAmountQueryData>(IMAGES_AMOUNT_QUERY, {
+    fetchPolicy: 'cache-and-network'
   });
 };

@@ -18,13 +18,13 @@ import {
   IBlogsLastTwoData,
   IBlogsWeekData,
   ICategoriesQueryData,
-  IImagesQueryData,
+  IImagesAmountQueryData,
   useBlogsAmountQuery,
   useBlogsLastTwoActiveQuery,
   useBlogsLastTwoInactiveQuery,
   useBlogsWeekQuery,
   useCategoriesQuery,
-  useImagesQuery
+  useImagesAmountQuery
 } from './summary.graphql';
 import {
   CardContainer,
@@ -91,7 +91,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
     error: imagesQueryError,
     data: imagesQueryData,
     loading: imagesQueryLoading
-  } = useImagesQuery();
+  } = useImagesAmountQuery();
 
   const handleBannerMessageHide = (): void => {
     return setBannerVisible(false);
@@ -170,13 +170,13 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
     return setCategories(categories);
   }, []);
 
-  const handleImagesQueryResponse = React.useCallback((data: IImagesQueryData): void => {
-    const { error, pagination } = data.images;
+  const handleImagesQueryResponse = React.useCallback((data: IImagesAmountQueryData): void => {
+    const { error, images } = data.imagesAmount;
 
     if (error) return showBannerMessage(error.message);
-    if (!pagination) return;
+    if (!images) return;
 
-    return setImagesNumber(pagination.total);
+    return setImagesNumber(images.count);
   }, []);
 
   React.useEffect(() => {
