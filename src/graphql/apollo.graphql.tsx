@@ -1,6 +1,6 @@
-import { ApolloClient, ApolloLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client/core';
-import { getMainDefinition } from '@apollo/client/utilities';
+import { ApolloClient, ApolloLink, DefaultOptions, InMemoryCache, NormalizedCacheObject } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
+import { getMainDefinition } from '@apollo/client/utilities';
 import { createUploadLink } from 'apollo-upload-client';
 import { OperationDefinitionNode } from 'graphql';
 import OmitDeep from 'omit-deep-lodash';
@@ -38,7 +38,14 @@ const link = ApolloLink.from([
   HttpLink
 ]);
 
+const defaultOptions: DefaultOptions = {
+  query: {
+    fetchPolicy: 'network-only'
+  }
+};
+
 export const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   cache: new InMemoryCache(),
+  defaultOptions,
   link
 });

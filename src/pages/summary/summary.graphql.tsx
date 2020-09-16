@@ -163,14 +163,11 @@ export interface IImagesAmountQueryData {
 }
 
 export const useBlogsAmountQuery = (): QueryResult<IBlogsAmountData> => {
-  return useQuery<IBlogsAmountData>(BLOGS_AMOUNT_QUERY, {
-    fetchPolicy: 'cache-and-network'
-  });
+  return useQuery<IBlogsAmountData>(BLOGS_AMOUNT_QUERY);
 };
 
 export const useBlogsLastTwoActiveQuery = (): QueryResult<IBlogsLastTwoData, IBlogsLastTwoQueryInput> => {
   return useQuery<IBlogsLastTwoData, IBlogsLastTwoQueryInput>(BLOGS_LAST_TWO_QUERY, {
-    fetchPolicy: 'cache-and-network',
     variables: {
       blogs: {
         active: true
@@ -181,7 +178,6 @@ export const useBlogsLastTwoActiveQuery = (): QueryResult<IBlogsLastTwoData, IBl
 
 export const useBlogsLastTwoInactiveQuery = (): QueryResult<IBlogsLastTwoData, IBlogsLastTwoQueryInput> => {
   return useQuery<IBlogsLastTwoData, IBlogsLastTwoQueryInput>(BLOGS_LAST_TWO_QUERY, {
-    fetchPolicy: 'cache-and-network',
     variables: {
       blogs: {
         active: false
@@ -191,14 +187,11 @@ export const useBlogsLastTwoInactiveQuery = (): QueryResult<IBlogsLastTwoData, I
 };
 
 export const useBlogsWeekQuery = (): QueryResult<IBlogsWeekData> => {
-  return useQuery<IBlogsWeekData>(BLOGS_WEEK_QUERY, {
-    fetchPolicy: 'cache-and-network'
-  });
+  return useQuery<IBlogsWeekData>(BLOGS_WEEK_QUERY);
 };
 
 export const useCategoriesQuery = (): QueryResult<ICategoriesQueryData, ICategoriesQueryInput> => {
   return useQuery<ICategoriesQueryData, ICategoriesQueryInput>(CATEGORIES_QUERY, {
-    fetchPolicy: 'cache-and-network',
     variables: {
       categories: {
         active: true
@@ -208,7 +201,5 @@ export const useCategoriesQuery = (): QueryResult<ICategoriesQueryData, ICategor
 };
 
 export const useImagesAmountQuery = (): QueryResult<IImagesAmountQueryData> => {
-  return useQuery<IImagesAmountQueryData>(IMAGES_AMOUNT_QUERY, {
-    fetchPolicy: 'cache-and-network'
-  });
+  return useQuery<IImagesAmountQueryData>(IMAGES_AMOUNT_QUERY);
 };
