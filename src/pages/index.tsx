@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom';
 import { DashboardPage } from './dashboard';
 import { LoginPage } from './login';
 import { NotFoundPage } from './not-found';
-import { PlaygroundPage } from './playground';
 import { PrivatePage } from './private';
 
 export const Pages: React.FC<IPages> = () => {
@@ -30,7 +29,6 @@ export const Pages: React.FC<IPages> = () => {
       </PrivatePage>
 
       {/* BLOG ROUTES */}
-      <Route path="/playground" component={PlaygroundPage}></Route>
       <Route path="*" component={NotFoundPage}></Route>
     </Switch>
   );
