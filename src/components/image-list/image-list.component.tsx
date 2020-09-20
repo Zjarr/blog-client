@@ -2,9 +2,8 @@ import React from 'react';
 
 import { useInput } from '../../utils/hooks';
 import { IImage } from '../../utils/interfaces';
-import { COLOR_RED, PAGINATION_DEFAULT, STRING_SERVER_ERROR } from '../../utils/values';
+import { PAGINATION_DEFAULT } from '../../utils/values';
 
-import { Banner } from '../banner';
 import { IImageCard } from '../card';
 import { Input } from '../input';
 import { List } from '../list';
@@ -16,7 +15,6 @@ import { IImagesQueryData, useImagesQuery } from './image-list.graphql';
 import { ImageListContainer, ListContainer, PaginatorContainer, SearchContainer, TitleContainer } from './image-list.style';
 
 export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
-  const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [images, setImages] = React.useState<IImageCard[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
 
@@ -27,14 +25,6 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
   }] = useImagesQuery();
 
   const filterSearch = useInput('');
-
-  const handleBannerMessageHide = (): void => {
-    return setBannerMessage('');
-  };
-
-  const showBannerMessage = (message: string): void => {
-    return setBannerMessage(message);
-  };
 
   const handleCloseRequest = (): void => {
     return onClose && onClose();
@@ -77,8 +67,7 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
   const handleimagesQueryResponse = React.useCallback((data: IImagesQueryData): void => {
     const { error, images } = data.images;
 
-    if (error) return showBannerMessage(error.message);
-    if (!images) return;
+    if (error || !images) return;
 
     return buildImagesObject(images);
   }, [buildImagesObject]);
@@ -92,52 +81,40 @@ export const ImageList: React.FC<IImageList> = ({ onClose, visible }) => {
   }, [imagesQueryData, handleimagesQueryResponse]);
 
   React.useEffect(() => {
-    if (!imagesQueryError) return;
-
-    setLoading(false);
-
-    return showBannerMessage(STRING_SERVER_ERROR);
+    if (imagesQueryError) {
+      setLoading(false);
+    }
   }, [imagesQueryError]);
 
   return (
-    <>
-      <Modal onClose={handleCloseRequest} visible={visible} closeButton>
-        <ImageListContainer>
-          <TitleContainer>
-            <TitleText>Stored images</TitleText>
-          </TitleContainer>
+    <Modal onClose={handleCloseRequest} visible={visible} closeButton>
+      <ImageListContainer>
+        <TitleContainer>
+          <TitleText>Stored images</TitleText>
+        </TitleContainer>
 
-          <SearchContainer>
-            {
-              !imagesQueryError &&
-              <Input
-                icon={'search'}
-                placeholder={'Image name'}
-                {...filterSearch} />
-            }
-          </SearchContainer>
-
-          <ListContainer>
-            <List loading={imagesQueryLoading || loading} cards={images} error={!!imagesQueryError} />
-          </ListContainer>
-
+        <SearchContainer>
           {
             !imagesQueryError &&
-            <PaginatorContainer>
-              <Paginator current={1} total={1} onPrevClick={(): void => { }} onNextClick={(): void => { }} />
-            </PaginatorContainer>
+            <Input
+              icon={'search'}
+              placeholder={'Image name'}
+              {...filterSearch} />
           }
-        </ImageListContainer>
-      </Modal>
+        </SearchContainer>
 
-      <Banner
-        center
-        color={COLOR_RED}
-        icon={'clear'}
-        onHide={handleBannerMessageHide}
-        text={bannerMessage}
-        visible={!!bannerMessage} />
-    </>
+        <ListContainer>
+          <List loading={imagesQueryLoading || loading} cards={images} error={!!imagesQueryError} />
+        </ListContainer>
+
+        {
+          !imagesQueryError &&
+          <PaginatorContainer>
+            <Paginator current={1} total={1} onPrevClick={(): void => { }} onNextClick={(): void => { }} />
+          </PaginatorContainer>
+        }
+      </ImageListContainer>
+    </Modal>
   );
 };
 
