@@ -272,6 +272,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
               }
               {
                 !blogsLastTwoActiveQueryLoading &&
+                (blogsActive.length === 0 || blogsLastTwoActiveQueryError) &&
                 <Empty
                   error={!!blogsLastTwoActiveQueryError}
                   height={'calc(100% - 56px)'}
@@ -291,6 +292,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
               }
               {
                 !blogsLastTwoInactiveQueryLoading &&
+                (blogsInactive.length === 0 || blogsLastTwoInactiveQueryError) &&
                 <Empty
                   error={!!blogsLastTwoInactiveQueryError}
                   height={'calc(100% - 56px)'}
