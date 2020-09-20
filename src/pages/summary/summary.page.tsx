@@ -2,7 +2,6 @@ import { format } from 'date-fns';
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 
-import { Banner } from '../../components/banner';
 import { IImageCard, ImageCard } from '../../components/card';
 import { ColorCard } from '../../components/card/color';
 import { Chart } from '../../components/chart';
@@ -11,7 +10,7 @@ import { Empty } from '../../components/empty';
 import { Header } from '../../components/header';
 import { SubtitleText } from '../../components/text';
 import { IBlog, IBlogsReport, ICategory } from '../../utils/interfaces';
-import { COLOR_MAGENTA, COLOR_PURPLE, COLOR_RED, STRING_SERVER_ERROR } from '../../utils/values';
+import { COLOR_MAGENTA, COLOR_PURPLE, STRING_SERVER_ERROR } from '../../utils/values';
 
 import {
   IBlogsAmountData,
@@ -49,13 +48,13 @@ const LOADING_REPORT_DATA: IBlogsReport[] = [
 const LOADING_CARDS: IImageCard[] = [{}, {}];
 
 export const SummaryPage: React.FC<ISummaryPage> = () => {
-  const [blogsReport, setBlogsReport] = React.useState<IBlogsReport[]>(LOADING_REPORT_DATA);
-  const [blogsInactive, setBlogsInactive] = React.useState<IImageCard[]>(LOADING_CARDS);
   const [blogsActive, setBlogsActive] = React.useState<IImageCard[]>(LOADING_CARDS);
-  const [bannerMessage, setBannerMessage] = React.useState<string>('');
+  const [blogsInactive, setBlogsInactive] = React.useState<IImageCard[]>(LOADING_CARDS);
+  const [blogsNumber, setBlogsNumber] = React.useState<number>(0);
+  const [blogsReport, setBlogsReport] = React.useState<IBlogsReport[]>(LOADING_REPORT_DATA);
   const [categories, setCategories] = React.useState<ICategory[]>([]);
+  const [error, setError] = React.useState<string>('');
   const [imagesNumber, setImagesNumber] = React.useState<number>(0);
-  const [blogsNumber, setBlogsAmount] = React.useState<number>(0);
 
   const {
     error: blogsAmountQueryError,
@@ -82,8 +81,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
 
   const {
     error: categoriesQueryError,
-    data: categoriesQueryData,
-    // loading: categoriesQueryLoading
+    data: categoriesQueryData
   } = useCategoriesQuery();
 
   const {
@@ -91,14 +89,6 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
     data: imagesQueryData,
     loading: imagesQueryLoading
   } = useImagesAmountQuery();
-
-  const handleBannerMessageHide = (): void => {
-    return setBannerMessage('');
-  };
-
-  const showBannerMessage = (message: string): void => {
-    return setBannerMessage(message);;
-  };
 
   const mapCategoryObject = React.useCallback((ids: string[]): ICategory[] => {
     return categories.filter(category => ids.includes(category._id!)) as ICategory[];
@@ -132,16 +122,16 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   const handleBlogsAmountQueryResponse = React.useCallback((data: IBlogsAmountData): void => {
     const { blogs, error } = data.blogsAmount;
 
-    if (error) return showBannerMessage(error.message);
+    if (error) return setError(error.message);
     if (!blogs) return;
 
-    return setBlogsAmount(blogs.count);
+    return setBlogsNumber(blogs.count);
   }, []);
 
   const handleBlogsLastTwoQueryResponse = React.useCallback((data: IBlogsLastTwoData, active: boolean): void => {
     const { blogs, error } = data.blogsLastTwo;
 
-    if (error) return showBannerMessage(error.message);
+    if (error) return setError(error.message);
     if (!blogs) return;
 
     return buildBlogsObject(blogs, active);
@@ -150,7 +140,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   const handleBlogsWeekQueryResponse = React.useCallback((data: IBlogsWeekData): void => {
     const { error, report } = data.blogsWeek;
 
-    if (error) return showBannerMessage(error.message);
+    if (error) return setError(error.message);
     if (!report) return;
 
     setTimeout(() => {
@@ -161,7 +151,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   const handleCategoriesQueryResponse = React.useCallback((data: ICategoriesQueryData): void => {
     const { categories, error } = data.categories;
 
-    if (error) return showBannerMessage(error.message);
+    if (error) return setError(error.message);
     if (!categories) return;
 
     return setCategories(categories);
@@ -170,7 +160,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   const handleImagesQueryResponse = React.useCallback((data: IImagesAmountQueryData): void => {
     const { error, images } = data.imagesAmount;
 
-    if (error) return showBannerMessage(error.message);
+    if (error) return setError(error.message);
     if (!images) return;
 
     return setImagesNumber(images.count);
@@ -201,28 +191,41 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   }, [imagesQueryData, handleImagesQueryResponse]);
 
   React.useEffect(() => {
-    if (blogsAmountQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+    if (blogsAmountQueryError) return setError(STRING_SERVER_ERROR);
   }, [blogsAmountQueryError]);
 
   React.useEffect(() => {
-    if (blogsLastTwoActiveQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+    if (blogsLastTwoActiveQueryError) return setError(STRING_SERVER_ERROR);
   }, [blogsLastTwoActiveQueryError]);
 
   React.useEffect(() => {
-    if (blogsLastTwoInactiveQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+    if (blogsLastTwoInactiveQueryError) return setError(STRING_SERVER_ERROR);
   }, [blogsLastTwoInactiveQueryError]);
 
   React.useEffect(() => {
-    if (blogsWeekQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+    if (blogsWeekQueryError) return setError(STRING_SERVER_ERROR);
   }, [blogsWeekQueryError]);
 
   React.useEffect(() => {
-    if (categoriesQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+    if (categoriesQueryError) return setError(STRING_SERVER_ERROR);
   }, [categoriesQueryError]);
 
   React.useEffect(() => {
-    if (imagesQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+    if (imagesQueryError) return setError(STRING_SERVER_ERROR);
   }, [imagesQueryError]);
+
+  if (error) {
+    return (
+      <SummaryContainer>
+        <Header title={'Dashboard'} />
+
+        <Empty
+          error={!!error}
+          height={'calc(100% - 112px)'}
+          message={error} />
+      </SummaryContainer>
+    );
+  }
 
   return (
     <SummaryContainer>
@@ -264,19 +267,17 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
             <ListCardContainer xl={12}>
               <SubtitleText icon={'book'}>Recent entries</SubtitleText>
               {
-                !blogsLastTwoActiveQueryError && blogsActive.length > 0 && blogsActive.map((card: IImageCard, index: number) =>
+                blogsActive.length > 0 && blogsActive.map((card: IImageCard, index: number) =>
                   <ImageCardContainer key={`active-blog-${index}`}>
                     <ImageCard {...card} loading={blogsLastTwoActiveQueryLoading} />
                   </ImageCardContainer>
                 )
               }
               {
-                !blogsLastTwoActiveQueryLoading &&
-                (blogsActive.length === 0 || blogsLastTwoActiveQueryError) &&
+                !blogsLastTwoActiveQueryLoading && blogsActive.length === 0 &&
                 <Empty
-                  error={!!blogsLastTwoActiveQueryError}
                   height={'calc(100% - 56px)'}
-                  message={!blogsLastTwoActiveQueryError ? 'There a no blogs.' : undefined} />
+                  message={'There a no blogs.'} />
               }
             </ListCardContainer>
           </Row>
@@ -284,31 +285,22 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
             <ListCardContainer xl={12}>
               <SubtitleText icon={'book'}>To be released</SubtitleText>
               {
-                !blogsLastTwoInactiveQueryError && blogsInactive.length > 0 && blogsInactive.map((card: IImageCard, index: number) =>
+                blogsInactive.length > 0 && blogsInactive.map((card: IImageCard, index: number) =>
                   <ImageCardContainer key={`inactive-blog-${index}`}>
                     <ImageCard {...card} loading={blogsLastTwoInactiveQueryLoading} />
                   </ImageCardContainer>
                 )
               }
               {
-                !blogsLastTwoInactiveQueryLoading &&
-                (blogsInactive.length === 0 || blogsLastTwoInactiveQueryError) &&
+                !blogsLastTwoInactiveQueryLoading && blogsInactive.length === 0 &&
                 <Empty
-                  error={!!blogsLastTwoInactiveQueryError}
                   height={'calc(100% - 56px)'}
-                  message={!blogsLastTwoInactiveQueryError ? 'There are no drafts.' : undefined} />
+                  message={'There are no drafts.'} />
               }
             </ListCardContainer>
           </Row>
         </Column>
       </Row>
-
-      <Banner
-        color={COLOR_RED}
-        icon={'clear'}
-        onHide={handleBannerMessageHide}
-        text={bannerMessage}
-        visible={!!bannerMessage} />
     </SummaryContainer>
   );
 };
