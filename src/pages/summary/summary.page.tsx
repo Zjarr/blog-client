@@ -1,4 +1,4 @@
-import Moment from 'moment';
+import { format } from 'date-fns';
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 
@@ -11,7 +11,7 @@ import { Empty } from '../../components/empty';
 import { Header } from '../../components/header';
 import { SubtitleText } from '../../components/text';
 import { IBlog, IBlogsReport, ICategory } from '../../utils/interfaces';
-import { COLOR_MAGENTA, COLOR_PURPLE, COLOR_RED, DEFAULT_DATE_FORMAT, STRING_SERVER_ERROR } from '../../utils/values';
+import { COLOR_MAGENTA, COLOR_PURPLE, COLOR_RED, STRING_SERVER_ERROR } from '../../utils/values';
 
 import {
   IBlogsAmountData,
@@ -119,7 +119,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
         link: `/admin/blogs/view/${blog._id}`,
         primaryText: categoryString || 'No categories',
         primaryTextIcon: 'category',
-        secondaryText: Moment(blog.updated, DEFAULT_DATE_FORMAT).utc().format('MMMM Do, YYYY'),
+        secondaryText: format(new Date(blog.created), 'MMMM do, yyyy'),
         secondaryTextIcon: 'event',
         title: blog.name
       });
@@ -276,7 +276,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
               {
                 !blogsLastTwoActiveQueryLoading &&
                 blogsActive.length === 0 &&
-                <Empty message={'There a no blogs.'} />
+                <Empty height={'calc(100% - 56px)'} message={'There a no blogs.'} />
               }
             </ListCardContainer>
           </Row>
@@ -293,7 +293,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
               {
                 !blogsLastTwoInactiveQueryLoading &&
                 blogsInactive.length === 0 &&
-                <Empty message={'There are no drafts.'} />
+                <Empty height={'calc(100% - 56px)'} message={'There are no drafts.'} />
               }
             </ListCardContainer>
           </Row>

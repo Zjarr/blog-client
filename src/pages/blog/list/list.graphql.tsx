@@ -13,9 +13,9 @@ const BLOGS_QUERY: DocumentNode = gql`
           _id
           active
           categories
+          created
           image
           name
-          updated
         }
         pagination {
           limit

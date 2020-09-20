@@ -31,6 +31,7 @@ export const CardContainer = Styled(Column)`
 `;
 
 export const ListCardContainer = Styled(Column)`
+  height: 308px;
   margin-bottom: 48px;
 `;
 

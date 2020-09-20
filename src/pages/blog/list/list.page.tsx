@@ -1,4 +1,4 @@
-import Moment from 'moment';
+import { format } from 'date-fns';
 import React from 'react';
 
 import { Banner } from '../../../components/banner';
@@ -14,7 +14,7 @@ import { SubtitleText } from '../../../components/text';
 import { Toggle } from '../../../components/toggle';
 import { useCheckbox, useDropdown, useInput, useNavigateTo } from '../../../utils/hooks';
 import { IBlog, ICategory } from '../../../utils/interfaces';
-import { COLOR_PURPLE, COLOR_RED, DEFAULT_DATE_FORMAT, PAGINATION_DEFAULT, STRING_SERVER_ERROR } from '../../../utils/values';
+import { COLOR_PURPLE, COLOR_RED, PAGINATION_DEFAULT, STRING_SERVER_ERROR } from '../../../utils/values';
 
 import { IBlogsQueryData, ICategoriesQueryData, useBlogsQuery, useCategoriesQuery } from './list.graphql';
 import { BlogListContainer, BodyContainer, FilterContainer, ListContainer } from './list.style';
@@ -69,7 +69,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
         link: `/admin/blogs/view/${blog._id}`,
         primaryText: categoryString || 'No categories',
         primaryTextIcon: 'category',
-        secondaryText: Moment(blog.updated, DEFAULT_DATE_FORMAT).utc().format('MMMM Do, YYYY'),
+        secondaryText: format(new Date(blog.created), 'MMMM do, yyyy'),
         secondaryTextIcon: 'event',
         title: blog.name
       });

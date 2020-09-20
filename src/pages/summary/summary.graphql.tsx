@@ -31,9 +31,9 @@ const BLOGS_LAST_TWO_QUERY: DocumentNode = gql`
           _id
           active
           categories
+          created
           image
           name
-          updated
         }
       }
       ... on Error {
