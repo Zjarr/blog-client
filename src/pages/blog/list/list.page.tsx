@@ -1,10 +1,10 @@
 import { format } from 'date-fns';
 import React from 'react';
 
-import { Banner } from '../../../components/banner';
 import { SimpleButton } from '../../../components/button';
 import { IImageCard } from '../../../components/card';
 import { Dropdown } from '../../../components/dropdown';
+import { Empty } from '../../../components/empty';
 import { Footer } from '../../../components/footer';
 import { FormField } from '../../../components/form-field';
 import { Header } from '../../../components/header';
@@ -14,13 +14,13 @@ import { SubtitleText } from '../../../components/text';
 import { Toggle } from '../../../components/toggle';
 import { useCheckbox, useDropdown, useInput, useNavigateTo } from '../../../utils/hooks';
 import { IBlog, ICategory } from '../../../utils/interfaces';
-import { COLOR_PURPLE, COLOR_RED, PAGINATION_DEFAULT, STRING_SERVER_ERROR } from '../../../utils/values';
+import { COLOR_PURPLE, PAGINATION_DEFAULT, STRING_SERVER_ERROR } from '../../../utils/values';
 
 import { IBlogsQueryData, ICategoriesQueryData, useBlogsQuery, useCategoriesQuery } from './list.graphql';
 import { BlogListContainer, BodyContainer, FilterContainer, ListContainer } from './list.style';
 
 export const ListBlogPage: React.FC<IListBlogPage> = () => {
-  const [bannerMessage, setBannerMessage] = React.useState<string>('');
+  const [error, setError] = React.useState<string>('');
   const [blogs, setBlogs] = React.useState<IImageCard[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
 
@@ -45,14 +45,6 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
   const mapCategoryObject = React.useCallback((ids: string[]): ICategory[] => {
     return filterCategories.values.filter(category => ids.includes(category._id!)) as ICategory[];
   }, [filterCategories.values]);
-
-  const handleBannerMessageHide = (): void => {
-    return setBannerMessage('');
-  };
-
-  const showBannerMessage = (message: string): void => {
-    return setBannerMessage(message);
-  };
 
   const buildBlogsObject = React.useCallback((blogs: IBlog[]) => {
     const blogsCards: IImageCard[] = [];
@@ -95,7 +87,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
   const handleBlogsQueryResponse = React.useCallback((data: IBlogsQueryData): void => {
     const { error, blogs } = data.blogs;
 
-    if (error) return showBannerMessage(error.message);
+    if (error) return; // TODO: error.message
     if (!blogs) return;
 
     return buildBlogsObject(blogs);
@@ -104,7 +96,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
   const handleCategoriesQueryResponse = React.useCallback((data: ICategoriesQueryData): void => {
     const { error, categories } = data.categories;
 
-    if (error) return showBannerMessage(error.message);
+    if (error) return; // TODO: error.message
     if (!categories) return;
 
     return filterCategories.setValues(categories);
@@ -123,18 +115,29 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
   }, [categoriesQueryData, handleCategoriesQueryResponse]);
 
   React.useEffect(() => {
-    if (!blogsQueryError) return;
+    if (blogsQueryError) {
+      setLoading(false);
 
-    setLoading(false);
-
-    return showBannerMessage(STRING_SERVER_ERROR);
+      return setError(STRING_SERVER_ERROR);
+    }
   }, [blogsQueryError]);
 
   React.useEffect(() => {
-    if (!categoriesQueryError) return;
-
-    return showBannerMessage(STRING_SERVER_ERROR);
+    if (categoriesQueryError) return setError(STRING_SERVER_ERROR);
   }, [categoriesQueryError]);
+
+  if (!!error) {
+    return (
+      <BlogListContainer empty={!!error}>
+        <Header title={'Blogs'} />
+
+        <Empty
+          error={!!error}
+          height={'calc(100% - 112px)'}
+          message={error} />
+      </BlogListContainer>
+    );
+  }
 
   return (
     <BlogListContainer>
@@ -173,13 +176,6 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
       <Footer>
         <SimpleButton color={COLOR_PURPLE} icon={'add'} onClick={(): void => navigateTo('/admin/blogs/add')} />
       </Footer>
-
-      <Banner
-        color={COLOR_RED}
-        icon={'clear'}
-        onHide={handleBannerMessageHide}
-        text={bannerMessage}
-        visible={!!bannerMessage} />
     </BlogListContainer>
   );
 };
