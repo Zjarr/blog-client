@@ -1,12 +1,17 @@
 import Styled from 'styled-components';
 
-export const EmptyContainer = Styled.div`
+const DEFAULT_HEIGHT = '100%';
+
+const getContainerHeight = (height?: string): string => height || DEFAULT_HEIGHT;
+
+export const EmptyContainer = Styled.div<{ height?: string }>`
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 100%;
   justify-content: center;
   width: 100%;
+
+  height: ${({ height }): string => getContainerHeight(height)};
 `;
 
 export const ImageContainer = Styled.div`

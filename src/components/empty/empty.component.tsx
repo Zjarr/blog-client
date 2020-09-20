@@ -14,9 +14,9 @@ import {
   TextContainer
 } from './empty.style';
 
-export const Empty: React.FC<IEmpty> = ({ error, message }) => {
+export const Empty: React.FC<IEmpty> = ({ error, height, message }) => {
   return (
-    <EmptyContainer>
+    <EmptyContainer height={height}>
       <ImageContainer>
         <RocketImage src={error ? Broken : Rocket} />
       </ImageContainer>
@@ -39,5 +39,6 @@ export const Empty: React.FC<IEmpty> = ({ error, message }) => {
 
 interface IEmpty {
   error?: boolean;
+  height?: string;
   message?: string;
 }
