@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Banner } from '../../../components/banner';
 import { SimpleButton } from '../../../components/button';
 import { Column } from '../../../components/column';
 import { Dropdown } from '../../../components/dropdown';
@@ -13,17 +12,17 @@ import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
 import { useCheckbox, useDropdown, useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
 import { ICategory } from '../../../utils/interfaces';
-import { COLOR_PURPLE, COLOR_RED, STRING_FIELD_REQUIRED, STRING_SERVER_ERROR, VALUE_CATEGORIES } from '../../../utils/values';
+import { COLOR_PURPLE, STRING_FIELD_REQUIRED, STRING_SERVER_ERROR, VALUE_CATEGORIES } from '../../../utils/values';
 
 import { ICategoryData, ICategoryMutationInput, useCategoryMutation, useCategoryQuery } from './detail.graphql';
 import { BodyContainer, DetailContainer } from './detail.style';
 
 export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param }) => {
-  const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [categoryData, setCategoryData] = React.useState<ICategory>();
+  const [error, setError] = React.useState<string>('');
+  const [fields, setFields] = React.useState<boolean>(false);
   const [headerTitle, setHeaderTitle] = React.useState<string>('');
   const [notFound, setNotFound] = React.useState<boolean>(false);
-  const [fields, setFields] = React.useState<boolean>(false);
 
   const [categoryQuery, {
     error: categoryQueryError,
@@ -61,14 +60,6 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
     });
   };
 
-  const handleBannerMessageHide = (): void => {
-    return setBannerMessage('');
-  };
-
-  const showBannerMessage = (message: string): void => {
-    return setBannerMessage(message);
-  };
-
   const handleCancelClick = (): void => {
     if (action === 'add') return navigateTo('/admin/categories');
     if (action === 'edit') return navigateTo(`/admin/categories/view/${param}`);
@@ -97,19 +88,16 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
   const handleCategoryResponse = React.useCallback((data: ICategoryData, type: string): void => {
     const { error, category } = data.category;
 
-    if (error) return showBannerMessage(error.message);
+    if (error) return setError(error.message);
 
     if (param && !category) {
       setNotFound(true);
 
-      return showBannerMessage('We could not find this category.');
+      return setError('We could not find this category.');
     }
 
     if (!category) return;
-
-    if (type === 'mutation') {
-      return navigateTo(`/admin/categories/view/${category._id}`);
-    }
+    if (type === 'mutation') return navigateTo(`/admin/categories/view/${category._id}`);
 
     return setCategoryData(category);
   }, [param, navigateTo]);
@@ -144,9 +132,7 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
   }, [action]);
 
   React.useEffect(() => {
-    if (!categoryData) return;
-
-    return setCategoryFields(categoryData);
+    if (categoryData) return setCategoryFields(categoryData);
   }, [categoryData, setCategoryFields]);
 
   React.useEffect(() => {
@@ -158,24 +144,22 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
   }, [categoryQueryData, handleCategoryResponse]);
 
   React.useEffect(() => {
-    if (categoryMutationError || categoryQueryError) return showBannerMessage(STRING_SERVER_ERROR);
-  }, [categoryMutationError, categoryQueryError]);
+    if (categoryMutationError) return setError(STRING_SERVER_ERROR);
+  }, [categoryMutationError]);
 
-  if (notFound) {
+  React.useEffect(() => {
+    if (categoryQueryError) return setError(STRING_SERVER_ERROR);
+  }, [categoryQueryError]);
+
+  if (notFound || !!error) {
     return (
-      <DetailContainer>
+      <DetailContainer empty={notFound || !!error}>
         <Header title={headerTitle} backButtonText={'Categories'} backButtonLink={'/admin/categories'} />
 
-        <BodyContainer empty={1}>
-          <Empty />
-        </BodyContainer>
-
-        <Banner
-          color={COLOR_RED}
-          icon={'clear'}
-          onHide={handleBannerMessageHide}
-          text={bannerMessage}
-          visible={!!bannerMessage} />
+        <Empty
+          error={!!error}
+          height={'calc(100% - 112px)'}
+          message={error ? error : undefined} />
       </DetailContainer>
     );
   }
@@ -240,13 +224,6 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
           icon={categoryQueryLoading || categoryMutationLoading ? 'more_horiz' : action === 'view' ? 'edit' : 'done'}
           onClick={handleDoneClick} />
       </Footer>
-
-      <Banner
-        color={COLOR_RED}
-        icon={'clear'}
-        onHide={handleBannerMessageHide}
-        text={bannerMessage}
-        visible={!!bannerMessage} />
     </DetailContainer>
   );
 };
