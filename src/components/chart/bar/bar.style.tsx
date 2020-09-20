@@ -33,18 +33,27 @@ export const HeadContainer = Styled.div`
 `;
 
 export const Number = Styled.p`
+  line-height: 28px;
   margin-bottom: 0;
 
   color: ${COLOR_LIGHTBLUE};
   font-size: ${TEXT_BIG};
+
+  ${MEDIA_SM} {
+    line-height: 36px;
+  }
 `;
 
 export const Day = Styled.p`
+  line-height: 12px;
   margin-bottom: 0;
+  text-align: center;
 
   font-size: ${TEXT_SMALL};
   
   ${MEDIA_SM} {
+    line-height: 16px;
+
     font-size: ${TEXT_NORMAL};
   }
 `;
