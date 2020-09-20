@@ -20,20 +20,20 @@ const ClearLink: ApolloLink = new ApolloLink((operation, forward) => {
 });
 
 const HttpLink: ApolloLink = createUploadLink({
-  credentials: 'include',
   uri: REACT_APP_SERVER
 }) as unknown as ApolloLink;
 
-const AuthLink: ApolloLink = setContext((_, { headers }) => {
+const AuthLink = (token?: string): ApolloLink => setContext((_, { headers }) => {
   return {
     headers: {
+      authorization: token ? `Bearer ${token}` : '',
       ...headers
     }
   };
 });
 
-const link = ApolloLink.from([
-  AuthLink,
+const link = (token?: string): ApolloLink => ApolloLink.from([
+  AuthLink(token),
   ClearLink,
   HttpLink
 ]);
@@ -44,8 +44,8 @@ const defaultOptions: DefaultOptions = {
   }
 };
 
-export const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
+export const client = (token?: string): ApolloClient<NormalizedCacheObject> => new ApolloClient({
   cache: new InMemoryCache(),
   defaultOptions,
-  link
+  link: link(token)
 });
