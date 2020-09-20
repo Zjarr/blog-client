@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Banner } from '../../../components/banner';
 import { SimpleButton } from '../../../components/button';
 import { IconCard } from '../../../components/card';
 import { Column } from '../../../components/column';
 import { Dropdown } from '../../../components/dropdown';
+import { Empty } from '../../../components/empty';
 import { Footer } from '../../../components/footer';
 import { FormField } from '../../../components/form-field';
 import { Header } from '../../../components/header';
@@ -15,24 +15,23 @@ import { Renderer } from '../../../components/renderer';
 import { LabelText, ParagraphText } from '../../../components/text';
 import { TextArea } from '../../../components/textarea';
 import { Toggle } from '../../../components/toggle';
-import { useDropdown, useInput, useNavigateTo, useTextArea, useCheckbox } from '../../../utils/hooks';
-import { ICategory, ISource, IBlog } from '../../../utils/interfaces';
-import { COLOR_GRAY_MEDIUM, COLOR_PURPLE, STRING_FIELD_REQUIRED, STRING_SERVER_ERROR, COLOR_RED } from '../../../utils/values';
+import { useCheckbox, useDropdown, useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
+import { IBlog, ICategory, ISource } from '../../../utils/interfaces';
+import { COLOR_GRAY_MEDIUM, COLOR_PURPLE, STRING_FIELD_REQUIRED, STRING_SERVER_ERROR } from '../../../utils/values';
 
-import { ICategoriesQueryData, useCategoriesQuery, useBlogQuery, useBlogMutation, IBlogData, IBlogMutationInput } from './detail.graphql';
+import { IBlogData, IBlogMutationInput, ICategoriesQueryData, useBlogMutation, useBlogQuery, useCategoriesQuery } from './detail.graphql';
 import { BodyContainer, DetailContainer, EditorButtonsContainer, EmptyListContainer, SimpleListContainer } from './detail.style';
-import { Empty } from '../../../components/empty';
 
 export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
-  const [imagesModalVisible, setImagesModalVisible] = React.useState<boolean>(false);
-  const [bannerMessage, setBannerMessage] = React.useState<string>('');
-  const [previewBlog, setPreviewBlog] = React.useState<boolean>(false);
-  const [categories, setCategories] = React.useState<ICategory[]>([]);
-  const [headerTitle, setHeaderTitle] = React.useState<string>('');
-  const [notFound, setNotFound] = React.useState<boolean>(false);
-  const [sources, setSources] = React.useState<ISource[]>([]);
-  const [fields, setFields] = React.useState<boolean>(false);
   const [blogData, setBlogData] = React.useState<IBlog>();
+  const [categories, setCategories] = React.useState<ICategory[]>([]);
+  const [error, setError] = React.useState<string>('');
+  const [fields, setFields] = React.useState<boolean>(false);
+  const [headerTitle, setHeaderTitle] = React.useState<string>('');
+  const [imagesModalVisible, setImagesModalVisible] = React.useState<boolean>(false);
+  const [notFound, setNotFound] = React.useState<boolean>(false);
+  const [previewBlog, setPreviewBlog] = React.useState<boolean>(false);
+  const [sources, setSources] = React.useState<ISource[]>([]);
 
   const [blogQuery, {
     error: blogQueryError,
@@ -91,14 +90,6 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
     blogMutation({
       variables: { ...blogMutationData }
     });
-  };
-
-  const handleBannerMessageHide = (): void => {
-    return setBannerMessage('');
-  };
-
-  const showBannerMessage = (message: string): void => {
-    return setBannerMessage(message);
   };
 
   const handleCancelClick = (): void => {
@@ -182,12 +173,12 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   const handleBlogResponse = React.useCallback((data: IBlogData, type: string): void => {
     const { error, blog } = data.blog;
 
-    if (error) return showBannerMessage(error.message);
+    if (error) return setError(error.message);
 
     if (param && !blog) {
       setNotFound(true);
 
-      return showBannerMessage('We could not find this blog.');
+      return setError('We could not find this blog.');
     }
 
     if (!blog) return;
@@ -202,7 +193,7 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   const handleCategoriesQueryResponse = React.useCallback((data: ICategoriesQueryData): void => {
     const { error, categories } = data.categories;
 
-    if (error) return showBannerMessage(error.message);
+    if (error) return setError(error.message);
     if (!categories) return;
 
     return blogCategories.setValues(categories);
@@ -236,7 +227,7 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   }, [param, blogQuery]);
 
   React.useEffect(() => {
-    initPageProperties(action);
+    return initPageProperties(action);
   }, [action, initPageProperties]);
 
   React.useEffect(() => {
@@ -248,9 +239,7 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   }, [blogData, mapCategoryObject]);
 
   React.useEffect(() => {
-    if (!blogData) return;
-
-    return setBlogFields(blogData);
+    if (blogData) return setBlogFields(blogData);
   }, [blogData, setBlogFields]);
 
   React.useEffect(() => {
@@ -262,34 +251,30 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   }, [blogQueryData, handleBlogResponse]);
 
   React.useEffect(() => {
-    if (blogMutationError || blogQueryError) return showBannerMessage(STRING_SERVER_ERROR);
-  }, [blogMutationError, blogQueryError]);
-
-  React.useEffect(() => {
     if (categoriesQueryData) return handleCategoriesQueryResponse(categoriesQueryData);
   }, [categoriesQueryData, handleCategoriesQueryResponse]);
 
   React.useEffect(() => {
-    if (!categoriesQueryError) return;
+    if (blogMutationError) return setError(STRING_SERVER_ERROR);
+  }, [blogMutationError]);
 
-    return showBannerMessage(STRING_SERVER_ERROR);
+  React.useEffect(() => {
+    if (blogQueryError) return setError(STRING_SERVER_ERROR);
+  }, [blogQueryError]);
+
+  React.useEffect(() => {
+    if (categoriesQueryError) return setError(STRING_SERVER_ERROR);
   }, [categoriesQueryError]);
 
-  if (notFound) {
+  if (notFound || !!error) {
     return (
-      <DetailContainer>
+      <DetailContainer empty={notFound || !!error}>
         <Header title={headerTitle} backButtonText={'Blogs'} backButtonLink={'/admin/blogs'} />
 
-        <BodyContainer empty={1}>
-          <Empty />
-        </BodyContainer>
-
-        <Banner
-          color={COLOR_RED}
-          icon={'clear'}
-          onHide={handleBannerMessageHide}
-          text={bannerMessage}
-          visible={!!bannerMessage} />
+        <Empty
+          error={!!error}
+          height={'calc(100% - 112px)'}
+          message={error ? error : undefined} />
       </DetailContainer>
     );
   }
@@ -477,13 +462,6 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
       <ImageList
         onClose={(): void => setImagesModalVisible(false)}
         visible={imagesModalVisible} />
-
-      <Banner
-        color={COLOR_RED}
-        icon={'clear'}
-        onHide={handleBannerMessageHide}
-        text={bannerMessage}
-        visible={!!bannerMessage} />
     </DetailContainer>
   );
 };
