@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Banner } from '../../../components/banner';
 import { SimpleButton } from '../../../components/button';
 import { IImageCard } from '../../../components/card';
+import { Empty } from '../../../components/empty';
 import { Footer } from '../../../components/footer';
 import { FormField } from '../../../components/form-field';
 import { Header } from '../../../components/header';
@@ -12,13 +12,13 @@ import { SubtitleText } from '../../../components/text';
 import { Toggle } from '../../../components/toggle';
 import { useCheckbox, useInput, useNavigateTo } from '../../../utils/hooks';
 import { IImage } from '../../../utils/interfaces';
-import { COLOR_PURPLE, COLOR_RED, PAGINATION_DEFAULT, STRING_SERVER_ERROR } from '../../../utils/values';
+import { COLOR_PURPLE, PAGINATION_DEFAULT, STRING_SERVER_ERROR } from '../../../utils/values';
 
 import { IImagesQueryData, useImagesQuery } from './list.graphql';
 import { BodyContainer, FilterContainer, ImageListContainer, ListContainer } from './list.style';
 
 export const ListImagePage: React.FC<IListImagePage> = () => {
-  const [bannerMessage, setBannerMessage] = React.useState<string>('');
+  const [error, setError] = React.useState<string>('');
   const [images, setImages] = React.useState<IImageCard[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
 
@@ -32,14 +32,6 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
 
   const filterActive = useCheckbox(true);
   const filterSearch = useInput('');
-
-  const handleBannerMessageHide = (): void => {
-    return setBannerMessage('');
-  };
-
-  const showBannerMessage = (message: string): void => {
-    return setBannerMessage(message);
-  };
 
   const buildImagesObject = React.useCallback((images: IImage[]) => {
     const imagesCards: IImageCard[] = [];
@@ -77,7 +69,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
   const handleImagesQueryResponse = React.useCallback((data: IImagesQueryData): void => {
     const { error, images } = data.images;
 
-    if (error) return showBannerMessage(error.message);
+    if (error) return setError(error.message);
     if (!images) return;
 
     return buildImagesObject(images);
@@ -92,12 +84,25 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
   }, [imagesQueryData, handleImagesQueryResponse]);
 
   React.useEffect(() => {
-    if (!imagesQueryError) return;
+    if (imagesQueryError) {
+      setLoading(false);
 
-    setLoading(false);
-
-    return showBannerMessage(STRING_SERVER_ERROR);
+      return setError(STRING_SERVER_ERROR);
+    }
   }, [imagesQueryError]);
+
+  if (!!error) {
+    return (
+      <ImageListContainer empty={!!error}>
+        <Header title={'Images'} />
+
+        <Empty
+          error={!!error}
+          height={'calc(100% - 112px)'}
+          message={error} />
+      </ImageListContainer>
+    );
+  }
 
   return (
     <ImageListContainer>
@@ -124,13 +129,6 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
       <Footer>
         <SimpleButton color={COLOR_PURPLE} icon={'add'} onClick={(): void => navigateTo('/admin/images/add')} />
       </Footer>
-
-      <Banner
-        color={COLOR_RED}
-        icon={'clear'}
-        onHide={handleBannerMessageHide}
-        text={bannerMessage}
-        visible={!!bannerMessage} />
     </ImageListContainer>
   );
 };
