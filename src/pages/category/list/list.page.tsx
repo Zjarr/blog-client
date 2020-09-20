@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Banner } from '../../../components/banner';
 import { SimpleButton } from '../../../components/button';
 import { IImageCard } from '../../../components/card';
+import { Empty } from '../../../components/empty';
 import { Footer } from '../../../components/footer';
 import { FormField } from '../../../components/form-field';
 import { Header } from '../../../components/header';
@@ -12,14 +12,14 @@ import { SubtitleText } from '../../../components/text';
 import { Toggle } from '../../../components/toggle';
 import { useCheckbox, useInput, useNavigateTo } from '../../../utils/hooks';
 import { ICategory } from '../../../utils/interfaces';
-import { COLOR_PURPLE, COLOR_RED, PAGINATION_DEFAULT, STRING_SERVER_ERROR } from '../../../utils/values';
+import { COLOR_PURPLE, PAGINATION_DEFAULT, STRING_SERVER_ERROR } from '../../../utils/values';
 
 import { ICategoriesQueryData, useCategoriesQuery } from './list.graphql';
 import { BodyContainer, CategoryListContainer, FilterContainer, ListContainer } from './list.style';
 
 export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
-  const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [categories, setCategories] = React.useState<IImageCard[]>([]);
+  const [error, setError] = React.useState<string>('');
   const [loading, setLoading] = React.useState<boolean>(true);
 
   const [categoriesQuery, {
@@ -32,14 +32,6 @@ export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
 
   const filterActive = useCheckbox(true);
   const filterSearch = useInput('');
-
-  const handleBannerMessageHide = (): void => {
-    return setBannerMessage('');
-  };
-
-  const showBannerMessage = (message: string): void => {
-    return setBannerMessage(message);
-  };
 
   const buildCategoriesObject = React.useCallback((categories: ICategory[]) => {
     const categoryCards: IImageCard[] = [];
@@ -77,7 +69,7 @@ export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
   const handleCategoriesQueryResponse = React.useCallback((data: ICategoriesQueryData): void => {
     const { error, categories } = data.categories;
 
-    if (error) return showBannerMessage(error.message);
+    if (error) return setError(error.message);
     if (!categories) return;
 
     return buildCategoriesObject(categories);
@@ -92,12 +84,25 @@ export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
   }, [categoriesQueryData, handleCategoriesQueryResponse]);
 
   React.useEffect(() => {
-    if (!categoriesQueryError) return;
+    if (categoriesQueryError) {
+      setLoading(false);
 
-    setLoading(false);
-
-    return showBannerMessage(STRING_SERVER_ERROR);
+      return setError(STRING_SERVER_ERROR);
+    }
   }, [categoriesQueryError]);
+
+  if (!!error) {
+    return (
+      <CategoryListContainer empty={!!error}>
+        <Header title={'Categories'} />
+
+        <Empty
+          error={!!error}
+          height={'calc(100% - 112px)'}
+          message={error} />
+      </CategoryListContainer>
+    );
+  }
 
   return (
     <CategoryListContainer>
@@ -124,13 +129,6 @@ export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
       <Footer>
         <SimpleButton color={COLOR_PURPLE} icon={'add'} onClick={(): void => navigateTo('/admin/categories/add')} />
       </Footer>
-
-      <Banner
-        color={COLOR_RED}
-        icon={'clear'}
-        onHide={handleBannerMessageHide}
-        text={bannerMessage}
-        visible={!!bannerMessage} />
     </CategoryListContainer>
   );
 };
