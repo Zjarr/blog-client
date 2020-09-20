@@ -20,8 +20,11 @@ const {
 } = process.env;
 
 export const LoginPage: React.FC<ILoginPage> = () => {
+  const [bannerMessage, setBannerMessage] = React.useState<string>('');
+
   const [, setCookie] = useCookies();
   const navigateTo = useNavigateTo();
+
   const password = useInput();
   const email = useInput();
 
@@ -31,17 +34,12 @@ export const LoginPage: React.FC<ILoginPage> = () => {
     loading: loginMutationLoading
   }] = useLoginMutation();
 
-  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
-  const [bannerMessage, setBannerMessage] = React.useState<string>('');
-
   const handleBannerMessageHide = (): void => {
-    return setBannerVisible(false);
+    return setBannerMessage('');
   };
 
   const showBannerMessageShow = (message: string): void => {
-    setBannerMessage(message);
-
-    return setBannerVisible(true);
+    return setBannerMessage(message);
   };
 
   const isValidForm = (): boolean => {
@@ -131,7 +129,7 @@ export const LoginPage: React.FC<ILoginPage> = () => {
         icon={'clear'}
         onHide={handleBannerMessageHide}
         text={bannerMessage}
-        visible={bannerVisible} />
+        visible={!!bannerMessage} />
     </LoginContainer>
   );
 };

@@ -32,16 +32,15 @@ import {
 } from './edit.style';
 
 export const EditProfilePage: React.FC<IEditProfilePage> = () => {
-  const { user } = React.useContext(UserContext);
-
   const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
   const [socialNetworks, setSocialNetworks] = React.useState<ISocial[]>([]);
-  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
   const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [imageFile, setImageFile] = React.useState<File | null>(null);
   const [fields, setFields] = React.useState<boolean>(false);
   const [profile, setProfile] = React.useState<IUser>();
   const [image, setImage] = React.useState<string>('');
+
+  const { user } = React.useContext(UserContext);
 
   const [updateUserMutation, {
     error: userMutationError,
@@ -67,13 +66,11 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   const socialURL = useInput();
 
   const handleBannerMessageHide = (): void => {
-    return setBannerVisible(false);
+    return setBannerMessage('');
   };
 
   const showBannerMessage = (message: string): void => {
-    setBannerMessage(message);
-
-    return setBannerVisible(true);
+    return setBannerMessage(message);
   };
 
   const handleImageUpdateModalClose = (result: IImageResult | null): void => {
@@ -366,7 +363,7 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
         icon={'clear'}
         onHide={handleBannerMessageHide}
         text={bannerMessage}
-        visible={bannerVisible} />
+        visible={!!bannerMessage} />
     </EditContainer>
   );
 };

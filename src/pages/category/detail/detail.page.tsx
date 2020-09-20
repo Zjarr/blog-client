@@ -19,7 +19,6 @@ import { ICategoryData, ICategoryMutationInput, useCategoryMutation, useCategory
 import { BodyContainer, DetailContainer } from './detail.style';
 
 export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param }) => {
-  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
   const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [categoryData, setCategoryData] = React.useState<ICategory>();
   const [headerTitle, setHeaderTitle] = React.useState<string>('');
@@ -63,13 +62,11 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
   };
 
   const handleBannerMessageHide = (): void => {
-    return setBannerVisible(false);
+    return setBannerMessage('');
   };
 
   const showBannerMessage = (message: string): void => {
-    setBannerMessage(message);
-
-    return setBannerVisible(true);
+    return setBannerMessage(message);
   };
 
   const handleCancelClick = (): void => {
@@ -178,7 +175,7 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
           icon={'clear'}
           onHide={handleBannerMessageHide}
           text={bannerMessage}
-          visible={bannerVisible} />
+          visible={!!bannerMessage} />
       </DetailContainer>
     );
   }
@@ -249,7 +246,7 @@ export const DetailCategoryPage: React.FC<IDetailCategory> = ({ action, param })
         icon={'clear'}
         onHide={handleBannerMessageHide}
         text={bannerMessage}
-        visible={bannerVisible} />
+        visible={!!bannerMessage} />
     </DetailContainer>
   );
 };

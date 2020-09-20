@@ -29,7 +29,6 @@ import {
 
 export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
   const [passwordModalVisible, setPasswordModalVisible] = React.useState<boolean>(false);
-  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
   const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [userData, setUserData] = React.useState<IUser | null>(null);
 
@@ -50,13 +49,11 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
   }] = usePasswordMutation();
 
   const handleBannerMessageHide = (): void => {
-    return setBannerVisible(false);
+    return setBannerMessage('');
   };
 
   const showBannerMessage = (message: string): void => {
-    setBannerMessage(message);
-
-    return setBannerVisible(true);
+    return setBannerMessage(message);
   };
 
   const handlePasswordUpdate = (password: { current: string; updated: string } | null): void => {
@@ -197,7 +194,7 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
         icon={'clear'}
         onHide={handleBannerMessageHide}
         text={bannerMessage}
-        visible={bannerVisible} />
+        visible={!!bannerMessage} />
     </ViewContainer>
   );
 };

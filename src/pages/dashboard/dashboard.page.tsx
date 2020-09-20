@@ -34,7 +34,6 @@ const {
 } = process.env;
 
 export const DashboardPage: React.FC<IDashboardPage> = () => {
-  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
   const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
   const [system, setSystem] = React.useState<string>('');
@@ -59,13 +58,11 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
   const navigateTo = useNavigateTo();
 
   const handleBannerMessageHide = (): void => {
-    return setBannerVisible(false);
+    return setBannerMessage('');
   };
 
   const showBannerMessage = (message: string): void => {
-    setBannerMessage(message);
-
-    return setBannerVisible(true);
+    return setBannerMessage(message);
   };
 
   const handleSidebarButtonClick = (route?: string): void => {
@@ -181,7 +178,7 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
         icon={'clear'}
         onHide={handleBannerMessageHide}
         text={bannerMessage}
-        visible={bannerVisible} />
+        visible={!!bannerMessage} />
     </DashboardContainer>
   );
 };

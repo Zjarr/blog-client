@@ -20,7 +20,6 @@ import { IBlogsQueryData, ICategoriesQueryData, useBlogsQuery, useCategoriesQuer
 import { BlogListContainer, BodyContainer, FilterContainer, ListContainer } from './list.style';
 
 export const ListBlogPage: React.FC<IListBlogPage> = () => {
-  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
   const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [blogs, setBlogs] = React.useState<IImageCard[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
@@ -48,13 +47,11 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
   }, [filterCategories.values]);
 
   const handleBannerMessageHide = (): void => {
-    return setBannerVisible(false);
+    return setBannerMessage('');
   };
 
   const showBannerMessage = (message: string): void => {
-    setBannerMessage(message);
-
-    return setBannerVisible(true);
+    return setBannerMessage(message);
   };
 
   const buildBlogsObject = React.useCallback((blogs: IBlog[]) => {
@@ -182,7 +179,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
         icon={'clear'}
         onHide={handleBannerMessageHide}
         text={bannerMessage}
-        visible={bannerVisible} />
+        visible={!!bannerMessage} />
     </BlogListContainer>
   );
 };

@@ -52,7 +52,6 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   const [blogsReport, setBlogsReport] = React.useState<IBlogsReport[]>(LOADING_REPORT_DATA);
   const [blogsInactive, setBlogsInactive] = React.useState<IImageCard[]>(LOADING_CARDS);
   const [blogsActive, setBlogsActive] = React.useState<IImageCard[]>(LOADING_CARDS);
-  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
   const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [categories, setCategories] = React.useState<ICategory[]>([]);
   const [imagesNumber, setImagesNumber] = React.useState<number>(0);
@@ -94,13 +93,11 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   } = useImagesAmountQuery();
 
   const handleBannerMessageHide = (): void => {
-    return setBannerVisible(false);
+    return setBannerMessage('');
   };
 
   const showBannerMessage = (message: string): void => {
-    setBannerMessage(message);
-
-    return setBannerVisible(true);
+    return setBannerMessage(message);;
   };
 
   const mapCategoryObject = React.useCallback((ids: string[]): ICategory[] => {
@@ -267,7 +264,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
             <ListCardContainer xl={12}>
               <SubtitleText icon={'book'}>Recent entries</SubtitleText>
               {
-                blogsActive.length > 0 && blogsActive.map((card: IImageCard, index: number) =>
+                !blogsLastTwoActiveQueryError && blogsActive.length > 0 && blogsActive.map((card: IImageCard, index: number) =>
                   <ImageCardContainer key={`active-blog-${index}`}>
                     <ImageCard {...card} loading={blogsLastTwoActiveQueryLoading} />
                   </ImageCardContainer>
@@ -275,8 +272,10 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
               }
               {
                 !blogsLastTwoActiveQueryLoading &&
-                blogsActive.length === 0 &&
-                <Empty height={'calc(100% - 56px)'} message={'There a no blogs.'} />
+                <Empty
+                  error={!!blogsLastTwoActiveQueryError}
+                  height={'calc(100% - 56px)'}
+                  message={!blogsLastTwoActiveQueryError ? 'There a no blogs.' : undefined} />
               }
             </ListCardContainer>
           </Row>
@@ -284,7 +283,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
             <ListCardContainer xl={12}>
               <SubtitleText icon={'book'}>To be released</SubtitleText>
               {
-                blogsInactive.length > 0 && blogsInactive.map((card: IImageCard, index: number) =>
+                !blogsLastTwoInactiveQueryError && blogsInactive.length > 0 && blogsInactive.map((card: IImageCard, index: number) =>
                   <ImageCardContainer key={`inactive-blog-${index}`}>
                     <ImageCard {...card} loading={blogsLastTwoInactiveQueryLoading} />
                   </ImageCardContainer>
@@ -292,8 +291,10 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
               }
               {
                 !blogsLastTwoInactiveQueryLoading &&
-                blogsInactive.length === 0 &&
-                <Empty height={'calc(100% - 56px)'} message={'There are no drafts.'} />
+                <Empty
+                  error={!!blogsLastTwoInactiveQueryError}
+                  height={'calc(100% - 56px)'}
+                  message={!blogsLastTwoInactiveQueryError ? 'There are no drafts.' : undefined} />
               }
             </ListCardContainer>
           </Row>
@@ -305,7 +306,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
         icon={'clear'}
         onHide={handleBannerMessageHide}
         text={bannerMessage}
-        visible={bannerVisible} />
+        visible={!!bannerMessage} />
     </SummaryContainer>
   );
 };

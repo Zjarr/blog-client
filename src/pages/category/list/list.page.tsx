@@ -18,7 +18,6 @@ import { ICategoriesQueryData, useCategoriesQuery } from './list.graphql';
 import { BodyContainer, CategoryListContainer, FilterContainer, ListContainer } from './list.style';
 
 export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
-  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
   const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [categories, setCategories] = React.useState<IImageCard[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
@@ -35,13 +34,11 @@ export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
   const filterSearch = useInput('');
 
   const handleBannerMessageHide = (): void => {
-    return setBannerVisible(false);
+    return setBannerMessage('');
   };
 
   const showBannerMessage = (message: string): void => {
-    setBannerMessage(message);
-
-    return setBannerVisible(true);
+    return setBannerMessage(message);
   };
 
   const buildCategoriesObject = React.useCallback((categories: ICategory[]) => {
@@ -133,7 +130,7 @@ export const ListCategoryPage: React.FC<IListCategoryPage> = () => {
         icon={'clear'}
         onHide={handleBannerMessageHide}
         text={bannerMessage}
-        visible={bannerVisible} />
+        visible={!!bannerMessage} />
     </CategoryListContainer>
   );
 };

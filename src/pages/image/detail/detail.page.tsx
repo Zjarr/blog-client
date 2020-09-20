@@ -21,7 +21,6 @@ import { BodyContainer, DetailContainer, ImageColumn } from './detail.style';
 
 export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
   const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
-  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
   const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [imageFile, setImageFile] = React.useState<File | null>(null);
   const [headerTitle, setHeaderTitle] = React.useState<string>('');
@@ -73,13 +72,11 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
   };
 
   const handleBannerMessageHide = (): void => {
-    return setBannerVisible(false);
+    return setBannerMessage('');
   };
 
   const showBannerMessage = (message: string): void => {
-    setBannerMessage(message);
-
-    return setBannerVisible(true);
+    return setBannerMessage(message);
   };
 
   const handleCancelClick = (): void => {
@@ -200,7 +197,7 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
           icon={'clear'}
           onHide={handleBannerMessageHide}
           text={bannerMessage}
-          visible={bannerVisible} />
+          visible={!!bannerMessage} />
       </DetailContainer>
     );
   }
@@ -284,7 +281,7 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
         icon={'clear'}
         onHide={handleBannerMessageHide}
         text={bannerMessage}
-        visible={bannerVisible} />
+        visible={!!bannerMessage} />
     </DetailContainer>
   );
 };

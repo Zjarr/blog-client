@@ -18,7 +18,6 @@ import { IImagesQueryData, useImagesQuery } from './list.graphql';
 import { BodyContainer, FilterContainer, ImageListContainer, ListContainer } from './list.style';
 
 export const ListImagePage: React.FC<IListImagePage> = () => {
-  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
   const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [images, setImages] = React.useState<IImageCard[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
@@ -35,13 +34,11 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
   const filterSearch = useInput('');
 
   const handleBannerMessageHide = (): void => {
-    return setBannerVisible(false);
+    return setBannerMessage('');
   };
 
   const showBannerMessage = (message: string): void => {
-    setBannerMessage(message);
-
-    return setBannerVisible(true);
+    return setBannerMessage(message);
   };
 
   const buildImagesObject = React.useCallback((images: IImage[]) => {
@@ -133,7 +130,7 @@ export const ListImagePage: React.FC<IListImagePage> = () => {
         icon={'clear'}
         onHide={handleBannerMessageHide}
         text={bannerMessage}
-        visible={bannerVisible} />
+        visible={!!bannerMessage} />
     </ImageListContainer>
   );
 };

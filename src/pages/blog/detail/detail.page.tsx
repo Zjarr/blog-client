@@ -25,7 +25,6 @@ import { Empty } from '../../../components/empty';
 
 export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   const [imagesModalVisible, setImagesModalVisible] = React.useState<boolean>(false);
-  const [bannerVisible, setBannerVisible] = React.useState<boolean>(false);
   const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [previewBlog, setPreviewBlog] = React.useState<boolean>(false);
   const [categories, setCategories] = React.useState<ICategory[]>([]);
@@ -95,13 +94,11 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
   };
 
   const handleBannerMessageHide = (): void => {
-    return setBannerVisible(false);
+    return setBannerMessage('');
   };
 
   const showBannerMessage = (message: string): void => {
-    setBannerMessage(message);
-
-    return setBannerVisible(true);
+    return setBannerMessage(message);
   };
 
   const handleCancelClick = (): void => {
@@ -292,7 +289,7 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
           icon={'clear'}
           onHide={handleBannerMessageHide}
           text={bannerMessage}
-          visible={bannerVisible} />
+          visible={!!bannerMessage} />
       </DetailContainer>
     );
   }
@@ -486,7 +483,7 @@ export const DetailBlogPage: React.FC<IDetailBlog> = ({ action, param }) => {
         icon={'clear'}
         onHide={handleBannerMessageHide}
         text={bannerMessage}
-        visible={bannerVisible} />
+        visible={!!bannerMessage} />
     </DetailContainer>
   );
 };
