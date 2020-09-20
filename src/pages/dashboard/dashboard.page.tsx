@@ -3,14 +3,12 @@ import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router-dom';
 
 import Logo from '../../assets/images/logo-white.png';
-import { Banner } from '../../components/banner';
 import { MenuButton } from '../../components/button';
 import { MobileButton } from '../../components/button/mobile';
 import { Image } from '../../components/image';
 import { LabelText } from '../../components/text';
 import { UserContext } from '../../contexts';
 import { useNavigateTo } from '../../utils/hooks';
-import { COLOR_RED, STRING_SERVER_ERROR } from '../../utils/values';
 
 import { IUserQueryData, useSystemQuery, useUserQuery } from './dashboard.graphql';
 import {
@@ -34,12 +32,15 @@ const {
 } = process.env;
 
 export const DashboardPage: React.FC<IDashboardPage> = () => {
-  const [bannerMessage, setBannerMessage] = React.useState<string>('');
+  const [image, setImage] = React.useState<string>('');
   const [menuOpen, setMenuOpen] = React.useState<boolean>(false);
   const [system, setSystem] = React.useState<string>('');
-  const [image, setImage] = React.useState<string>('');
 
   const { user, updateUser } = React.useContext(UserContext);
+
+  const { action, param, section } = useParams<{ action: string, param: string, section: string }>();
+  const [, , removeCookie] = useCookies();
+  const navigateTo = useNavigateTo();
 
   const {
     error: systemQueryError,
@@ -52,18 +53,6 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
     data: userQueryData,
     loading: userQueryLoading
   } = useUserQuery(user!);
-
-  const { action, param, section } = useParams<{ action: string, param: string, section: string }>();
-  const [, , removeCookie] = useCookies();
-  const navigateTo = useNavigateTo();
-
-  const handleBannerMessageHide = (): void => {
-    return setBannerMessage('');
-  };
-
-  const showBannerMessage = (message: string): void => {
-    return setBannerMessage(message);
-  };
 
   const handleSidebarButtonClick = (route?: string): void => {
     if (route) navigateTo(route);
@@ -90,7 +79,7 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
   const handleUserQueryResponse = React.useCallback((data: IUserQueryData): void => {
     const { error, user } = data.user;
 
-    if (error) return showBannerMessage(error.message);
+    if (error) return setImage('');
     if (!user) return;
 
     return setImage(user.image!);
@@ -109,7 +98,7 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
   }, [systemQueryError]);
 
   React.useEffect(() => {
-    if (userQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+    if (userQueryError) return setImage('');
   }, [userQueryError]);
 
   return (
@@ -172,13 +161,6 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
 
         <DashboardSwitch action={action} param={param} section={section} />
       </BodyContainer>
-
-      <Banner
-        color={COLOR_RED}
-        icon={'clear'}
-        onHide={handleBannerMessageHide}
-        text={bannerMessage}
-        visible={!!bannerMessage} />
     </DashboardContainer>
   );
 };
