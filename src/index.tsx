@@ -21,6 +21,7 @@ import './styles/input.style.css';
 
 const App: React.FC<IApp> = () => {
   const [cookies] = useCookies(['authorization']);
+
   const user = useUser();
 
   return (
