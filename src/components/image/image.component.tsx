@@ -1,12 +1,11 @@
 import React from 'react';
 
 import ImagePlaceholder from '../../assets/images/img-placeholder.png';
-
 import { Icon } from '../icon';
 
-import { ImageContainer, ImageUpdateButton, Img } from './image.style';
+import { ImageContainer, ImageErrorBorder, ImageUpdateButton, Img } from './image.style';
 
-export const Image: React.FC<IImage> = ({ alt, onUpdateClick, shape, src, updatable = false, ...rest }) => {
+export const Image: React.FC<IImage> = ({ alt, error, onUpdateClick, shape, src, updatable = false, ...rest }) => {
   const handleUpdateImageClick = (): void => {
     return onUpdateClick && onUpdateClick();
   };
@@ -14,6 +13,10 @@ export const Image: React.FC<IImage> = ({ alt, onUpdateClick, shape, src, updata
   return (
     <ImageContainer updatable={updatable} shape={shape} {...rest}>
       <Img alt={alt} noImg={!src} src={src || ImagePlaceholder} {...rest} />
+
+      {
+        error && <ImageErrorBorder />
+      }
 
       <ImageUpdateButton disabled={!updatable} onClick={handleUpdateImageClick} shape={shape}>
         <Icon name={'edit'} size={'32px'} />
@@ -24,6 +27,7 @@ export const Image: React.FC<IImage> = ({ alt, onUpdateClick, shape, src, updata
 
 interface IImage {
   alt?: string;
+  error?: boolean;
   height?: string;
   onUpdateClick?: () => void,
   shape: 'circle' | 'square';
