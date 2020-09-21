@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Banner } from '../../../components/banner';
 import { SimpleButton } from '../../../components/button';
 import { Column } from '../../../components/column';
 import { Empty } from '../../../components/empty';
@@ -14,20 +13,21 @@ import { Toggle } from '../../../components/toggle';
 import { UpdateImage } from '../../../components/update-image';
 import { useCheckbox, useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
 import { IImage, IImageResult } from '../../../utils/interfaces';
-import { COLOR_PURPLE, COLOR_RED, STRING_FIELD_REQUIRED, STRING_SERVER_ERROR } from '../../../utils/values';
+import { COLOR_PURPLE, STRING_FIELD_REQUIRED, STRING_SERVER_ERROR } from '../../../utils/values';
 
 import { IImageData, IImageMutationInput, useImageMutation, useImageQuery } from './detail.graphql';
 import { BodyContainer, DetailContainer, ImageColumn } from './detail.style';
 
 export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
-  const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
-  const [bannerMessage, setBannerMessage] = React.useState<string>('');
-  const [imageFile, setImageFile] = React.useState<File | null>(null);
-  const [headerTitle, setHeaderTitle] = React.useState<string>('');
-  const [notFound, setNotFound] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<string>('');
   const [fields, setFields] = React.useState<boolean>(false);
-  const [imageData, setImageData] = React.useState<IImage>();
+  const [headerTitle, setHeaderTitle] = React.useState<string>('');
   const [image, setImage] = React.useState<string>('');
+  const [imageData, setImageData] = React.useState<IImage>();
+  const [imageError, setImageError] = React.useState<boolean>(false);
+  const [imageFile, setImageFile] = React.useState<File | null>(null);
+  const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
+  const [notFound, setNotFound] = React.useState<boolean>(false);
 
   const [imageQuery, {
     error: imageQueryError,
@@ -71,14 +71,6 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
     });
   };
 
-  const handleBannerMessageHide = (): void => {
-    return setBannerMessage('');
-  };
-
-  const showBannerMessage = (message: string): void => {
-    return setBannerMessage(message);
-  };
-
   const handleCancelClick = (): void => {
     if (action === 'add') return navigateTo('/admin/images');
     if (action === 'edit') return navigateTo(`/admin/images/view/${param}`);
@@ -90,7 +82,7 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
     if (!imageAlt.value) imageAlt.setError(STRING_FIELD_REQUIRED);
     if (!imageDescription.value) imageDescription.setError(STRING_FIELD_REQUIRED);
     if (!imageName.value) imageName.setError(STRING_FIELD_REQUIRED);
-    if (!imageIsSet) showBannerMessage('An image file is required.');
+    if (!imageIsSet) setImageError(true);
 
     if (!imageAlt.value || !imageDescription.value || !imageName.value || !imageIsSet) return false;
 
@@ -110,19 +102,16 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
   const handleImageResponse = React.useCallback((data: IImageData, type: string): void => {
     const { error, image } = data.image;
 
-    if (error) return showBannerMessage(error.message);
+    if (error) return setError(error.message);
 
     if (param && !image) {
       setNotFound(true);
 
-      return showBannerMessage('We could not find this image.');
+      return setError('We could not find this image.');
     }
 
     if (!image) return;
-
-    if (type === 'mutation') {
-      return navigateTo(`/admin/images/view/${image._id}`);
-    }
+    if (type === 'mutation') return navigateTo(`/admin/images/view/${image._id}`);
 
     return setImageData(image);
   }, [param, navigateTo]);
@@ -130,6 +119,7 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
   const handleImageUpdateModalClose = (result: IImageResult | null): void => {
     setImageFile(result ? result.file : null);
     setImage(result ? result.base64 : image);
+    setImageError(result?.base64 ? false : true);
 
     return setImageModalVisible(false);
   };
@@ -180,24 +170,22 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
   }, [imageQueryData, handleImageResponse]);
 
   React.useEffect(() => {
-    if (imageMutationError || imageQueryError) return showBannerMessage(STRING_SERVER_ERROR);
-  }, [imageMutationError, imageQueryError]);
+    if (imageMutationError) return setError(STRING_SERVER_ERROR);
+  }, [imageMutationError]);
 
-  if (notFound) {
+  React.useEffect(() => {
+    if (imageQueryError) return setError(STRING_SERVER_ERROR);
+  }, [imageQueryError]);
+
+  if (notFound || !!error) {
     return (
-      <DetailContainer>
+      <DetailContainer empty={notFound || !!error}>
         <Header title={headerTitle} backButtonText={'Images'} backButtonLink={'/admin/images'} />
 
-        <BodyContainer empty={1}>
-          <Empty />
-        </BodyContainer>
-
-        <Banner
-          color={COLOR_RED}
-          icon={'clear'}
-          onHide={handleBannerMessageHide}
-          text={bannerMessage}
-          visible={!!bannerMessage} />
+        <Empty
+          error={!!error}
+          height={'calc(100% - 112px)'}
+          message={error ? error : undefined} />
       </DetailContainer>
     );
   }
@@ -209,12 +197,13 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
       <BodyContainer>
         <ImageColumn xl={4} position={'left'}>
           <Image
-            onUpdateClick={(): void => setImageModalVisible(true)}
-            updatable={action !== 'view' && !imageMutationLoading}
-            shape={'circle'}
+            error={imageError}
             height={'180px'}
-            width={'180px'}
-            src={image} />
+            onUpdateClick={(): void => setImageModalVisible(true)}
+            shape={'circle'}
+            src={image}
+            updatable={action !== 'view' && !imageMutationLoading}
+            width={'180px'} />
         </ImageColumn>
 
         <Column xl={4} position={'center'}>
@@ -275,13 +264,6 @@ export const DetailImagePage: React.FC<IDetailImage> = ({ action, param }) => {
         onClose={handleImageUpdateModalClose}
         visible={imageModalVisible}
         src={image} />
-
-      <Banner
-        color={COLOR_RED}
-        icon={'clear'}
-        onHide={handleBannerMessageHide}
-        text={bannerMessage}
-        visible={!!bannerMessage} />
     </DetailContainer>
   );
 };

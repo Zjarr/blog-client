@@ -9,21 +9,25 @@ const DEFAULT_BODY_HEIGHT = 'auto';
 
 const EMPTY_BODY_ALIGN = 'center';
 const EMPTY_BODY_HEIGHT = 'calc(100% - 112px)';
+const EMPTY_CONTAINER_PADDING = '16px';
 
 const getBodyAlign = (empty?: boolean): string => empty ? EMPTY_BODY_ALIGN : DEFAULT_BODY_ALIGN;
 const getBodyHeight = (empty?: boolean): string => empty ? EMPTY_BODY_HEIGHT : DEFAULT_BODY_HEIGHT;
 
-export const DetailContainer = Styled.div`
+const getContainerPadding = (initial: string, empty?: boolean): string => empty ? EMPTY_CONTAINER_PADDING : initial;
+
+export const DetailContainer = Styled.div<{ empty?: boolean }>`
   height: 100%;
-  padding: 16px 16px 80px;
   overflow-y: auto;
 
+  padding: ${({ empty }): string => getContainerPadding('16px 16px 80px', empty)};
+
   ${MEDIA_SM} {
-    padding: 16px 16px 96px;
+    padding: ${({ empty }): string => getContainerPadding('16px 16px 96px', empty)};
   }
 
   ${MEDIA_XL} {
-    padding: 16px 16px 112px;
+    padding: ${({ empty }): string => getContainerPadding('16px 16px 112px', empty)};
   }
 `;
 
