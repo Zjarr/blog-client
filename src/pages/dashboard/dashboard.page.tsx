@@ -1,5 +1,5 @@
+import Cookies from 'js-cookie';
 import React from 'react';
-import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router-dom';
 
 import Logo from '../../assets/images/logo-white.png';
@@ -9,6 +9,7 @@ import { Image } from '../../components/image';
 import { LabelText } from '../../components/text';
 import { UserContext } from '../../contexts';
 import { useNavigateTo } from '../../utils/hooks';
+import { STRING_AUTHORIZATION_COOKIE } from '../../utils/values';
 
 import { IUserQueryData, useSystemQuery, useUserQuery } from './dashboard.graphql';
 import {
@@ -39,7 +40,6 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
   const { user, updateUser } = React.useContext(UserContext);
 
   const { action, param, section } = useParams<{ action: string, param: string, section: string }>();
-  const [, , removeCookie] = useCookies();
   const navigateTo = useNavigateTo();
 
   const {
@@ -66,7 +66,7 @@ export const DashboardPage: React.FC<IDashboardPage> = () => {
       path: REACT_APP_COOKIE_PATH
     };
 
-    removeCookie('authorization', cookieOptions);
+    Cookies.remove(STRING_AUTHORIZATION_COOKIE, cookieOptions);
     updateUser(null);
 
     return navigateTo('/admin');

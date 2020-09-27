@@ -3,9 +3,23 @@ import { setContext } from '@apollo/client/link/context';
 import { getMainDefinition } from '@apollo/client/utilities';
 import { createUploadLink } from 'apollo-upload-client';
 import { OperationDefinitionNode } from 'graphql';
+import Cookies from 'js-cookie';
 import OmitDeep from 'omit-deep-lodash';
 
+import { STRING_AUTHORIZATION_COOKIE } from '../utils/values';
+
 const { REACT_APP_SERVER } = process.env;
+
+const AuthLink: ApolloLink = setContext((_, { headers }) => {
+  const token = Cookies.get(STRING_AUTHORIZATION_COOKIE);
+
+  return {
+    headers: {
+      authorization: token ? `Bearer ${token}` : '',
+      ...headers
+    }
+  };
+});
 
 const ClearLink: ApolloLink = new ApolloLink((operation, forward) => {
   const keysToOmit = '__typename';
@@ -23,17 +37,9 @@ const HttpLink: ApolloLink = createUploadLink({
   uri: REACT_APP_SERVER
 }) as unknown as ApolloLink;
 
-const AuthLink = (token?: string): ApolloLink => setContext((_, { headers }) => {
-  return {
-    headers: {
-      authorization: token ? `Bearer ${token}` : '',
-      ...headers
-    }
-  };
-});
 
-const link = (token?: string): ApolloLink => ApolloLink.from([
-  AuthLink(token),
+const link: ApolloLink = ApolloLink.from([
+  AuthLink,
   ClearLink,
   HttpLink
 ]);
@@ -44,8 +50,8 @@ const defaultOptions: DefaultOptions = {
   }
 };
 
-export const client = (token?: string): ApolloClient<NormalizedCacheObject> => new ApolloClient({
+export const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   cache: new InMemoryCache(),
   defaultOptions,
-  link: link(token)
+  link
 });
