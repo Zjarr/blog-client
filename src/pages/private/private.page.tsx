@@ -1,17 +1,16 @@
+import Cookies from 'js-cookie';
 import JwtDecode from 'jwt-decode';
 import React from 'react';
-import { useCookies } from 'react-cookie';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
 
 import { UserContext } from '../../contexts';
 import { IPayload } from '../../utils/interfaces';
 import { jwt } from '../../utils/regexs';
+import { STRING_AUTHORIZATION_COOKIE } from '../../utils/values';
 
 import { LoadingContainer } from './private.style';
 
 export const PrivatePage: React.FC<RouteProps> = ({ children, ...rest }) => {
-  const [cookies] = useCookies(['authorization']);
-
   const [checkingContext, setCheckingContext] = React.useState<boolean>(true);
   const { user, updateUser } = React.useContext(UserContext);
 
@@ -28,14 +27,12 @@ export const PrivatePage: React.FC<RouteProps> = ({ children, ...rest }) => {
   }, [updateUser]);
 
   React.useEffect(() => {
-    const token = cookies.authorization;
+    const token = Cookies.get(STRING_AUTHORIZATION_COOKIE);
 
-    if (user || !jwt.test(token)) {
-      return setCheckingContext(false);
-    }
+    if (!token || user || !jwt.test(token)) return setCheckingContext(false);
 
     return checkUserContext(token);
-  }, [cookies, user, checkUserContext]);
+  }, [user, checkUserContext]);
 
   if (checkingContext) {
     return (

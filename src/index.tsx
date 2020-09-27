@@ -1,6 +1,5 @@
 import { ApolloProvider } from '@apollo/client/react/context/ApolloProvider';
 import React from 'react';
-import { CookiesProvider, useCookies } from 'react-cookie';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -20,21 +19,17 @@ import './styles/bootstrap.style.css';
 import './styles/input.style.css';
 
 const App: React.FC<IApp> = () => {
-  const [cookies] = useCookies(['authorization']);
-
   const user = useUser();
 
   return (
     <React.StrictMode>
-      <CookiesProvider>
-        <ApolloProvider client={client(cookies.authorization)}>
-          <UserContext.Provider value={user}>
-            <BrowserRouter>
-              <Pages />
-            </BrowserRouter>
-          </UserContext.Provider>
-        </ApolloProvider>
-      </CookiesProvider>
+      <ApolloProvider client={client}>
+        <UserContext.Provider value={user}>
+          <BrowserRouter>
+            <Pages />
+          </BrowserRouter>
+        </UserContext.Provider>
+      </ApolloProvider>
     </React.StrictMode>
   );
 };
