@@ -1,11 +1,11 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 
-import { Banner } from '../../../components/banner';
 import { SimpleButton } from '../../../components/button';
 import { IconCard } from '../../../components/card';
 import { Column } from '../../../components/column';
 import { Dropdown } from '../../../components/dropdown';
+import { Empty } from '../../../components/empty';
 import { Footer } from '../../../components/footer';
 import { FormField } from '../../../components/form-field';
 import { Header } from '../../../components/header';
@@ -17,7 +17,7 @@ import { UpdateImage } from '../../../components/update-image';
 import { UserContext } from '../../../contexts';
 import { useDropdown, useInput, useNavigateTo, useTextArea } from '../../../utils/hooks';
 import { IImageResult, ISocial, IUser } from '../../../utils/interfaces';
-import { COLOR_GRAY_MEDIUM, COLOR_PURPLE, COLOR_RED, STRING_FIELD_REQUIRED, STRING_SERVER_ERROR, VALUE_SOCIAL } from '../../../utils/values';
+import { COLOR_GRAY_MEDIUM, COLOR_PURPLE, STRING_FIELD_REQUIRED, STRING_SERVER_ERROR, VALUE_SOCIAL } from '../../../utils/values';
 
 import { IUserData, IUserMutationInput, useUserMutation, useUserQuery } from './edit.graphql';
 import {
@@ -32,13 +32,13 @@ import {
 } from './edit.style';
 
 export const EditProfilePage: React.FC<IEditProfilePage> = () => {
-  const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
-  const [socialNetworks, setSocialNetworks] = React.useState<ISocial[]>([]);
-  const [bannerMessage, setBannerMessage] = React.useState<string>('');
-  const [imageFile, setImageFile] = React.useState<File | null>(null);
+  const [error, setError] = React.useState<string>('');
   const [fields, setFields] = React.useState<boolean>(false);
-  const [profile, setProfile] = React.useState<IUser>();
   const [image, setImage] = React.useState<string>('');
+  const [imageFile, setImageFile] = React.useState<File | null>(null);
+  const [imageModalVisible, setImageModalVisible] = React.useState<boolean>(false);
+  const [profile, setProfile] = React.useState<IUser>();
+  const [socialNetworks, setSocialNetworks] = React.useState<ISocial[]>([]);
 
   const { user } = React.useContext(UserContext);
 
@@ -64,14 +64,6 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   const socialIcon = useDropdown(VALUE_SOCIAL);
   const socialName = useInput();
   const socialURL = useInput();
-
-  const handleBannerMessageHide = (): void => {
-    return setBannerMessage('');
-  };
-
-  const showBannerMessage = (message: string): void => {
-    return setBannerMessage(message);
-  };
 
   const handleImageUpdateModalClose = (result: IImageResult | null): void => {
     setImageFile(result ? result.file : null);
@@ -181,20 +173,16 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   const handleUserResponse = React.useCallback((data: IUserData, type: string): void => {
     const { error, user } = data.user;
 
-    if (error) return showBannerMessage(error.message);
+    if (error) return setError(error.message);
     if (!user) return;
 
-    if (type === 'mutation') {
-      return navigateTo('/admin/profile');
-    }
+    if (type === 'mutation') return navigateTo('/admin/profile');
 
     return setProfile(user);
   }, [navigateTo]);
 
   React.useEffect(() => {
-    if (!profile) return;
-
-    return setUserData(profile);
+    if (profile) return setUserData(profile);
   }, [profile, setUserData]);
 
   React.useEffect(() => {
@@ -206,8 +194,28 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
   }, [userMutationData, handleUserResponse]);
 
   React.useEffect(() => {
-    if (userMutationError || userQueryError) return showBannerMessage(STRING_SERVER_ERROR);
-  }, [userMutationError, userQueryError]);
+    if (userMutationError) return setError(STRING_SERVER_ERROR);
+  }, [userMutationError]);
+
+  React.useEffect(() => {
+    if (userQueryError) return setError(STRING_SERVER_ERROR);
+  }, [userQueryError]);
+
+  if (!!error) {
+    return (
+      <EditContainer empty={!!error}>
+        <Header
+          backButtonLink={'/admin/profile'}
+          backButtonText={'Profile'}
+          title={'Edit profile'} />
+
+        <Empty
+          error={!!error}
+          height={'calc(100% - 112px)'}
+          message={error ? error : undefined} />
+      </EditContainer>
+    );
+  }
 
   return (
     <EditContainer>
@@ -357,13 +365,6 @@ export const EditProfilePage: React.FC<IEditProfilePage> = () => {
         onClose={handleImageUpdateModalClose}
         visible={imageModalVisible}
         src={image} />
-
-      <Banner
-        color={COLOR_RED}
-        icon={'clear'}
-        onHide={handleBannerMessageHide}
-        text={bannerMessage}
-        visible={!!bannerMessage} />
     </EditContainer>
   );
 };
