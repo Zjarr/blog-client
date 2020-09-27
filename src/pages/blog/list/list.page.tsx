@@ -87,7 +87,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
   const handleBlogsQueryResponse = React.useCallback((data: IBlogsQueryData): void => {
     const { error, blogs } = data.blogs;
 
-    if (error) return; // TODO: error.message
+    if (error) return setError(error.message);
     if (!blogs) return;
 
     return buildBlogsObject(blogs);
@@ -96,7 +96,7 @@ export const ListBlogPage: React.FC<IListBlogPage> = () => {
   const handleCategoriesQueryResponse = React.useCallback((data: ICategoriesQueryData): void => {
     const { error, categories } = data.categories;
 
-    if (error) return; // TODO: error.message
+    if (error) return setError(error.message);
     if (!categories) return;
 
     return filterCategories.setValues(categories);
