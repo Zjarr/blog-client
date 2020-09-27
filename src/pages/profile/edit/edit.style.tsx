@@ -3,17 +3,22 @@ import Styled from 'styled-components';
 import { Column } from '../../../components/column';
 import { MEDIA_SM, MEDIA_XL } from '../../../utils/values';
 
-export const EditContainer = Styled.div`
+const EMPTY_CONTAINER_PADDING = '16px';
+
+const getContainerPadding = (initial: string, empty?: boolean): string => empty ? EMPTY_CONTAINER_PADDING : initial;
+
+export const EditContainer = Styled.div<{ empty?: boolean }>`
   height: 100%;
-  padding: 16px 16px 80px;
   overflow-y: auto;
 
+  padding: ${({ empty }): string => getContainerPadding('16px 16px 80px', empty)};
+
   ${MEDIA_SM} {
-    padding: 16px 16px 96px;
+    padding: ${({ empty }): string => getContainerPadding('16px 16px 96px', empty)};
   }
 
   ${MEDIA_XL} {
-    padding: 16px 16px 112px;
+    padding: ${({ empty }): string => getContainerPadding('16px 16px 112px', empty)};
   }
 `;
 
