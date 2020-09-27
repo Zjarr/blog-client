@@ -2,9 +2,9 @@ import { format } from 'date-fns';
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 
-import { Banner } from '../../../components/banner';
 import { SimpleButton } from '../../../components/button';
 import { ChangePassword } from '../../../components/change-password';
+import { Empty } from '../../../components/empty';
 import { Footer } from '../../../components/footer';
 import { Header } from '../../../components/header';
 import { Image } from '../../../components/image';
@@ -13,7 +13,7 @@ import { SubtitleText } from '../../../components/text';
 import { UserContext } from '../../../contexts';
 import { useNavigateTo } from '../../../utils/hooks';
 import { ISocial, IUser } from '../../../utils/interfaces';
-import { BORDER_RADIUS_SMALL, COLOR_PURPLE, COLOR_RED, STRING_SERVER_ERROR } from '../../../utils/values';
+import { BORDER_RADIUS_SMALL, COLOR_PURPLE, STRING_SERVER_ERROR } from '../../../utils/values';
 
 import { IPasswordMutationData, IUserQueryData, usePasswordMutation, useUserQuery } from './view.graphql';
 import {
@@ -28,8 +28,8 @@ import {
 } from './view.style';
 
 export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
+  const [error, setError] = React.useState<string>('');
   const [passwordModalVisible, setPasswordModalVisible] = React.useState<boolean>(false);
-  const [bannerMessage, setBannerMessage] = React.useState<string>('');
   const [userData, setUserData] = React.useState<IUser | null>(null);
 
   const { user } = React.useContext(UserContext);
@@ -47,14 +47,6 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
     data: passwordMutationData,
     loading: passwordMutationLoading
   }] = usePasswordMutation();
-
-  const handleBannerMessageHide = (): void => {
-    return setBannerMessage('');
-  };
-
-  const showBannerMessage = (message: string): void => {
-    return setBannerMessage(message);
-  };
 
   const handlePasswordUpdate = (password: { current: string; updated: string } | null): void => {
     setPasswordModalVisible(false);
@@ -76,7 +68,7 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
   const handleUserQueryResponse = React.useCallback((data: IUserQueryData): void => {
     const { error, user } = data.user;
 
-    if (error) return showBannerMessage(error.message);
+    if (error) return setError(error.message);
     if (!user) return;
 
     return setUserData(user);
@@ -85,10 +77,8 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
   const handlePasswordMutationResponse = React.useCallback((data: IPasswordMutationData): void => {
     const { error, user } = data.password;
 
-    if (error) return showBannerMessage(error.message);
+    if (error) return setError(error.message);
     if (!user) return;
-
-    return showBannerMessage('Password was updated successfully.');
   }, []);
 
   React.useEffect(() => {
@@ -100,12 +90,25 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
   }, [passwordMutationData, handlePasswordMutationResponse]);
 
   React.useEffect(() => {
-    if (userQueryError) return showBannerMessage(STRING_SERVER_ERROR);
+    if (userQueryError) return setError(STRING_SERVER_ERROR);
   }, [userQueryError]);
 
   React.useEffect(() => {
-    if (passwordMutationError) return showBannerMessage(STRING_SERVER_ERROR);
+    if (passwordMutationError) return setError(STRING_SERVER_ERROR);
   }, [passwordMutationError]);
+
+  if (!!error) {
+    return (
+      <ViewContainer empty={!!error}>
+        <Header title={'Profile'} />
+
+        <Empty
+          error={!!error}
+          height={'calc(100% - 112px)'}
+          message={error ? error : undefined} />
+      </ViewContainer>
+    );
+  }
 
   return (
     <ViewContainer>
@@ -188,13 +191,6 @@ export const ViewProfilePage: React.FC<IViewProfilePage> = () => {
       <ChangePassword
         onClose={handlePasswordUpdate}
         visible={passwordModalVisible} />
-
-      <Banner
-        color={COLOR_RED}
-        icon={'clear'}
-        onHide={handleBannerMessageHide}
-        text={bannerMessage}
-        visible={!!bannerMessage} />
     </ViewContainer>
   );
 };
