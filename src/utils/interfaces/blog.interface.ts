@@ -5,6 +5,7 @@ export interface IBlog {
   active: boolean;
   body: string;
   categories?: string[];
+  categoriesString?: string;
   created: string;
   description: string;
   image: string;
