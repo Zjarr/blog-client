@@ -2,7 +2,7 @@ import { DocumentNode, gql } from '@apollo/client/core';
 import { useQuery } from '@apollo/client/react/hooks/useQuery';
 import { QueryResult } from '@apollo/client/react/types/types';
 
-import { IBlog, IBlogsReport, ICategory, IError } from '../../utils/interfaces';
+import { IBlog, IBlogsReport, IError } from '../../utils/interfaces';
 
 const BLOGS_AMOUNT_QUERY: DocumentNode = gql`
   query BlogsAmountQuery {
@@ -30,7 +30,7 @@ const BLOGS_LAST_TWO_QUERY: DocumentNode = gql`
         blogs {
           _id
           active
-          categories
+          categoriesString
           created
           image
           name
@@ -54,26 +54,6 @@ const BLOGS_WEEK_QUERY: DocumentNode = gql`
         report {
           day
           blogs
-        }
-      }
-      ... on Error {
-        error {
-          code
-          message
-          status
-        }
-      }
-    }
-  }
-`;
-
-const CATEGORIES_QUERY: DocumentNode = gql`
-  query CategoriesQuery($categories: GetCategoriesInput!) {
-    categories(categories: $categories) {
-      ... on CategoriesSuccess {
-        categories {
-          _id
-          name
         }
       }
       ... on Error {
@@ -141,20 +121,6 @@ export interface IBlogsLastTwoQueryInput {
   };
 }
 
-export interface ICategoriesQueryData {
-  categories: {
-    categories?: ICategory[];
-    error?: IError;
-  }
-}
-
-export interface ICategoriesQueryInput {
-  categories: {
-    active: boolean;
-  }
-}
-
-
 export interface IImagesAmountQueryData {
   imagesAmount: {
     error?: IError;
@@ -188,16 +154,6 @@ export const useBlogsLastTwoInactiveQuery = (): QueryResult<IBlogsLastTwoData, I
 
 export const useBlogsWeekQuery = (): QueryResult<IBlogsWeekData> => {
   return useQuery<IBlogsWeekData>(BLOGS_WEEK_QUERY);
-};
-
-export const useCategoriesQuery = (): QueryResult<ICategoriesQueryData, ICategoriesQueryInput> => {
-  return useQuery<ICategoriesQueryData, ICategoriesQueryInput>(CATEGORIES_QUERY, {
-    variables: {
-      categories: {
-        active: true
-      }
-    }
-  });
 };
 
 export const useImagesAmountQuery = (): QueryResult<IImagesAmountQueryData> => {

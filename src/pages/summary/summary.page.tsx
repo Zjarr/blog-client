@@ -9,20 +9,18 @@ import { Column } from '../../components/column';
 import { Empty } from '../../components/empty';
 import { Header } from '../../components/header';
 import { SubtitleText } from '../../components/text';
-import { IBlog, IBlogsReport, ICategory } from '../../utils/interfaces';
+import { IBlog, IBlogsReport } from '../../utils/interfaces';
 import { COLOR_MAGENTA, COLOR_PURPLE, STRING_SERVER_ERROR } from '../../utils/values';
 
 import {
   IBlogsAmountData,
   IBlogsLastTwoData,
   IBlogsWeekData,
-  ICategoriesQueryData,
   IImagesAmountQueryData,
   useBlogsAmountQuery,
   useBlogsLastTwoActiveQuery,
   useBlogsLastTwoInactiveQuery,
   useBlogsWeekQuery,
-  useCategoriesQuery,
   useImagesAmountQuery
 } from './summary.graphql';
 import {
@@ -52,7 +50,6 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   const [blogsInactive, setBlogsInactive] = React.useState<IImageCard[]>(LOADING_CARDS);
   const [blogsNumber, setBlogsNumber] = React.useState<number>(0);
   const [blogsReport, setBlogsReport] = React.useState<IBlogsReport[]>(LOADING_REPORT_DATA);
-  const [categories, setCategories] = React.useState<ICategory[]>([]);
   const [error, setError] = React.useState<string>('');
   const [imagesNumber, setImagesNumber] = React.useState<number>(0);
 
@@ -80,31 +77,20 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   } = useBlogsWeekQuery();
 
   const {
-    error: categoriesQueryError,
-    data: categoriesQueryData
-  } = useCategoriesQuery();
-
-  const {
     error: imagesQueryError,
     data: imagesQueryData,
     loading: imagesQueryLoading
   } = useImagesAmountQuery();
 
-  const mapCategoryObject = React.useCallback((ids: string[]): ICategory[] => {
-    return categories.filter(category => ids.includes(category._id!)) as ICategory[];
-  }, [categories]);
-
   const buildBlogsObject = React.useCallback((blogs: IBlog[], active: boolean) => {
     const blogsCards: IImageCard[] = [];
 
     blogs.forEach(blog => {
-      const categoryString = mapCategoryObject(blog.categories || []).map(category => category.name).join(' | ');
-
       blogsCards.push({
         active: blog.active,
         image: blog.image,
         link: `/admin/blogs/view/${blog._id}`,
-        primaryText: categoryString || 'No categories',
+        primaryText: blog.categoriesString,
         primaryTextIcon: 'category',
         secondaryText: format(new Date(blog.created), 'MMMM do, yyyy'),
         secondaryTextIcon: 'event',
@@ -117,7 +103,7 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
     }
 
     return setBlogsInactive(blogsCards);
-  }, [mapCategoryObject]);
+  }, []);
 
   const handleBlogsAmountQueryResponse = React.useCallback((data: IBlogsAmountData): void => {
     const { blogs, error } = data.blogsAmount;
@@ -148,15 +134,6 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
     }, 100);
   }, []);
 
-  const handleCategoriesQueryResponse = React.useCallback((data: ICategoriesQueryData): void => {
-    const { categories, error } = data.categories;
-
-    if (error) return setError(error.message);
-    if (!categories) return;
-
-    return setCategories(categories);
-  }, []);
-
   const handleImagesQueryResponse = React.useCallback((data: IImagesAmountQueryData): void => {
     const { error, images } = data.imagesAmount;
 
@@ -183,10 +160,6 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   }, [blogsWeekQueryData, handleBlogsWeekQueryResponse]);
 
   React.useEffect(() => {
-    if (categoriesQueryData) return handleCategoriesQueryResponse(categoriesQueryData);
-  }, [categoriesQueryData, handleCategoriesQueryResponse]);
-
-  React.useEffect(() => {
     if (imagesQueryData) return handleImagesQueryResponse(imagesQueryData);
   }, [imagesQueryData, handleImagesQueryResponse]);
 
@@ -205,10 +178,6 @@ export const SummaryPage: React.FC<ISummaryPage> = () => {
   React.useEffect(() => {
     if (blogsWeekQueryError) return setError(STRING_SERVER_ERROR);
   }, [blogsWeekQueryError]);
-
-  React.useEffect(() => {
-    if (categoriesQueryError) return setError(STRING_SERVER_ERROR);
-  }, [categoriesQueryError]);
 
   React.useEffect(() => {
     if (imagesQueryError) return setError(STRING_SERVER_ERROR);
