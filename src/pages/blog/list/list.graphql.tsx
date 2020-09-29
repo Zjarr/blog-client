@@ -13,6 +13,7 @@ const BLOGS_QUERY: DocumentNode = gql`
           _id
           active
           categories
+          categoriesString
           created
           image
           name
@@ -42,6 +43,7 @@ const CATEGORIES_QUERY: DocumentNode = gql`
       ... on CategoriesSuccess {
         categories {
           _id
+          icon
           name
         }
       }
@@ -98,4 +100,3 @@ export const useCategoriesQuery = (): QueryResult<ICategoriesQueryData, ICategor
     }
   });
 };
-
